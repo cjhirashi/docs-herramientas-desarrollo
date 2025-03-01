@@ -15,7 +15,7 @@ export default function Copy({ content }: { content: string }) {
 
     setTimeout(() => {
       setIsCopied(false)
-    }, 2000)
+    }, 3000)
   }
 
   return (
