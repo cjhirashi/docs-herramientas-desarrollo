@@ -1,80 +1,80 @@
 ---
-title: Setup
-description: Setting up and configuring your documentation project
+title: Configuración
+description: Configuración y configuración de su proyecto de documentación.
 keywords:
-  ["setup", "configuration", "layout", "Google", "SEO", "nextjs", "documents"]
+  ["configuración", "configuration", "disposición", "Google", "SEO", "nextjs", "documentos"]
 ---
 
-Setting up your new documentation project is straightforward. Most of the essential project settings can be configured within the `settings` folder.
+Configurar su nuevo proyecto de documentación es muy sencillo. La mayoría de los ajustes esenciales del proyecto se pueden configurar dentro de la carpeta `settings`.
 
-## Settings
+## Ajustes
 
-This section provides the core settings for your documentation site, such as defining the site's URL, site icon and title.
-
-```tsx showLineNumbers
-export const url = ""                 // The URL for your documentation site
-export const siteicon = ""            // Icon displayed next to the site name in the header
-export const sitename = ""            // Title of your documentation site
-```
-
-## Google Tags
-
-This section allows you to integrate Google Tag Manager into your documentation project. You can add your GTM code and configure whether it's connected.
+Esta sección proporciona las configuraciones principales para su sitio de documentación, como definir la URL del sitio, el ícono y el título del sitio.
 
 ```tsx showLineNumbers
-export const gtm = ""                 // Add your Google Tag Manager code here
-export const gtmconnected = true      // Set to true if GTM is connected, otherwise set to false
+export const url = ""                 // La URL de su sitio de documentación
+export const siteicon = ""            // Icono que se muestra junto al nombre del sitio en el encabezado
+export const sitename = ""            // Título de su sitio de documentación
 ```
 
-## Search Engine
+## Etiquetas de Google
 
-Configure essential SEO settings to ensure your documentation site is optimized for search engines. This includes meta descriptions, keywords and social media sharing details like images and alt text.
+Esta sección te permite integrar Google Tag Manager en tu proyecto de documentación. Puedes agregar tu código GTM y configurar si está conectado.
 
 ```tsx showLineNumbers
-export const description = ""         // Description of your documentation site for SEO
-export const keywords = ["", ""]      // List of SEO keywords for your documentation site
-export const urlimage = ""            // The URL of the image used when sharing on social media)
-export const imagealt = ""            // Alt text for shared images, helpful for screen readers
-export const twitterhandle = ""       // Your company’s Twitter handle for social sharing
+export const gtm = ""                 // Añade tu código de Google Tag Manager aquí
+export const gtmconnected = true      // Establezca en verdadero si GTM está conectado; de lo contrario, configúrelo en falso
 ```
 
-## Footer Branding
+## Motor de búsqueda
 
-The footer settings allow you to customize the company information displayed at the bottom of the site. You can add the company name and the URL that the name will link to.
+Configure los ajustes esenciales de SEO para garantizar que su sitio de documentación esté optimizado para los motores de búsqueda. Esto incluye metadescripciones, palabras clave y detalles para compartir en redes sociales, como imágenes y texto alternativo.
 
 ```tsx showLineNumbers
-export const companyname = ""         // The company name displayed in the copyright section
-export const companylink = ""         // The URL your company name should link to
+export const description = ""         // Descripción de su sitio de documentación para SEO
+export const keywords = ["", ""]      // Lista de palabras clave SEO para su sitio de documentación
+export const urlimage = ""            // La URL de la imagen utilizada al compartirla en las redes sociales.
+export const imagealt = ""            // Texto alternativo para imágenes compartidas, útil para lectores de pantalla
+export const twitterhandle = ""       // El nombre de usuario de Twitter de su empresa para compartir en redes sociales
 ```
 
-## General Layout
+## Marca de pie de página
 
-The layout settings control the appearance and functionality of various elements of the documentation site, such as branding, the right sidebar, feedback options, table of contents, and scroll-to-top functionality.
+La configuración del pie de página le permite personalizar la información de la empresa que se muestra en la parte inferior del sitio. Puede agregar el nombre de la empresa y la URL a la que se vinculará el nombre.
 
 ```tsx showLineNumbers
-export const branding = true          // Set to true to display our branding elements
-export const rightsidebar = true      // Set to true to enable the right sidebar with feedback, table of contents and scroll-to-top
-export const feedbackedit = true      // Control to enable/disable feedback on GitHub
-export const tableofcontent = true    // Control to enable/disable the generated table of contents
-export const totopscroll = true       // Control to enable/disable scroll-to-top button
+export const companyname = ""         // El nombre de la empresa que aparece en la sección de derechos de autor
+export const companylink = ""         // La URL a la que debe vincularse el nombre de su empresa
 ```
 
-## Github Control
+## Diseño general
 
-If your MDX files are hosted on GitHub, you can configure the project to load documents directly from there. This option can be useful for syncing documentation updates directly with your repository.
+Las configuraciones de diseño controlan la apariencia y funcionalidad de varios elementos del sitio de documentación, como la marca, la barra lateral derecha, las opciones de comentarios, la tabla de contenido y la funcionalidad de desplazamiento hacia la parte superior.
 
 ```tsx showLineNumbers
-export const loadfromgithub = false   // Set to true to load your MDX documents directly from GitHub
+export const branding = true          // Establezca como verdadero para mostrar nuestros elementos de marca
+export const rightsidebar = true      // Establezca como verdadero para habilitar la barra lateral derecha con comentarios, tabla de contenido y desplazamiento hacia arriba
+export const feedbackedit = true      // Control para habilitar o deshabilitar la retroalimentación en GitHub
+export const tableofcontent = true    // Control para habilitar/deshabilitar la tabla de contenidos generada
+export const totopscroll = true       // Control para habilitar/deshabilitar el botón de desplazamiento hacia arriba
 ```
 
-## Project Structure
+## Control de Github
+
+Si sus archivos MDX están alojados en GitHub, puede configurar el proyecto para cargar documentos directamente desde allí. Esta opción puede resultar útil para sincronizar las actualizaciones de la documentación directamente con su repositorio.
+
+```tsx showLineNumbers
+export const loadfromgithub = false   // Establezca como verdadero para cargar sus documentos MDX directamente desde GitHub
+```
+
+## Estructura del proyecto
 
 <CardGrid>
   <Card
-    title="Navigation"
+    title="Navegación"
     href="/docs/navigation"
     icon="alignJustify"
     variant="small"
-    description="Creating your navigation"
+    description="Creando tu navegación"
   />
 </CardGrid>
