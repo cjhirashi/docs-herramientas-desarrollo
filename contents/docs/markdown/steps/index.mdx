@@ -1,47 +1,52 @@
 ---
-title: Steps
-description: This section provides an overview of Introduction.
+title: Pasos
+description: Esta sección proporciona una descripción general de Pasos.
 ---
 
-The `<Step>` and `<StepItem>` components allow you to create structured step-by-step guides in your documentation. These components are particularly useful when you want to break down a process or tutorial into easy-to-follow stages.
+Los componentes `<Step>` y `<StepItem>` le permiten crear guías estructuradas paso a paso en su documentación. Estos componentes son particularmente útiles cuando desea dividir un proceso o tutorial en etapas fáciles de seguir.
 
-## Steps
+## Pasos
 
-To create a step-by-step guide in your MDX, you can use the following structure:
+Para crear una guía paso a paso en su MDX, puede utilizar la siguiente estructura:
 
 <Step>
-  <StepItem title="Install Node.js">
-    Make sure you have Node.js installed on your machine. You can download it from [here](https://nodejs.org).
+  <StepItem title="Título 1">
+   
+    Contenido 1
+
+  </StepItem>
+
+  <StepItem title="Título 2">
     
-    To verify the installation, run the following command:
-
-    ```bash
-    node -v
-    ```
+    Contenido 2
 
   </StepItem>
 
-  <StepItem title="Install Dependencies">
-    After cloning the repository, navigate to the project directory and install the necessary dependencies:
-
-    ```bash
-    npm install
-    ```
-
-  </StepItem>
-
-  <StepItem title="Run the Project">
-    Start the development server:
-
-    ```bash
-    npm run dev
-    ```
-
-    You can access the application at:
-
-    ```bash
-    http://localhost:3000
-    ```
+  <StepItem title="Título 3">
+    
+    Contenido 3
 
   </StepItem>
 </Step>
+
+```plaintext
+<Step>
+  <StepItem title="Título 1">
+   
+    Contenido 1
+
+  </StepItem>
+
+  <StepItem title="Título 2">
+    
+    Contenido 2
+
+  </StepItem>
+
+  <StepItem title="Título 3">
+    
+    Contenido 3
+
+  </StepItem>
+</Step>
+```
