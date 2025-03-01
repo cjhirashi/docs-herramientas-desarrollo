@@ -15,7 +15,7 @@ export default function Home() {
           href={`/docs${PageRoutes[0].href}`}
           className={buttonVariants({ className: "px-6", size: "lg" })}
         >
-          Empezar
+          Comenzar
         </Link>
       </div>
     </div>
