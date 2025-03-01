@@ -63,36 +63,36 @@ git clone https://github.com/cjhirashi/documents.git
 Cambie el directorio a la carpeta del proyecto:
 
 ```bash
-cd rubix-documents
+cd documents
 ```
 
 </StepItem>
-<StepItem title="Install Dependencies">
-Use npm to install all the required dependencies:
+<StepItem title="Instalar dependencias">
+Utilice npm para instalar todas las dependencias necesarias:
 
 ```bash
 npm install
 ```
 
-This will install all the dependencies listed in the package.json file, including:
+Esto instalará todas las dependencias enumeradas en el archivo package.json, incluidas:
 
 - Next.js
 - React
 - TypeScript
 - Tailwind CSS
 - MDX components
-- Other dependencies like ESLint, PostCSS, Husky, etc.
+- Otras dependencias como ESLint, PostCSS, Husky, etc.
 
 </StepItem>
 
-<StepItem title="Running the Development Server">
-Start the development server by running:
+<StepItem title="Ejecutando el servidor de desarrollo">
+Inicie el servidor de desarrollo ejecutando:
 
 ```bash
 npm run dev
 ```
 
-This will start the local server, and you can open your browser at:
+Esto iniciará el servidor local y podrás abrir tu navegador en:
 
 ```arduino
 http://localhost:3000
@@ -100,38 +100,37 @@ http://localhost:3000
 
 </StepItem>
 
-<StepItem title="Editing the Project">
-  - **MDX Files:** Documentation content is stored in `contents/docs`.
-  - **Components:** You can edit React components in the `components/` directory.
-  - **Tailwind:** Tailwind styling are managed in `tailwind.config.ts` and `app/globals.css`.
+<StepItem title="Editando el proyecto">
+  - **Archivos MDX:** El contenido de la documentación se almacena en `contents/docs`.
+  - **Components:** Puedes editar componentes de React en el directorio `components/`.
+  - **Tailwind:** El estilo de Tailwind se gestiona en `tailwind.config.ts` y `app/globals.css`.
 
-To make any changes to the project, open the files in your editor and modify them as needed.
+Para realizar cualquier cambio en el proyecto, abra los archivos en su editor y modifíquelos según sea necesario.
 
-<Note title="Required" type="danger">
-  The project's search functionality relies on the Husky's automation to build
-  `search-data/documents.json` ensure git commit is performed to generate this
-  file.
+<Note title="Requerido" type="danger">
+  La funcionalidad de búsqueda del proyecto se basa en la automatización de Husky para crear
+`search-data/documents.json` y garantizar que se realice la confirmación de Git para generar este archivo.
 </Note>
 
 </StepItem>
-<StepItem title="Building for Production">
-Once you’ve made your changes and want to build the project for production:
+<StepItem title="Contrucción en producción">
+Una vez que haya realizado los cambios y desee crear el proyecto para producción:
 
 ```bash
 npm run build
 ```
 
-This will generate a production-ready build of the app.
+Esto generará una compilación de la aplicación lista para producción.
 
 </StepItem>
-<StepItem title="Running Production Server">
-To run the production server:
+<StepItem title="Ejecución del servidor de producción">
+Para ejecutar el servidor de producción:
 
 ```bash
 npm run start
 ```
 
-The production app will be available at:
+La aplicación de producción estará disponible en:
 
 ```arduino
 http://localhost:3000
@@ -140,21 +139,21 @@ http://localhost:3000
 </StepItem>
 </Step>
 
-## Optional
+## Opcional
 
 <Step>
-<StepItem title="Deploying to Vercel">
-This project is optimized for Vercel deployment. To deploy to Vercel:
+<StepItem title="Implementación en Vercel">
+Este proyecto está optimizado para ser implementado en Vercel. Para implementarlo en Vercel:
 
-- Go to [vercel.com](https://vercel.com/) and sign up.
-- Link your GitHub repository and deploy the project.
-- Vercel will handle the build process for you automatically.
+- Ir a [vercel.com](https://vercel.com/) y regístrate.
+- Vincula tu repositorio de GitHub e implementa el proyecto.
+- Vercel se encargará del proceso de construcción de forma automática.
 </StepItem>
-<StepItem title="Linting and Pre-commit Hooks">
-The project uses ESLint for linting and Husky for Git hooks. These tools are configured automatically, but you can customize them in `.eslintrc.json` and `.husky` directories.
+<StepItem title="Hooks de Pre-commit y Linting">
+El proyecto utiliza ESLint para el análisis de errores y Husky para los hooks de Git. Estas herramientas se configuran automáticamente, pero puedes personalizarlas en los directorios `.eslintrc.json` y `.husky`.
 </StepItem>
 </Step>
 
 ## Important Information
 
-The project's search functionality relies on the Husky's automation to build `search-data/documents.json` ensure git commit is performed to generate this file.
+La funcionalidad de búsqueda del proyecto se basa en la automatización de Husky para crear `search-data/documents.json` y garantizar que se realice la confirmación de Git para generar este archivo.
