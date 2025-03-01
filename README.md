@@ -120,21 +120,21 @@ _Pantalla del modo oscuro del documento_
 
 ## Contribuyendo
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add some feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Open a pull request.
+1. Bifurcar el repositorio (Fork).
+2. Crear una nueva rama (`git checkout -b feature-branch`).
+3. Haz tus cambios.
+4. Confirma tus cambios (`git commit -m 'Add some feature'`).
+5. Empujar a la rama (`git push origin feature-branch`).
+6. Abrir una solicitud de extracción.
 
 ## Licencia
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+Este proyecto está licenciado bajo la licencia MIT. Consulte el archivo [LICENCIA](./LICENSE) para obtener más detalles.
 
 ## Contacto
 
-For support or inquiries, contact Vincent Vu [@rubixvi](https://x.com/rubixvi) on X.
+Para obtener ayuda o realizar consultas, comuníquese con Vincent Vu [@rubixvi](https://x.com/rubixvi) en X.
 
 Rubix Studios - [https://www.rubixstudios.com.au](https://www.rubixstudios.com.au)
 
-Project: [https://github.com/rubixvi/rubix-documents](https://github.com/rubixvi/rubix-documents)
+Proyecto: [https://github.com/rubixvi/rubix-documents](https://github.com/rubixvi/rubix-documents)
