@@ -1,14 +1,14 @@
 # Documents
 
-**Documents** is a powerful **Next.js** documentation starter kit designed to simplify the process of creating high-quality, comprehensive product documentation, technical manuals and business guides. Built with **React**, **Tailwind CSS** and **TypeScript**, this starter kit provides the foundation to build your project documentation and knowledge base.
+**Documents** es un potente kit de inicio de documentación de **Next.js** diseñado para simplificar el proceso de creación de documentación de productos, manuales técnicos y guías comerciales integrales y de alta calidad. Desarrollado con **React**, **Tailwind CSS** y **TypeScript**, este kit de inicio proporciona la base para crear la documentación de su proyecto y su base de conocimientos.
 
 **Demo**: [https://rubix-documents.vercel.app/](https://rubix-documents.vercel.app/)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frubixvi%2Frubix-documents&project-name=my-documents&repository-name=my-documents&demo-title=Documents&demo-description=This%20Document%20Starter%20Kit%20is%20developed%20with%20Next.js%2C%20Tailwind%20CSS%20and%20TypeScript.%20It%20serves%20as%20a%20flexible%20and%20scalable%20foundation%20for%20building%20documentation%20websites%20or%20content-driven%20projects.&demo-url=https%3A%2F%2Frubix-documents.vercel.app%2F&demo-image=https%3A%2F%2Fgithub.com%2Frubixvi%2Frubix-documents%2Fblob%2Fmain%2Fpublic%2Fscreens%2Fscreen-1.png)
 
-## Table of Contents
+## Tabla de contenido
 
-- [Installation](#installation)
+- [Instalación](#instalación)
 - [Usage](#usage)
 - [Features](#features)
 - [Contributing](#contributing)
@@ -21,7 +21,7 @@
 
 ## Development
 
-### Installation
+### Instalación
 
 1. Clone the repository:
 
