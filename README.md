@@ -9,116 +9,116 @@
 ## Tabla de contenido
 
 - [Instalación](#instalación)
-- [Usage](#usage)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- [Uso](#uso)
+- [Características](#características)
+- [Contribuyendo](#contribuyendo)
+- [Licencia](#licencia)
+- [Contacto](#contacto)
 
-## Documentation
+## Desarrollo
 
-[https://docs.rubixstudios.com.au](https://docs.rubixstudios.com.au) **(In-Development)**
+[https://docs.rubixstudios.com.au](https://docs.rubixstudios.com.au) **(En-desarrollo)**
 
 ## Development
 
 ### Instalación
 
-1. Clone the repository:
+1. Clonar el repositorio:
 
    ```bash
-   git clone https://github.com/rubixvi/rubix-documents.git
-   cd rubix-documents
+   git clone https://github.com/cjhirashi/programing-documents.git
+   cd programing-documents
    ```
 
-2. Install dependencies:
+2. Instalar dependencias:
 
    ```bash
    npm install
    ```
 
-3. Run the development server:
+3. Ejecute el servidor de desarrollo:
 
    ```bash
    npm run dev
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the project.
+4. Abra [http://localhost:3000](http://localhost:3000) en su navegador para ver el proyecto.
 
-5. **For Production:**
+5. **Para producción:**
 
-   - Build the app:
+   - Construye la aplicación:
 
      ```bash
      npm run build
      ```
 
-   - Start the production server:
+   - Iniciar el servidor de producción:
 
      ```bash
      npm run start
      ```
 
-   - Open [http://localhost:3000](http://localhost:3000) to view the production build.
+   - Abra [http://localhost:3000](http://localhost:3000) para ver la versión de producción.
 
-   - **If deploying to Vercel,** the build step is automatically handled during deployment.
+   - **Si se implementa en Vercel,** El paso de compilación se gestiona automáticamente durante la implementación.
 
-## Usage
+## Uso
 
-This kit can be used to create product documentation, business websites and guides.
+Este kit se puede utilizar para crear documentación de productos, sitios web comerciales y guías.
 
 ![Main Screen](./public/screens/screen-1.png)
-_Main Screen_
+_Pantalla principal_
 
 ![Document Screen](./public/screens/screen-2.png)
-_Document Screen_
+_Pantalla de documento_
 
 ![Document Footer](./public/screens/screen-3.png)
-_Document Footer_
+_Pie de página del documento_
 
 ![Document Search](./public/screens/screen-4.png)
-_Document Search_
+_Búsqueda de documentos_
 
 ![Main Dark Screen](./public/screens/screen-5.png)
-_Main Dark Mode Screen_
+_Pantalla principal del modo oscuro_
 
 ![Document Dark Screen](./public/screens/screen-6.png)
-_Document Dark Mode Screen_
+_Pantalla del modo oscuro del documento_
 
-## Features
+## Características
 
-### Content Creation
+### Creación de contenido
 
-- **MDX Integration**: Write docs with Markdown & JSX components.
-- **Custom Components**: Reuse React components in your docs.
-- **Mermaid.js Diagrams**: Create flowcharts & diagrams.
-- **Math & Tables**: Include tables & LaTeX math formulas.
+- **Integración MDX**: Escriba documentos con componentes Markdown y JSX.
+- **Componentes personalizados**: Reutiliza los componentes de React en tus documentos.
+- **Diagramas de Mermaid.js**: Crear diagramas y diagramas de flujo.
+- **Matemáticas y tablas**: Incluye tablas y fórmulas matemáticas LaTeX.
 
-### Navigation & Readability
+### Navegación y legibilidad
 
-- **Multi-level Navigation**: Nested pages for hierarchy.
-- **Content Pagination**: Smooth transitions between pages.
-- **Dynamic TOC**: Auto-generated table of contents.
-- **Code Switcher**: Toggle & copy code snippets easily.
+- **Navegación multinivel**: Páginas anidadas para jerarquía.
+- **Paginación de contenido**: Transiciones suaves entre páginas.
+- **TOC dinámico**: Tabla de contenidos generada automáticamente.
+- **Cambiador de código**: Alterne y copie fragmentos de código fácilmente.
 
-### Code Features
+### Características del código
 
-- **Syntax Highlighting**: Theme-aware highlighting.
-- **Enhanced Code Blocks**: Line highlighting & code titles.
+- **Syntax Highlighting**: Resaltado según el tema.
+- **Bloques de código mejorados**: Resaltado de líneas y títulos de códigos.
 
-### Theming & UX
+### Tematización y experiencia de usuario
 
-- **Light/Dark Modes**: Automatic theme switching.
-- **SEO Optimization**: Auto-generated metadata for better ranking.
-  - Manage meta tags (title, description, URLs, social sharing).
+- **Modos claro/oscuro**: Cambio automático de tema.
+- **Optimización SEO**: Metadatos generados automáticamente para una mejor clasificación.
+  - Administrar metaetiquetas (title, description, URLs, social sharing).
 
-### Search & Future Enhancements
+### Búsqueda y mejoras futuras
 
-- **Advanced Search**: Fuzzy search with term highlighting.
-- **AI Knowledgebase**: Future AI-powered doc tools.
+- **Búsqueda avanzada**: Búsqueda difusa con resaltado de términos.
+- **Base de conocimientos de IA**: Futuras herramientas de documentación impulsadas por IA.
 
-> **Note:** AI documentation support is in development.
+> **Nota:** El soporte de documentación de IA está en desarrollo.
 
-## Contributing
+## Contribuyendo
 
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
@@ -127,11 +127,11 @@ _Document Dark Mode Screen_
 5. Push to the branch (`git push origin feature-branch`).
 6. Open a pull request.
 
-## License
+## Licencia
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
-## Contact
+## Contacto
 
 For support or inquiries, contact Vincent Vu [@rubixvi](https://x.com/rubixvi) on X.
 
