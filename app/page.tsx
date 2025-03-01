@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-[86.5vh] flex flex-col justify-center items-center text-center px-2 py-8">
       <h1 className="text-4xl font-bold mb-4 sm:text-7xl">Documents</h1>
       <p className="max-w-[600px] text-foreground mb-8 sm:text-base">
-      Una plataforma de documentación de productos de código abierto sencilla. Fácil de usar y de personalizar.
+      Una plataforma de documentación de productos, servicios o algo más, de código abierto, sencilla. Fácil de usar y de personalizar.
       </p>
       <div className="flex items-center gap-5">
         <Link
