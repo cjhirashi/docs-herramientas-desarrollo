@@ -4,13 +4,12 @@ export const siteicon = "/icon.png"
 export const gtm = "GTM-XXXXXXX"
 export const gtmconnected = true
 
-export const sitename = "Documents"
+export const sitename = "Herramientas de desarrollo"
 export const description =
   "Esta plantilla de documentación integral, diseñada con Next.js y disponible como código abierto, ofrece un diseño elegante y responsivo, adaptado para satisfacer todos los requisitos de documentación de su proyecto."
 export const keywords = [
   "Next.js",
   "documentación",
-  "open source",
   "SEO",
 ]
 export const urlimage = "/images/og-image.png"
