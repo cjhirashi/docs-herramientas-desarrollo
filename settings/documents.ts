@@ -24,13 +24,39 @@ export const Documents: Paths[] = [
     spacer: true,
   },
   {
-    title: "Navegación",
-    href: "/navigation",
-    heading: "Documentos",
+    title: "Lenguajes",
+    href: "/languages",
+    heading: "Lenguajes de programación",
+    items: [
+      {
+        title: "Python",
+        href: "/python",
+      },
+      {
+        title: "Javascript",
+        href: "/javascript",
+      },
+      {
+        title: "Typescript",
+        href: "/typescript",
+      },
+      {
+        title: "Dart",
+        href: "/dart",
+      },
+      {
+        title: "Rikmed",
+        href: "/rikmed",
+      },
+      {
+        title: "BestPP",
+        href: "/bestpp",
+      },
+    ]
   },
   {
-    title: "Esctructura",
-    href: "/structure",
+    title: "Frameworks",
+    href: "/frameworks",
     items: [
       {
         title: "Profundo",
