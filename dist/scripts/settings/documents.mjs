@@ -1,19 +1,19 @@
 export const Documents = [
     {
-        title: "Introduction",
+        title: "Introducción",
         href: "/introduction",
-        heading: "Getting started",
+        heading: "Comenzando",
         items: [
             {
-                title: "Installation",
+                title: "Instalación",
                 href: "/installation",
             },
             {
-                title: "Setup",
+                title: "Configuración",
                 href: "/setup",
             },
             {
-                title: "Changelog",
+                title: "Registro de cambios",
                 href: "/changelog",
             },
         ],
@@ -22,24 +22,24 @@ export const Documents = [
         spacer: true,
     },
     {
-        title: "Navigation",
+        title: "Navegación",
         href: "/navigation",
-        heading: "Documents",
+        heading: "Documentos",
     },
     {
-        title: "Structure",
+        title: "Esctructura",
         href: "/structure",
         items: [
             {
-                title: "Deep",
+                title: "Profundo",
                 href: "/deep",
                 items: [
                     {
-                        title: "Deeper",
+                        title: "Más profundo",
                         href: "/deeper",
                         items: [
                             {
-                                title: "Even deeper",
+                                title: "Aún más profundo",
                                 href: "/even-deeper",
                             },
                         ],
@@ -54,38 +54,38 @@ export const Documents = [
     {
         title: "Markdown",
         href: "/markdown",
-        heading: "Components",
+        heading: "Componentes",
         items: [
             {
-                title: "Cards",
+                title: "Tarjetas",
                 href: "/cards",
             },
             {
-                title: "Diagrams",
+                title: "Diagramas",
                 href: "/diagrams",
             },
             {
-                title: "Filetree",
+                title: "Arbol de archivos",
                 href: "/filetree",
             },
             {
-                title: "Lists",
+                title: "Listas",
                 href: "/lists",
             },
             {
-                title: "Maths",
+                title: "Matemáticas",
                 href: "/maths",
             },
             {
-                title: "Notes",
+                title: "Notas",
                 href: "/notes",
             },
             {
-                title: "Steps",
+                title: "Pasos",
                 href: "/steps",
             },
             {
-                title: "Table",
+                title: "Tablas",
                 href: "/table",
             },
             {
