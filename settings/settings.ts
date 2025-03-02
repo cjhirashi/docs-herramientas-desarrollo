@@ -21,7 +21,7 @@ export const companylink = "https://localhost:3000"
 
 export const branding = true
 export const rightsidebar = true
-export const feedbackedit = true
+export const feedbackedit = false
 export const tableofcontent = true
 export const totopscroll = true
 
