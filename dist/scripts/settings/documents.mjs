@@ -96,4 +96,46 @@ export const Documents = [
             },
         ]
     },
+    {
+        spacer: true,
+    },
+    {
+        title: "Introducción",
+        href: "/dev-templates",
+        heading: "Templates de desarrollo",
+        items: [
+            {
+                title: "Para documentación",
+                href: "/app-documentation",
+                items: [
+                    {
+                        title: "Rubix Documents",
+                        href: "/rubix-documents",
+                        items: [
+                            {
+                                title: "Adaptado",
+                                href: "/adapted"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                title: "Aplicaciones SaaS",
+                href: "/app-saas",
+            },
+            {
+                title: "Aplicaciones de Cursos",
+                href: "/app-courses",
+            },
+            {
+                title: "Aplicaciones de Inteligencia Artificial",
+                href: "/app-ai",
+            },
+            {
+                title: "Aplicaciones LandingPages",
+                href: "/app-landingpages",
+            },
+        ],
+    },
 ];
