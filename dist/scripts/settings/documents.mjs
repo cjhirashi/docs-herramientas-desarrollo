@@ -138,4 +138,22 @@ export const Documents = [
             },
         ],
     },
+    {
+        spacer: true,
+    },
+    {
+        title: "Despliegues",
+        href: "/deployments",
+        heading: "Despliegues de proyectos",
+        items: [
+            {
+                title: "Vercel",
+                href: "/vercel",
+            },
+            {
+                title: "Docker",
+                href: "/docker",
+            },
+        ]
+    }
 ];
