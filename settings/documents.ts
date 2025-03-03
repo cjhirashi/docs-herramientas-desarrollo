@@ -143,4 +143,23 @@ export const Documents: Paths[] = [
       },
     ],
   },
+  {
+    spacer: true,
+  },
+  {
+    title: "Despliegues",
+    href: "/deployments",
+    heading: "Despliegues de proyectos",
+    items: [
+      {
+        title: "Vercel",
+        href: "/vercel",
+      },
+      {
+        title: "Docker",
+        href: "/docker",
+      },
+    ]
+  }
+
 ]
