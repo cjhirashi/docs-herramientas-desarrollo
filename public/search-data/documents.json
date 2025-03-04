@@ -132,6 +132,12 @@
     "content": ""
   },
   {
+    "slug": "/programming/git",
+    "title": "Respositorios Git",
+    "description": "desc",
+    "content": ""
+  },
+  {
     "slug": "/programming",
     "title": "Herramientas de programación",
     "description": "desc",
@@ -177,6 +183,24 @@
     "slug": "/programming/languages/typescript",
     "title": "Lenguajes de programación",
     "description": "Esta sección proporciona una descripción general de cómo comenzar a utilizar Documents, Kit de inicio de documentos de Next.js.",
+    "content": ""
+  },
+  {
+    "slug": "/programming/web/css",
+    "title": "CSS",
+    "description": "desc",
+    "content": ""
+  },
+  {
+    "slug": "/programming/web/html",
+    "title": "HTML",
+    "description": "desc",
+    "content": ""
+  },
+  {
+    "slug": "/programming/web",
+    "title": "Herramientas de desarrollo Web",
+    "description": "desc",
     "content": ""
   }
 ]
