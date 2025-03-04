@@ -1,0 +1,537 @@
+---
+title: Componentes para documentación
+description: Este kit de inicio de documentos sirve como una base flexible y escalable para crear sitios web de documentación o proyectos basados ​​en contenido.
+keywords: [ "nextjs", "app", "documentación"]
+---
+
+## CARDS
+
+### CHICAS
+
+<CardGrid>
+  <Card
+    title="Instrucciones"
+    href="#"
+    icon="alignJustify"
+    variant="small"
+    description="test description"
+  />
+  <Card
+    title="Configuración"
+    href="#"
+    icon="alignJustify"
+    variant="small"
+  />
+</CardGrid>
+
+```JSX
+<CardGrid>
+  <Card
+    title="Instrucciones"
+    href="#"
+    icon="alignJustify"
+    variant="small"
+    description="test description"
+  />
+  <Card
+    title="Configuración"
+    href="#"
+    icon="alignJustify"
+    variant="small"
+  />
+</CardGrid>
+```
+### MEDIANAS
+
+<CardGrid>
+  <Card
+    subtitle="Instructions"
+    title="Installation"
+    description="Get started with Documents using our quick start installation guide to get your project started."
+    href="#"
+  />
+  <Card
+    subtitle="Setup"
+    title="Site Settings"
+    description="Setting up your Documents projects layout, links and search engine optimisation."
+    href="#"
+  />
+</CardGrid>
+
+```JSX
+<CardGrid>
+  <Card
+    subtitle="Instructions"
+    title="Installation"
+    description="Get started with Documents using our quick start installation guide to get your project started."
+    href="#"
+  />
+  <Card
+    subtitle="Setup"
+    title="Site Settings"
+    description="Setting up your Documents projects layout, links and search engine optimisation."
+    href="#"
+  />
+</CardGrid>
+
+```
+
+### IMAGEN
+
+<CardGrid>
+  <Card
+    title="Instructions"
+    href="#"
+    image="/images/og-image.png"
+    variant="image"
+  />
+  <Card
+    title="Setup"
+    href="#"
+    image="/images/og-image.png"
+    variant="image"
+  />
+</CardGrid>
+
+```JSX
+<CardGrid>
+  <Card
+    title="Instructions"
+    href="#"
+    image="/images/og-image.png"
+    variant="image"
+  />
+  <Card
+    title="Setup"
+    href="#"
+    image="/images/og-image.png"
+    variant="image"
+  />
+</CardGrid>
+```
+---
+## DIAGRAMAS
+
+### DIAGRAMA DE FLUJO
+
+<Mermaid
+  chart={`
+    graph TD;
+    Start --> Task1;
+    Task1 --> Task2;
+    Task2 --> End;
+  `}
+/>
+
+```JSX
+<Mermaid
+  chart={\`
+    graph TD;
+    Start --> Task1;
+    Task1 --> Task2;
+    Task2 --> End;
+  \`}
+/>
+```
+
+### ARBOL DE DECISIONES
+
+<Mermaid
+  chart={`
+    graph TD;
+    A[Start] --> B{Is it raining?};
+    B -->|Yes| C[Take an umbrella];
+    B -->|No| D[Enjoy the weather];
+    C --> E[Go outside];
+    D --> E;
+  `}
+/>
+
+```JSX
+<Mermaid
+  chart={\`
+    graph TD;
+    A[Start] --> B{Is it raining?};
+    B -->|Yes| C[Take an umbrella];
+    B -->|No| D[Enjoy the weather];
+    C --> E[Go outside];
+    D --> E;
+  \`}
+/>
+```
+
+### DIAGRAMA DE ENTIDAD-REACCION
+
+<Mermaid
+  chart={`
+    erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    PRODUCT ||--o{ LINE-ITEM : "included in"
+    CUSTOMER {
+        string name
+        string email
+    }
+    ORDER {
+        int orderNumber
+        date orderDate
+    }
+    LINE-ITEM {
+        int quantity
+        float price
+    }
+    PRODUCT {
+        int productId
+        string name
+        float price
+    }
+  `}
+/>
+
+```JSX
+<Mermaid
+  chart={\`
+    erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    PRODUCT ||--o{ LINE-ITEM : "included in"
+    CUSTOMER {
+        string name
+        string email
+    }
+    ORDER {
+        int orderNumber
+        date orderDate
+    }
+    LINE-ITEM {
+        int quantity
+        float price
+    }
+    PRODUCT {
+        int productId
+        string name
+        float price
+    }
+  \`}
+/>
+
+```
+---
+## ARBOL DE ARCHIVOS
+
+<FileTree>
+  <Folder name="src" label="Source Code">
+    <File name="index.tsx" label="Index File" />
+    <Folder name="components" label="Components">
+      <File name="button.tsx" label="Button Component" />
+      <File name="input.tsx" label="Input Component" />
+    </Folder>
+    <Folder name="pages" label="Pages">
+      <File name="home.tsx" label="Home Page" />
+      <File name="about.tsx" label="About Page" />
+    </Folder>
+  </Folder>
+</FileTree>
+
+```JSX
+<FileTree>
+  <Folder name="src" label="Source Code">
+    <File name="index.tsx" label="Index File" />
+    <Folder name="components" label="Components">
+      <File name="button.tsx" label="Button Component" />
+      <File name="input.tsx" label="Input Component" />
+    </Folder>
+    <Folder name="pages" label="Pages">
+      <File name="home.tsx" label="Home Page" />
+      <File name="about.tsx" label="About Page" />
+    </Folder>
+  </Folder>
+</FileTree>
+
+```
+---
+## LISTAS
+
+### LISTA DE VERIFICACION
+
+- [x] Escribe el comunicado de prensa
+- [ ] Actualizar el sitio web
+- [ ] Contacta con los medios
+
+```JSX
+- [x] Escribe el comunicado de prensa
+- [ ] Actualizar el sitio web
+- [ ] Contacta con los medios
+```
+### LISTA SENCILLA
+
+- Item 1
+- Item 2
+- Item 3
+
+```JSX
+- Item 1
+- Item 2
+- Item 3
+```
+
+### LISTA DE NUMEROS
+
+1. Research
+2. Draft the content
+3. Review and edit
+4. Publish
+
+```JSX
+1. Research
+2. Draft the content
+3. Review and edit
+4. Publish
+
+```
+
+### LISTA ANIDADA
+
+- Main Category 1
+  - Sub Item 1.1
+  - Sub Item 1.2
+- Main Category 2
+  - Sub Item 2.1
+  - Sub Item 2.2
+
+```JSX
+- Main Category 1
+  - Sub Item 1.1
+  - Sub Item 1.2
+- Main Category 2
+  - Sub Item 2.1
+  - Sub Item 2.2
+```
+---
+
+## MATEMATICAS
+
+### ALGEBRA BASICA
+
+```math
+A = \pi r^2
+```
+
+```jsx
+math
+A = \pi r^2
+```
+
+### FORMULA CUADRATICA
+
+```math
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+```
+
+```jsx
+[math]
+x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+```
+
+### TEOREMA DE PITAGORAS
+
+```math
+E = mc^2
+```
+
+```jsx
+[math]
+E = mc^2
+```
+---
+
+## NOTAS
+
+### NOTA ESTANDAR
+
+<Note title="Requerido">
+  La funcionalidad de búsqueda del proyecto se basa en la automatización de Husky para crear
+`search-data/documents.json` y garantizar que se realice la confirmación de Git para generar este
+archivo.
+</Note>
+
+```jsx
+<Note title="Requerido">
+  La funcionalidad de búsqueda del proyecto se basa en la automatización de Husky para crear
+`search-data/documents.json` y garantizar que se realice la confirmación de Git para generar este
+archivo.
+</Note>
+```
+
+### NOTA DE EXITO
+
+<Note title="Required" type="success">
+  The project's search functionality relies on the Husky's automation to build
+  `search-data/documents.json` ensure git commit is performed to generate this
+  file.
+</Note>
+
+```jsx
+<Note title="Required" type="success">
+  The project's search functionality relies on the Husky's automation to build
+  `search-data/documents.json` ensure git commit is performed to generate this
+  file.
+</Note>
+```
+
+### NOTA DE ADVERTENCIA
+
+<Note title="Required" type="warning">
+  The project's search functionality relies on the Husky's automation to build
+  `search-data/documents.json` ensure git commit is performed to generate this
+  file.
+</Note>
+
+```jsx
+<Note title="Required" type="warning">
+  The project's search functionality relies on the Husky's automation to build
+  `search-data/documents.json` ensure git commit is performed to generate this
+  file.
+</Note>
+```
+
+### NOTA DE PELIGRO
+
+<Note title="Required" type="danger">
+  The project's search functionality relies on the Husky's automation to build
+  `search-data/documents.json` ensure git commit is performed to generate this
+  file.
+</Note>
+
+```jsx
+<Note title="Required" type="danger">
+  The project's search functionality relies on the Husky's automation to build
+  `search-data/documents.json` ensure git commit is performed to generate this
+  file.
+</Note>
+```
+---
+
+## PASOS
+
+<Step>
+  <StepItem title="Título 1">
+   
+    Contenido 1
+
+  </StepItem>
+
+  <StepItem title="Título 2">
+    
+    Contenido 2
+
+  </StepItem>
+
+  <StepItem title="Título 3">
+    
+    Contenido 3
+
+  </StepItem>
+</Step>
+
+```jsx
+<Step>
+  <StepItem title="Título 1">
+   
+    Contenido 1
+
+  </StepItem>
+
+  <StepItem title="Título 2">
+    
+    Contenido 2
+
+  </StepItem>
+
+  <StepItem title="Título 3">
+    
+    Contenido 3
+
+  </StepItem>
+</Step>
+```
+---
+
+## TABLAS
+
+| Syntax        | Description |   Test Text |
+| :------------ | :---------: | ----------: |
+| Header        |    Title    | Here's this |
+| Paragraph     |    Text     |    And more |
+| Strikethrough |             |    ~~Text~~ |
+
+| Feature       | Documentation Link |                    Notes |
+| :------------ | :----------------: | -----------------------: |
+| **Feature A** |     [Docs](#)      | For more info click here |
+| **Feature B** |     [Guide](#)     |  See the full guide here |
+| **Feature C** |     [Setup](#)     |       Setup instructions |
+
+```jsx
+
+| Feature       | Documentation Link |                    Notes |
+| :------------ | :----------------: | -----------------------: |
+| **Feature A** |     [Docs](#)      | For more info click here |
+| **Feature B** |     [Guide](#)     |  See the full guide here |
+| **Feature C** |     [Setup](#)     |       Setup instructions |
+
+```
+---
+
+## TABS
+
+<Tabs defaultValue="js" className="pt-5 pb-1">
+
+  <TabsList className="">
+    <TabsTrigger value="js">layout.jsx</TabsTrigger>
+    <TabsTrigger value="ts">layout.tsx</TabsTrigger>
+  </TabsList>
+
+  <TabsContent value="js">
+  ```jsx {7} showLineNumbers
+
+    // Contenido de layout.jsx
+
+  ```
+  </TabsContent>
+
+  <TabsContent value="ts">
+  ```tsx {11} showLineNumbers
+
+    // Contenido de layout.tsx
+
+  ```
+  </TabsContent>
+
+</Tabs>
+
+```jsx
+<Tabs defaultValue="js" className="pt-5 pb-1">
+
+  <TabsList className="">
+    <TabsTrigger value="js">layout.jsx</TabsTrigger>
+    <TabsTrigger value="ts">layout.tsx</TabsTrigger>
+  </TabsList>
+
+  <TabsContent value="js">
+  '''jsx {7} showLineNumbers
+
+    // Contenido de layout.jsx
+
+  '''
+  </TabsContent>
+
+  <TabsContent value="ts">
+  '''tsx {11} showLineNumbers
+
+    // Contenido de layout.tsx
+
+  '''
+  </TabsContent>
+
+</Tabs>
+```

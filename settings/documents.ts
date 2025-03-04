@@ -17,33 +17,40 @@ export const Documents: Paths[] = [
   },
   {
     title: "Introducción",
-    href: "/languages",
-    heading: "Lenguajes de programación",
+    href: "/programming",
+    heading: "Herramientas de programación",
     items: [
       {
-        title: "Python",
-        href: "/python",
+        title: "Lenguajes de programación",
+        href: "/languages",
+        items: [
+          {
+            title: "Python",
+            href: "/python",
+          },
+          {
+            title: "Javascript",
+            href: "/javascript",
+          },
+          {
+            title: "Typescript",
+            href: "/typescript",
+          },
+          {
+            title: "Dart",
+            href: "/dart",
+          },
+          {
+            title: "Rikmed (Mircom)",
+            href: "/rikmed",
+          },
+          {
+            title: "BestPP (KMC)",
+            href: "/bestpp",
+          },
+        ]
       },
-      {
-        title: "Javascript",
-        href: "/javascript",
-      },
-      {
-        title: "Typescript",
-        href: "/typescript",
-      },
-      {
-        title: "Dart",
-        href: "/dart",
-      },
-      {
-        title: "Rikmed (Mircom)",
-        href: "/rikmed",
-      },
-      {
-        title: "BestPP (KMC)",
-        href: "/bestpp",
-      },
+      
     ]
   },
   {
@@ -118,9 +125,9 @@ export const Documents: Paths[] = [
             href: "/rubix-documents",
             items: [
               {
-                title: "Adaptado",
-                href: "/adapted"
-              }
+                title: "Componentes",
+                href: "/components"
+              },
             ]
           }
         ]
