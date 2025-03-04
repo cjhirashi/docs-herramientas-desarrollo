@@ -1,0 +1,88 @@
+---
+title: .gitignore
+description: Archivo de configuración para especificar archivos y directorios que Git debe ignorar.
+keywords: ["git", "gitignore", "ignorar archivos", "control de versiones", "excluir archivos"]
+---
+
+El archivo `.gitignore` es un archivo de texto plano que reside en el directorio raíz de un repositorio Git. Su propósito principal es decirle a Git qué archivos y directorios no deben ser rastreados ni incluidos en los commits. Esto es crucial para mantener un repositorio limpio, evitar la inclusión de archivos sensibles (como contraseñas o claves privadas), y optimizar el rendimiento de Git al reducir la cantidad de archivos que necesita monitorear.
+
+El archivo `.gitignore` utiliza patrones para especificar qué archivos y directorios deben ser ignorados. Estos patrones pueden ser nombres de archivos específicos, nombres de directorios, o patrones más generales utilizando comodines. Git evalúa estos patrones en orden, y si un archivo o directorio coincide con un patrón en `.gitignore`, se ignora.
+
+## FUNCIONAMIENTO BASICO 
+
+1.  **Ubicación:** El archivo `.gitignore` se coloca en el directorio raíz del repositorio. También se pueden crear archivos `.gitignore` en subdirectorios para aplicar reglas de ignorado específicas a esas carpetas. Las reglas en un archivo `.gitignore` de un subdirectorio tienen precedencia sobre las reglas en el archivo `.gitignore` del directorio raíz.
+
+2.  **Sintaxis:** La sintaxis del archivo `.gitignore` es sencilla:
+
+    *   Cada línea representa un patrón.
+    *   Las líneas que comienzan con `#` son comentarios y se ignoran.
+    *   Las líneas en blanco también se ignoran.
+    *   Se pueden usar comodines para crear patrones más generales:
+        *   `*`: Coincide con cero o más caracteres.
+        *   `?`: Coincide con un solo carácter.
+        *   `[]`: Coincide con un rango de caracteres.
+        *   `**`: Coincide con cualquier número de directorios.
+    *   Un prefijo `!` niega un patrón. Es decir, si un archivo coincide con un patrón negado, se incluirá incluso si coincide con un patrón anterior.
+    *   Un `/` al final de un patrón indica que solo debe coincidir con un directorio.
+
+3.  **Prioridad:** Git evalúa las reglas de ignorado en el siguiente orden:
+
+    1.  Reglas leídas desde la línea de comandos (`git add -f`).
+    2.  Reglas en el archivo `.gitignore` en el mismo directorio que el archivo o en cualquier directorio padre.
+    3.  Reglas especificadas en el archivo `$GIT_DIR/info/exclude`.
+    4.  Reglas especificadas en la configuración global de Git (core.excludesfile).
+
+## EJEMPLOS DE IMPLEMENTACION
+
+Aquí hay algunos ejemplos de cómo usar `.gitignore`:
+
+1.  **Ignorar archivos `.log`:**
+
+    ```
+    *.log
+    ```
+
+    Esto ignorará todos los archivos que tengan la extensión `.log` en cualquier directorio del repositorio.
+
+2.  **Ignorar el directorio `node_modules`:**
+
+    ```
+    node_modules/
+    ```
+
+    Esto ignorará el directorio `node_modules` y todo su contenido.
+
+3.  **Ignorar archivos `.DS_Store` (comunes en macOS):**
+
+    ```
+    .DS_Store
+    ```
+
+    Esto ignorará los archivos `.DS_Store` que macOS crea en cada directorio.
+
+4.  **Ignorar todos los archivos `.txt` excepto `important.txt`:**
+
+    ```
+    *.txt
+    !important.txt
+    ```
+
+    Esto ignorará todos los archivos `.txt` excepto el archivo `important.txt`.
+
+5.  **Ignorar un directorio específico y todos sus subdirectorios:**
+
+    ```
+    build/
+    ```
+
+    Esto ignorará el directorio `build` y todos sus subdirectorios y archivos.
+
+6.  **Ignorar archivos de configuración locales:**
+
+    ```
+    config/local_settings.py
+    ```
+
+    Esto ignorará el archivo `local_settings.py` dentro del directorio `config`.
+
+En resumen, el archivo `.gitignore` es una herramienta esencial para cualquier proyecto Git. Su uso adecuado ayuda a mantener el repositorio limpio, seguro y eficiente, facilitando la colaboración y el desarrollo a largo plazo.

@@ -48,9 +48,40 @@ export const Documents: Paths[] = [
             title: "BestPP (KMC)",
             href: "/bestpp",
           },
+        ],
+      },
+      {
+        title: "Git",
+        href: "/git",
+        items: [
+          {
+            title: "Comandos",
+            href: "/commands",
+          },
+          {
+            title: ".gitignore",
+            href: "/gitignore",
+          },
+          {
+            title: "GitHub",
+            href: "/github",
+          },
         ]
       },
-      
+      {
+        title: "Herramientas WEB",
+        href: "/web",
+        items: [
+          {
+            title: "HTML",
+            href: "/html",
+          },
+          {
+            title: "CSS",
+            href: "/css",
+          },
+        ]
+      }
     ]
   },
   {

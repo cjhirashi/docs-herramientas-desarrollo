@@ -1,5 +1,144 @@
 ---
-title: Respositorios Git
-description: desc
-keywords: ["introducción", "guía", "nextjs", "documents"]
+title: Git
+description: Git es un sistema de control de versiones distribuido que rastrea los cambios en archivos y coordina el trabajo entre múltiples personas. Permite a los desarrolladores (y a cualquier persona) gestionar el historial de sus proyectos, colaborar fácilmente y revertir a versiones anteriores si es necesario. Cada persona tiene una copia completa del proyecto, lo que permite trabajar sin conexión y reduce la dependencia de un servidor central. Es la herramienta estándar para el desarrollo de software colaborativo moderno.
+keywords: ["git", "repositorios", "desarrollos", "versionado"]
 ---
+
+![GIT](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Git-logo.svg/800px-Git-logo.svg.png)
+
+## ¿QUE ES GIT?
+
+Git es un sistema de control de versiones distribuido (DVCS) diseñado para rastrear los cambios en archivos de computadora y coordinar el trabajo en esos archivos entre múltiples personas. En esencia, es una herramienta que permite a los desarrolladores gestionar el código fuente de manera eficiente y colaborativa, pero se puede usar para rastrear cambios en cualquier tipo de archivo (documentos, imágenes, configuraciones, etc.).
+
+### CARACTERISTICAS CLAVES
+
+- **Sistema de Control de Versiones Distribuido**: A diferencia de los sistemas centralizados (como Subversion o CVS), Git permite que cada desarrollador tenga una copia completa del repositorio, incluyendo todo el historial de cambios. Esto ofrece varias ventajas:
+
+- **Trabajo Offline**: Los desarrolladores pueden trabajar y hacer commits localmente sin necesidad de una conexión constante al servidor central.
+
+- **Rendimiento**: Las operaciones locales (como ver el historial o hacer commits) son mucho más rápidas, ya que no requieren acceso a la red.
+
+- **Resiliencia**: Si el servidor central falla, el proyecto no se pierde, ya que cada desarrollador tiene una copia completa.
+
+- **Ramas (Branching) y Combinación (Merging)**: Git facilita la creación de ramas (líneas de desarrollo paralelas) para implementar nuevas funcionalidades, corregir errores o experimentar con ideas. Luego, estas ramas se pueden combinar (merge) de nuevo en la rama principal. Este modelo de branching permite un flujo de trabajo flexible y no lineal.
+
+- **Eficiencia**: Git está diseñado para ser rápido y eficiente, incluso con proyectos muy grandes. Utiliza algoritmos de compresión y almacenamiento de datos inteligentes para minimizar el espacio en disco y el tiempo de acceso.
+
+- **Integridad de Datos**: Git utiliza un algoritmo de hash SHA-1 para identificar y rastrear cada cambio. Esto garantiza la integridad de los datos y detecta cualquier corrupción accidental.
+
+- **Área de Preparación (Staging Area)**: Git tiene un área de preparación intermedia entre el directorio de trabajo y el repositorio. Esto permite seleccionar los cambios específicos que se incluirán en el próximo commit, ofreciendo un control más granular sobre el historial.
+
+- **Gratuito y de Código Abierto**: Git es un proyecto de código abierto licenciado bajo la GPLv2, lo que significa que es gratuito para usar, modificar y distribuir.
+
+### OBJETIVOS DE GIT
+
+- **Control de Versiones**: Rastrear todos los cambios realizados en los archivos a lo largo del tiempo, permitiendo volver a versiones anteriores, comparar diferencias y auditar modificaciones.
+
+- **Colaboración**: Facilitar el trabajo en equipo en proyectos de software, permitiendo a múltiples desarrolladores trabajar simultáneamente en el mismo código base sin conflictos.
+
+- **Gestión de Ramas**: Proporcionar un modelo flexible para crear, combinar y gestionar ramas de desarrollo, lo que permite experimentar con nuevas funcionalidades sin afectar la estabilidad del proyecto principal.
+
+- **Desarrollo Paralelo**: Permitir que varios desarrolladores trabajen en diferentes partes del proyecto al mismo tiempo, sin interferir entre sí.
+
+- **Deshacer Cambios**: Ofrecer herramientas para deshacer cambios, revertir a versiones anteriores y corregir errores.
+
+- **Seguridad**: Garantizar la integridad de los datos y prevenir la pérdida de información.
+
+- **Auditoría**: Facilitar el seguimiento de quién hizo qué cambios y cuándo.
+
+- **Gestión de Grandes Proyectos**: Escalar bien para proyectos de software de gran tamaño con muchos archivos y un historial de cambios extenso.
+
+## INSTALACION
+
+La instalación de Git varía dependiendo de tu sistema operativo. Aquí tienes las instrucciones para los sistemas más comunes:
+
+### 1. WINDOWS
+
+    - **Descargar**: Descarga el instalador de Git para Windows desde el sitio web oficial: [https://git-scm.com/download/win](https://git-scm.com/download/win)
+
+    - **Ejecutar**: Ejecuta el archivo descargado. Sigue los pasos del asistente de instalación. Puedes aceptar las opciones por defecto en la mayoría de los casos.
+
+    - **Editor de Texto**: El instalador te preguntará qué editor de texto quieres usar con Git (por ejemplo, Notepad++, Visual Studio Code, Vim). Elige el que prefieras. Si no estás seguro, puedes dejar el valor por defecto (que suele ser Vim).
+
+    - **Ajuste del PATH**: Asegúrate de que la opción "Use Git from Git Bash only" NO esté seleccionada, a menos que estés seguro de que solo quieres usar Git desde la línea de comandos de Git Bash. La opción recomendada es "Git from the command line and also from 3rd-party software".
+
+    - **Terminal**: Puedes elegir el emulador de terminal que quieres usar con Git Bash (MinTTY o el terminal de Windows predeterminado).
+
+    - **Verificar Instalación**: Abre una ventana de símbolo del sistema (cmd) o PowerShell y escribe git --version. Si Git está instalado correctamente, mostrará la versión instalada.
+
+### 2. MACOS
+
+    1. ***Opción 1*** - Instalador (Recomendado)
+
+        - **Descargar**: Descarga el instalador de Git para macOS desde el sitio web oficial: [https://git-scm.com/download/mac](https://git-scm.com/download/mac)
+
+        - **Ejecutar**: Ejecuta el archivo descargado (normalmente un archivo .dmg), sigue las instrucciones del instalador.
+
+        - **Verificar**: Verifica la instalación abriendo una Terminal y escribiendo git --version.
+
+    2. ***Opción 2*** - Homebrew
+
+        Si tienes Homebrew instalado, puedes instalar Git con el siguiente comando:
+
+        ```bash
+        brew install git
+        ```
+
+        - **Verificar**: Verifica la instalación abriendo una Terminal y escribiendo git --version.
+
+    3. ***Opción 3*** - Xcode Command Line Tools
+
+        Si tienes Xcode instalado, Git puede ya estar presente como parte de las *Command Line Tools*. Abre la Terminal y escribe lo siguiente. 
+
+        ```bash
+        git --version
+        ```
+        
+        Si no está instalado, *macOS* te pedirá que instales las *Command Line Tools*.
+
+### 3. LINUX (Debian/Ubuntu)
+
+    Abre una terminal y ejecuta el siguiente comando.
+
+    ```bash
+    sudo apt update
+    sudo apt install git
+    ```
+    Confirma la instalación escribiendo.
+
+    ```bash
+    git --version
+    ```
+
+### 4. LINUX (Fedora/CentOS/RHEL):
+
+    Abre una terminal y ejecuta el siguiente comando.
+
+    ```bash
+    sudo dnf install git
+    # o en sistemas más antiguos:
+    # sudo yum install git
+    ```
+
+    Confirma la instalación escribiendo.
+
+    ```bash
+    git --version
+    ```
+
+## CONFIGURACION INICIAL 
+
+Después de instalar Git, es importante configurar tu nombre de usuario y dirección de correo electrónico, ya que esta información se asociará con tus *commits*, reemplaza ***"Tu Nombre"*** y ***"tu@email.com"*** con tu información real. La opción `--global` guarda esta configuración para todos tus repositorios Git.
+
+```bash
+git config --global user.name <tu nombre>
+git config --global user.email <tu@email.com>
+```
+
+Puedes verificar tu configuración con los siguientes comandos
+
+```bash
+git config --global user.name
+git config --global user.email
+```
+

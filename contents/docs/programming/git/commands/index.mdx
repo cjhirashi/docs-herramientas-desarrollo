@@ -1,0 +1,219 @@
+---
+title: Comandos de Git
+description: Exploración detallada de los comandos de Git esenciales para la gestión de versiones en proyectos de software.
+keywords: ["git", "repositorios", "desarrollos", "versionado"]
+---
+
+La sección de comandos de Git es el corazón de la herramienta.  Permite controlar el versionado de tu código. Comandos como `add`, `commit`, `push`, `pull`, `branch`, `merge`, y `rebase` son esenciales.  `add` prepara cambios, `commit` guarda esos cambios localmente, `push` sube los cambios a un repositorio remoto, `pull` descarga los cambios remotos, `branch` crea ramificaciones para desarrollo paralelo, y `merge` y `rebase` integran cambios de diferentes ramas. Dominar estos comandos es clave para una gestión eficiente del código con Git.
+
+## COMANDOS FUNDAMENTALES DE GIT
+
+A continuación, se describen los comandos de Git más utilizados, agrupados por su función principal:
+
+### 1. CONFIGURACION E INICIALIZACION 
+
+*   **`git config`**:  Configura las opciones de Git, como el nombre de usuario, el correo electrónico, el editor de texto predeterminado, etc.  Se puede configurar a nivel local (para un solo repositorio), global (para todos los repositorios del usuario) o de sistema (para todos los usuarios del sistema).
+
+    ```bash
+    git config --global user.name "Tu Nombre"
+    git config --global user.email "tu_correo@ejemplo.com"
+    ```
+
+*   **`git init`**:  Inicializa un nuevo repositorio de Git en el directorio actual.  Crea un directorio oculto `.git` que contiene la información de configuración del repositorio.
+
+    ```bash
+    git init
+    ```
+
+*   **`git clone`**:  Crea una copia local de un repositorio remoto existente. Descarga todos los archivos y el historial completo del repositorio.
+
+    ```bash
+    git clone https://github.com/usuario/repositorio.git
+    ```
+
+### 2.  GESTION DE CAMBIOS 
+
+*   **`git status`**:  Muestra el estado actual del repositorio, incluyendo los archivos modificados, los archivos en stage (preparados para el commit) y los archivos sin seguimiento.
+
+    ```bash
+    git status
+    ```
+
+*   **`git add`**:  Añade los archivos modificados al área de stage (staging area).  El área de stage es una zona intermedia donde se preparan los cambios que se van a incluir en el próximo commit.
+
+    ```bash
+    git add archivo.txt
+    git add .  # Añade todos los archivos modificados
+    ```
+
+*   **`git commit`**:  Guarda los cambios que están en el área de stage en el historial del repositorio.  Cada commit tiene un mensaje descriptivo que explica los cambios realizados.
+
+    ```bash
+    git commit -m "Mensaje descriptivo del commit"
+    ```
+
+*   **`git rm`**:  Elimina un archivo del repositorio y del sistema de archivos.
+
+    ```bash
+    git rm archivo.txt
+    git commit -m "Elimina archivo.txt"
+    ```
+
+*   **`git mv`**:  Renombra o mueve un archivo en el repositorio.
+
+    ```bash
+    git mv archivo_viejo.txt archivo_nuevo.txt
+    git commit -m "Renombra archivo_viejo.txt a archivo_nuevo.txt"
+    ```
+
+### 3.  RAMAS (BRANCHES) 
+
+*   **`git branch`**:  Lista, crea o elimina ramas. Una rama es una línea de desarrollo independiente del tronco principal (master o main).
+
+    ```bash
+    git branch  # Lista las ramas locales
+    git branch nueva_rama  # Crea una nueva rama llamada "nueva_rama"
+    git branch -d rama_a_eliminar # Elimina una rama (si ya se ha fusionado)
+    git branch -D rama_a_eliminar # Elimina una rama (forzando la eliminación)
+    ```
+
+*   **`git checkout`**:  Cambia entre ramas.  Permite trabajar en diferentes líneas de desarrollo sin afectar la rama principal.
+
+    ```bash
+    git checkout nueva_rama  # Cambia a la rama "nueva_rama"
+    git checkout -b nueva_rama # Crea y cambia a la rama "nueva_rama"
+    ```
+
+*   **`git merge`**:  Fusiona los cambios de una rama en otra.  Combina el historial de las dos ramas.
+
+    ```bash
+    git checkout master
+    git merge nueva_rama # Fusiona los cambios de "nueva_rama" en "master"
+    ```
+
+*   **`git rebase`**:  Integra los cambios de una rama en otra moviendo la base de la rama actual a la base de la otra rama.  Produce un historial más limpio que `git merge`, pero puede ser más complejo de usar y potencialmente peligroso si no se entiende bien.
+
+    ```bash
+    git checkout nueva_rama
+    git rebase master # Mueve la base de "nueva_rama" a la última versión de "master"
+    ```
+
+### 4.  TRABAJO REMOTO 
+
+*   **`git remote add <nombre> <url>`**:  Añade una nueva conexión a un repositorio remoto.  `<nombre>` es un alias que le das al repositorio remoto (por ejemplo, `origin`, `upstream`).  `<url>` es la URL del repositorio remoto (por ejemplo, `https://github.com/usuario/repositorio.git`).
+
+    ```bash
+    git remote add origin https://github.com/usuario/repositorio.git
+    git remote add upstream https://github.com/otro_usuario/repositorio.git
+    ```
+    ```
+*   **`git remote rename <viejo_nombre> <nuevo_nombre>`**:  Renombra una conexión remota existente.
+
+    ```bash
+    git remote rename origin nuevo_origin
+    ```
+
+*   **`git remote remove <nombre>` o `git remote rm <nombre>`**:  Elimina una conexión remota.
+
+    ```bash
+    git remote remove origin
+    ```
+
+*   **`git remote set-url <nombre> <nueva_url>`**:  Cambia la URL asociada a una conexión remota existente.
+
+    ```bash
+    git remote set-url origin https://nuevo_dominio/usuario/repositorio.git
+    ```
+*   **`git remote show <nombre>`**:  Muestra información detallada sobre una conexión remota específica, incluyendo la URL, las ramas rastreadas, las ramas locales que están configuradas para hacer push a ese remoto, y más.
+
+    ```bash
+    git remote show origin
+    ```
+
+*   **`git remote update <nombre>`**:  Descarga información actualizada sobre las ramas y etiquetas del repositorio remoto especificado, sin fusionar los cambios en tus ramas locales.  Es similar a `git fetch`, pero se centra en actualizar la información de seguimiento de las ramas remotas.
+
+    ```bash
+    git remote update origin
+    ```
+
+*   **`git remote prune <nombre>`**:  Elimina las referencias a ramas remotas que ya no existen en el repositorio remoto.  Esto ayuda a mantener tu repositorio local limpio y actualizado.
+
+    ```bash
+    git remote prune origin
+    ```
+
+*   **`git fetch`**:  Descarga los cambios de un repositorio remoto sin fusionarlos en la rama local.  Permite inspeccionar los cambios antes de integrarlos.
+
+    ```bash
+    git fetch origin
+    ```
+
+*   **`git pull`**:  Descarga los cambios de un repositorio remoto y los fusiona automáticamente en la rama local.  Es una combinación de `git fetch` y `git merge`.
+
+    ```bash
+    git pull origin master # Descarga y fusiona los cambios de la rama "master" del repositorio "origin"
+    ```
+
+*   **`git push`**:  Sube los cambios de la rama local a un repositorio remoto.
+
+    ```bash
+    git push origin master # Sube los cambios de la rama "master" al repositorio "origin"
+    git push -u origin master # Establece el rastreo entre la rama local y la rama remota (solo la primera vez)
+    ```
+
+### 5.  DESHACER CAMBIOS 
+
+*   **`git reset`**:  Revierte el estado del repositorio a un commit anterior.  Puede modificar el área de stage, los archivos modificados o incluso el historial del repositorio, dependiendo del tipo de reset que se utilice.
+
+    *   `git reset --soft <commit>`:  Mueve el HEAD al commit especificado, pero mantiene los cambios en el área de stage.
+    *   `git reset --mixed <commit>`:  Mueve el HEAD al commit especificado y elimina los cambios del área de stage, dejándolos como archivos modificados.  (Este es el comportamiento predeterminado si no se especifica ningún tipo).
+    *   `git reset --hard <commit>`:  Mueve el HEAD al commit especificado y descarta todos los cambios en el área de stage y los archivos modificados.  ¡PELIGRO!  Esta opción puede provocar la pérdida de datos si no se usa con cuidado.
+
+    ```bash
+    git reset --soft HEAD^ # Revierte al commit anterior (mantiene los cambios en stage)
+    git reset --hard  a1b2c3d # Revierte al commit con hash a1b2c3d (descarta todos los cambios)
+    ```
+
+*   **`git revert`**:  Crea un nuevo commit que deshace los cambios introducidos por un commit anterior.  No modifica el historial existente, sino que añade un nuevo commit que revierte los cambios.  Es una forma segura de deshacer cambios, ya que no altera el historial.
+
+    ```bash
+    git revert a1b2c3d # Crea un nuevo commit que deshace los cambios del commit con hash a1b2c3d
+    ```
+
+### 6. OTROS COMANDOS UTILES 
+
+*   **`git log`**:  Muestra el historial de commits del repositorio. Permite ver la fecha, el autor, el mensaje y el hash de cada commit.
+
+    ```bash
+    git log
+    git log --oneline # Muestra el historial en una sola línea por commit
+    git log --graph # Muestra el historial como un gráfico
+    git log --author="Tu Nombre" # Muestra los commits realizados por un autor específico
+    ```
+    Para salir de `git log`, solo basta presionar la letra ***Q***.
+
+*   **`git diff`**:  Muestra las diferencias entre archivos, commits o ramas.
+
+    ```bash
+    git diff # Muestra las diferencias entre el área de stage y los archivos modificados
+    git diff HEAD # Muestra las diferencias entre el último commit y los archivos modificados
+    git diff rama1 rama2 # Muestra las diferencias entre las ramas rama1 y rama2
+    ```
+
+*   **`git stash`**:  Guarda temporalmente los cambios no confirmados.  Permite cambiar de rama o realizar otras tareas sin tener que hacer commit de los cambios incompletos.
+
+    ```bash
+    git stash # Guarda los cambios no confirmados
+    git stash pop # Recupera los últimos cambios guardados
+    git stash list # Lista los stashes guardados
+    git stash apply stash@{2} # Aplica un stash específico
+    ```
+
+*   **`.gitignore`**:  Un archivo que especifica los archivos y directorios que Git debe ignorar.  Es útil para evitar que archivos temporales, archivos de configuración o archivos generados automáticamente se incluyan en el repositorio.
+
+    ```text
+    # Ejemplo de archivo .gitignore
+    *.log
+    tmp/
+    config.ini
+    ```
