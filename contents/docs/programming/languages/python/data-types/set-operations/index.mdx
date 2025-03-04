@@ -1,0 +1,164 @@
+---
+title: Operaciones con Conjuntos en Python
+description: Explora las operaciones fundamentales que puedes realizar con conjuntos (sets) en Python, incluyendo unión, intersección, diferencia y diferencia simétrica.
+keywords: ["python", "conjuntos", "sets", "unión", "intersección", "diferencia", "diferencia simétrica", "operaciones de conjuntos"]
+---
+
+Los conjuntos en Python son colecciones desordenadas de elementos únicos. Son una herramienta poderosa para realizar operaciones matemáticas de conjuntos, como unión, intersección y diferencia. En esta documentación, exploraremos cómo realizar estas operaciones utilizando Python.
+
+## ¿QUE SON LOS CONJUNTOS?
+
+Un conjunto es una colección no ordenada de elementos únicos. Esto significa que un conjunto no puede contener duplicados. Los conjuntos son útiles para eliminar duplicados de una lista y para realizar operaciones matemáticas de conjuntos.
+
+En Python, los conjuntos se crean utilizando la función `set()` o utilizando llaves `{}`.
+
+```python
+# Creación de un conjunto utilizando la función set()
+mi_conjunto = set([1, 2, 3, 4, 5])
+print(mi_conjunto)  # Output: {1, 2, 3, 4, 5}
+
+# Creación de un conjunto utilizando llaves {}
+otro_conjunto = {3, 4, 5, 6, 7}
+print(otro_conjunto)  # Output: {3, 4, 5, 6, 7}
+```
+
+## OPERACIONES BASICAS CON CONJUNTOS
+
+Python proporciona varios métodos para realizar operaciones con conjuntos. Aquí están las operaciones más comunes:
+
+### 1. UNION 
+
+La unión de dos conjuntos contiene todos los elementos de ambos conjuntos.
+
+    - **Método**: `union()` o el operador `|`
+
+    ```python
+    conjunto_a = {1, 2, 3}
+    conjunto_b = {3, 4, 5}
+
+    # Usando el método union()
+    union_conjunto = conjunto_a.union(conjunto_b)
+    print(union_conjunto)  # Output: {1, 2, 3, 4, 5}
+
+    # Usando el operador |
+    union_conjunto_operador = conjunto_a | conjunto_b
+    print(union_conjunto_operador)  # Output: {1, 2, 3, 4, 5}
+    ```
+
+### 2. ITERSECCION  
+
+La intersección de dos conjuntos contiene solo los elementos que están presentes en ambos conjuntos.
+
+    - **Método**: `intersection()` o el operador `&`
+
+    ```python
+    conjunto_a = {1, 2, 3}
+    conjunto_b = {3, 4, 5}
+
+    # Usando el método intersection()
+    interseccion_conjunto = conjunto_a.intersection(conjunto_b)
+    print(interseccion_conjunto)  # Output: {3}
+
+    # Usando el operador &
+    interseccion_conjunto_operador = conjunto_a & conjunto_b
+    print(interseccion_conjunto_operador)  # Output: {3}
+    ```
+
+### 3. DIFERENCIA  
+
+La diferencia entre dos conjuntos contiene los elementos que están en el primer conjunto pero no en el segundo.
+
+    - **Método**: `difference()` o el operador `-`
+
+    ```python
+    conjunto_a = {1, 2, 3}
+    conjunto_b = {3, 4, 5}
+
+    # Usando el método difference()
+    diferencia_conjunto = conjunto_a.difference(conjunto_b)
+    print(diferencia_conjunto)  # Output: {1, 2}
+
+    # Usando el operador -
+    diferencia_conjunto_operador = conjunto_a - conjunto_b
+    print(diferencia_conjunto_operador)  # Output: {1, 2}
+    ```
+
+### 4. DIFERENCIA SIMETRICA  
+
+La diferencia simétrica entre dos conjuntos contiene los elementos que están en uno u otro conjunto, pero no en ambos.
+
+    - **Método**: `symmetric_difference()` o el operador `^`
+
+    ```python
+    conjunto_a = {1, 2, 3}
+    conjunto_b = {3, 4, 5}
+
+    # Usando el método symmetric_difference()
+    diferencia_simetrica_conjunto = conjunto_a.symmetric_difference(conjunto_b)
+    print(diferencia_simetrica_conjunto)  # Output: {1, 2, 4, 5}
+
+    # Usando el operador ^
+    diferencia_simetrica_conjunto_operador = conjunto_a ^ conjunto_b
+    print(diferencia_simetrica_conjunto_operador)  # Output: {1, 2, 4, 5}
+    ```
+
+## OTROS METODOS UTILES 
+
+- **add(elemento)**: Añade un elemento al conjunto.
+
+- **remove(elemento)**: Elimina un elemento del conjunto. Lanza un error si el elemento no está presente.
+
+- **discard(elemento)**: Elimina un elemento del conjunto si está presente. No lanza un error si el elemento no está presente.
+
+- **pop()**: Elimina y retorna un elemento arbitrario del conjunto.
+
+- **clear()**: Elimina todos los elementos del conjunto.
+
+```python
+conjunto = {1, 2, 3}
+
+conjunto.add(4)
+print(conjunto)  # Output: {1, 2, 3, 4}
+
+conjunto.remove(2)
+print(conjunto)  # Output: {1, 3, 4}
+
+conjunto.discard(5)  # No hace nada porque 5 no está en el conjunto
+print(conjunto)  # Output: {1, 3, 4}
+
+elemento_eliminado = conjunto.pop()
+print(elemento_eliminado)  # Output: (puede ser 1, 3 o 4)
+print(conjunto)  # Output: (dependiendo del elemento eliminado)
+
+conjunto.clear()
+print(conjunto)  # Output: set()
+```
+
+## EJEMPLOS DE IMPLEMENTACION 
+
+### EJEMPLO 1: ENCONTRAR ELEMENTOS UNICOS EN UNA LISTA 
+
+```python
+lista_con_duplicados = [1, 2, 2, 3, 4, 4, 5]
+elementos_unicos = set(lista_con_duplicados)
+print(elementos_unicos)  # Output: {1, 2, 3, 4, 5}
+```
+
+### EJEMPLO 2: COMPARAR ELEMENTOS ENTRE DOS LISTAS 
+
+```python
+lista_a = [1, 2, 3, 4, 5]
+lista_b = [3, 4, 5, 6, 7]
+
+conjunto_a = set(lista_a)
+conjunto_b = set(lista_b)
+
+# Elementos en lista_a pero no en lista_b
+diferencia = conjunto_a - conjunto_b
+print(diferencia)  # Output: {1, 2}
+
+# Elementos comunes en ambas listas
+interseccion = conjunto_a & conjunto_b
+print(interseccion)  # Output: {3, 4, 5}
+```
+
