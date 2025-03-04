@@ -25,6 +25,36 @@ export const Documents = [
                     {
                         title: "Python",
                         href: "/python",
+                        items: [
+                            {
+                                title: "Tipos de tados",
+                                href: "data-types"
+                            },
+                            {
+                                title: "Estructuras de control",
+                                href: "control-structure"
+                            },
+                            {
+                                title: "Funciones",
+                                href: "/functions"
+                            },
+                            {
+                                title: "Programación orientada a objetos",
+                                href: "/oop"
+                            },
+                            {
+                                title: "Módulos y paquetes",
+                                href: "/modules-packages"
+                            },
+                            {
+                                title: "Manejo de excepciones",
+                                href: "/exceptions"
+                            },
+                            {
+                                title: "Bibliotecas de programación",
+                                href: "/libraries"
+                            },
+                        ]
                     },
                     {
                         title: "Javascript",
