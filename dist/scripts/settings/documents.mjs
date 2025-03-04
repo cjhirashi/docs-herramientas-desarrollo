@@ -28,11 +28,39 @@ export const Documents = [
                         items: [
                             {
                                 title: "Tipos de tados",
-                                href: "data-types"
+                                href: "/data-types",
+                                items: [
+                                    {
+                                        title: "Operaciones con típos numéricos",
+                                        href: "/numeric-operations"
+                                    },
+                                    {
+                                        title: "Métodos de cadenas",
+                                        href: "/string-methods"
+                                    },
+                                    {
+                                        title: "Operaciones con listas",
+                                        href: "/list-operations",
+                                        items: [
+                                            {
+                                                title: "Funciones map(), filter() y reduce()",
+                                                href: "/map-filter-reduce"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        title: "Operaciones con diccionarios",
+                                        href: "/dictionary-operations"
+                                    },
+                                    {
+                                        title: "Operaciones con conjuntos",
+                                        href: "/set-operations"
+                                    },
+                                ]
                             },
                             {
                                 title: "Estructuras de control",
-                                href: "control-structure"
+                                href: "/control-structure"
                             },
                             {
                                 title: "Funciones",
