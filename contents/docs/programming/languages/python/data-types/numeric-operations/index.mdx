@@ -1,0 +1,152 @@
+---
+title: Operaciones con tipos numéricos en Python
+description: Guía detallada sobre las operaciones aritméticas, funciones y bibliotecas para trabajar con números en Python.
+keywords: ["Python", "números", "aritmética", "operaciones", "matemáticas", "funciones", "bibliotecas", "tipos numéricos", "int", "float", "complex"]
+---
+
+Python ofrece una amplia gama de herramientas para realizar operaciones con tipos numéricos, que incluyen enteros (`int`), números de punto flotante (`float`) y números complejos (`complex`). Este documento explora las operaciones aritméticas básicas, las funciones integradas y las bibliotecas que facilitan el trabajo con números en Python.
+
+## OPERACIONES ARITMETICAS BASICAS
+
+Python soporta las operaciones aritméticas básicas utilizando los siguientes operadores:
+
+*   **Suma (+):** Suma dos números.
+
+*   **Resta (-):** Resta dos números.
+
+*   **Multiplicación (*):** Multiplica dos números.
+
+*   **División (/):** Divide dos números y devuelve un número de punto flotante.
+
+*   **División Entera (//):** Divide dos números y devuelve la parte entera del cociente.
+
+*   **Módulo (%):** Devuelve el resto de la división entre dos números.
+
+*   **Potenciación (\*\*):** Eleva un número a la potencia de otro.
+
+```python
+a = 10
+b = 3
+
+suma = a + b                # Resultado: 13
+resta = a - b               # Resultado: 7
+multiplicacion = a * b      # Resultado: 30
+division = a / b            # Resultado: 3.333...
+division_entera = a // b    # Resultado: 3
+modulo = a % b              # Resultado: 1
+potencia = a ** b           # Resultado: 1000
+
+print(f"Suma: {suma}, Resta: {resta}, Multiplicación: {multiplicacion}")
+print(f"División: {division}, División Entera: {division_entera}, Módulo: {modulo}, Potencia: {potencia}")
+```
+
+## FUNCIONES INTEGRADAS PARA OPERACIONES NUMERICAS
+
+Python ofrece varias funciones integradas que facilitan las operaciones numéricas:
+
+- **abs(x)**: Devuelve el valor absoluto de x.
+
+- **round(x, n)**: Redondea x a n decimales.
+
+- **pow(x, y)**: Eleva x a la potencia de y (equivalente a x ** y).
+
+- **min(a, b, ...)**: Devuelve el valor mínimo entre los argumentos.
+
+- **max(a, b, ...)**: Devuelve el valor máximo entre los argumentos.
+
+```python
+x = -5.7
+y = 3.14159
+
+valor_absoluto = abs(x)     # Resultado: 5.7
+redondeo = round(y, 2)      # Resultado: 3.14
+potencia = pow(2, 3)        # Resultado: 8
+minimo = min(1, 2, 3, 4)    # Resultado: 1
+maximo = max(1, 2, 3, 4)    # Resultado: 4
+
+print(f"Valor Absoluto: {valor_absoluto}, Redondeo: {redondeo}, Potencia: {potencia}")
+print(f"Mínimo: {minimo}, Máximo: {maximo}")
+```
+## BIBLIOTECA math
+
+La biblioteca math proporciona funciones matemáticas más avanzadas:
+
+- **math.sqrt(x)**: Devuelve la raíz cuadrada de x.
+
+- **math.ceil(x)**: Redondea x al entero superior más cercano.
+
+- **math.floor(x)**: Redondea x al entero inferior más cercano.
+
+- **math.sin(x)**: Devuelve el seno de x (en radianes).
+
+- **math.cos(x)**: Devuelve el coseno de x (en radianes).
+
+- **math.tan(x)**: Devuelve la tangente de x (en radianes).
+
+- **math.log(x, base)**: Devuelve el logaritmo de x en la base especificada.
+
+- **math.pi**: Constante que representa el valor de π (pi).
+
+- **math.e**: Constante que representa el número de Euler.
+
+```python
+import math
+
+x = 16
+y = 5.7
+
+raiz_cuadrada = math.sqrt(x)   # Resultado: 4.0
+ceil = math.ceil(y)           # Resultado: 6
+floor = math.floor(y)          # Resultado: 5
+seno = math.sin(math.pi / 2)  # Resultado: 1.0
+logaritmo = math.log(10, 10)   # Resultado: 1.0
+
+print(f"Raíz Cuadrada: {raiz_cuadrada}, Ceil: {ceil}, Floor: {floor}")
+print(f"Seno (π/2): {seno}, Logaritmo (10 en base 10): {logaritmo}")
+print(f"Valor de Pi: {math.pi}, Valor de e: {math.e}")
+```
+
+## BIBLIOTECA cmath PARA NUMEROS COMPLEJOS
+
+Para trabajar con números complejos, Python ofrece la biblioteca cmath:
+
+- **cmath.sqrt(x)**: Devuelve la raíz cuadrada de un número complejo.
+
+- **cmath.phase(x)**: Devuelve la fase de un número complejo.
+
+- **cmath.polar(x)**: Convierte un número complejo a coordenadas polares.
+
+- **cmath.rect(r, phi)**: Convierte coordenadas polares a un número complejo.
+
+```python
+import cmath
+
+z = complex(3, -4)
+
+raiz_cuadrada = cmath.sqrt(z)  # Resultado: (2-1j)
+fase = cmath.phase(z)         # Resultado: -0.927...
+polar = cmath.polar(z)        # Resultado: (5.0, -0.927...)
+rect = cmath.rect(5, 0)       # Resultado: (5+0j)
+
+print(f"Raíz Cuadrada: {raiz_cuadrada}, Fase: {fase}, Polar: {polar}, Rect: {rect}")
+```
+
+## FORMATEO DE NUMEROS
+
+Python permite formatear números para controlar la precisión y la representación:
+
+- **f-strings**: Permiten insertar variables directamente en cadenas de texto.
+
+- **format()**: Método para formatear cadenas.
+
+```python
+numero = 1234.56789
+
+# Usando f-strings
+print(f"Número con dos decimales: {numero:.2f}")       # Resultado: 1234.57
+print(f"Número con separador de miles: {numero:,.2f}")  # Resultado: 1,234.57
+
+# Usando format()
+print("Número con dos decimales: {:.2f}".format(numero))       # Resultado: 1234.57
+print("Número con separador de miles: {:,.2f}".format(numero))  # Resultado: 1,234.57
+```

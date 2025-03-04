@@ -1,0 +1,139 @@
+---
+title: Tipos de Datos en Python
+description: Explora los diferentes tipos de datos disponibles en Python, incluyendo tipos numéricos, cadenas, booleanos y estructuras de datos como listas, tuplas, diccionarios y conjuntos.
+keywords: ["tipos de datos", "python", "int", "float", "str", "bool", "list", "tuple", "dict", "set", "tipado dinámico", "mutabilidad", "inmutabilidad"]
+---
+
+Python ofrece una variedad de tipos de datos incorporados que permiten a los programadores representar y manipular diferentes tipos de información. Comprender estos tipos de datos es fundamental para escribir código eficiente y efectivo en Python.
+
+## TIPOS DE DATOS PRIMITIVOS
+
+Los tipos de datos primitivos son los bloques de construcción básicos de los datos en Python.
+
+1.  **Números:**
+    *   **Enteros (`int`):** Representan números enteros sin parte decimal.
+        *   Ejemplo: `10`, `-5`, `0`
+    *   **Números de Punto Flotante (`float`):** Representan números reales con parte decimal.
+        *   Ejemplo: `3.14`, `-2.5`, `0.0`
+    *   **Números Complejos (`complex`):** Representan números con una parte real y una parte imaginaria.
+        *   Ejemplo: `2 + 3j`, `-1 - 1j`
+
+2.  **Cadenas (`str`):**
+    *   Representan secuencias de caracteres. Las cadenas son inmutables, lo que significa que no se pueden modificar después de su creación.
+        *   Ejemplo: `"Hola"`, `'Python'`, `"123"`
+
+3.  **Booleanos (`bool`):**
+    *   Representan valores de verdad: `True` o `False`.
+        *   Ejemplo: `True`, `False`
+
+## ESTRUCTURA DE DATOS
+
+Las estructuras de datos son contenedores que pueden almacenar múltiples elementos de datos.
+
+1.  **Listas (`list`):**
+    *   Son colecciones ordenadas y mutables de elementos. Los elementos pueden ser de diferentes tipos.
+        *   Ejemplo: `[1, 2, 3]`, `["a", "b", "c"]`, `[1, "hello", 3.14]`
+
+2.  **Tuplas (`tuple`):**
+    *   Son colecciones ordenadas e inmutables de elementos. Similar a las listas, pero no se pueden modificar después de su creación.
+        *   Ejemplo: `(1, 2, 3)`, `("a", "b", "c")`
+
+3.  **Diccionarios (`dict`):**
+    *   Son colecciones de pares clave-valor. Las claves deben ser únicas e inmutables (por ejemplo, cadenas, números o tuplas), mientras que los valores pueden ser de cualquier tipo.
+        *   Ejemplo: `{"nombre": "Juan", "edad": 30}`, `{1: "a", 2: "b"}`
+
+4.  **Conjuntos (`set`):**
+    *   Son colecciones no ordenadas de elementos únicos. Los conjuntos son mutables y se utilizan para realizar operaciones de conjuntos como unión, intersección y diferencia.
+        *   Ejemplo: `{1, 2, 3}`, `{"a", "b", "c"}`
+
+## TIPADO DINAMICO
+
+Python es un lenguaje de tipado dinámico, lo que significa que no es necesario declarar el tipo de una variable antes de usarla. El tipo de una variable se determina en tiempo de ejecución en función del valor que se le asigna.
+
+```python
+x = 10        # x es un entero
+x = "Hola"    # x ahora es una cadena
+x = [1, 2, 3] # x ahora es una lista
+```
+## MUTABILIDAD VS INMUTABILIDAD
+
+La mutabilidad se refiere a la capacidad de un objeto para ser modificado después de su creación.
+
+Tipos Mutables: Listas, diccionarios y conjuntos son tipos de datos mutables. Esto significa que se pueden modificar sus elementos después de su creación.
+
+Tipos Inmutables: Enteros, números de punto flotante, cadenas, booleanos y tuplas son tipos de datos inmutables. Esto significa que no se pueden modificar después de su creación. Si se intenta modificar un objeto inmutable, se creará un nuevo objeto en su lugar.
+
+## OBJETIVOS CLAVE
+
+Comprender los Tipos de Datos: Familiarizarse con los diferentes tipos de datos disponibles en Python y cómo se utilizan para representar diferentes tipos de información.
+
+Distinguir Mutabilidad e Inmutabilidad: Entender la diferencia entre tipos de datos mutables e inmutables y cómo esto afecta la forma en que se manipulan los datos.
+
+Elegir el Tipo de Datos Correcto: Aprender a seleccionar el tipo de datos más apropiado para cada situación, teniendo en cuenta factores como la necesidad de mutabilidad, la eficiencia y la legibilidad del código.
+
+Utilizar Estructuras de Datos: Dominar el uso de estructuras de datos como listas, tuplas, diccionarios y conjuntos para organizar y manipular colecciones de datos de manera eficiente.
+
+## INFORMACION INTERESANTE
+
+Conversión de Tipos: Python permite convertir entre diferentes tipos de datos utilizando funciones como int(), float(), str(), list(), tuple(), dict() y set().
+
+Operadores: Python ofrece una variedad de operadores para realizar operaciones en diferentes tipos de datos, como operadores aritméticos, operadores de comparación, operadores lógicos y operadores de pertenencia.
+
+Métodos: Cada tipo de datos en Python tiene una serie de métodos asociados que permiten realizar operaciones específicas en los datos. Por ejemplo, las cadenas tienen métodos como upper(), lower(), split() y replace().
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### EJEMPLO 1: TIPOS NUMERICOS
+
+```python
+entero = 10
+flotante = 3.14
+complejo = 2 + 3j
+
+print(type(entero))    # <class 'int'>
+print(type(flotante))  # <class 'float'>
+print(type(complejo))  # <class 'complex'>
+```
+
+### EJEMPLO 2: CADENAS
+
+```python
+cadena = "Hola, mundo!"
+print(cadena)           # Hola, mundo!
+print(cadena[0])        # H
+print(len(cadena))      # 13
+```
+
+### EJEMPLO 3: LISTAS
+
+```python
+lista = [1, 2, 3, "a", "b", "c"]
+print(lista)            # [1, 2, 3, 'a', 'b', 'c']
+lista.append(4)
+print(lista)            # [1, 2, 3, 'a', 'b', 'c', 4]
+```
+
+### EJEMPLO 4: TUPLAS
+
+```python
+tupla = (1, 2, 3)
+print(tupla)            # (1, 2, 3)
+# tupla[0] = 4          # Error: 'tuple' object does not support item assignment
+```
+### EJEMPLO 5: DICCIONARIO
+
+```python
+diccionario = {"nombre": "Juan", "edad": 30}
+print(diccionario["nombre"])  # Juan
+diccionario["ciudad"] = "Madrid"
+print(diccionario)            # {'nombre': 'Juan', 'edad': 30, 'ciudad': 'Madrid'}
+```
+
+### EJEMPLO 6: CONJUNTOS
+
+```python
+conjunto = {1, 2, 3, 3, 4, 5}
+print(conjunto)           # {1, 2, 3, 4, 5}
+conjunto.add(6)
+print(conjunto)           # {1, 2, 3, 4, 5, 6}
+```

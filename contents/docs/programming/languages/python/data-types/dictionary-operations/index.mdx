@@ -1,0 +1,197 @@
+---
+title: Operaciones con Diccionarios en Python
+description:  Guía completa sobre las operaciones esenciales que puedes realizar con diccionarios en Python, incluyendo creación, acceso, modificación, eliminación y métodos avanzados.
+keywords: ["python", "diccionarios", "operaciones", "creación", "acceso", "modificación", "eliminación", "métodos", "keys", "values", "items", "update", "pop", "popitem", "get", "clear", "copy"]
+---
+
+Los diccionarios en Python son una de las estructuras de datos más versátiles y utilizadas. Permiten almacenar datos en pares clave-valor, lo que facilita la búsqueda y manipulación de información. Este documento detalla las operaciones fundamentales que puedes realizar con diccionarios, desde la creación hasta métodos más avanzados.
+
+## Creación de Diccionarios
+
+Un diccionario se crea utilizando llaves `{}` y definiendo pares clave-valor separados por dos puntos `:`.
+
+```python
+# Diccionario vacío
+diccionario_vacio = {}
+
+# Diccionario con valores iniciales
+persona = {
+    "nombre": "Juan",
+    "edad": 30,
+    "ciudad": "Madrid"
+}
+```
+
+## ACCESO A ELEMENTOS 
+
+Para acceder a un valor en un diccionario, se utiliza la clave correspondiente entre corchetes `[]`.
+
+```python
+nombre = persona["nombre"]  # Accede al valor de la clave "nombre"
+print(nombre)  # Output: Juan
+```
+
+También puedes utilizar el método `get()` para acceder a un valor. La ventaja de `get()` es que permite especificar un valor por defecto si la clave no existe.
+
+```python
+apellido = persona.get("apellido", "Desconocido")  # Si "apellido" no existe, devuelve "Desconocido"
+print(apellido)  # Output: Desconocido
+```
+
+## MODIFICACION DE ELEMENTOS 
+
+Los diccionarios son mutables, lo que significa que puedes modificar sus valores, añadir nuevas claves o eliminar claves existentes.
+
+```python
+# Modificar un valor existente
+persona["edad"] = 31
+
+# Añadir un nuevo par clave-valor
+persona["profesion"] = "Ingeniero"
+
+print(persona)
+# Output: {'nombre': 'Juan', 'edad': 31, 'ciudad': 'Madrid', 'profesion': 'Ingeniero'}
+```
+
+## ELIMINACION DE ELEMENTOS 
+
+Para eliminar un elemento de un diccionario, puedes utilizar la sentencia del o los métodos `pop()` y `popitem()`.
+
+```python
+# Eliminar un elemento con del
+del persona["ciudad"]
+
+# Eliminar un elemento con pop()
+edad = persona.pop("edad")  # Elimina la clave "edad" y devuelve su valor
+print(edad)  # Output: 31
+
+# Eliminar el último elemento insertado con popitem()
+ultimo_elemento = persona.popitem()  # Elimina y devuelve el último par clave-valor
+print(ultimo_elemento)  # Output: ('profesion', 'Ingeniero')
+
+print(persona)  # Output: {'nombre': 'Juan'}
+```
+
+## METODOS DE DICCIONARIO 
+
+Python proporciona varios métodos útiles para trabajar con diccionarios:
+
+- **keys()**: Devuelve una vista de todas las claves del diccionario.
+
+- **values()**: Devuelve una vista de todos los valores del diccionario.
+
+- **items()**: Devuelve una vista de todos los pares clave-valor del diccionario.
+
+- **update()**: Actualiza el diccionario con los elementos de otro diccionario o un iterable de pares clave-valor.
+
+- **clear()**: Elimina todos los elementos del diccionario.
+
+- **copy()**: Devuelve una copia superficial del diccionario.
+
+```python
+persona = {
+    "nombre": "Juan",
+    "edad": 30,
+    "ciudad": "Madrid"
+}
+
+# keys()
+claves = persona.keys()
+print(claves)  # Output: dict_keys(['nombre', 'edad', 'ciudad'])
+
+# values()
+valores = persona.values()
+print(valores)  # Output: dict_values(['Juan', 30, 'Madrid'])
+
+# items()
+elementos = persona.items()
+print(elementos)  # Output: dict_items([('nombre', 'Juan'), ('edad', 30), ('ciudad', 'Madrid')])
+
+# update()
+persona.update({"profesion": "Ingeniero", "pais": "España"})
+print(persona)  # Output: {'nombre': 'Juan', 'edad': 30, 'ciudad': 'Madrid', 'profesion': 'Ingeniero', 'pais': 'España'}
+
+# clear()
+# persona.clear()
+# print(persona)  # Output: {}
+
+# copy()
+persona_copia = persona.copy()
+print(persona_copia)  # Output: {'nombre': 'Juan', 'edad': 30, 'ciudad': 'Madrid', 'profesion': 'Ingeniero', 'pais': 'España'}
+```
+## ITERACCION SOBRE DICCIONARIOS 
+
+Puedes iterar sobre un diccionario utilizando un bucle `for`. Por defecto, la iteración se realiza sobre las claves.
+
+```python
+for clave in persona:
+    print(clave, persona[clave])
+```
+
+También puedes iterar sobre los valores o los pares clave-valor utilizando los métodos `values()` e `items()`, respectivamente.
+
+```python
+# Iterar sobre los valores
+for valor in persona.values():
+    print(valor)
+
+# Iterar sobre los pares clave-valor
+for clave, valor in persona.items():
+    print(clave, valor)
+```
+
+## COMPRESION DE DICCIONARIOS 
+
+Al igual que las listas, los diccionarios también admiten la comprensión, lo que permite crear diccionarios de manera concisa.
+
+```python
+# Crear un diccionario con los cuadrados de los números del 1 al 5
+cuadrados = {x: x**2 for x in range(1, 6)}
+print(cuadrados)  # Output: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+```
+
+## EJEMPLOS DE IMPLEMENTACION 
+
+### CONTEO DE FRECUENCIA DE PALABRAS 
+
+Un ejemplo común es contar la frecuencia de palabras en un texto.
+
+```python
+texto = "Este es un ejemplo de texto para contar palabras. Este texto es un ejemplo."
+palabras = texto.lower().split()
+
+frecuencia = {}
+for palabra in palabras:
+    if palabra in frecuencia:
+        frecuencia[palabra] += 1
+    else:
+        frecuencia[palabra] = 1
+
+print(frecuencia)
+# Output: {'este': 2, 'es': 2, 'un': 2, 'ejemplo': 2, 'de': 1, 'texto': 2, 'para': 1, 'contar': 1, 'palabras.': 1, 'texto.': 1}
+```
+
+### AGRUPACION DE DATOS 
+
+Otro uso común es agrupar datos relacionados.
+
+```python
+estudiantes = [
+    {"nombre": "Ana", "edad": 20, "carrera": "Ingeniería"},
+    {"nombre": "Pedro", "edad": 22, "carrera": "Medicina"},
+    {"nombre": "Sofia", "edad": 21, "carrera": "Ingeniería"}
+]
+
+# Agrupar estudiantes por carrera
+carreras = {}
+for estudiante in estudiantes:
+    carrera = estudiante["carrera"]
+    if carrera in carreras:
+        carreras[carrera].append(estudiante["nombre"])
+    else:
+        carreras[carrera] = [estudiante["nombre"]]
+
+print(carreras)
+# Output: {'Ingeniería': ['Ana', 'Sofia'], 'Medicina': ['Pedro']}
+```
+
