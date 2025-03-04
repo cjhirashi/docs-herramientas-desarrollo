@@ -1,0 +1,159 @@
+---
+title: Estructuras de Control en Python
+description: Una guía completa sobre las estructuras de control en Python, incluyendo condicionales, bucles y manejo de excepciones.
+keywords: ["python", "estructuras de control", "condicionales", "bucles", "if", "else", "elif", "for", "while", "try", "except", "manejo de excepciones"]
+---
+
+Las estructuras de control son elementos fundamentales en cualquier lenguaje de programación, ya que permiten dirigir el flujo de ejecución de un programa. En Python, estas estructuras se caracterizan por su sintaxis clara y legible, lo que facilita la escritura de código eficiente y mantenible. Este documento explora en detalle las estructuras de control en Python, incluyendo condicionales (`if`, `else`, `elif`), bucles (`for`, `while`) y el manejo de excepciones (`try`, `except`).
+
+## CONDICIONES: if, else, elif
+
+Las sentencias condicionales permiten ejecutar diferentes bloques de código dependiendo de si una condición es verdadera o falsa.
+
+*   **`if`**: Ejecuta un bloque de código si la condición es verdadera.
+
+    ```python
+    edad = 20
+    if edad >= 18:
+        print("Eres mayor de edad")
+    ```
+*   **`else`**: Ejecuta un bloque de código si la condición del `if` es falsa.
+
+    ```python
+    edad = 16
+    if edad >= 18:
+        print("Eres mayor de edad")
+    else:
+        print("Eres menor de edad")
+    ```
+*   **`elif`**: Permite evaluar múltiples condiciones en secuencia. Es una contracción de "else if".
+
+    ```python
+    calificacion = 75
+    if calificacion >= 90:
+        print("Excelente")
+    elif calificacion >= 80:
+        print("Notable")
+    elif calificacion >= 70:
+        print("Aprobado")
+    else:
+        print("Reprobado")
+    ```
+
+## BUCLES: for, while
+
+Los bucles permiten ejecutar un bloque de código repetidamente. Python ofrece dos tipos principales de bucles: `for` y `while`.
+
+*   **`for`**: Itera sobre una secuencia (como una lista, tupla, cadena) o cualquier objeto iterable.
+
+    ```python
+    frutas = ["manzana", "banana", "cereza"]
+    for fruta in frutas:
+        print(fruta)
+    ```
+
+    También se utiliza comúnmente con la función `range()` para iterar un número específico de veces.
+
+    ```python
+    for i in range(5):
+        print(i)  # Imprime 0, 1, 2, 3, 4
+    ```
+*   **`while`**: Ejecuta un bloque de código mientras una condición sea verdadera.
+
+    ```python
+    contador = 0
+    while contador < 5:
+        print(contador)
+        contador += 1
+    ```
+
+    Es importante asegurarse de que la condición del `while` eventualmente se vuelva falsa para evitar un bucle infinito.
+
+## MANEJO DE EXCEPCIONES: try, except
+
+El manejo de excepciones permite controlar errores que pueden ocurrir durante la ejecución de un programa.
+
+*   **`try`**: Encierra el código que puede generar una excepción.
+*   **`except`**: Captura y maneja la excepción si ocurre.
+
+    ```python
+    try:
+        resultado = 10 / 0
+    except ZeroDivisionError:
+        print("Error: División por cero")
+    ```
+
+    También se puede incluir un bloque `else` que se ejecuta si no se produce ninguna excepción en el bloque `try`, y un bloque `finally` que se ejecuta siempre, independientemente de si se produjo o no una excepción.
+
+    ```python
+    try:
+        resultado = 10 / 2
+    except ZeroDivisionError:
+        print("Error: División por cero")
+    else:
+        print("El resultado es:", resultado)
+    finally:
+        print("Fin del bloque try-except")
+    ```
+
+## OBJETIVOS CLAVE 
+
+*   **Control del Flujo**: Las estructuras de control permiten dirigir el flujo de ejecución de un programa, ejecutando diferentes bloques de código según las condiciones y repitiendo acciones cuando sea necesario.
+*   **Manejo de Errores**: El manejo de excepciones permite controlar errores que pueden ocurrir durante la ejecución de un programa, evitando que el programa se detenga abruptamente.
+*   **Legibilidad y Mantenibilidad**: El uso adecuado de las estructuras de control mejora la legibilidad y mantenibilidad del código, facilitando su comprensión y modificación.
+
+## EJEMPLO DE IMPLEMENTACION 
+
+### EJEMPLO 1: CALCULADORA SIMPLE 
+
+```python
+def calculadora():
+    operacion = input("Ingrese la operación a realizar (+, -, *, /): ")
+    num1 = float(input("Ingrese el primer número: "))
+    num2 = float(input("Ingrese el segundo número: "))
+
+    if operacion == '+':
+        resultado = num1 + num2
+    elif operacion == '-':
+        resultado = num1 - num2
+    elif operacion == '*':
+        resultado = num1 * num2
+    elif operacion == '/':
+        try:
+            resultado = num1 / num2
+        except ZeroDivisionError:
+            print("Error: No se puede dividir por cero.")
+            return
+    else:
+        print("Operación no válida.")
+        return
+
+    print("El resultado es:", resultado)
+
+calculadora()
+```
+
+### EJEMPLO 2: BUSQUEDA EN UNA LISTA 
+
+```python
+def buscar_elemento(lista, elemento):
+    for i in range(len(lista)):
+        if lista[i] == elemento:
+            print("Elemento encontrado en el índice:", i)
+            return
+    print("Elemento no encontrado en la lista.")
+
+mi_lista = [10, 20, 30, 40, 50]
+buscar_elemento(mi_lista, 30)
+buscar_elemento(mi_lista, 60)
+```
+
+## SUBTEMAS SUGERIDOS 
+
+- **Sentencias break y continue**: Controlar el flujo de los bucles.
+
+- **Comprensión de Listas**: Una forma concisa de crear listas utilizando bucles y condicionales.
+
+- **Iteradores y Generadores**: Formas avanzadas de iterar sobre secuencias.
+
+- **Manejo de Múltiples Excepciones**: Capturar y manejar diferentes tipos de excepciones.
