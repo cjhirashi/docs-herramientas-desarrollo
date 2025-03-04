@@ -1,5 +1,89 @@
 ---
-title: Lenguajes de programación
-description: Esta sección proporciona una descripción general de cómo comenzar a utilizar Documents, Kit de inicio de documentos de Next.js.
-keywords: ["introducción", "guía", "nextjs", "documents"]
+title: Lenguajes de Programación
+description: Una visión general de los lenguajes de programación, su historia, tipos, paradigmas y ejemplos.
+keywords: ["lenguajes de programación", "tipos de lenguajes", "paradigmas de programación", "sintaxis", "semántica", "compiladores", "intérpretes", "programación", "desarrollo de software"]
 ---
+
+## ¿QUE SON LOS LENGUAJES DE PROGRAMACION?
+
+Un **lenguaje de programación** es un sistema formal diseñado para expresar computaciones que pueden ser realizadas por una máquina, como una computadora. Permite a los programadores comunicar instrucciones a las computadoras en un formato que estas puedan entender y ejecutar.  En esencia, un lenguaje de programación actúa como un intermediario entre el pensamiento humano y la lógica binaria de las máquinas.
+
+### HISTORIA
+
+La historia de los lenguajes de programación es tan antigua como la de las propias computadoras.
+
+*   **Inicios (Década de 1940-1950):**  Las primeras computadoras se programaban directamente en código máquina, utilizando secuencias de 0s y 1s. Esto era extremadamente tedioso y propenso a errores.  Un hito importante fue la creación de **Short Code** en 1949, considerado uno de los primeros lenguajes de programación de alto nivel, aunque requería interpretación en cada ejecución.  **A-0** (1951) fue otro sistema temprano que facilitó la programación al permitir la especificación de operaciones mediante códigos numéricos.
+*   **La Era de los Primeros Lenguajes de Alto Nivel (Década de 1950):**  La necesidad de simplificar la programación llevó al desarrollo de los primeros lenguajes de alto nivel.  **FORTRAN** (Formula Translation, 1957), creado por John Backus en IBM, fue diseñado para cálculos científicos e ingeniería.  **LISP** (List Processor, 1958), desarrollado por John McCarthy en el MIT, se centró en el procesamiento de listas y se convirtió en el lenguaje preferido para la investigación en inteligencia artificial.  **COBOL** (Common Business-Oriented Language, 1959), creado por Grace Hopper, se orientó a aplicaciones empresariales y procesamiento de datos.
+*   **La Expansión y Diversificación (Década de 1960-1970):**  Esta época vio una explosión en la creación de lenguajes.  **ALGOL** (Algorithmic Language, 1960) influyó en el diseño de muchos lenguajes posteriores.  **BASIC** (Beginner's All-purpose Symbolic Instruction Code, 1964) fue diseñado para ser fácil de aprender y usar.  **Simula 67** introdujo conceptos de programación orientada a objetos.  **Pascal** (1970), creado por Niklaus Wirth, se diseñó para la enseñanza de la programación estructurada.  **C** (1972), desarrollado por Dennis Ritchie en Bell Labs, se convirtió en un lenguaje poderoso y versátil para la programación de sistemas.
+*   **La Programación Orientada a Objetos (Década de 1980-1990):**  La programación orientada a objetos (POO) ganó popularidad.  **Smalltalk** (década de 1970, pero popularizado en los 80) fue uno de los primeros lenguajes puramente orientados a objetos.  **C++** (1983) añadió características de POO a C.  **Objective-C** se utilizó ampliamente en el desarrollo de software para Apple.
+*   **La Era de Internet y los Lenguajes de Scripting (Década de 1990-2000):**  El auge de Internet impulsó la creación de lenguajes de scripting.  **Python** (1991), creado por Guido van Rossum, se destacó por su legibilidad y versatilidad.  **Java** (1995), desarrollado por Sun Microsystems, se diseñó para ser multiplataforma ("escribe una vez, ejecuta en cualquier lugar").  **JavaScript** (1995) se convirtió en el lenguaje estándar para la programación del lado del cliente en la web.  **PHP** (1995) se popularizó para el desarrollo de aplicaciones web dinámicas.
+*   **El Siglo XXI: Diversificación y Especialización:**  La tendencia hacia la diversificación continúa.  **C#** (2000), desarrollado por Microsoft, se integra estrechamente con la plataforma .NET.  **Ruby** (1995) ganó popularidad con el framework Ruby on Rails.  **Go** (2009), desarrollado por Google, se diseñó para la programación de sistemas concurrentes.  **Swift** (2014), desarrollado por Apple, reemplazó a Objective-C como el lenguaje principal para el desarrollo de iOS y macOS.  **Kotlin** (2011) se ha convertido en un lenguaje popular para el desarrollo de Android.  Además, han surgido lenguajes especializados para áreas como ciencia de datos (R), aprendizaje automático (TensorFlow, PyTorch) y computación cuántica (Q#).
+
+### OBJETIVOS CLAVE 
+
+*   **Expresividad:**  Permitir a los programadores expresar algoritmos y lógica de manera clara y concisa.
+*   **Legibilidad:**  Facilitar la comprensión del código por parte de otros programadores (y por el propio programador en el futuro).
+*   **Eficiencia:**  Permitir la creación de programas que se ejecuten de manera rápida y utilicen los recursos de la computadora de manera eficiente.
+*   **Portabilidad:**  Permitir que los programas se ejecuten en diferentes plataformas (sistemas operativos, arquitecturas de hardware) sin necesidad de modificaciones significativas.
+*   **Confiabilidad:**  Facilitar la creación de programas que funcionen correctamente y sean robustos ante errores.
+*   **Mantenibilidad:**  Facilitar la modificación y actualización del código a lo largo del tiempo.
+
+### TIPOS DE LENGUAJES DE PROGRAMACION 
+
+Los lenguajes de programación se pueden clasificar de diversas maneras:
+
+*   **Por Nivel de Abstracción:**
+    *   **Lenguajes de Bajo Nivel:**  Están más cerca del hardware de la computadora.  Ejemplos:  Ensamblador, código máquina.  Ofrecen un control preciso sobre el hardware, pero son difíciles de programar.
+    *   **Lenguajes de Alto Nivel:**  Son más abstractos y fáciles de usar.  Ejemplos:  Python, Java, C++.  Ofrecen mayor portabilidad y productividad, pero pueden ser menos eficientes en algunos casos.
+*   **Por Paradigma de Programación:**
+    *   **Imperativos:**  Describen *cómo* se debe realizar un cálculo, especificando una secuencia de instrucciones.  Ejemplos:  C, Pascal, FORTRAN.
+    *   **Declarativos:**  Describen *qué* se debe calcular, sin especificar los detalles de la implementación.  Ejemplos:  SQL, Prolog, Haskell.
+    *   **Orientados a Objetos:**  Organizan el código en torno a "objetos" que encapsulan datos y comportamiento.  Ejemplos:  Java, C++, Python, C#.
+    *   **Funcionales:**  Basados en el concepto de funciones matemáticas.  Ejemplos:  Haskell, Lisp, Scala.
+*   **Por Propósito:**
+    *   **De Propósito General:**  Se pueden utilizar para una amplia variedad de tareas.  Ejemplos:  Python, Java, C++.
+    *   **De Propósito Específico:**  Diseñados para tareas específicas.  Ejemplos:  SQL (bases de datos), R (estadística), MATLAB (cálculo numérico).
+*   **Por Tipo de Ejecución:**
+    *   **Compilados:**  El código fuente se traduce a código máquina ejecutable antes de la ejecución.  Ejemplos:  C, C++, Go.
+    *   **Interpretados:**  El código fuente se ejecuta directamente por un intérprete, línea por línea.  Ejemplos:  Python, JavaScript, PHP.
+    *   **Híbridos:**  Utilizan una combinación de compilación e interpretación.  Ejemplo:  Java (el código se compila a bytecode, que luego se interpreta por la JVM).
+
+### PARADIGMAS DE PROGRAMACION
+
+Un **paradigma de programación** es un estilo o "filosofía" de programación.  Define cómo se estructura y organiza el código.  Algunos de los paradigmas más comunes son:
+
+*   **Programación Imperativa:**  Se basa en la ejecución secuencial de instrucciones que modifican el estado del programa.  El programador especifica paso a paso cómo se debe realizar un cálculo.
+*   **Programación Orientada a Objetos (POO):**  Se basa en el concepto de "objetos" que encapsulan datos (atributos) y comportamiento (métodos).  La POO promueve la reutilización de código, la modularidad y la abstracción.
+*   **Programación Funcional:**  Se basa en el concepto de funciones matemáticas puras, que no tienen efectos secundarios (no modifican el estado del programa).  La programación funcional promueve la inmutabilidad, la recursión y la composición de funciones.
+*   **Programación Declarativa:**  Se centra en *qué* se debe calcular, en lugar de *cómo*.  El programador especifica las relaciones entre los datos y el sistema se encarga de encontrar la solución.
+
+### SINTAXIS Y SEMANTICA 
+
+*   **Sintaxis:**  Las reglas que definen la estructura válida de un programa.  Es como la gramática de un lenguaje natural.  Si un programa tiene errores de sintaxis, el compilador o intérprete no podrá entenderlo.
+*   **Semántica:**  El significado de las construcciones del lenguaje.  Define qué hace un programa cuando se ejecuta.  Un programa puede ser sintácticamente correcto pero semánticamente incorrecto (por ejemplo, realizar un cálculo incorrecto).
+
+### COMPILADORES E INTERPRETES 
+
+*   **Compilador:**  Un programa que traduce el código fuente de un lenguaje de programación a código máquina (o a otro lenguaje intermedio).  El código compilado se puede ejecutar directamente por la computadora.
+*   **Intérprete:**  Un programa que ejecuta el código fuente directamente, línea por línea.  No se genera un archivo ejecutable separado.
+
+
+## INFORMACION DE INTERES 
+
+***Lenguajes de Dominio Específico (DSL)***: Lenguajes diseñados para un dominio específico, como el diseño de hardware (VHDL, Verilog) o la manipulación de datos (SQL).
+
+***Metaprogramación***: La capacidad de un programa para manipular otros programas (o a sí mismo) como datos. Algunos lenguajes, como Lisp y Smalltalk, son especialmente adecuados para la metaprogramación.
+
+***Evolución de los Lenguajes***: Los lenguajes de programación están en constante evolución, adaptándose a las nuevas tecnologías y necesidades. Nuevos lenguajes surgen regularmente, y los lenguajes existentes se actualizan con nuevas características y mejoras.
+
+***La Importancia de Elegir el Lenguaje Correcto***: La elección del lenguaje de programación adecuado depende del proyecto, los requisitos de rendimiento, la experiencia del equipo y otros factores. No existe un "mejor" lenguaje para todos los casos.
+
+## FUENTES DE INFORMACION
+
+Wikipedia: https://es.wikipedia.org/wiki/Lenguaje_de_programaci%C3%B3n
+
+FreeCodeCamp: https://www.freecodecamp.org/news/what-is-a-programming-language/
+
+GeeksforGeeks: https://www.geeksforgeeks.org/programming-languages/
+
+Este documento proporciona una introducción general a los lenguajes de programación. Para obtener información más detallada sobre un lenguaje específico, se recomienda consultar la documentación oficial del lenguaje y otros recursos especializados.
