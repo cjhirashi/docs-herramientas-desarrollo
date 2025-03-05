@@ -89,6 +89,186 @@ export const Documents: Paths[] = [
           {
             title: "Javascript",
             href: "/javascript",
+            items: [
+                {
+                    title: "Fundamentos de Javascript",
+                    href: "/javascript-fundamentals",
+                    items: [
+                        {
+                            title: "Variables y Tipos de Datos",
+                            href: "/variables-data-types",
+                        },
+                        {
+                            title: "Operadores",
+                            href: "/operators",
+                        },
+                        {
+                            title: "Estructuras de Control",
+                            href: "/control-structures",
+                        },
+                        {
+                            title: "Funciones",
+                            href: "/functions",
+                        },
+                        {
+                            title: "Objetos",
+                            href: "/objects",
+                        },
+                        {
+                            title: "Arrays",
+                            href: "/arrays",
+                        },
+                    ]
+                },
+                {
+                    title: "Javascript en el Navegador",
+                    href: "/javascript-browser",
+                    items: [
+                        {
+                            title: "El DOM (Document Object Model)",
+                            href: "/dom",
+                        },
+                        {
+                            title: "Eventos",
+                            href: "/events",
+                        },
+                        {
+                            title: "Manipulación del DOM",
+                            href: "/dom-manipulation",
+                        },
+                        {
+                            title: "Formularios",
+                            href: "/forms",
+                        },
+                        {
+                            title: "AJAX y Fetch",
+                            href: "/ajax-fetch",
+                        },
+                    ]
+                },
+                {
+                    title: "Javascript Moderno (ES6+)",
+                    href: "/modern-javascript",
+                    items: [
+                        {
+                            title: "Let y Const",
+                            href: "/let-const",
+                        },
+                        {
+                            title: "Arrow Functions",
+                            href: "/arrow-functions",
+                        },
+                        {
+                            title: "Template Literals",
+                            href: "/template-literals",
+                        },
+                        {
+                            title: "Destructuring",
+                            href: "/destructuring",
+                        },
+                        {
+                            title: "Spread y Rest",
+                            href: "/spread-rest",
+                        },
+                        {
+                            title: "Clases",
+                            href: "/classes",
+                        },
+                        {
+                            title: "Módulos",
+                            href: "/modules",
+                        },
+                        {
+                            title: "Promesas y Async/Await",
+                            href: "/promises-async-await",
+                        },
+                    ]
+                },
+                {
+                    title: "Javascript en el Backend (Node.js)",
+                    href: "/javascript-backend",
+                    items: [
+                        {
+                            title: "Introducción a Node.js",
+                            href: "/nodejs-introduction",
+                        },
+                        {
+                            title: "Módulos en Node.js",
+                            href: "/nodejs-modules",
+                        },
+                        {
+                            title: "NPM (Node Package Manager)",
+                            href: "/npm",
+                        },
+                        {
+                            title: "Express.js",
+                            href: "/expressjs",
+                        },
+                        {
+                            title: "Bases de Datos con Node.js",
+                            href: "/nodejs-databases",
+                        },
+                    ]
+                },
+                {
+                    title: "Frameworks y Librerías de Javascript",
+                    href: "/javascript-frameworks-libraries",
+                    items: [
+                        {
+                            title: "React",
+                            href: "/react",
+                        },
+                        {
+                            title: "Angular",
+                            href: "/angular",
+                        },
+                        {
+                            title: "Vue.js",
+                            href: "/vuejs",
+                        },
+                        {
+                            title: "jQuery",
+                            href: "/jquery",
+                        },
+                    ]
+                },
+                {
+                    title: "Testing en Javascript",
+                    href: "/javascript-testing",
+                    items: [
+                        {
+                            title: "Tipos de Testing",
+                            href: "/testing-types",
+                        },
+                        {
+                            title: "Jest",
+                            href: "/jest",
+                        },
+                        {
+                            title: "Mocha y Chai",
+                            href: "/mocha-chai",
+                        },
+                    ]
+                },
+                {
+                    title: "Buenas Prácticas y Patrones de Diseño",
+                    href: "/javascript-best-practices",
+                    items: [
+                        {
+                            title: "Código Limpio",
+                            href: "/clean-code",
+                        },
+                        {
+                            title: "Patrones de Diseño Comunes",
+                            href: "/design-patterns",
+                        },
+                        {
+                            title: "Optimización del Rendimiento",
+                            href: "/performance-optimization",
+                        },
+                    ]
+                },
+            ]
           },
           {
             title: "Typescript",
