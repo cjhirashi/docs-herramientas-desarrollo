@@ -1,0 +1,146 @@
+---
+title: Javascript en el Navegador
+description:  Exploración detallada de cómo JavaScript interactúa y se ejecuta dentro de los navegadores web, incluyendo el DOM, BOM, eventos y APIs.
+keywords: ["javascript", "navegador", "dom", "bom", "eventos", "api", "web"]
+---
+
+JavaScript, en su entorno nativo, es el lenguaje que da vida a las páginas web interactivas.  Mientras que JavaScript puede ejecutarse en otros entornos (como Node.js en el servidor), su rol más tradicional y ubicuo es dentro de los navegadores web.  Aquí, JavaScript manipula el contenido, responde a las acciones del usuario y se comunica con servidores para crear experiencias web dinámicas y atractivas.
+
+## OBJETIVOS CLAVE
+
+*   **Comprender el Modelo de Objetos del Documento (DOM):**  Aprender cómo JavaScript interactúa con la estructura HTML de una página web.
+*   **Explorar el Modelo de Objetos del Navegador (BOM):**  Descubrir cómo JavaScript puede acceder y controlar las características del navegador.
+*   **Manejo de Eventos:**  Dominar la capacidad de responder a las interacciones del usuario, como clics, movimientos del ratón y pulsaciones de teclas.
+*   **Utilización de APIs del Navegador:**  Aprender a usar APIs para acceder a funcionalidades como geolocalización, almacenamiento local y multimedia.
+*   **Asincronía y Promesas:**  Comprender cómo JavaScript maneja operaciones asíncronas para evitar bloqueos en la interfaz de usuario.
+
+## MODELO DE OBJETOS DEL DOCUMENTO (DOM)
+
+El DOM es una representación en forma de árbol de la estructura HTML de una página web.  JavaScript utiliza el DOM para acceder a los elementos HTML, modificar su contenido, estilos y atributos, y agregar o eliminar elementos.
+
+**Ejemplo:**
+
+```javascript
+// Acceder al elemento con el ID "miTitulo"
+const titulo = document.getElementById("miTitulo");
+
+// Modificar el texto del título
+titulo.textContent = "¡Hola, Mundo!";
+
+// Modificar el estilo del título
+titulo.style.color = "blue";
+```
+
+En este ejemplo, document.getElementById es una función del DOM que permite seleccionar un elemento HTML específico por su ID. Luego, se utilizan las propiedades textContent y style para modificar el contenido y el estilo del elemento, respectivamente.
+
+## MODELO DE OBJETOS DEL NAVEGADOR (BOM)
+
+El BOM proporciona acceso a objetos que representan el navegador y su entorno. Esto incluye la ventana del navegador, el historial de navegación, la ubicación (URL) y las cookies.
+
+**Ejemplo**:
+
+```javascript
+// Obtener la altura y el ancho de la ventana del navegador
+const altura = window.innerHeight;
+const ancho = window.innerWidth;
+
+// Redirigir a otra página
+window.location.href = "https://www.ejemplo.com";
+
+// Mostrar una alerta
+window.alert("¡Bienvenido!");
+```
+
+Aquí, `window.innerHeight` y `window.innerWidth` proporcionan las dimensiones de la ventana del navegador. window.location.href permite cambiar la URL actual, y `window.alert` muestra un cuadro de diálogo de alerta.
+
+## MANEJO DE EVENTOS
+
+Los eventos son acciones o ocurrencias que suceden en el navegador, como un clic del ratón, la carga de una página o el envío de un formulario. JavaScript permite "escuchar" estos eventos y ejecutar código en respuesta a ellos.
+
+**Ejemplo**:
+
+```javascript
+<button id="miBoton">Haz clic aquí</button>
+
+<script>
+  const boton = document.getElementById("miBoton");
+
+  boton.addEventListener("click", function() {
+    alert("¡Hiciste clic en el botón!");
+  });
+</script>
+```
+
+En este ejemplo, `addEventListener` se utiliza para adjuntar un "listener" al evento "click" del botón. Cuando el usuario hace clic en el botón, la función anónima se ejecuta, mostrando una alerta.
+
+## APIS DEL NAVEGADOR
+
+Los navegadores modernos ofrecen una amplia gama de APIs que permiten a JavaScript acceder a funcionalidades avanzadas. Algunos ejemplos incluyen:
+
+* **Geolocation API**: Obtener la ubicación geográfica del usuario.
+
+* **Local Storage API**: Almacenar datos localmente en el navegador.
+
+* **Fetch API**: Realizar solicitudes HTTP para obtener datos de servidores.
+
+* **Canvas API**: Dibujar gráficos y animaciones.
+
+* **Web Audio API**: Procesar y reproducir audio.
+
+**Ejemplo (Fetch API)**:
+
+```javascript
+fetch("https://api.ejemplo.com/datos")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error("Error al obtener los datos:", error);
+  });
+```
+
+Este ejemplo utiliza la `Fetch API` para realizar una solicitud GET a una API. La respuesta se convierte a formato JSON y se muestra en la consola. El bloque catch maneja cualquier error que pueda ocurrir durante la solicitud.
+
+## ASINCRONIA Y PROMESAS
+
+JavaScript es un lenguaje de un solo hilo, lo que significa que solo puede ejecutar una tarea a la vez. Para evitar bloqueos en la interfaz de usuario durante operaciones que consumen tiempo (como solicitudes de red), JavaScript utiliza la asincronía.
+
+Las promesas son objetos que representan el resultado eventual de una operación asíncrona. Permiten escribir código asíncrono de manera más legible y manejable.
+
+**Ejemplo**:
+
+```javascript
+function obtenerDatos() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const datos = { nombre: "Juan", edad: 30 };
+      resolve(datos); // Resuelve la promesa con los datos
+      // reject("Error al obtener los datos"); // Rechaza la promesa en caso de error
+    }, 2000); // Simula una demora de 2 segundos
+  });
+}
+
+obtenerDatos()
+  .then(datos => {
+    console.log("Datos obtenidos:", datos);
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+```
+
+En este ejemplo, `obtenerDatos` devuelve una promesa que se resuelve después de una demora de 2 segundos. El método `then` se ejecuta cuando la promesa se resuelve, y el método catch se ejecuta si la promesa se rechaza.
+
+## CONCLUSION
+
+JavaScript en el navegador es una herramienta poderosa para crear experiencias web interactivas y dinámicas. Comprender el DOM, el BOM, el manejo de eventos, las APIs del navegador y la asincronía es fundamental para cualquier desarrollador web. Con estas habilidades, puedes construir aplicaciones web complejas y atractivas que responden a las necesidades de los usuarios.
+
+## FUENTES DEL DOCUMENTO
+
+* [**MDN Web Docs**: JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
+
+* [**W3Schools**: JavaScript Tutorial](https://www.w3schools.com/js/default.asp)
+
+* [**JavaScript.info**](https://javascript.info/)
+
