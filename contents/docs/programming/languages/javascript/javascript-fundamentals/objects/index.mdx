@@ -1,0 +1,278 @@
+---
+title: Objetos de JavaScript
+description:  Exploración profunda de los objetos en JavaScript, sus propiedades, métodos y cómo utilizarlos eficazmente.
+keywords: ["javascript", "objetos", "propiedades", "metodos", "programacion orientada a objetos", "prototipos", "herencia"]
+---
+
+Los objetos son una estructura fundamental en JavaScript. Permiten agrupar datos relacionados y funcionalidades en una sola unidad. En esencia, un objeto es una colección de pares clave-valor, donde las claves son cadenas (o símbolos) y los valores pueden ser cualquier tipo de dato, incluyendo otros objetos, funciones, arrays, o tipos primitivos.
+
+## OBJETIVOS CLAVE
+
+*   **Comprender la sintaxis y la creación de objetos:**  Aprender a definir objetos utilizando la notación literal y el constructor `Object`.
+*   **Acceder y modificar propiedades:**  Dominar las diferentes formas de acceder y modificar las propiedades de un objeto.
+*   **Entender los métodos de un objeto:**  Saber cómo definir y utilizar funciones dentro de un objeto.
+*   **Explorar el concepto de `this`:**  Comprender cómo el valor de `this` cambia según el contexto de ejecución.
+*   **Introducción a los prototipos:**  Entender cómo funciona la herencia basada en prototipos en JavaScript.
+
+## CREACION DE OBJETOS
+
+Hay varias maneras de crear objetos en JavaScript:
+
+### NOTACION LITERAL
+
+Esta es la forma más común y sencilla de crear un objeto. Se define un objeto utilizando llaves `{}` y se especifican los pares clave-valor dentro de ellas.
+
+```javascript
+const persona = {
+  nombre: "Juan",
+  apellido: "Perez",
+  edad: 30,
+  direccion: {
+    calle: "Calle Falsa 123",
+    ciudad: "Springfield"
+  }
+};
+
+console.log(persona.nombre); // Output: Juan
+console.log(persona.direccion.ciudad); // Output: Springfield
+```
+
+### CONSTRUCTOR OBJECT
+
+También se puede crear un objeto utilizando el constructor `Object`. Aunque es menos común que la notación literal, es útil en ciertos casos.
+
+```javascript
+const persona = new Object();
+persona.nombre = "Maria";
+persona.apellido = "Gomez";
+persona.edad = 25;
+
+console.log(persona.nombre); // Output: Maria
+```
+
+### FUNCIONES CONSTRUCTORAS
+
+Las funciones constructoras son una forma de crear objetos con una estructura predefinida. Se utilizan con la palabra clave `new`.
+
+```javascript
+function Persona(nombre, apellido, edad) {
+  this.nombre = nombre;
+  this.apellido = apellido;
+  this.edad = edad;
+  this.saludar = function() {
+    console.log(`Hola, mi nombre es ${this.nombre} ${this.apellido}`);
+  }
+}
+
+const persona1 = new Persona("Carlos", "Rodriguez", 40);
+persona1.saludar(); // Output: Hola, mi nombre es Carlos Rodriguez
+```
+
+## CLASES (ECMASCRIPT 2015)
+
+Las clases en JavaScript son una forma más moderna y legible de crear objetos, aunque internamente siguen utilizando prototipos.
+
+```javascript
+class Persona {
+  constructor(nombre, apellido, edad) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.edad = edad;
+  }
+
+  saludar() {
+    console.log(`Hola, mi nombre es ${this.nombre} ${this.apellido}`);
+  }
+}
+
+const persona1 = new Persona("Laura", "Martinez", 35);
+persona1.saludar(); // Output: Hola, mi nombre es Laura Martinez
+```
+
+## ACCESO Y MODIFICACION DE PROPIEDADES
+
+Hay dos formas principales de acceder a las propiedades de un objeto:
+
+### NOTACION DE PUNTO
+
+Es la forma más común y legible. Se utiliza un punto (`.`) seguido del nombre de la propiedad.
+
+```javascript
+const persona = {
+  nombre: "Juan",
+  apellido: "Perez"
+};
+
+console.log(persona.nombre); // Output: Juan
+
+persona.edad = 30; // Agrega una nueva propiedad
+console.log(persona.edad); // Output: 30
+
+persona.nombre = "Ricardo"; // Modifica una propiedad existente
+console.log(persona.nombre); // Output: Ricardo
+```
+
+### NOTACION DE CORCHETES
+
+Se utiliza corchetes (`[]`) y una cadena que representa el nombre de la propiedad. Es útil cuando el nombre de la propiedad está almacenado en una variable o cuando el nombre de la propiedad no es un identificador válido (por ejemplo, contiene espacios o caracteres especiales).
+
+```javascript
+const persona = {
+  nombre: "Juan",
+  apellido: "Perez"
+};
+
+console.log(persona["nombre"]); // Output: Juan
+
+const propiedad = "apellido";
+console.log(persona[propiedad]); // Output: Perez
+
+persona["edad"] = 30; // Agrega una nueva propiedad
+console.log(persona["edad"]); // Output: 30
+```
+
+## METODOS DE UN OBJETO
+
+Un método es una función que es propiedad de un objeto. Se define como cualquier otra propiedad, pero su valor es una función.
+
+```javascript
+const persona = {
+  nombre: "Juan",
+  apellido: "Perez",
+  saludar: function() {
+    console.log(`Hola, mi nombre es ${this.nombre} ${this.apellido}`);
+  },
+  nombreCompleto: function() {
+    return this.nombre + " " + this.apellido;
+  }
+};
+
+persona.saludar(); // Output: Hola, mi nombre es Juan Perez
+console.log(persona.nombreCompleto()); // Output: Juan Perez
+```
+
+## LA PALABRA CLAVE this
+
+El valor de `this` depende del contexto en el que se está ejecutando el código. Dentro de un método de un objeto, `this` se refiere al objeto en sí.
+
+```javascript
+const persona = {
+  nombre: "Juan",
+  apellido: "Perez",
+  saludar: function() {
+    console.log(`Hola, mi nombre es ${this.nombre} ${this.apellido}`);
+  }
+};
+
+persona.saludar(); // Output: Hola, mi nombre es Juan Perez
+```
+
+En este ejemplo, `this.nombre` y `this.apellido` se refieren a las propiedades nombre y apellido del objeto persona.
+
+Es importante tener en cuenta que el valor de this puede cambiar si la función se llama de una manera diferente. Por ejemplo, si la función se llama utilizando `call` o `apply`, se puede especificar explícitamente el valor de `this`.
+
+## PROTOTIPOS
+
+En JavaScript, los objetos heredan propiedades y métodos de un prototipo. Cada objeto tiene un prototipo asociado, y cuando se intenta acceder a una propiedad que no existe en el objeto, JavaScript busca en el prototipo del objeto. Si la propiedad no se encuentra en el prototipo, JavaScript busca en el prototipo del prototipo, y así sucesivamente hasta llegar al prototipo final, que es `null`.
+
+```javascript
+function Persona(nombre, apellido) {
+  this.nombre = nombre;
+  this.apellido = apellido;
+}
+
+Persona.prototype.saludar = function() {
+  console.log(`Hola, mi nombre es ${this.nombre} ${this.apellido}`);
+};
+
+const persona1 = new Persona("Carlos", "Rodriguez");
+persona1.saludar(); // Output: Hola, mi nombre es Carlos Rodriguez
+```
+
+En este ejemplo, el método `saludar` se define en el prototipo de la función `Persona`. Todos los objetos creados con la función `Persona` heredarán el método `saludar`.
+
+## HERENCIA
+
+JavaScript utiliza herencia basada en prototipos. Esto significa que los objetos pueden heredar propiedades y métodos de otros objetos. La herencia se implementa utilizando la cadena de prototipos.
+
+```javascript
+function Empleado(nombre, apellido, salario) {
+  Persona.call(this, nombre, apellido); // Llama al constructor de Persona
+  this.salario = salario;
+}
+
+Empleado.prototype = Object.create(Persona.prototype); // Establece el prototipo de Empleado
+Empleado.prototype.constructor = Empleado; // Restablece el constructor
+
+Empleado.prototype.aumentarSalario = function(porcentaje) {
+  this.salario *= (1 + porcentaje / 100);
+};
+
+const empleado1 = new Empleado("Ana", "Lopez", 50000);
+empleado1.saludar(); // Output: Hola, mi nombre es Ana Lopez
+console.log(empleado1.salario); // Output: 50000
+empleado1.aumentarSalario(10);
+console.log(empleado1.salario); // Output: 55000
+```
+
+En este ejemplo, la función `Empleado` hereda de la función `Persona`. Se utiliza `Persona.call(this, nombre, apellido)` para llamar al constructor de `Persona` y establecer las propiedades `nombre` y `apellido`. Luego, se establece el prototipo de `Empleado` para que herede del prototipo de `Persona`. Finalmente, se define un nuevo método `aumentarSalario` en el prototipo de Empleado.
+
+## EJEMPLOS DE IMPLEMENTACION
+### CREACION DE UN OBJETO LITERAL
+
+```javascript
+const libro = {
+  titulo: "El Señor de los Anillos",
+  autor: "J.R.R. Tolkien",
+  anioPublicacion: 1954,
+  genero: "Fantasia",
+  mostrarInformacion: function() {
+    console.log(`Titulo: ${this.titulo}, Autor: ${this.autor}, Año: ${this.anioPublicacion}, Genero: ${this.genero}`);
+  }
+};
+
+libro.mostrarInformacion(); // Output: Titulo: El Señor de los Anillos, Autor: J.R.R. Tolkien, Año: 1954, Genero: Fantasia
+```
+
+### CREACION DE UN OBJETO CON UNA CLASE
+
+```javascript
+class Coche {
+  constructor(marca, modelo, anio) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.anio = anio;
+    this.velocidad = 0;
+  }
+
+  acelerar(incremento) {
+    this.velocidad += incremento;
+    console.log(`Acelerando. Velocidad actual: ${this.velocidad} km/h`);
+  }
+
+  frenar(decremento) {
+    this.velocidad -= decremento;
+    if (this.velocidad < 0) {
+      this.velocidad = 0;
+    }
+    console.log(`Frenando. Velocidad actual: ${this.velocidad} km/h`);
+  }
+
+  mostrarInformacion() {
+    console.log(`Marca: ${this.marca}, Modelo: ${this.modelo}, Año: ${this.anio}`);
+  }
+}
+
+const miCoche = new Coche("Toyota", "Corolla", 2020);
+miCoche.mostrarInformacion(); // Output: Marca: Toyota, Modelo: Corolla, Año: 2020
+miCoche.acelerar(50); // Output: Acelerando. Velocidad actual: 50 km/h
+miCoche.frenar(20); // Output: Frenando. Velocidad actual: 30 km/h
+```
+
+## FUENTES DEL DOCUMENTO
+
+- [**MDN Web Docs**: Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+- [**You Don't Know JS**: this & Object Prototypes](https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20&%20object%20prototypes/README.md)
+
+- [**Eloquent JavaScript**: Objects](https://eloquentjavascript.net/06_object.html)
