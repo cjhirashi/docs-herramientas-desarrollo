@@ -1,0 +1,151 @@
+---
+title: Fundamentos de Javascript
+description:  Exploración de los conceptos básicos de Javascript, incluyendo variables, tipos de datos, operadores, estructuras de control y funciones.
+keywords: ["javascript", "fundamentos", "variables", "tipos de datos", "operadores", "estructuras de control", "funciones"]
+---
+
+# FUNDAMENTOS DE JAVASCRIPT
+
+Javascript es un lenguaje de programación esencial para el desarrollo web moderno. Permite añadir interactividad y dinamismo a las páginas web, creando experiencias de usuario ricas y atractivas. Comprender los fundamentos de Javascript es crucial para cualquier desarrollador web, ya que sienta las bases para construir aplicaciones web complejas y eficientes.
+
+## OBJETIVOS CLAVE
+
+*   Comprender los conceptos básicos de Javascript.
+*   Aprender a declarar y utilizar variables.
+*   Conocer los diferentes tipos de datos en Javascript.
+*   Utilizar operadores para realizar cálculos y comparaciones.
+*   Implementar estructuras de control para tomar decisiones y repetir acciones.
+*   Definir y llamar funciones para organizar y reutilizar el código.
+
+## VARIABLES
+
+Las variables son contenedores que almacenan datos. En Javascript, se declaran utilizando las palabras clave `var`, `let` o `const`.
+
+*   **`var`**: Declara una variable con alcance de función o global.
+*   **`let`**: Declara una variable con alcance de bloque.
+*   **`const`**: Declara una constante, cuyo valor no puede ser reasignado.
+
+```javascript
+var nombre = "Juan";    // Variable con alcance global o de función
+let edad = 30;          // Variable con alcance de bloque
+const PI = 3.1416;      // Constante
+```
+
+## TIPOS DE DATOS
+
+Javascript tiene varios tipos de datos primitivos:
+
+* **Number**: Representa valores numéricos, tanto enteros como decimales.
+
+* **String**: Representa cadenas de texto.
+
+* **Boolean**: Representa valores lógicos (verdadero o falso).
+
+* **Null**: Representa la ausencia intencional de valor.
+
+* **Undefined**: Representa una variable que no ha sido inicializada.
+
+* **Symbol**: Representa un identificador único.
+
+* **BigInt**: Representa enteros de precisión arbitraria.
+
+Además de los tipos de datos primitivos, Javascript también tiene tipos de datos complejos, como:
+
+* **Object**: Representa una colección de propiedades.
+
+* **Array**: Representa una lista ordenada de valores.
+
+```javascript
+let numero = 10;        // Tipo Number
+let texto = "Hola";     // Tipo String
+let esVerdadero = true; // Tipo Boolean
+let nulo = null;        // Tipo Null
+let indefinido;         // Tipo Undefined
+
+let persona = {         // Tipo Object
+  nombre: "Juan",
+  edad: 30
+};
+
+let numeros = [1, 2, 3]; // Tipo Array
+```
+
+## OPERADORES
+
+* Los operadores se utilizan para realizar cálculos, comparaciones y otras operaciones en Javascript.
+
+* Operadores aritméticos: `+`, `-`, `*`, `/`, `%` (módulo), `**` (exponenciación).
+
+* Operadores de asignación: `=`, `+=`, `-=`, `*=`, `/=`, `%=`.
+
+* Operadores de comparación: `==` (igual), `!=` (no igual), `===` (igual estricto), `!==` (no igual estricto), `>`, `<`, `>=`, `<=`.
+
+* Operadores lógicos: `&&` (AND), `||` (OR), `!` (NOT).
+
+```javascript
+let a = 10;
+let b = 5;
+
+console.log(a + b); // 15
+console.log(a == b); // false
+console.log(a > b && a < 20); // true
+```
+
+## ESTRUCTURAS DE CONTROL
+
+Las estructuras de control permiten tomar decisiones y repetir acciones en Javascript.
+
+* `if...else`: Ejecuta un bloque de código si una condición es verdadera, y otro bloque si es falsa.
+
+* `switch`: Ejecuta diferentes bloques de código según el valor de una expresión.
+
+* `for`: Repite un bloque de código un número determinado de veces.
+
+* `while`: Repite un bloque de código mientras una condición sea verdadera.
+
+* `do...while`: Repite un bloque de código al menos una vez, y luego mientras una condición sea verdadera.
+
+```javascript
+let edad = 18;
+
+if (edad >= 18) {
+  console.log("Es mayor de edad");
+} else {
+  console.log("Es menor de edad");
+}
+
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}
+```
+
+## FUNCIONES
+
+Las funciones son bloques de código que se pueden llamar para realizar una tarea específica. Se definen utilizando la palabra clave function.
+
+```javascript
+function saludar(nombre) {
+  console.log("Hola, " + nombre + "!");
+}
+
+saludar("Juan"); // Llama a la función saludar
+```
+
+Las funciones pueden recibir parámetros y devolver valores.
+
+```javascript
+function sumar(a, b) {
+  return a + b;
+}
+
+let resultado = sumar(5, 3);
+console.log(resultado); // 8
+```
+
+## FUENTES
+
+* MDN Web Docs: https://developer.mozilla.org/es/docs/Web/JavaScript
+
+* W3Schools: https://www.w3schools.com/js/default.asp
+
+* freeCodeCamp: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/
