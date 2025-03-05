@@ -1,0 +1,278 @@
+---
+title: Operadores de Javascript
+description:  Exploración detallada de los operadores en JavaScript, incluyendo tipos, precedencia y ejemplos de uso.
+keywords: ["javascript", "operadores", "aritméticos", "lógicos", "comparación", "asignación", "precedencia"]
+---
+
+Los operadores en JavaScript son símbolos especiales que realizan operaciones sobre uno o más operandos (valores o variables). Estos operadores permiten manipular datos, realizar cálculos, tomar decisiones y controlar el flujo de un programa. Comprender los diferentes tipos de operadores y cómo funcionan es fundamental para escribir código JavaScript eficiente y correcto.
+
+## OBJETIVOS CLAVE
+
+*   **Entender los Tipos de Operadores:** Familiarizarse con los operadores aritméticos, de asignación, de comparación, lógicos, bitwise, condicionales y de tipo.
+*   **Comprender la Precedencia:** Aprender cómo la precedencia de los operadores afecta el orden de ejecución de las operaciones.
+*   **Aplicar Operadores Correctamente:** Utilizar los operadores adecuados para realizar tareas específicas y evitar errores comunes.
+*   **Optimizar el Código:** Escribir expresiones claras y eficientes utilizando operadores.
+
+## TIPOS DE OPERADORES
+
+### OPERADORES ARITMETICOS
+
+Los operadores aritméticos se utilizan para realizar cálculos matemáticos.
+
+*   `+` **Suma**: Suma dos operandos.
+*   `-` **Resta**: Resta el segundo operando del primero.
+*   `*` **Multiplicación**: Multiplica dos operandos.
+*   `/` **División**: Divide el primer operando por el segundo.
+*   `%` **Módulo**: Devuelve el resto de la división del primer operando por el segundo.
+*   `**` **Exponenciación**: Eleva el primer operando a la potencia del segundo.
+*   `++` **Incremento**: Incrementa el valor de una variable en 1.
+*   `--` **Decremento**: Decrementa el valor de una variable en 1.
+
+**Ejemplo:**
+
+```javascript
+let x = 10;
+let y = 5;
+
+console.log(x + y);   // 15
+console.log(x - y);   // 5
+console.log(x * y);   // 50
+console.log(x / y);   // 2
+console.log(x % y);   // 0
+console.log(x ** y);  // 100000
+
+x++;
+console.log(x);       // 11
+
+y--;
+console.log(y);       // 4
+```
+
+### OPERADORES DE ASIGNACION
+
+Los operadores de asignación se utilizan para asignar valores a las variables.
+
+* `=` **Asignación**: Asigna el valor del operando derecho al operando izquierdo.
+
+* `+=` **Suma y Asignación**: Suma el operando derecho al operando izquierdo y asigna el resultado al operando izquierdo.
+
+* `-=` **Resta y Asignación**: Resta el operando derecho del operando izquierdo y asigna el resultado al operando izquierdo.
+
+* `*=` **Multiplicación y Asignación**: Multiplica el operando izquierdo por el operando derecho y asigna el resultado al operando izquierdo.
+
+* `/=` **División y Asignación**: Divide el operando izquierdo por el operando derecho y asigna el resultado al operando izquierdo.
+
+* `%=` **Módulo y Asignación**: Calcula el módulo del operando izquierdo por el operando derecho y asigna el resultado al operando izquierdo.
+
+* `**=` **Exponenciación y Asignación**: Eleva el operando izquierdo a la potencia del operando derecho y asigna el resultado al operando izquierdo.
+
+**Ejemplo:**
+
+```javascript
+let x = 10;
+
+x += 5;  // x = x + 5
+console.log(x);   // 15
+
+x -= 3;  // x = x - 3
+console.log(x);   // 12
+
+x *= 2;  // x = x * 2
+console.log(x);   // 24
+
+x /= 4;  // x = x / 4
+console.log(x);   // 6
+
+x %= 5;  // x = x % 5
+console.log(x);   // 1
+
+x **= 3; // x = x ** 3
+console.log(x);   // 1
+```
+
+### OPERADORES DE COMPARACION
+
+Los operadores de comparación se utilizan para comparar dos operandos y devolver un valor booleano (`true` o `false`).
+
+* `==` **Igual**: Devuelve `true` si los operandos son iguales en valor (después de la conversión de tipo, si es necesario).
+
+* `===` **Estrictamente Igual**: Devuelve true si los operandos son iguales en valor y tipo.
+
+* `!=` **No Igual**: Devuelve true si los operandos no son iguales en valor (después de la conversión de tipo, si es necesario).
+
+* `!==` **Estrictamente No Igual**: Devuelve true si los operandos no son iguales en valor o tipo.
+
+* `>` **Mayor Que**: Devuelve true si el operando izquierdo es mayor que el operando derecho.
+
+* `<` **Menor Que**: Devuelve true si el operando izquierdo es menor que el operando derecho.
+
+* `>=` **Mayor o Igual Que**: Devuelve true si el operando izquierdo es mayor o igual que el operando derecho.
+
+* `<=` **Menor o Igual Que**: Devuelve true si el operando izquierdo es menor o igual que el operando derecho.
+
+**Ejemplo**:
+
+```javascript
+let x = 10;
+let y = "10";
+
+console.log(x == y);   // true (comparación de valor después de la conversión de tipo)
+console.log(x === y);  // false (comparación de valor y tipo)
+console.log(x != y);   // false (comparación de valor después de la conversión de tipo)
+console.log(x !== y);  // true (comparación de valor y tipo)
+
+console.log(x > 5);    // true
+console.log(x < 12);   // true
+console.log(x >= 10);  // true
+console.log(x <= 9);   // false
+```
+
+### OPERADORES LOGICOS
+
+Los operadores lógicos se utilizan para combinar o modificar expresiones booleanas.
+
+* `&&` **AND Lógico**: Devuelve true si ambos operandos son true.
+
+* `||` **OR Lógico**: Devuelve true si al menos uno de los operandos es true.
+
+* `!` **NOT Lógico**: Devuelve true si el operando es false, y viceversa.
+
+**Ejemplo**:
+
+```javascript
+let x = 5;
+let y = 10;
+
+console.log(x > 0 && y < 20);  // true (ambas condiciones son verdaderas)
+console.log(x > 10 || y < 15); // true (al menos una condición es verdadera)
+console.log(!(x > 10));        // true (la condición es falsa, por lo que NOT la invierte)
+```
+
+### OPERADORES BITWISE
+
+Los operadores bitwise realizan operaciones a nivel de bits en los operandos.
+
+* `&` **AND Bitwise**: Realiza un AND bit a bit entre dos operandos.
+
+* `|` **OR Bitwise**: Realiza un OR bit a bit entre dos operandos.
+
+* `^` **XOR Bitwise**: Realiza un XOR bit a bit entre dos operandos.
+
+* `~` **NOT Bitwise**: Invierte los bits de un operando.
+
+* `<<` **Desplazamiento a la Izquierda**: Desplaza los bits de un operando a la izquierda.
+
+* `>>` **Desplazamiento a la Derecha**: Desplaza los bits de un operando a la derecha (conservando el signo).
+
+* `>>>` **Desplazamiento a la Derecha sin Signo**: Desplaza los bits de un operando a la derecha (rellenando con ceros).
+
+**Ejemplo**:
+
+```javascript
+let x = 5;  // 0101 en binario
+let y = 3;  // 0011 en binario
+
+console.log(x & y);   // 0001 (1 en decimal)
+console.log(x | y);   // 0111 (7 en decimal)
+console.log(x ^ y);   // 0110 (6 en decimal)
+console.log(~x);      // 1010 (complemento a dos, -6 en decimal)
+console.log(x << 1);  // 1010 (10 en decimal)
+console.log(x >> 1);  // 0010 (2 en decimal)
+console.log(x >>> 1); // 0010 (2 en decimal)
+```
+
+### OPERADOR CONDICIONAL (TERNARIO)
+
+El operador condicional (ternario) es una forma abreviada de escribir una sentencia `if...else`.
+
+* `condición ? expresiónSiVerdadera : expresiónSiFalsa`
+
+**Ejemplo**:
+
+```javascript
+let edad = 20;
+let mensaje = (edad >= 18) ? "Eres mayor de edad" : "Eres menor de edad";
+console.log(mensaje);  // "Eres mayor de edad"
+```
+
+### OPERADORES DE TIPO
+
+Los operadores de tipo se utilizan para obtener información sobre el tipo de una variable o valor.
+
+* `typeof`: Devuelve una cadena que indica el tipo de un operando.
+
+* `instanceof`: Comprueba si un objeto es una instancia de una clase específica.
+
+**Ejemplo**:
+
+```javascript
+let x = 10;
+let nombre = "Juan";
+let esMayor = true;
+let persona = { nombre: "Juan", edad: 30 };
+
+console.log(typeof x);        // "number"
+console.log(typeof nombre);   // "string"
+console.log(typeof esMayor);  // "boolean"
+console.log(typeof persona);  // "object"
+
+console.log(persona instanceof Object);  // true
+```
+
+## PRECEDENCIA DE OPERADORES
+
+La precedencia de operadores determina el orden en que se evalúan las operaciones en una expresión. Los operadores con mayor precedencia se evalúan primero. Es importante conocer la precedencia para asegurar que las expresiones se evalúen correctamente.
+
+A continuación, se muestra una lista de precedencia de operadores de mayor a menor:
+
+* `()` **Paréntesis**
+
+* `++`, `--` **Incremento/Decremento**
+
+* `**` **Exponenciación**
+
+* `*`, `/`, `%` **Multiplicación, División, Módulo**
+
+* `+`, `-` **Suma, Resta**
+
+* `<<`, `>>`, `>>>` **Desplazamiento de Bits**
+
+* `<`, `<=`, `>`, `>=` **Comparación**
+
+* `==`, `!=`, `===`, `!==` **Igualdad**
+
+* `&` **AND Bitwise**
+
+* `^` **XOR Bitwise**
+
+* `|` **OR Bitwise**
+
+* `&&` **AND Lógico**
+
+* `||` **OR Lógico**
+
+* `?:` **Operador Condicional**
+
+* `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `**=` **Asignación**
+
+* `typeof`, `instanceof` **Operadores de Tipo**
+
+**Ejemplo**:
+
+```javascript
+let resultado = 5 + 10 * 2;  // Primero se realiza la multiplicación (10 * 2 = 20), luego la suma (5 + 20 = 25)
+console.log(resultado);       // 25
+
+let resultado2 = (5 + 10) * 2; // Primero se realiza la suma dentro del paréntesis (5 + 10 = 15), luego la multiplicación (15 * 2 = 30)
+console.log(resultado2);      // 30
+```
+
+## CONCLUSION
+
+Los operadores son herramientas esenciales en JavaScript para realizar diversas operaciones y manipulaciones de datos. Conocer los diferentes tipos de operadores, su precedencia y cómo aplicarlos correctamente es crucial para escribir código eficiente y sin errores. Al dominar los operadores, los desarrolladores pueden crear aplicaciones más complejas y funcionales.
+
+## FUENTES DEL DOCUMENTO
+
+* [MDN Web Docs: Expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators)
+
+* [W3Schools: JavaScript Operators](https://www.w3schools.com/js/js_operators.asp)
