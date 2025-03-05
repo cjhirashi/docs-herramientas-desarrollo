@@ -1,0 +1,229 @@
+---
+title: Variables y Tipos de Datos en JavaScript
+description:  Exploración profunda de las variables y los tipos de datos en JavaScript, incluyendo declaración, asignación, tipos primitivos y objetos.
+keywords: ["javascript", "variables", "tipos de datos", "primitivos", "objetos", "declaración", "asignación"]
+---
+
+JavaScript, como cualquier lenguaje de programación, se basa en la manipulación de datos. Para ello, utiliza variables que actúan como contenedores para almacenar información. Comprender cómo declarar variables y los diferentes tipos de datos que pueden contener es fundamental para escribir código JavaScript efectivo y eficiente.
+
+## OBJETIVOS CLAVE
+
+*   Entender la diferencia entre `var`, `let` y `const` para la declaración de variables.
+*   Conocer los tipos de datos primitivos en JavaScript: `string`, `number`, `boolean`, `null`, `undefined` y `symbol`.
+*   Comprender el tipo de dato `object` y cómo se utiliza para estructuras de datos más complejas.
+*   Aprender sobre la conversión de tipos (coerción) en JavaScript.
+
+## DECLARACION DE VARIABLES
+
+En JavaScript, las variables se declaran utilizando las palabras clave `var`, `let` o `const`. Cada una tiene un comportamiento diferente en cuanto a su alcance (scope) y mutabilidad.
+
+### VAR
+
+*   `var` fue la forma original de declarar variables en JavaScript.
+*   Tiene un alcance de función (function scope) o global si se declara fuera de una función.
+*   Permite la redeclaración y reasignación.
+
+```javascript
+var x = 10;
+
+if (true) {
+  var x = 20;  // ¡Misma variable!
+  console.log(x);  // Imprime 20
+}
+
+console.log(x);  // Imprime 20 (¡cambió fuera del bloque!)
+```
+
+### LET
+
+* let se introdujo en ECMAScript 2015 (ES6) para solucionar los problemas de alcance de var.
+
+* Tiene un alcance de bloque (block scope), lo que significa que solo es accesible dentro del bloque en el que se define (por ejemplo, dentro de un `if`, `for`, o un bloque `{}`).
+
+* Permite la reasignación, pero no la redeclaración dentro del mismo alcance.
+
+```javascript
+let y = 10;
+
+if (true) {
+  let y = 20;  // ¡Variable diferente!
+  console.log(y);  // Imprime 20
+}
+
+console.log(y);  // Imprime 10 (no cambió)
+```
+
+### CONST
+
+* `const` también se introdujo en ES6.
+
+* También tiene un alcance de bloque.
+
+* Se utiliza para declarar constantes, es decir, variables cuyo valor no debe cambiar después de la asignación inicial.
+
+* **Importante**: `const` no significa que el valor sea inmutable. Si const se usa para un objeto o un array, las propiedades del objeto o los elementos del array pueden modificarse, pero no se puede reasignar la variable a un nuevo objeto o array.
+
+```javascript
+const z = 10;
+// z = 20;  // Error: Assignment to constant variable.
+
+const obj = { nombre: "Juan" };
+obj.nombre = "Pedro";  // ¡Esto es válido!
+console.log(obj.nombre); // Imprime "Pedro"
+
+// obj = { nombre: "Maria" }; // Error: Assignment to constant variable.
+```
+
+## TIPOS DE DATOS PRIMITIVOS
+
+JavaScript tiene siete tipos de datos primitivos:
+
+### 1. String
+
+Representa datos textuales. Se delimita con comillas simples (`'...'`) o dobles (`"..."`).
+
+```javascript
+let nombre = "Juan Perez";
+let saludo = 'Hola mundo';
+```
+
+### 2. Number
+
+Representa valores numéricos, incluyendo enteros y números de punto flotante.
+
+```javascript
+let edad = 30;
+let precio = 99.99;
+```
+
+### 3. Boolean
+
+Representa un valor de verdad, que puede ser true o false.
+
+```javascript
+let esMayorDeEdad = true;
+let estaLogueado = false;
+```
+
+### 4. Null
+
+Representa la ausencia intencional de un valor. Es un valor asignado explícitamente.
+
+```javascript
+let usuario = null; // Usuario no encontrado
+```
+
+### 5. Undefined
+
+Representa un valor que no ha sido asignado. Una variable declarada pero no inicializada tiene el valor undefined.
+
+```javascript
+let direccion;
+console.log(direccion); // Imprime undefined
+```
+
+### 6. Symbol (Introducido en ES6)
+
+Representa un identificador único e inmutable. Se utiliza principalmente para añadir claves de propiedad únicas a los objetos.
+
+```javascript
+const idUnico = Symbol("id");
+const obj = {
+  [idUnico]: 12345
+};
+
+console.log(obj[idUnico]); // Imprime 12345
+```
+
+### 7. BigInt: (Introducido en ES2020) 
+
+Representa enteros de precisión arbitraria. Se utiliza para trabajar con números enteros que están fuera del rango seguro de `Number`.
+
+```javascript
+const numeroGrande = 9007199254740991n;
+```
+
+## TIPO DE DATO OBJECT
+
+El tipo de dato `object` es una colección de propiedades, donde cada propiedad tiene un nombre (clave) y un valor. Los objetos son fundamentales en JavaScript y se utilizan para representar estructuras de datos más complejas.
+
+```javascript
+let persona = {
+  nombre: "Ana",
+  edad: 25,
+  ciudad: "Madrid"
+};
+
+console.log(persona.nombre); // Imprime "Ana"
+console.log(persona["edad"]); // Imprime 25
+```
+
+Los arrays también son un tipo de objeto en JavaScript.
+
+```javascript
+let colores = ["rojo", "verde", "azul"];
+
+console.log(colores[0]); // Imprime "rojo"
+```
+
+## CONVERSION DE TIPOS (COERCION)
+
+JavaScript es un lenguaje de tipado dinámico, lo que significa que el tipo de una variable puede cambiar durante la ejecución del programa. JavaScript también realiza la conversión automática de tipos (coerción) en ciertas operaciones.
+
+### EJEMPLOS DE COERCION
+
+* **Suma con strings**: Si se suma un número con un string, JavaScript convierte el número a string y realiza la concatenación.
+
+    ```javascript
+    let resultado = "El resultado es: " + 10 + 20;
+    console.log(resultado); // Imprime "El resultado es: 1020"
+    ```
+
+* **Operaciones booleanas**: En contextos booleanos (como en un `if` o un bucle), JavaScript convierte automáticamente ciertos valores a `true` o `false`. Los valores "falsy" son: `0`, `null`, `undefined`, `NaN`, `""` (string vacío) y `false`. Todos los demás valores se consideran "truthy".
+
+```javascript
+if ("") {
+  console.log("Esto no se imprimirá");
+}
+
+if (10) {
+  console.log("Esto se imprimirá");
+}
+```
+
+## CONVERSION EXPLICITA
+
+Es posible realizar la conversión de tipos de forma explícita utilizando funciones como:
+
+* `Number()`: Convierte un valor a número.
+
+* `String()`: Convierte un valor a string.
+
+* `Boolean()`: Convierte un valor a booleano.
+
+* `parseInt()`: Convierte un string a un entero.
+
+* `parseFloat()`: Convierte un string a un número de punto flotante.
+
+```javascript
+let numeroString = "42";
+let numero = Number(numeroString);
+console.log(typeof numero); // Imprime "number"
+
+let valorBooleano = Boolean(0);
+console.log(valorBooleano); // Imprime false
+```
+
+## CONCLUSION
+
+Comprender las variables y los tipos de datos en JavaScript es esencial para escribir código robusto y predecible. Utilizar `let` y `const` en lugar de `var` ayuda a evitar errores relacionados con el alcance de las variables. Conocer los tipos de datos primitivos y cómo JavaScript realiza la conversión de tipos permite escribir código más eficiente y evitar sorpresas inesperadas.
+
+## FUENTES DEL DOCUMENTO
+
+[MDN Web Docs: JavaScript Data types and data structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
+
+[MDN Web Docs: var](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)
+
+[MDN Web Docs: let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let)
+
+[MDN Web Docs: const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
