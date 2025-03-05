@@ -1,0 +1,276 @@
+---
+title: Funciones de Javascript
+description: Explicación detallada de las funciones en JavaScript, incluyendo su sintaxis, tipos, uso y mejores prácticas.
+keywords: ["javascript", "funciones", "declaración", "expresión", "parámetros", "argumentos", "retorno", "scope", "closure", "arrow functions"]
+---
+
+Las funciones son uno de los conceptos fundamentales en JavaScript. Permiten encapsular bloques de código para que puedan ser reutilizados y ejecutados múltiples veces. Una función es un conjunto de instrucciones que realiza una tarea específica.
+
+## OBJETIVOS CLAVE
+
+*   Entender la sintaxis y los diferentes tipos de funciones en JavaScript.
+*   Aprender a definir y llamar funciones.
+*   Comprender el concepto de parámetros y argumentos.
+*   Explorar el uso de la declaración de retorno.
+*   Entender el scope y las closures en el contexto de las funciones.
+*   Familiarizarse con las arrow functions (funciones flecha).
+
+## SINTAXIS BASICA
+
+Una función en JavaScript se define utilizando la palabra clave `function`, seguida de un nombre (opcional), una lista de parámetros entre paréntesis `()` y un bloque de código delimitado por llaves `{}`.
+
+```javascript
+function nombreDeLaFuncion(parametro1, parametro2) {
+  // Bloque de código a ejecutar
+  return valor; // Opcional
+}
+```
+
+## TIPOS DE FUNCIONES
+
+JavaScript ofrece varios tipos de funciones, cada uno con sus propias características y casos de uso.
+
+### 1. DECLARACION DE FUNCION (FUNCTION DECLARATION)
+
+Las declaraciones de función son las más comunes y se definen utilizando la palabra clave `function`.
+
+```javascript
+function sumar(a, b) {
+  return a + b;
+}
+
+console.log(sumar(5, 3)); // Output: 8
+```
+
+Las declaraciones de función son hoisted, lo que significa que pueden ser llamadas antes de que aparezcan en el código.
+
+### 2. EXPRESION DE FUNCION (FUNCTION EXPRESSION)
+
+Las expresiones de función se definen asignando una función a una variable.
+
+```javascript
+const multiplicar = function(a, b) {
+  return a * b;
+};
+
+console.log(multiplicar(5, 3)); // Output: 15
+```
+
+A diferencia de las declaraciones de función, las expresiones de función no son hoisted.
+
+### 3. FUNCIONES ANONIMAS
+
+Una función anónima es una función que no tiene nombre. Se utilizan comúnmente en expresiones de función y como callbacks.
+
+```javascript
+setTimeout(function() {
+  console.log("Esta función se ejecuta después de un tiempo.");
+}, 1000);
+```
+
+### 4. ARROW FUNCTIONS (FUNCIONES FLECHA)
+
+Las `arrow` functions son una forma más concisa de escribir funciones, introducidas en ES6.
+
+```javascript
+const dividir = (a, b) => a / b;
+
+console.log(dividir(15, 3)); // Output: 5
+```
+
+Las `arrow` functions tienen algunas diferencias importantes con las funciones tradicionales, como la ausencia de this propio y la imposibilidad de ser utilizadas como constructores.
+
+## PARAMETROS Y ARGUMENTOS
+
+Los parámetros son las variables listadas en la definición de la función. Los argumentos son los valores que se pasan a la función cuando se llama.
+
+```javascript
+function saludar(nombre) { // 'nombre' es un parámetro
+  console.log("Hola, " + nombre + "!");
+}
+
+saludar("Juan"); // "Juan" es un argumento
+```
+
+### PARAMETROS POR DEFECTO
+
+En ES6, se pueden definir valores por defecto para los parámetros.
+
+```javascript
+function saludar(nombre = "Invitado") {
+  console.log("Hola, " + nombre + "!");
+}
+
+saludar(); // Output: Hola, Invitado!
+saludar("Ana"); // Output: Hola, Ana!
+```
+
+### REST PARAMETERS
+
+Los `rest parameters` permiten que una función acepte un número indefinido de argumentos como un `array`.
+
+```javascript
+function sumarTodos(...numeros) {
+  let total = 0;
+  for (let numero of numeros) {
+    total += numero;
+  }
+  return total;
+}
+
+console.log(sumarTodos(1, 2, 3, 4, 5)); // Output: 15
+```
+
+## LA DECLARACION DE RETORNO (RETURN STATEMENT)
+
+La declaración `return` se utiliza para especificar el valor que una función debe devolver. Si una función no tiene una declaración `return`, devuelve `undefined` por defecto.
+
+```javascript
+function multiplicar(a, b) {
+  return a * b;
+}
+
+let resultado = multiplicar(4, 6);
+console.log(resultado); // Output: 24
+```
+
+## SCOPE
+
+El `scope` se refiere a la visibilidad de las variables dentro de una función. JavaScript tiene `scope léxico`, lo que significa que el `scope` de una variable se determina por su posición en el código fuente.
+
+### SCOPE GLOBAL
+
+Las variables declaradas fuera de cualquier función tienen `scope global` y son accesibles desde cualquier parte del código.
+
+```javascript
+let variableGlobal = "Soy global";
+
+function mostrarVariable() {
+  console.log(variableGlobal);
+}
+
+mostrarVariable(); // Output: Soy global
+```
+
+### SCOPE LOCAL (FUNCTION SCOPE)
+
+Las variables declaradas dentro de una función tienen `scope local` y solo son accesibles dentro de esa función.
+
+```javascript
+function miFuncion() {
+  let variableLocal = "Soy local";
+  console.log(variableLocal);
+}
+
+miFuncion(); // Output: Soy local
+console.log(variableLocal); // Error: variableLocal is not defined
+```
+
+### BLOCK SCOPE (LET Y CONST)
+
+Las variables declaradas con `let` y `const` tienen `block scope`, lo que significa que solo son accesibles dentro del bloque en el que se definen.
+
+```javascript
+function ejemploBlockScope() {
+  if (true) {
+    let x = 10;
+    const y = 20;
+    var z = 30;
+  }
+  console.log(z); // Output: 30
+  console.log(x); // Error: x is not defined
+  console.log(y); // Error: y is not defined
+}
+
+ejemploBlockScope();
+```
+
+## CLOSURES
+
+Un `closure` es una función que tiene acceso a las variables de su `scope léxico`, incluso cuando se ejecuta fuera de ese `scope`.
+
+```javascript
+function crearContador() {
+  let contador = 0;
+
+  function incrementar() {
+    contador++;
+    console.log(contador);
+  }
+
+  return incrementar;
+}
+
+const miContador = crearContador();
+miContador(); // Output: 1
+miContador(); // Output: 2
+```
+
+En este ejemplo, la función incrementar tiene acceso a la variable contador de la función `crearContador`, incluso después de que `crearContador` haya terminado de ejecutarse.
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### EJEMPLO 1: CALCULADORA BASICA
+
+```javascript
+function calculadora(operacion, a, b) {
+  switch (operacion) {
+    case 'sumar':
+      return a + b;
+    case 'restar':
+      return a - b;
+    case 'multiplicar':
+      return a * b;
+    case 'dividir':
+      return a / b;
+    default:
+      return "Operación no válida";
+  }
+}
+
+console.log(calculadora('sumar', 5, 3)); // Output: 8
+console.log(calculadora('dividir', 10, 2)); // Output: 5
+console.log(calculadora('potencia', 2, 3)); // Output: Operación no válida
+```
+
+### EJEMPLO 2: VALIDACION DE EMAIL
+
+```javascript
+function validarEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
+console.log(validarEmail("test@example.com")); // Output: true
+console.log(validarEmail("invalid-email")); // Output: false
+```
+
+### EJEMPLO 3: FUNCION DE ORDEN SUPERIOR (HIGHER-ORDER FUNCTION)
+
+Una función de orden superior es una función que recibe otras funciones como argumentos o devuelve una función como resultado.
+
+```javascript
+function aplicarOperacion(arr, operacion) {
+  let resultado = [];
+  for (let elemento of arr) {
+    resultado.push(operacion(elemento));
+  }
+  return resultado;
+}
+
+function cuadrado(x) {
+  return x * x;
+}
+
+const numeros = [1, 2, 3, 4, 5];
+const cuadrados = aplicarOperacion(numeros, cuadrado);
+console.log(cuadrados); // Output: [1, 4, 9, 16, 25]
+```
+
+## FUENTES DEL DOCUMENTO
+
+* [**MDN Web Docs**: Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
+
+* [**W3Schools**: JavaScript Functions](https://www.w3schools.com/js/js_functions.asp)
+
+* [**JavaScript.info**: Functions](https://javascript.info/function-basics)
