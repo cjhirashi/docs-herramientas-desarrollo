@@ -1,0 +1,177 @@
+---
+title: Manejo de Excepciones en Python
+description: Aprende a manejar excepciones en Python para escribir código robusto y a prueba de errores.
+keywords: ["python", "excepciones", "manejo de errores", "try", "except", "finally", "raise"]
+---
+
+El manejo de excepciones es un aspecto crucial en la programación, especialmente en Python, ya que permite crear aplicaciones robustas y tolerantes a fallos. Las excepciones son eventos que interrumpen el flujo normal de un programa, generalmente debido a errores o condiciones inesperadas. Python proporciona mecanismos para capturar y manejar estas excepciones, permitiendo que el programa se recupere o termine de manera controlada.
+
+## ¿QUE SON LAS EXCEPCIONES?
+
+En Python, una excepción es un objeto que representa un error. Cuando ocurre un error, Python "lanza" (o "levanta") una excepción. Si la excepción no se maneja, el programa se detiene y muestra un mensaje de error.
+
+### TIPOS COMUNES DE EXCEPCIONES 
+
+Python tiene una variedad de excepciones incorporadas, cada una representando un tipo diferente de error. Algunos ejemplos comunes incluyen:
+
+*   **TypeError**: Ocurre cuando una operación o función se aplica a un objeto de tipo inapropiado.
+*   **ValueError**: Ocurre cuando una función recibe un argumento del tipo correcto, pero con un valor inapropiado.
+*   **IndexError**: Ocurre cuando se intenta acceder a un índice fuera de rango en una secuencia (lista, tupla, etc.).
+*   **KeyError**: Ocurre cuando se intenta acceder a una clave que no existe en un diccionario.
+*   **FileNotFoundError**: Ocurre cuando se intenta abrir un archivo que no existe.
+*   **IOError**: Ocurre cuando una operación de entrada/salida falla (por ejemplo, al leer o escribir un archivo).
+*   **ZeroDivisionError**: Ocurre cuando se intenta dividir un número por cero.
+*   **ImportError**: Ocurre cuando falla la importación de un módulo.
+
+## BLOQUES try, except, finally
+
+Python utiliza los bloques `try`, `except` y `finally` para manejar excepciones.
+
+### EL BLOQUE try
+
+El bloque `try` contiene el código que podría generar una excepción. Si una excepción ocurre dentro de este bloque, el control se transfiere al bloque `except` correspondiente.
+
+### EL BLOQUE except
+
+El bloque `except` especifica cómo manejar una excepción particular. Puedes tener múltiples bloques `except` para manejar diferentes tipos de excepciones. Si una excepción ocurre en el bloque `try` y coincide con el tipo especificado en un bloque `except`, el código dentro de ese bloque `except` se ejecuta.
+
+### EL BLOQUE finally
+
+El bloque `finally` contiene código que siempre se ejecuta, independientemente de si una excepción ocurrió o no. Este bloque es útil para realizar tareas de limpieza, como cerrar archivos o liberar recursos.
+
+### SINTAXIS GENERAL 
+
+```python
+try:
+    # Código que podría generar una excepción
+except TipoDeExcepcion1:
+    # Manejo para TipoDeExcepcion1
+except TipoDeExcepcion2:
+    # Manejo para TipoDeExcepcion2
+except:
+    # Manejo para cualquier otra excepción
+finally:
+    # Código que siempre se ejecuta
+```
+
+## EJEMPLO DE IMPLEMENTACION 
+
+```python
+def dividir(a, b):
+    try:
+        resultado = a / b
+        print("El resultado es:", resultado)
+    except ZeroDivisionError:
+        print("¡Error! No se puede dividir por cero.")
+    except TypeError:
+        print("¡Error! Los argumentos deben ser números.")
+    finally:
+        print("La función dividir ha terminado.")
+
+# Ejemplos de uso
+dividir(10, 2)
+dividir(10, 0)
+dividir(10, "2")
+```
+
+En este ejemplo:
+
+- La función `dividir` intenta dividir `a` por `b`.
+
+- Si `b` es cero, se levanta una excepción `ZeroDivisionError`, y el primer bloque `except` la maneja.
+
+- Si `a` o `b` no son números, se levanta una excepción `TypeError`, y el segundo bloque `except` la maneja.
+
+- El bloque `finally` siempre se ejecuta, mostrando un mensaje al final.
+
+### LANZAR EXCEPCIONES (RAISE) 
+
+Además de manejar excepciones, también puedes lanzar tus propias excepciones usando la palabra clave `raise`. Esto es útil para indicar que algo salió mal en tu código.
+
+```python
+def validar_edad(edad):
+    if edad < 0:
+        raise ValueError("La edad no puede ser negativa.")
+    if edad > 150:
+        raise ValueError("La edad no puede ser mayor a 150.")
+    print("Edad válida:", edad)
+
+try:
+    validar_edad(-10)
+except ValueError as e:
+    print("¡Error!", e)
+
+try:
+    validar_edad(200)
+except ValueError as e:
+    print("¡Error!", e)
+
+try:
+    validar_edad(30)
+except ValueError as e:
+    print("¡Error!", e)
+```
+
+En este ejemplo:
+
+- La función `validar_edad` lanza una excepción `ValueError` si la edad es negativa o mayor a `150`.
+
+- El bloque `try` llama a `validar_edad` y el bloque `except` maneja la excepción `ValueError`, mostrando un mensaje de `error`.
+
+### EXCEPCIONES PERSONALIZADAS 
+
+Puedes crear tus propias clases de excepción personalizadas heredando de la clase base `Exception`. Esto te permite definir excepciones específicas para tu aplicación.
+
+```python
+class MiErrorPersonalizado(Exception):
+    def __init__(self, mensaje):
+        self.mensaje = mensaje
+
+    def __str__(self):
+        return self.mensaje
+
+def procesar_dato(dato):
+    if not isinstance(dato, int):
+        raise MiErrorPersonalizado("El dato debe ser un entero.")
+    print("Dato procesado:", dato)
+
+try:
+    procesar_dato("abc")
+except MiErrorPersonalizado as e:
+    print("¡Error!", e)
+
+try:
+    procesar_dato(123)
+except MiErrorPersonalizado as e:
+    print("¡Error!", e)
+```
+
+En este ejemplo:
+
+- Se define una clase de excepción personalizada `MiErrorPersonalizado` que hereda de `Exception`.
+
+- La función `procesar_dato` lanza una excepción `MiErrorPersonalizado` si el dato no es un entero.
+
+- El bloque `try` llama a `procesar_dato` y el bloque `except` maneja la excepción `MiErrorPersonalizado`, mostrando un mensaje de `error`.
+
+## BUENAS PRACTICAS 
+
+- **Sé específico**: Captura solo las excepciones que esperas y puedes manejar. Evita usar bloques except genéricos que capturen todas las excepciones, ya que esto puede ocultar errores inesperados.
+
+- **Usa `finally` para la limpieza**: Asegúrate de liberar recursos en el bloque finally para evitar fugas de memoria o problemas de rendimiento.
+
+- **Documenta tus excepciones**: Explica qué excepciones pueden ser lanzadas por tus funciones y cómo deben ser manejadas.
+
+- **No ignores las excepciones**: Si no puedes manejar una excepción, déjala propagarse para que pueda ser manejada por un nivel superior en la jerarquía de llamadas.
+
+- **Usa excepciones para situaciones excepcionales**: No uses excepciones para el flujo normal del programa. Las excepciones deben reservarse para errores y condiciones inesperadas.
+
+## SUBTEMAS SUGERIDOS 
+
+- **Context Managers (with statement)**: Simplifica el manejo de recursos (como archivos) asegurando que se liberen automáticamente.
+
+- **Logging**: Registra información sobre excepciones para facilitar la depuración y el monitoreo de aplicaciones.
+
+- **Testing**: Escribe pruebas unitarias para verificar que las excepciones se manejen correctamente.
+
+El manejo de excepciones es una habilidad esencial para cualquier programador de Python. Al comprender cómo funcionan los bloques try, except y finally, y al seguir las buenas prácticas, puedes escribir código más robusto y tolerante a fallos.
