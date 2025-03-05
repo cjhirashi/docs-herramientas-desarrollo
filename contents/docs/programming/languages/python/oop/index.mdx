@@ -1,0 +1,291 @@
+---
+title: Programación Orientada a Objetos en Python
+description: Explicación detallada de los conceptos de la programación orientada a objetos (POO) en Python, incluyendo clases, objetos, herencia, polimorfismo, encapsulamiento y abstracción.
+keywords: ["python", "programación orientada a objetos", "POO", "clases", "objetos", "herencia", "polimorfismo", "encapsulamiento", "abstracción", "atributos", "métodos"]
+---
+
+La Programación Orientada a Objetos (POO) es un paradigma de programación que utiliza "objetos" para diseñar aplicaciones y programas de computadora. Un objeto combina datos (atributos) y código (métodos) que operan sobre esos datos. La POO se basa en varios principios clave que facilitan la creación de software modular, reutilizable y fácil de mantener. Python es un lenguaje que soporta completamente la POO, permitiendo a los desarrolladores aprovechar sus beneficios.
+
+## CONCEPTOS CLAVE DE LA POO 
+
+### 1.  CLASE
+
+    *   Una clase es una plantilla o un plano para crear objetos. Define los atributos (datos) y los métodos (comportamiento) que tendrán los objetos de esa clase.
+    *   En Python, las clases se definen utilizando la palabra clave `class`.
+
+    ```python
+    class Perro:
+        # Atributos de la clase
+        especie = "Canino"
+
+        # Método constructor
+        def __init__(self, nombre, edad):
+            self.nombre = nombre
+            self.edad = edad
+
+        # Métodos de la clase
+        def ladrar(self):
+            return "¡Guau!"
+
+        def descripcion(self):
+            return f"{self.nombre} tiene {self.edad} años."
+    ```
+### 2.  OBJETO
+
+    *   Un objeto es una instancia de una clase. Es una entidad concreta que tiene atributos con valores específicos y puede realizar acciones definidas por los métodos de su clase.
+    *   Para crear un objeto, se llama al constructor de la clase.
+
+    ```python
+    # Crear objetos de la clase Perro
+    mi_perro = Perro("Buddy", 3)
+    otro_perro = Perro("Max", 5)
+
+    # Acceder a los atributos del objeto
+    print(mi_perro.nombre)  # Imprime "Buddy"
+    print(otro_perro.edad)  # Imprime 5
+
+    # Llamar a los métodos del objeto
+    print(mi_perro.ladrar())  # Imprime "¡Guau!"
+    print(otro_perro.descripcion())  # Imprime "Max tiene 5 años."
+    ```
+### 3.  ATRIBUTOS
+
+    *   Los atributos son las características o propiedades de un objeto. Representan los datos que el objeto contiene.
+    *   En Python, los atributos se definen dentro de la clase y se acceden utilizando la notación de punto (`objeto.atributo`).
+    *   Hay atributos de clase (compartidos por todas las instancias) y atributos de instancia (únicos para cada objeto).
+
+    ```python
+    class Perro:
+        # Atributo de clase
+        especie = "Canino"
+
+        def __init__(self, nombre, edad):
+            # Atributos de instancia
+            self.nombre = nombre
+            self.edad = edad
+    ```
+### 4.  METODOS
+
+    *   Los métodos son las acciones o funciones que un objeto puede realizar. Definen el comportamiento del objeto.
+    *   En Python, los métodos se definen dentro de la clase y siempre tienen al menos un parámetro, que es `self` (una referencia al objeto mismo).
+
+    ```python
+    class Perro:
+        def __init__(self, nombre, edad):
+            self.nombre = nombre
+            self.edad = edad
+
+        def ladrar(self):
+            return "¡Guau!"
+    ```
+### 5.  HERENCIA
+
+    *   La herencia es un mecanismo que permite crear nuevas clases (clases hijas o subclases) basadas en clases existentes (clases padre o superclases). La subclase hereda los atributos y métodos de la superclase, y puede añadir nuevos atributos y métodos o modificar los existentes.
+    *   La herencia promueve la reutilización del código y facilita la creación de jerarquías de clases.
+
+    ```python
+    class Animal:
+        def __init__(self, nombre):
+            self.nombre = nombre
+
+        def hablar(self):
+            return "Sonido genérico de animal"
+
+    class Perro(Animal):
+        def __init__(self, nombre, raza):
+            super().__init__(nombre)  # Llama al constructor de la superclase
+            self.raza = raza
+
+        def hablar(self):
+            return "¡Guau!"  # Sobreescribe el método de la superclase
+
+    mi_perro = Perro("Buddy", "Labrador")
+    print(mi_perro.nombre)  # Imprime "Buddy"
+    print(mi_perro.raza)  # Imprime "Labrador"
+    print(mi_perro.hablar())  # Imprime "¡Guau!"
+
+    mi_animal = Animal("Genérico")
+    print(mi_animal.hablar()) # Imprime "Sonido genérico de animal"
+    ```
+### 6.  POLIMORFISMO
+
+    *   El polimorfismo es la capacidad de un objeto de tomar muchas formas. Permite que objetos de diferentes clases respondan al mismo método de manera diferente.
+    *   En Python, el polimorfismo se implementa a través de la herencia y la sobreescritura de métodos.
+
+    ```python
+    class Animal:
+        def hablar(self):
+            return "Sonido genérico de animal"
+
+    class Perro(Animal):
+        def hablar(self):
+            return "¡Guau!"
+
+    class Gato(Animal):
+        def hablar(self):
+            return "¡Miau!"
+
+    def hacer_hablar(animal):
+        print(animal.hablar())
+
+    mi_perro = Perro()
+    mi_gato = Gato()
+
+    hacer_hablar(mi_perro)  # Imprime "¡Guau!"
+    hacer_hablar(mi_gato)  # Imprime "¡Miau!"
+    ```
+### 7.  ENCAPSULAMIENTO
+
+    *   El encapsulamiento es el principio de ocultar los detalles internos de un objeto y exponer solo una interfaz pública para interactuar con él. Protege los datos del objeto de accesos no autorizados y facilita el mantenimiento del código.
+    *   En Python, el encapsulamiento se implementa utilizando convenciones de nomenclatura (atributos y métodos precedidos por uno o dos guiones bajos).
+
+    ```python
+    class Coche:
+        def __init__(self, marca, modelo):
+            self.marca = marca
+            self.modelo = modelo
+            self.__velocidad = 0  # Atributo privado
+
+        def acelerar(self, incremento):
+            if incremento > 0:
+                self.__velocidad += incremento
+
+        def obtener_velocidad(self):
+            return self.__velocidad
+
+    mi_coche = Coche("Toyota", "Corolla")
+    mi_coche.acelerar(30)
+    print(mi_coche.obtener_velocidad())  # Imprime 30
+    # print(mi_coche.__velocidad)  # Esto daría un error (AttributeError)
+    ```
+### 8.  ABSTRACCION
+
+    *   La abstracción es el proceso de simplificar la representación de un objeto, mostrando solo los detalles esenciales y ocultando la complejidad innecesaria. Permite a los desarrolladores concentrarse en lo que hace un objeto en lugar de cómo lo hace.
+    *   En Python, la abstracción se puede lograr mediante clases abstractas y métodos abstractos.
+
+    ```python
+    from abc import ABC, abstractmethod
+
+    class Figura(ABC):
+        @abstractmethod
+        def area(self):
+            pass
+
+        @abstractmethod
+        def perimetro(self):
+            pass
+
+    class Rectangulo(Figura):
+        def __init__(self, base, altura):
+            self.base = base
+            self.altura = altura
+
+        def area(self):
+            return self.base * self.altura
+
+        def perimetro(self):
+            return 2 * (self.base + self.altura)
+
+    # mi_figura = Figura()  # Esto daría un error (TypeError)
+    mi_rectangulo = Rectangulo(5, 3)
+    print(mi_rectangulo.area())  # Imprime 15
+    print(mi_rectangulo.perimetro())  # Imprime 16
+    ```
+
+## BENEFICIOS DE LA POO
+
+*   **Modularidad:** La POO permite dividir un programa en módulos (clases y objetos) independientes, lo que facilita la comprensión y el mantenimiento del código.
+*   **Reutilización:** La herencia permite reutilizar el código existente, evitando la duplicación y reduciendo el tiempo de desarrollo.
+*   **Extensibilidad:** La POO facilita la adición de nuevas funcionalidades al programa sin modificar el código existente.
+*   **Mantenibilidad:** La encapsulación y la abstracción hacen que el código sea más fácil de mantener y modificar, ya que los cambios en una parte del programa no afectan a otras partes.
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### 1.  SISTEMA DE GESTION DE EMPLEADOS 
+
+    ```python
+    class Empleado:
+        def __init__(self, nombre, salario):
+            self.nombre = nombre
+            self.salario = salario
+
+        def aumentar_salario(self, porcentaje):
+            self.salario *= (1 + porcentaje / 100)
+
+        def __str__(self):
+            return f"Nombre: {self.nombre}, Salario: {self.salario}"
+
+    class Gerente(Empleado):
+        def __init__(self, nombre, salario, departamento):
+            super().__init__(nombre, salario)
+            self.departamento = departamento
+
+        def __str__(self):
+            return f"{super().__str__()}, Departamento: {self.departamento}"
+
+    empleado1 = Empleado("Juan Pérez", 50000)
+    gerente1 = Gerente("Ana Gómez", 80000, "Ventas")
+
+    print(empleado1)
+    print(gerente1)
+
+    empleado1.aumentar_salario(10)
+    gerente1.aumentar_salario(15)
+
+    print(empleado1)
+    print(gerente1)
+    ```
+### 2.  SISTEMA DE GESTION DE FIGURAS GEOMETRICAS
+
+    ```python
+    import math
+    from abc import ABC, abstractmethod
+
+    class Figura(ABC):
+        @abstractmethod
+        def area(self):
+            pass
+
+        @abstractmethod
+        def perimetro(self):
+            pass
+
+    class Circulo(Figura):
+        def __init__(self, radio):
+            self.radio = radio
+
+        def area(self):
+            return math.pi * self.radio ** 2
+
+        def perimetro(self):
+            return 2 * math.pi * self.radio
+
+    class Rectangulo(Figura):
+        def __init__(self, base, altura):
+            self.base = base
+            self.altura = altura
+
+        def area(self):
+            return self.base * self.altura
+
+        def perimetro(self):
+            return 2 * (self.base + self.altura)
+
+    mi_circulo = Circulo(5)
+    mi_rectangulo = Rectangulo(4, 6)
+
+    print(f"Área del círculo: {mi_circulo.area()}")
+    print(f"Perímetro del círculo: {mi_circulo.perimetro()}")
+    print(f"Área del rectángulo: {mi_rectangulo.area()}")
+    print(f"Perímetro del rectángulo: {mi_rectangulo.perimetro()}")
+    ```
+
+## SUBSISTEMAS SUGERIDOS
+
+1.  **Diseño de Clases:** Principios para diseñar clases efectivas y bien estructuradas.
+2.  **Patrones de Diseño:** Soluciones reutilizables para problemas comunes de diseño en la POO.
+3.  **Metaclases:** Clases que crean clases, permitiendo un control avanzado sobre la creación de clases.
+4.  **Herencia Múltiple:** Herencia de múltiples superclases, con sus ventajas y desventajas.
+5.  **Duck Typing:** Un concepto en Python donde la validez de un objeto se determina por la presencia de ciertos métodos y atributos, en lugar de su tipo específico.
+
+La Programación Orientada a Objetos es una herramienta poderosa para desarrollar software complejo y mantenible. Dominar los conceptos de clases, objetos, herencia, polimorfismo, encapsulamiento y abstracción es fundamental para cualquier programador de Python.

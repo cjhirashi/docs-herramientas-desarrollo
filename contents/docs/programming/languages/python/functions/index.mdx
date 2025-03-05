@@ -1,0 +1,275 @@
+---
+title: Funciones en Python
+description: Explicación detallada de las funciones en Python, incluyendo su sintaxis, tipos, uso y mejores prácticas.
+keywords: ["python", "funciones", "definición", "parámetros", "argumentos", "retorno", "alcance", "lambda", "programación funcional"]
+---
+
+Las funciones son bloques de código reutilizables que realizan una tarea específica. Son fundamentales en la programación porque permiten dividir un programa grande en partes más pequeñas y manejables, lo que facilita la lectura, la depuración y el mantenimiento del código. En Python, las funciones se definen utilizando la palabra clave `def`.
+
+## SINTAXIS BASICA 
+
+La sintaxis básica para definir una función en Python es la siguiente:
+
+```python
+def nombre_de_la_funcion(parametros):
+    """
+    Documentación de la función (docstring).
+    Explica qué hace la función, qué parámetros acepta y qué retorna.
+    """
+    # Cuerpo de la función
+    # Aquí va el código que realiza la tarea
+    return valor_de_retorno  # Opcional
+```
+
+- **def**: Palabra clave que indica el inicio de la definición de una función.
+
+- **nombre_de_la_funcion**: El nombre que le das a la función. Debe seguir las reglas de nomenclatura de Python (letras, números y guiones bajos, comenzando con una letra o guión bajo).
+
+- **parametros**: Son las variables que la función recibe como entrada. Pueden ser cero o más parámetros, separados por comas.
+
+- **"""Documentación"""**: Es una cadena de texto (docstring) que describe la función. Es una buena práctica incluir una descripción clara de lo que hace la función, los parámetros que acepta y el valor que retorna.
+
+- **cuerpo de la función**: Es el bloque de código que se ejecuta cuando se llama la función.
+
+- **return**: Palabra clave que indica el valor que la función retorna. Si no se especifica return, la función retorna None por defecto.
+
+## TIPOS DE FUNCIONES
+
+### 1. FUNCIONES SIN PARAMETROS Y SIN RETORNO 
+
+```python
+def saludar():
+    print("¡Hola, mundo!")
+
+saludar()  # Llama a la función
+```
+
+### 2. FUNCIONES CON PARAMETROS Y SIN RETORNO 
+
+```python
+def saludar_a(nombre):
+    print(f"¡Hola, {nombre}!")
+
+saludar_a("Juan")  # Llama a la función con un argumento
+```
+
+### 3. FUNCIONES CON PARAMETROS Y CON RETORNO 
+
+```python
+def sumar(a, b):
+    """
+    Retorna la suma de dos números.
+    """
+    return a + b
+
+resultado = sumar(5, 3)
+print(resultado)  # Imprime 8
+```
+
+### 4. FUNCIONES CON PARAMETROS POR DEFECTO 
+
+```python
+def saludar_con_saludo(nombre, saludo="Hola"):
+    print(f"{saludo}, {nombre}!")
+
+saludar_con_saludo("María")  # Imprime "Hola, María!"
+saludar_con_saludo("Carlos", "Buenos días")  # Imprime "Buenos días, Carlos!"
+```
+
+## ARGUMENTOS DE UNA FUNCION 
+
+Cuando se llama a una función, se le pueden pasar argumentos. Hay diferentes tipos de argumentos:
+
+### 1. ARGUMENTOS POSICIONALES  
+
+Los argumentos se pasan en el mismo orden en que se definen los parámetros en la función.
+
+```python
+def restar(a, b):
+    return a - b
+
+resultado = restar(10, 3)  # a = 10, b = 3
+print(resultado)  # Imprime 7
+```
+
+### 2. ARGUMENTOS DE PALABRA CLAVE 
+
+Los argumentos se pasan especificando el nombre del parámetro y su valor.
+
+```python
+def restar(a, b):
+    return a - b
+
+resultado = restar(b=3, a=10)  # a = 10, b = 3
+print(resultado)  # Imprime 7
+```
+
+### 3. ARGUMENTOS VARIABLES (*args) 
+
+Permiten pasar un número variable de argumentos posicionales. Se reciben como una tupla.
+
+```python
+def sumar_todos(*args):
+    total = 0
+    for num in args:
+        total += num
+    return total
+
+resultado = sumar_todos(1, 2, 3, 4, 5)
+print(resultado)  # Imprime 15
+```
+
+### 4. ARGUMENTOS DE PALABRAS CLAVE VARIABLES (**kwargs)
+
+Permiten pasar un número variable de argumentos de palabra clave. Se reciben como un diccionario.
+
+```python
+def imprimir_info(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+imprimir_info(nombre="Juan", edad=30, ciudad="Madrid")
+```
+
+## ALCANCE DE LAS VARIABLES 
+
+El alcance de una variable se refiere a la parte del programa donde la variable es accesible. En Python, hay dos tipos principales de alcance:
+
+### 1. ALCANCE LOCAL
+
+Una variable definida dentro de una función tiene un alcance local. Solo es accesible dentro de esa función.
+
+```python
+def mi_funcion():
+    x = 10  # x es una variable local
+    print(x)
+
+mi_funcion()  # Imprime 10
+# print(x)  # Esto daría un error porque x no está definida fuera de la función
+```
+
+### 2. ALCANCE GLOBAL
+
+Una variable definida fuera de cualquier función tiene un alcance global. Es accesible desde cualquier parte del programa, incluyendo dentro de las funciones.
+
+```python
+x = 10  # x es una variable global
+
+def mi_funcion():
+    print(x)  # Accede a la variable global x
+
+mi_funcion()  # Imprime 10
+print(x)  # Imprime 10
+```
+
+Si quieres modificar una variable global dentro de una función, debes usar la palabra clave global
+
+```python
+x = 10
+
+def modificar_x():
+    global x
+    x = 20  # Modifica la variable global x
+
+modificar_x()
+print(x)  # Imprime 20
+```
+
+## FUNCIONES ANONIMAS (LAMBDA) 
+
+Las funciones lambda son pequeñas funciones anónimas que se definen en una sola línea. Se utilizan principalmente para operaciones simples y cortas.
+
+```python
+sumar = lambda a, b: a + b
+resultado = sumar(5, 3)
+print(resultado)  # Imprime 8
+```
+
+Las funciones lambda son especialmente útiles cuando se utilizan con funciones como `map()`, `filter()` y `sorted()`.
+
+```python
+numeros = [1, 2, 3, 4, 5]
+cuadrados = list(map(lambda x: x**2, numeros))
+print(cuadrados)  # Imprime [1, 4, 9, 16, 25]
+
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+print(pares)  # Imprime [2, 4]
+```
+
+## DOCUMENTACION DE FUNCIONES (Docstrings) 
+
+Es fundamental documentar las funciones para que otros (o tú mismo en el futuro) puedan entender fácilmente qué hacen. La documentación se incluye como una cadena de texto (docstring) dentro de la función, justo después de la definición.
+
+```python
+def dividir(a, b):
+    """
+    Divide dos números y retorna el resultado.
+
+    Args:
+        a (int o float): El dividendo.
+        b (int o float): El divisor.
+
+    Returns:
+        float: El resultado de la división.
+
+    Raises:
+        ZeroDivisionError: Si el divisor es cero.
+    """
+    if b == 0:
+        raise ZeroDivisionError("No se puede dividir por cero.")
+    return a / b
+```
+
+Puedes acceder a la documentación de una función utilizando la función `help()` o el atributo `__doc__`.
+
+```python
+help(dividir)
+print(dividir.__doc__)
+```
+
+## EJEMPLOS DE FUNCIONES 
+
+### 1. FUNCION PARA CALCULAR EL FACTORIAL DE UN NUMERO 
+
+```python
+def factorial(n):
+    """
+    Calcula el factorial de un número entero no negativo.
+    """
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+print(factorial(5))  # Imprime 120
+```
+
+2. FUNCION PARA VERIFICAR SI UN NUMERO ES PRIMO 
+
+```python
+def es_primo(n):
+    """
+    Verifica si un número es primo.
+    """
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+print(es_primo(7))  # Imprime True
+print(es_primo(10)) # Imprime False
+```
+
+## SUBTEMAS SUGERIDOS 
+
+- **Decoradores**: Funciones que modifican el comportamiento de otras funciones.
+
+- **Generadores**: Funciones que producen una secuencia de valores utilizando la palabra clave yield.
+
+- **Recursión**: Funciones que se llaman a sí mismas para resolver un problema.
+
+- **Programación Funcional**: Uso de funciones como ciudadanos de primera clase, funciones puras y funciones de orden superior.
+
+Las funciones son una herramienta poderosa en Python que permite escribir código modular, reutilizable y fácil de mantener. Dominar su uso es esencial para cualquier programador de Python.
