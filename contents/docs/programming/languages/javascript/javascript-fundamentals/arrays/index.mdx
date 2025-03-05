@@ -1,0 +1,243 @@
+---
+title: Arrays en JavaScript
+description:  Guía completa sobre arrays en JavaScript creación, manipulación, métodos y casos de uso.
+keywords: ["javascript", "arrays", "métodos de array", "manipulación de arrays", "push", "pop", "shift", "unshift", "slice", "splice", "map", "filter", "reduce"]
+---
+
+Los arrays son una de las estructuras de datos más fundamentales en JavaScript. Permiten almacenar colecciones ordenadas de elementos, que pueden ser de cualquier tipo de dato, incluyendo números, strings, objetos, e incluso otros arrays. Esta flexibilidad los convierte en una herramienta esencial para la manipulación y organización de datos en aplicaciones web y del lado del servidor.
+
+## OBJETIVOS CLAVE
+
+*   **Comprender la sintaxis y la creación de arrays:** Aprender las diferentes formas de declarar e inicializar arrays en JavaScript.
+*   **Dominar los métodos de manipulación:** Conocer y aplicar los métodos más comunes para añadir, eliminar, modificar y buscar elementos en un array.
+*   **Utilizar métodos de iteración:** Aprender a iterar sobre los elementos de un array utilizando métodos como `map`, `filter`, `reduce`, y otros.
+*   **Aplicar arrays en casos prácticos:** Entender cómo los arrays pueden ser utilizados para resolver problemas comunes en el desarrollo de software.
+
+## DESARROLLO DEL TEMA
+
+### CREACION DE ARRAYS
+
+En JavaScript, un array se puede crear de varias maneras:
+
+1.  **Literal:**
+
+    ```javascript
+    let miArray = []; // Array vacío
+    let numeros = [1, 2, 3, 4, 5]; // Array con números
+    let mixto = [1, "hola", true, {nombre: "Juan"}]; // Array con diferentes tipos de datos
+    ```
+2.  **Constructor `Array()`:**
+
+    ```javascript
+    let miArray = new Array(); // Array vacío
+    let numeros = new Array(1, 2, 3, 4, 5); // Array con números
+    let tamaño = new Array(10); // Array con 10 elementos vacíos
+    ```
+
+### ACCESO A LOS ELEMENTOS
+
+Los elementos de un array se acceden mediante su índice, que comienza en 0.
+
+```javascript
+let frutas = ["manzana", "banana", "naranja"];
+console.log(frutas[0]); // "manzana"
+console.log(frutas[1]); // "banana"
+console.log(frutas[2]); // "naranja"
+```
+
+## METODOS DE MANIPULACION
+JavaScript proporciona una amplia gama de métodos para manipular `arrays`. Aquí están algunos de los más comunes:
+
+### 1. push()
+
+Añade uno o más elementos al final del array.
+
+```javascript
+let frutas = ["manzana", "banana"];
+frutas.push("naranja");
+console.log(frutas); // ["manzana", "banana", "naranja"]
+```
+
+### 2. pop()
+
+Elimina el último elemento del array y lo devuelve.
+
+```javascript
+let frutas = ["manzana", "banana", "naranja"];
+let ultimaFruta = frutas.pop();
+console.log(frutas); // ["manzana", "banana"]
+console.log(ultimaFruta); // "naranja"
+```
+
+### 3. shift()
+
+Elimina el primer elemento del array y lo devuelve.
+
+```javascript
+let frutas = ["manzana", "banana", "naranja"];
+let primeraFruta = frutas.shift();
+console.log(frutas); // ["banana", "naranja"]
+console.log(primeraFruta); // "manzana"
+```
+
+### 4. unshift()
+
+Añade uno o más elementos al principio del array.
+
+```javascript
+let frutas = ["banana", "naranja"];
+frutas.unshift("manzana");
+console.log(frutas); // ["manzana", "banana", "naranja"]
+```
+
+### 5. splice()
+
+Permite añadir, eliminar o reemplazar elementos en cualquier posición del array.
+
+```javascript
+let frutas = ["manzana", "banana", "naranja"];
+// Eliminar 1 elemento desde la posición 1
+frutas.splice(1, 1);
+console.log(frutas); // ["manzana", "naranja"]
+
+// Añadir "kiwi" en la posición 1
+frutas.splice(1, 0, "kiwi");
+console.log(frutas); // ["manzana", "kiwi", "naranja"]
+
+// Reemplazar "manzana" con "pera" en la posición 0
+frutas.splice(0, 1, "pera");
+console.log(frutas); // ["pera", "kiwi", "naranja"]
+```
+
+### slice()
+
+Crea una copia superficial de una porción del array.
+
+```javascript
+let frutas = ["manzana", "banana", "naranja", "kiwi"];
+let porcion = frutas.slice(1, 3); // Desde el índice 1 hasta el 3 (sin incluir)
+console.log(porcion); // ["banana", "naranja"]
+console.log(frutas); // ["manzana", "banana", "naranja", "kiwi"] (el array original no se modifica)
+```
+
+## METODOS DE ITERACION
+
+Los métodos de iteración permiten realizar operaciones en cada elemento del array de manera eficiente.
+
+### 1. forEach()
+
+Ejecuta una función para cada elemento del array.
+
+```javascript
+let numeros = [1, 2, 3];
+numeros.forEach(function(numero) {
+  console.log(numero * 2);
+});
+// 2
+// 4
+// 6
+```
+
+### 2. map()
+
+Crea un nuevo array con los resultados de aplicar una función a cada elemento del array original.
+
+```javascript
+let numeros = [1, 2, 3];
+let dobles = numeros.map(function(numero) {
+  return numero * 2;
+});
+console.log(dobles); // [2, 4, 6]
+```
+
+### 3. filter()
+
+Crea un nuevo array con todos los elementos que cumplen una condición específica.
+
+```javascript
+let numeros = [1, 2, 3, 4, 5];
+let pares = numeros.filter(function(numero) {
+  return numero % 2 === 0;
+});
+console.log(pares); // [2, 4]
+```
+
+### 4. reduce()
+
+Aplica una función a un acumulador y a cada elemento del array (de izquierda a derecha) para reducirlo a un único valor.
+
+```javascript
+let numeros = [1, 2, 3, 4];
+let suma = numeros.reduce(function(acumulador, numero) {
+  return acumulador + numero;
+}, 0); // 0 es el valor inicial del acumulador
+console.log(suma); // 10
+```
+
+### 5. find()
+
+Devuelve el valor del primer elemento en el array que satisfaga la función de prueba proporcionada. En caso contrario, devuelve undefined.
+
+```javascript
+const numeros = [5, 12, 8, 130, 44];
+
+const encontrado = numeros.find(elemento => elemento > 10);
+
+console.log(encontrado); // Output: 12
+```
+
+### 6. findIndex()
+
+Devuelve el índice del primer elemento en el array que satisfaga la función de prueba proporcionada. En caso contrario, devuelve -1.
+
+```javascript
+const numeros = [5, 12, 8, 130, 44];
+
+const esGrande = (elemento) => elemento > 13;
+
+console.log(numeros.findIndex(esGrande)); // Output: 3
+```
+
+## EJEMPLOS DE IMPLEMENTACION
+
+1. Calcular el promedio de una lista de números
+
+```javascript
+function calcularPromedio(numeros) {
+  let suma = numeros.reduce((acumulador, numero) => acumulador + numero, 0);
+  return suma / numeros.length;
+}
+
+let notas = [85, 90, 78, 92, 88];
+let promedio = calcularPromedio(notas);
+console.log("El promedio es:", promedio); // El promedio es: 86.6
+```
+
+2. Filtrar productos por precio
+
+```javascript
+let productos = [
+  { nombre: "Camiseta", precio: 25 },
+  { nombre: "Pantalón", precio: 50 },
+  { nombre: "Zapatos", precio: 80 },
+  { nombre: "Gorra", precio: 15 }
+];
+
+function filtrarPorPrecio(productos, precioMaximo) {
+  return productos.filter(producto => producto.precio <= precioMaximo);
+}
+
+let productosBaratos = filtrarPorPrecio(productos, 40);
+console.log("Productos baratos:", productosBaratos);
+// Productos baratos:
+// [
+//   { nombre: "Camiseta", precio: 25 },
+//   { nombre: "Gorra", precio: 15 }
+// ]
+```
+
+## FUENTES DEL DOCUMENTO
+
+* [**MDN Web Docs**: Array](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array)
+
+* [**W3Schools**: JavaScript Arrays](https://www.w3schools.com/js/js_arrays.asp)
