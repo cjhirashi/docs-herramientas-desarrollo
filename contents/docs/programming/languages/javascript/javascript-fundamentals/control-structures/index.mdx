@@ -1,0 +1,219 @@
+---
+title: Estructuras de Control en JavaScript
+description: Guía detallada sobre las estructuras de control en JavaScript condicionales (if, else, switch) y bucles (for, while, do...while).
+keywords: ["javascript", "estructuras de control", "condicionales", "bucles", "if", "else", "switch", "for", "while", "do while"]
+---
+
+Las estructuras de control son componentes fundamentales en cualquier lenguaje de programación, incluyendo JavaScript. Permiten a los desarrolladores controlar el flujo de ejecución de un programa, tomando decisiones y repitiendo bloques de código según ciertas condiciones. En JavaScript, las estructuras de control se dividen principalmente en dos categorías: condicionales y bucles.
+
+## OBJETIVOS CLAVE
+
+*   **Comprender los tipos de estructuras de control:** Identificar y diferenciar las estructuras condicionales (if, else, switch) y los bucles (for, while, do...while).
+*   **Aplicar condicionales para la toma de decisiones:** Utilizar `if`, `else if` y `else` para ejecutar diferentes bloques de código basados en condiciones específicas.
+*   **Implementar bucles para la repetición de código:** Utilizar `for`, `while` y `do...while` para repetir la ejecución de un bloque de código un número determinado de veces o hasta que se cumpla una condición.
+*   **Controlar el flujo de bucles:** Utilizar `break` y `continue` para modificar el comportamiento de los bucles.
+*   **Optimizar el uso de estructuras de control:** Elegir la estructura de control más adecuada para cada situación, mejorando la legibilidad y eficiencia del código.
+
+## CONDICIONALES
+
+Las estructuras condicionales permiten ejecutar diferentes bloques de código dependiendo de si una condición es verdadera o falsa.
+
+### IF, ELSE IF Y ELSE
+
+La estructura `if` es la más básica de las condicionales. Permite ejecutar un bloque de código si una condición es verdadera.
+
+```javascript
+let edad = 18;
+
+if (edad >= 18) {
+  console.log("Eres mayor de edad.");
+}
+```
+
+Si la condición dentro del paréntesis es verdadera, el código dentro de las llaves se ejecuta. Si es falsa, el código se omite.
+
+La estructura `else` se utiliza para ejecutar un bloque de código si la condición del `if` es falsa.
+
+```javascript
+let edad = 15;
+
+if (edad >= 18) {
+  console.log("Eres mayor de edad.");
+} else {
+  console.log("Eres menor de edad.");
+}
+```
+
+La estructura `else if` permite encadenar múltiples condiciones. Se evalúa cada condición en orden, y si una es verdadera, se ejecuta el bloque de código correspondiente.
+
+```javascript
+let nota = 75;
+
+if (nota >= 90) {
+  console.log("Sobresaliente");
+} else if (nota >= 70) {
+  console.log("Notable");
+} else if (nota >= 50) {
+  console.log("Aprobado");
+} else {
+  console.log("Suspenso");
+}
+```
+
+## SWITCH
+
+La estructura `switch` es útil cuando se tienen múltiples casos posibles para una variable. Permite ejecutar diferentes bloques de código basados en el valor de una expresión.
+
+```javascript
+let dia = "lunes";
+
+switch (dia) {
+  case "lunes":
+    console.log("Es el primer día de la semana.");
+    break;
+  case "viernes":
+    console.log("Es viernes, ¡el fin de semana está cerca!");
+    break;
+  default:
+    console.log("Es otro día de la semana.");
+}
+```
+
+Cada `case` compara el valor de la expresión con un valor específico. Si hay una coincidencia, se ejecuta el código correspondiente. La palabra clave `break` es importante para evitar que se ejecuten los casos siguientes. El `default` se ejecuta si ninguno de los casos coincide.
+
+## BUCLES
+
+Los bucles permiten repetir un bloque de código múltiples veces. JavaScript ofrece varios tipos de bucles, cada uno adecuado para diferentes situaciones.
+
+### FOR
+El bucle `for` es ideal cuando se conoce el número de iteraciones que se deben realizar.
+
+```javascript
+for (let i = 0; i < 5; i++) {
+  console.log("Iteración número " + i);
+}
+```
+
+El bucle `for` consta de tres partes:
+
+1. **Inicialización**: Se ejecuta una vez al principio del bucle (ej: `let i = 0`).
+
+2. **Condición**: Se evalúa antes de cada iteración. Si es verdadera, el bucle continúa; si es falsa, el bucle termina (ej: `i < 5`).
+
+3. **Incremento/Decremento**: Se ejecuta después de cada iteración (ej: `i++`).
+
+### WHILE
+
+El bucle `while` se utiliza cuando se necesita repetir un bloque de código mientras una condición sea verdadera.
+
+```javascript
+let contador = 0;
+
+while (contador < 5) {
+  console.log("Contador: " + contador);
+  contador++;
+}
+```
+
+El bucle `while` evalúa la condición antes de cada iteración. Si la condición es verdadera, el código dentro del bucle se ejecuta. Es importante asegurarse de que la condición eventualmente se vuelva falsa para evitar un bucle infinito.
+
+### DO...WHILE
+
+El bucle `do...while` es similar al `while`, pero garantiza que el bloque de código se ejecute al menos una vez.
+
+```javascript
+let contador = 0;
+
+do {
+  console.log("Contador: " + contador);
+  contador++;
+} while (contador < 5);
+```
+
+El bucle `do...while` ejecuta el bloque de código primero y luego evalúa la condición. Si la condición es verdadera, el bucle se repite.
+
+### BREAK Y CONTINUE
+
+Las sentencias `break` y continue permiten controlar el flujo de los bucles.
+
+* **Break**: Termina la ejecución del bucle actual.
+
+    ```javascript
+    for (let i = 0; i < 10; i++) {
+    if (i === 5) {
+        break; // Sale del bucle cuando i es igual a 5
+    }
+    console.log("Iteración: " + i);
+    }
+    ```
+
+* **Continue**: Salta la iteración actual y continúa con la siguiente.
+
+    ```javascript
+    for (let i = 0; i < 10; i++) {
+    if (i % 2 === 0) {
+        continue; // Salta las iteraciones donde i es par
+    }
+    console.log("Iteración: " + i);
+    }
+    ```
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### EJEMPLO 1: DETERMINAR SI UN NUMERO ES PAR O IMPAR
+
+```javascript
+function esParOImpar(numero) {
+  if (numero % 2 === 0) {
+    return "El número es par";
+  } else {
+    return "El número es impar";
+  }
+}
+
+console.log(esParOImpar(4)); // Imprime: El número es par
+console.log(esParOImpar(7)); // Imprime: El número es impar
+```
+
+### EJEMPLO 2: ITERAR SOBRE UN ARRAY
+
+```javascript
+let frutas = ["manzana", "banana", "naranja"];
+
+for (let i = 0; i < frutas.length; i++) {
+  console.log("Fruta: " + frutas[i]);
+}
+```
+
+### EJEMPLO 3: SIMULAR UN JUEGO DE ADIVINAR UN NUMERO
+
+```javascript
+let numeroSecreto = Math.floor(Math.random() * 10) + 1;
+let intento;
+let intentosRealizados = 0;
+
+do {
+  intento = parseInt(prompt("Adivina el número (entre 1 y 10):"));
+  intentosRealizados++;
+
+  if (intento === numeroSecreto) {
+    alert("¡Felicidades! Adivinaste el número en " + intentosRealizados + " intentos.");
+  } else if (intento < numeroSecreto) {
+    alert("El número es mayor. Intenta de nuevo.");
+  } else {
+    alert("El número es menor. Intenta de nuevo.");
+  }
+} while (intento !== numeroSecreto);
+```
+
+## FUENTES DEL DOCUMENTO
+
+* [MDN Web Docs: Control flow and error handling](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
+
+* [W3Schools: JavaScript if...else Statement](https://www.w3schools.com/js/js_if_else.asp)
+
+* [W3Schools: JavaScript Switch Statement](https://www.w3schools.com/js/js_switch.asp)
+
+* [W3Schools: JavaScript For Loop](https://www.w3schools.com/js/js_loop_for.asp)
+
+* [W3Schools: JavaScript While Loop](https://www.w3schools.com/js/js_loop_while.asp)
