@@ -1,0 +1,218 @@
+---
+title: Módulos
+description:  Exploracion profunda de los modulos en Javascript, incluyendo CommonJS, AMD, y ES Modules.
+keywords: ["javascript", "modules", "commonjs", "amd", "es modules", "import", "export"]
+---
+
+Los módulos en JavaScript son una parte fundamental de la organización y estructuración del código, especialmente en aplicaciones grandes y complejas. Permiten dividir el código en piezas reutilizables y mantenibles, evitando la contaminación del espacio de nombres global y facilitando la gestión de dependencias.
+
+## OBJETIVOS CLAVE
+
+1.  **Encapsulamiento:** Aislar el código en unidades lógicas para evitar conflictos de nombres y reducir la complejidad.
+2.  **Reutilización:** Facilitar la reutilización de código en diferentes partes de la aplicación o en otros proyectos.
+3.  **Mantenibilidad:** Mejorar la mantenibilidad del código al dividirlo en módulos más pequeños y manejables.
+4.  **Gestión de Dependencias:** Declarar y gestionar las dependencias de cada módulo de forma clara y explícita.
+
+### HISTORIA DE LOS MODULOS EN JAVASCRIPT
+
+JavaScript, en sus primeras versiones, no tenía un sistema de módulos nativo. Esto significaba que todo el código se ejecutaba en el mismo espacio de nombres global, lo que podía llevar a conflictos de nombres y dificultaba la organización del código en aplicaciones grandes.
+
+Para solucionar este problema, surgieron diferentes patrones y bibliotecas para implementar módulos en JavaScript, como:
+
+*   **CommonJS:** Utilizado principalmente en entornos de servidor, como Node.js.
+*   **Asynchronous Module Definition (AMD):** Diseñado para navegadores web, permitiendo la carga asíncrona de módulos.
+*   **ECMAScript Modules (ES Modules):** Introducido en ECMAScript 2015 (ES6), es el sistema de módulos estándar de JavaScript.
+
+### COMMONJS
+
+CommonJS fue uno de los primeros sistemas de módulos ampliamente adoptados en JavaScript. Se utiliza principalmente en entornos de servidor, como Node.js.
+
+**Características Principales:**
+
+*   **`require()`:** Se utiliza para importar módulos.
+*   **`module.exports`:** Se utiliza para exportar módulos.
+*   **Sincrónico:** La carga de módulos es síncrona, lo que significa que el código se bloquea hasta que se carga el módulo.
+
+**Ejemplo:**
+
+```javascript
+// modulo.js
+function saludar(nombre) {
+  return 'Hola, ' + nombre + '!';
+}
+
+module.exports = saludar;
+```
+
+```javascript
+// app.js
+const saludar = require('./modulo');
+
+console.log(saludar('Juan')); // Hola, Juan!
+```
+
+### ASYNCHRONOUS MODULE DEFINITION (AMD)
+
+AMD fue diseñado para navegadores web, donde la carga síncrona de módulos puede ser problemática debido a la latencia de la red. AMD permite la carga asíncrona de módulos, lo que mejora el rendimiento de la aplicación.
+
+**Características Principales:**
+
+*   **`define()`:** Se utiliza para definir módulos y sus dependencias.
+*   **Asíncrono:** La carga de módulos es asíncrona.
+
+**Ejemplo (usando RequireJS):**
+
+```javascript
+// modulo.js
+define(function() {
+  function saludar(nombre) {
+    return 'Hola, ' + nombre + '!';
+  }
+
+  return {
+    saludar: saludar
+  };
+});
+```
+
+```html
+<!-- index.html -->
+<script src="require.js"></script>
+<script>
+  require(['modulo'], function(modulo) {
+    console.log(modulo.saludar('Juan')); // Hola, Juan!
+  });
+</script>
+```
+
+### ECMASCRIPT MODULES (ES MODULES)
+
+ES Modules es el sistema de módulos estándar de JavaScript, introducido en ECMAScript 2015 (ES6). Ofrece una sintaxis clara y concisa para importar y exportar módulos, y es compatible con navegadores web y entornos de servidor.
+
+**Características Principales:**
+
+*   **`import`:** Se utiliza para importar módulos.
+*   **`export`:** Se utiliza para exportar módulos.
+*   **Estático:** La estructura de los módulos se analiza estáticamente, lo que permite optimizaciones y detección temprana de errores.
+*   **Asíncrono:** La carga de módulos es asíncrona en navegadores web.
+
+**Ejemplo:**
+
+```javascript
+// modulo.js
+export function saludar(nombre) {
+  return 'Hola, ' + nombre + '!';
+}
+```
+
+```javascript
+// app.js
+import { saludar } from './modulo.js';
+
+console.log(saludar('Juan')); // Hola, Juan!
+```
+
+### USO DE ES MODULES EN NODE.JS
+
+A partir de Node.js 14, se puede utilizar ES Modules de forma nativa. Para ello, se debe añadir `"type": "module"` en el `package.json` o utilizar la extensión `.mjs` para los archivos de módulo.
+
+**Ejemplo (`package.json`):**
+
+```json
+{
+  "name": "mi-proyecto",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {}
+}
+```
+
+**Ejemplo (`modulo.js`):**
+
+```javascript
+// modulo.js
+export function saludar(nombre) {
+  return 'Hola, ' + nombre + '!';
+}
+```
+
+**Ejemplo (`app.js`):**
+
+```javascript
+// app.js
+import { saludar } from './modulo.js';
+
+console.log(saludar('Juan')); // Hola, Juan!
+```
+
+### TIPOS DE EXPORTACIONES
+
+#### EXPORTACIONES NOMBRADAS
+
+Las exportaciones nombradas permiten exportar múltiples valores desde un módulo, cada uno con su propio nombre.
+
+**Ejemplo:**
+
+```javascript
+// modulo.js
+export function saludar(nombre) {
+  return 'Hola, ' + nombre + '!';
+}
+
+export const PI = 3.1416;
+```
+
+```javascript
+// app.js
+import { saludar, PI } from './modulo.js';
+
+console.log(saludar('Juan')); // Hola, Juan!
+console.log(PI); // 3.1416
+```
+
+#### EXPORTACION POR DEFECTO
+
+La exportación por defecto permite exportar un único valor desde un módulo como valor por defecto.
+
+**Ejemplo:**
+
+```javascript
+// modulo.js
+function saludar(nombre) {
+  return 'Hola, ' + nombre + '!';
+}
+
+export default saludar;
+```
+
+```javascript
+// app.js
+import saludar from './modulo.js';
+
+console.log(saludar('Juan')); // Hola, Juan!
+```
+
+### IMPORTACIONES DINAMICAS
+
+Las importaciones dinámicas permiten importar módulos de forma asíncrona en tiempo de ejecución. Esto puede ser útil para cargar módulos bajo demanda o para optimizar el rendimiento de la aplicación.
+
+**Ejemplo:**
+
+```javascript
+async function cargarModulo() {
+  const modulo = await import('./modulo.js');
+  console.log(modulo.saludar('Juan')); // Hola, Juan!
+}
+
+cargarModulo();
+```
+
+### CONCLUSION
+
+Los módulos son una parte esencial del desarrollo de JavaScript moderno. Permiten organizar el código en unidades reutilizables y mantenibles, facilitando la gestión de dependencias y mejorando la estructura general de la aplicación. Con la llegada de ES Modules, JavaScript finalmente cuenta con un sistema de módulos estándar y potente que es compatible con navegadores web y entornos de servidor.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+*   [Node.js documentation: Modules](https://nodejs.org/api/modules.html)
+*   [ES Modules: A cartoon deep dive](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/)

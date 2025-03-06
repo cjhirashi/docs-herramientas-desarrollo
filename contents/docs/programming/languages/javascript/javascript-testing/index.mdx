@@ -1,0 +1,374 @@
+---
+title: Testing en Javascript
+description: Introducción y guía completa sobre testing en Javascript, incluyendo tipos de pruebas, frameworks populares y mejores prácticas.
+keywords: ["javascript", "testing", "unit testing", "integration testing", "e2e testing", "jest", "mocha", "chai", "selenium", "cypress"]
+---
+
+El testing en Javascript es un componente crucial del desarrollo de software moderno. Asegura que el código funcione como se espera, reduce la probabilidad de errores en producción y facilita la refactorización y el mantenimiento a largo plazo. Este documento proporciona una visión completa sobre el testing en Javascript, cubriendo los tipos de pruebas, los frameworks más populares y las mejores prácticas.
+
+## OBJETIVOS CLAVE
+
+1.  **Asegurar la calidad del código:** Verificar que el código funcione correctamente y cumpla con los requisitos especificados.
+2.  **Detectar errores tempranamente:** Identificar y corregir errores antes de que lleguen a producción, reduciendo costos y riesgos.
+3.  **Facilitar la refactorización:** Permitir cambios en el código con la confianza de que no se introducirán nuevos errores.
+4.  **Documentar el comportamiento del código:** Los tests sirven como documentación viva del comportamiento esperado del código.
+5.  **Mejorar la colaboración:** Facilitar la comprensión del código por parte de otros desarrolladores.
+
+## TIPOS DE PRUEBAS
+
+Existen varios tipos de pruebas que se pueden aplicar en Javascript, cada uno con un enfoque y propósito diferente:
+
+### PRUEBAS UNITARIAS
+
+Las pruebas unitarias verifican el correcto funcionamiento de unidades individuales de código, como funciones o clases. El objetivo es aislar cada unidad y probarla de forma independiente.
+
+**Ejemplo:**
+
+```javascript
+// Función a probar
+function sum(a, b) {
+  return a + b;
+}
+
+// Prueba unitaria con Jest
+test('sums two numbers', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+
+### PRUEBAS DE INTEGRACION
+
+Las pruebas de integración verifican la interacción entre diferentes unidades o componentes del sistema. El objetivo es asegurar que las diferentes partes del código trabajen juntas correctamente.
+
+**Ejemplo:**
+
+```javascript
+// Módulo de autenticación
+const auth = {
+  login: (username, password) => {
+    if (username === 'admin' && password === 'password') {
+      return { success: true, token: 'abc123xyz' };
+    }
+    return { success: false, error: 'Invalid credentials' };
+  }
+};
+
+// Prueba de integración
+test('authenticates user with valid credentials', () => {
+  const result = auth.login('admin', 'password');
+  expect(result.success).toBe(true);
+  expect(result.token).toBe('abc123xyz');
+});
+```
+
+### PRUEBAS END-TO-END (E2E)
+
+Las pruebas E2E simulan el comportamiento del usuario real en la aplicación. Verifican que la aplicación funcione correctamente de principio a fin, incluyendo la interfaz de usuario, la lógica del backend y la integración con bases de datos y otros servicios.
+
+**Ejemplo (con Cypress):**
+
+```javascript
+// Prueba E2E con Cypress
+describe('Login Form', () => {
+  it('should successfully log in', () => {
+    cy.visit('/login');
+    cy.get('input[name="username"]').type('admin');
+    cy.get('input[name="password"]').type('password');
+    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/dashboard');
+  });
+});
+```
+
+## FRAMEWORKS DE TESTING POPULARES
+
+Existen varios frameworks de testing disponibles para Javascript, cada uno con sus propias características y ventajas. Algunos de los más populares incluyen:
+
+### JEST
+
+Jest es un framework de testing desarrollado por Facebook, conocido por su facilidad de uso, configuración mínima y características integradas como la cobertura de código y los mocks.
+
+**Características:**
+
+*   **Fácil de usar:** Configuración sencilla y API intuitiva.
+*   **Rendimiento:** Ejecución rápida de pruebas en paralelo.
+*   **Características integradas:** Cobertura de código, mocks y snapshots.
+*   **Comunidad:** Amplia comunidad y soporte.
+
+**Ejemplo:**
+
+```javascript
+// Instalación
+// npm install --save-dev jest
+
+// Archivo de prueba (ejemplo.test.js)
+test('adds 1 + 2 to equal 3', () => {
+  expect(1 + 2).toBe(3);
+});
+
+// Ejecución
+// npx jest
+```
+
+### MOCHA
+
+Mocha es un framework de testing flexible y extensible que permite utilizar diferentes librerías de aserción y mocks.
+
+**Características:**
+
+*   **Flexibilidad:** Permite elegir las librerías de aserción y mocks.
+*   **Extensibilidad:** Soporte para plugins y reporters personalizados.
+*   **Comunidad:** Amplia comunidad y soporte.
+
+**Ejemplo:**
+
+```javascript
+// Instalación
+// npm install --save-dev mocha chai
+
+// Archivo de prueba (ejemplo.test.js)
+const assert = require('chai').assert;
+
+describe('Array', () => {
+  describe('#indexOf()', () => {
+    it('should return -1 when the value is not present', () => {
+      assert.equal([1, 2, 3].indexOf(4), -1);
+    });
+  });
+});
+
+// Ejecución
+// npx mocha
+```
+
+### CYPRESS
+
+Cypress es un framework de testing E2E diseñado específicamente para aplicaciones web modernas. Ofrece una experiencia de desarrollo intuitiva y características avanzadas como la grabación de videos y la depuración en tiempo real.
+
+**Características:**
+
+*   **Fácil de usar:** API intuitiva y documentación completa.
+*   **Depuración:** Depuración en tiempo real con acceso al DOM.
+*   **Grabación de videos:** Grabación automática de videos de las pruebas.
+*   **Viajes en el tiempo:** Permite retroceder en el tiempo para ver el estado de la aplicación en cada paso de la prueba.
+
+**Ejemplo:**
+
+```javascript
+// Instalación
+// npm install --save-dev cypress
+
+// Archivo de prueba (ejemplo.spec.js)
+describe('My First Test', () => {
+  it('Visits the Kitchen Sink', () => {
+    cy.visit('https://example.cypress.io');
+    cy.contains('type').click();
+    cy.url().should('include', '/commands/actions');
+  });
+});
+
+// Ejecución
+// npx cypress open
+```
+
+### SELENIUM
+
+Selenium es una herramienta de automatización de navegadores web que se utiliza para pruebas E2E. Permite simular la interacción del usuario con la aplicación en diferentes navegadores y plataformas.
+
+**Características:**
+
+*   **Soporte para múltiples navegadores:** Chrome, Firefox, Safari, Edge, etc.
+*   **Flexibilidad:** Permite escribir pruebas en diferentes lenguajes de programación (Java, Python, Javascript, etc.).
+*   **Comunidad:** Amplia comunidad y soporte.
+
+**Ejemplo (con Javascript y WebDriver):**
+
+```javascript
+// Instalación
+// npm install selenium-webdriver chromedriver
+
+// Archivo de prueba (ejemplo.test.js)
+const { Builder, By, Key, until } = require('selenium-webdriver');
+
+(async function example() {
+  let driver = await new Builder().forBrowser('chrome').build();
+  try {
+    await driver.get('https://www.google.com');
+    await driver.findElement(By.name('q')).sendKeys('Selenium', Key.RETURN);
+    await driver.wait(until.titleIs('Selenium - Google Search'), 1000);
+  } finally {
+    await driver.quit();
+  }
+})();
+```
+
+## MEJORES PRACTICAS
+
+1.  **Escribir pruebas claras y concisas:** Las pruebas deben ser fáciles de entender y mantener.
+2.  **Probar los casos de borde:** Asegurarse de que el código maneje correctamente los casos extremos y las entradas inválidas.
+3.  **Utilizar mocks y stubs:** Aislar las unidades de código y simular las dependencias externas.
+4.  **Ejecutar las pruebas automáticamente:** Integrar las pruebas en el proceso de desarrollo y ejecutarlas automáticamente en cada cambio de código.
+5.  **Medir la cobertura de código:** Utilizar herramientas de cobertura de código para identificar las áreas del código que no están cubiertas por las pruebas.
+6.  **Refactorizar las pruebas:** Mantener las pruebas actualizadas y refactorizarlas cuando sea necesario.
+
+## DESARROLLO DEL TEMA EN CUESTION
+
+### EJEMPLO DE PRUEBAS UNITARIAS CON JEST
+
+Supongamos que tenemos una función que calcula el factorial de un número:
+
+```javascript
+// factorial.js
+function factorial(n) {
+  if (n === 0) {
+    return 1;
+  }
+  return n * factorial(n - 1);
+}
+
+module.exports = factorial;
+```
+
+Podemos escribir pruebas unitarias para esta función utilizando Jest:
+
+```javascript
+// factorial.test.js
+const factorial = require('./factorial');
+
+describe('factorial', () => {
+  it('should return 1 for 0', () => {
+    expect(factorial(0)).toBe(1);
+  });
+
+  it('should return 1 for 1', () => {
+    expect(factorial(1)).toBe(1);
+  });
+
+  it('should return 120 for 5', () => {
+    expect(factorial(5)).toBe(120);
+  });
+
+  it('should throw an error for negative numbers', () => {
+    expect(() => factorial(-1)).toThrow();
+  });
+});
+```
+
+### EJEMPLO DE PRUEBAS DE INTEGRACION CON MOCHA Y CHAI
+
+Supongamos que tenemos un sistema de gestión de usuarios con las siguientes funciones:
+
+*   Crear un usuario.
+*   Obtener un usuario por ID.
+*   Actualizar un usuario.
+*   Eliminar un usuario.
+
+Podemos escribir pruebas de integración para verificar que estas funciones trabajen juntas correctamente:
+
+```javascript
+// user-manager.js
+const users = {};
+let nextId = 1;
+
+const userManager = {
+  createUser: (name, email) => {
+    const id = nextId++;
+    users[id] = { id, name, email };
+    return users[id];
+  },
+  getUser: (id) => {
+    return users[id];
+  },
+  updateUser: (id, name, email) => {
+    if (!users[id]) {
+      return null;
+    }
+    users[id] = { id, name, email };
+    return users[id];
+  },
+  deleteUser: (id) => {
+    delete users[id];
+  }
+};
+
+module.exports = userManager;
+```
+
+```javascript
+// user-manager.test.js
+const assert = require('chai').assert;
+const userManager = require('./user-manager');
+
+describe('User Manager', () => {
+  it('should create, get, update, and delete a user', () => {
+    // Create a user
+    const user1 = userManager.createUser('John Doe', 'john.doe@example.com');
+    assert.isObject(user1, 'User should be an object');
+    assert.equal(user1.name, 'John Doe', 'Name should be John Doe');
+    assert.equal(user1.email, 'john.doe@example.com', 'Email should be john.doe@example.com');
+
+    // Get the user
+    const user2 = userManager.getUser(user1.id);
+    assert.deepEqual(user1, user2, 'Users should be equal');
+
+    // Update the user
+    const user3 = userManager.updateUser(user1.id, 'Jane Doe', 'jane.doe@example.com');
+    assert.equal(user3.name, 'Jane Doe', 'Name should be Jane Doe');
+    assert.equal(user3.email, 'jane.doe@example.com', 'Email should be jane.doe@example.com');
+
+    // Delete the user
+    userManager.deleteUser(user1.id);
+    const user4 = userManager.getUser(user1.id);
+    assert.isUndefined(user4, 'User should be undefined');
+  });
+});
+```
+
+### EJEMPLO DE PRUEBAS E2E CON CYPRESS
+
+Supongamos que tenemos una aplicación web con un formulario de registro:
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+</head>
+<body>
+  <h1>Registration Form</h1>
+  <form>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>
+```
+
+Podemos escribir pruebas E2E para verificar que el formulario de registro funcione correctamente:
+
+```javascript
+// cypress/integration/registration.spec.js
+describe('Registration Form', () => {
+  it('should successfully register a user', () => {
+    cy.visit('index.html');
+    cy.get('input[name="name"]').type('John Doe');
+    cy.get('input[name="email"]').type('john.doe@example.com');
+    cy.get('button[type="submit"]').click();
+    // Add assertions to verify successful registration
+    // For example, check for a success message or redirect to a new page
+  });
+});
+```
+
+## FUENTES DEL DOCUMENTO
+
+*   [Jest Documentation](https://jestjs.io/docs/getting-started)
+*   [Mocha Documentation](https://mochajs.org/)
+*   [Cypress Documentation](https://docs.cypress.io/)
+*   [Selenium Documentation](https://www.selenium.dev/documentation/)
+*   [Testing JavaScript with Jest](https://www.valentinog.com/blog/jest/)
+*   [Introduction to End-to-End Testing with Cypress](https://www.digitalocean.com/community/tutorials/introduction-to-end-to-end-testing-with-cypress)

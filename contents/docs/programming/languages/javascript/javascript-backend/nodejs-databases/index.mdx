@@ -1,0 +1,271 @@
+---
+title: Bases de Datos con Node.js
+description: Integración y manejo de bases de datos en aplicaciones Node.js.
+keywords: ["Node.js", "bases de datos", "MySQL", "PostgreSQL", "MongoDB", "ORM", "Sequelize", "Mongoose", "conexión", "query", "modelos"]
+---
+
+Node.js, al ser un entorno de ejecución de JavaScript del lado del servidor, permite la creación de aplicaciones robustas y escalables que interactúan con bases de datos. La capacidad de Node.js para manejar operaciones de entrada/salida (I/O) de manera no bloqueante lo hace ideal para aplicaciones que requieren un alto rendimiento en la manipulación de datos. Este documento explora las diferentes opciones para integrar y trabajar con bases de datos en Node.js, incluyendo bases de datos relacionales (SQL) y no relacionales (NoSQL), así como el uso de Object-Relational Mappers (ORMs) y Object-Document Mappers (ODMs).
+
+## OBJETIVOS CLAVE
+
+*   Comprender los diferentes tipos de bases de datos compatibles con Node.js.
+*   Aprender a establecer conexiones con bases de datos desde aplicaciones Node.js.
+*   Implementar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) utilizando Node.js.
+*   Utilizar ORMs y ODMs para facilitar la interacción con bases de datos.
+*   Optimizar el rendimiento de las consultas a bases de datos en Node.js.
+
+## TIPOS DE BASES DE DATOS Y LIBRERIAS POPULARES
+
+Node.js puede interactuar con una amplia variedad de bases de datos. A continuación, se presentan algunas de las más comunes y las librerías correspondientes para su integración:
+
+### BASES DE DATOS RELACIONALES (SQL)
+
+*   **MySQL:** Una de las bases de datos relacionales de código abierto más populares.
+    *   Librería: `mysql`, `mysql2`, `sequelize` (ORM)
+*   **PostgreSQL:** Una base de datos relacional avanzada, conocida por su cumplimiento de los estándares SQL y su extensibilidad.
+    *   Librería: `pg`, `sequelize` (ORM)
+*   **SQLite:** Una base de datos ligera y autónoma, ideal para aplicaciones pequeñas y pruebas.
+    *   Librería: `sqlite3`, `sequelize` (ORM)
+*   **Microsoft SQL Server:** La base de datos relacional de Microsoft, utilizada en entornos empresariales.
+    *   Librería: `tedious`, `sequelize` (ORM)
+
+### BASES DE DATOS NO RELACIONALES (NOSQL)
+
+*   **MongoDB:** Una base de datos NoSQL orientada a documentos, muy popular para aplicaciones web modernas.
+    *   Librería: `mongodb`, `mongoose` (ODM)
+*   **Redis:** Una base de datos en memoria, utilizada como caché y para gestión de sesiones.
+    *   Librería: `redis`
+*   **Cassandra:** Una base de datos NoSQL distribuida, diseñada para manejar grandes volúmenes de datos.
+    *   Librería: `cassandra-driver`
+
+## CONEXION A BASES DE DATOS
+
+El primer paso para trabajar con una base de datos en Node.js es establecer una conexión. A continuación, se muestran ejemplos de cómo conectar a MySQL y MongoDB.
+
+### CONEXION A MYSQL
+
+```javascript
+const mysql = require('mysql2');
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'usuario',
+  password: 'contraseña',
+  database: 'nombre_de_la_base_de_datos'
+});
+
+connection.connect((err) => {
+  if (err) {
+    console.error('Error al conectar a la base de datos:', err);
+    return;
+  }
+  console.log('Conexión a MySQL establecida');
+});
+
+// Para cerrar la conexión cuando ya no se necesite
+// connection.end();
+```
+
+### CONEXION A MONGODB
+
+```javascript
+const { MongoClient } = require('mongodb');
+
+const uri = 'mongodb://usuario:contraseña@localhost:27017/nombre_de_la_base_de_datos';
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+async function connectToMongoDB() {
+  try {
+    await client.connect();
+    console.log('Conexión a MongoDB establecida');
+  } catch (err) {
+    console.error('Error al conectar a MongoDB:', err);
+  }
+}
+
+connectToMongoDB();
+
+// Para cerrar la conexión cuando ya no se necesite
+// client.close();
+```
+
+## OPERACIONES CRUD
+
+Una vez establecida la conexión, se pueden realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en la base de datos.
+
+### OPERACIONES CRUD EN MYSQL
+
+```javascript
+// Crear (Insertar)
+const queryInsert = 'INSERT INTO usuarios (nombre, email) VALUES (?, ?)';
+connection.query(queryInsert, ['Juan Perez', 'juan@example.com'], (err, result) => {
+  if (err) throw err;
+  console.log('Usuario insertado:', result);
+});
+
+// Leer (Seleccionar)
+const querySelect = 'SELECT * FROM usuarios';
+connection.query(querySelect, (err, results) => {
+  if (err) throw err;
+  console.log('Usuarios:', results);
+});
+
+// Actualizar (Modificar)
+const queryUpdate = 'UPDATE usuarios SET email = ? WHERE nombre = ?';
+connection.query(queryUpdate, ['juan.perez@example.com', 'Juan Perez'], (err, result) => {
+  if (err) throw err;
+  console.log('Usuario actualizado:', result);
+});
+
+// Eliminar (Borrar)
+const queryDelete = 'DELETE FROM usuarios WHERE nombre = ?';
+connection.query(queryDelete, ['Juan Perez'], (err, result) => {
+  if (err) throw err;
+  console.log('Usuario eliminado:', result);
+});
+```
+
+### OPERACIONES CRUD EN MONGODB
+
+```javascript
+async function crudOperationsMongoDB() {
+  const db = client.db('nombre_de_la_base_de_datos');
+  const collection = db.collection('usuarios');
+
+  // Crear (Insertar)
+  const insertResult = await collection.insertOne({ nombre: 'Maria Lopez', email: 'maria@example.com' });
+  console.log('Usuario insertado:', insertResult);
+
+  // Leer (Seleccionar)
+  const findResult = await collection.find({}).toArray();
+  console.log('Usuarios:', findResult);
+
+  // Actualizar (Modificar)
+  const updateResult = await collection.updateOne({ nombre: 'Maria Lopez' }, { $set: { email: 'maria.lopez@example.com' } });
+  console.log('Usuario actualizado:', updateResult);
+
+  // Eliminar (Borrar)
+  const deleteResult = await collection.deleteOne({ nombre: 'Maria Lopez' });
+  console.log('Usuario eliminado:', deleteResult);
+}
+
+crudOperationsMongoDB();
+```
+
+## ORMS Y ODMS
+
+Los ORMs (Object-Relational Mappers) y ODMs (Object-Document Mappers) son herramientas que facilitan la interacción con bases de datos al mapear las tablas o colecciones a objetos en el código. Esto permite escribir consultas y manipular datos de manera más intuitiva y segura.
+
+### SEQUELIZE (ORM PARA SQL)
+
+Sequelize es un ORM popular para Node.js que soporta múltiples bases de datos SQL, incluyendo MySQL, PostgreSQL, SQLite y Microsoft SQL Server.
+
+```javascript
+const { Sequelize, DataTypes } = require('sequelize');
+
+const sequelize = new Sequelize('nombre_de_la_base_de_datos', 'usuario', 'contraseña', {
+  host: 'localhost',
+  dialect: 'mysql' // o 'postgres', 'sqlite', 'mssql'
+});
+
+// Definir un modelo
+const Usuario = sequelize.define('Usuario', {
+  nombre: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING
+  }
+});
+
+// Sincronizar el modelo con la base de datos (crea la tabla si no existe)
+sequelize.sync()
+  .then(() => {
+    console.log('Tabla de usuarios creada (o ya existente)');
+    // Crear un nuevo usuario
+    return Usuario.create({
+      nombre: 'Carlos Gomez',
+      email: 'carlos@example.com'
+    });
+  })
+  .then(usuario => {
+    console.log('Nuevo usuario creado:', usuario.toJSON());
+    // Buscar todos los usuarios
+    return Usuario.findAll();
+  })
+  .then(usuarios => {
+    console.log('Todos los usuarios:', usuarios.map(u => u.toJSON()));
+  })
+  .catch(err => {
+    console.error('Error:', err);
+  });
+```
+
+### MONGOOSE (ODM PARA MONGODB)
+
+Mongoose es un ODM popular para MongoDB que proporciona una forma elegante de modelar los datos y interactuar con la base de datos.
+
+```javascript
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://usuario:contraseña@localhost:27017/nombre_de_la_base_de_datos', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('Conexión a MongoDB establecida'))
+.catch(err => console.error('Error al conectar a MongoDB:', err));
+
+// Definir un esquema
+const usuarioSchema = new mongoose.Schema({
+  nombre: {
+    type: String,
+    required: true
+  },
+  email: String
+});
+
+// Crear un modelo
+const Usuario = mongoose.model('Usuario', usuarioSchema);
+
+// Crear un nuevo usuario
+const nuevoUsuario = new Usuario({
+  nombre: 'Ana Rodriguez',
+  email: 'ana@example.com'
+});
+
+nuevoUsuario.save()
+  .then(usuario => {
+    console.log('Nuevo usuario creado:', usuario);
+    // Buscar todos los usuarios
+    return Usuario.find({});
+  })
+  .then(usuarios => {
+    console.log('Todos los usuarios:', usuarios);
+  })
+  .catch(err => {
+    console.error('Error:', err);
+  });
+```
+
+## OPTIMIZACION DE CONSULTAS
+
+Para asegurar un buen rendimiento, es importante optimizar las consultas a la base de datos. Algunas técnicas incluyen:
+
+*   **Indexación:** Crear índices en las columnas que se utilizan frecuentemente en las consultas.
+*   **Uso de consultas eficientes:** Evitar consultas que escaneen toda la tabla o colección.
+*   **Paginación:** Limitar el número de resultados devueltos por una consulta.
+*   **Caching:** Almacenar en caché los resultados de consultas frecuentes.
+
+## CONCLUSION
+
+La integración de bases de datos en Node.js es fundamental para el desarrollo de aplicaciones modernas. Con una amplia variedad de opciones disponibles, desde bases de datos SQL hasta NoSQL, y herramientas como ORMs y ODMs, los desarrolladores pueden construir aplicaciones robustas y escalables que manejen grandes volúmenes de datos de manera eficiente.
+
+## FUENTES DEL DOCUMENTO
+
+*   [Node.js Official Website](https://nodejs.org/)
+*   [MySQL Official Website](https://www.mysql.com/)
+*   [PostgreSQL Official Website](https://www.postgresql.org/)
+*   [MongoDB Official Website](https://www.mongodb.com/)
+*   [Sequelize Documentation](https://sequelize.org/docs/v6/)
+*   [Mongoose Documentation](https://mongoosejs.com/docs/)

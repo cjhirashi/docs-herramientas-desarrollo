@@ -1,0 +1,329 @@
+---
+title: Javascript Moderno (ES6+)
+description: Introducción a las características y sintaxis de JavaScript moderno (ECMAScript 2015 y versiones posteriores).
+keywords: ["javascript", "es6", "ecmascript", "modern javascript", "arrow functions", "classes", "modules", "promises", "async/await", "let", "const"]
+---
+
+JavaScript Moderno, también conocido como ECMAScript 2015 (ES6) y versiones posteriores, representa una evolución significativa del lenguaje JavaScript. Estas actualizaciones introdujeron una serie de nuevas características y sintaxis que hacen que el código sea más legible, mantenible y eficiente. Este documento proporciona una visión general de las características más importantes de JavaScript Moderno.
+
+## OBJETIVOS CLAVE
+
+*   **Mejorar la legibilidad y mantenibilidad del código:** Facilitar la escritura de código más claro y fácil de entender.
+*   **Añadir nuevas funcionalidades:** Incorporar características que simplifiquen tareas comunes y permitan abordar problemas más complejos.
+*   **Optimizar el rendimiento:** Introducir mejoras que permitan ejecutar el código de manera más eficiente.
+*   **Estandarizar el desarrollo:** Proporcionar un conjunto de herramientas y sintaxis consistentes para todos los desarrolladores.
+
+## VARIABLES: LET Y CONST
+
+`let` y `const` son nuevas formas de declarar variables en JavaScript Moderno, que ofrecen un mejor control sobre el alcance y la mutabilidad en comparación con `var`.
+
+*   **let:** Declara una variable con alcance de bloque. Esto significa que la variable solo es accesible dentro del bloque en el que se define (por ejemplo, dentro de un bucle `for` o una declaración `if`).
+
+    ```javascript
+    function ejemploLet() {
+      if (true) {
+        let x = 10;
+        console.log(x); // Imprime 10
+      }
+      // console.log(x); // Error: x is not defined
+    }
+    ```
+
+*   **const:** Declara una constante con alcance de bloque. Una vez que se asigna un valor a una constante, no se puede reasignar.
+
+    ```javascript
+    function ejemploConst() {
+      const PI = 3.14159;
+      console.log(PI); // Imprime 3.14159
+      // PI = 3.14; // Error: Assignment to constant variable.
+    }
+    ```
+
+## ARROW FUNCTIONS
+
+Las arrow functions (funciones flecha) proporcionan una sintaxis más concisa para escribir funciones.
+
+*   **Sintaxis básica:**
+
+    ```javascript
+    const suma = (a, b) => a + b;
+    console.log(suma(5, 3)); // Imprime 8
+    ```
+
+*   **Sin parámetros:**
+
+    ```javascript
+    const saludo = () => "Hola";
+    console.log(saludo()); // Imprime "Hola"
+    ```
+
+*   **Un solo parámetro (sin paréntesis):**
+
+    ```javascript
+    const cuadrado = x => x * x;
+    console.log(cuadrado(4)); // Imprime 16
+    ```
+
+*   **Múltiples líneas (requiere `return`):**
+
+    ```javascript
+    const multiplicar = (a, b) => {
+      const resultado = a * b;
+      return resultado;
+    };
+    console.log(multiplicar(2, 6)); // Imprime 12
+    ```
+
+## CLASES
+
+JavaScript Moderno introdujo la sintaxis de clases, que proporciona una forma más clara y estructurada de crear objetos y manejar la herencia.
+
+*   **Definición de una clase:**
+
+    ```javascript
+    class Animal {
+      constructor(nombre) {
+        this.nombre = nombre;
+      }
+
+      hablar() {
+        console.log(`${this.nombre} hace un sonido.`);
+      }
+    }
+    ```
+
+*   **Creación de una instancia:**
+
+    ```javascript
+    const miAnimal = new Animal("León");
+    miAnimal.hablar(); // Imprime "León hace un sonido."
+    ```
+
+*   **Herencia:**
+
+    ```javascript
+    class Perro extends Animal {
+      constructor(nombre, raza) {
+        super(nombre);
+        this.raza = raza;
+      }
+
+      hablar() {
+        console.log(`${this.nombre} ladra.`);
+      }
+    }
+
+    const miPerro = new Perro("Buddy", "Golden Retriever");
+    miPerro.hablar(); // Imprime "Buddy ladra."
+    ```
+
+## TEMPLATE LITERALS
+
+Los template literals (plantillas literales) permiten insertar expresiones dentro de cadenas de texto de una manera más legible y conveniente.
+
+*   **Sintaxis:**
+
+    ```javascript
+    const nombre = "Juan";
+    const saludo = `Hola, ${nombre}!`;
+    console.log(saludo); // Imprime "Hola, Juan!"
+    ```
+
+*   **Múltiples líneas:**
+
+    ```javascript
+    const mensaje = `
+    Esta es una cadena
+    que ocupa varias líneas.
+    `;
+    console.log(mensaje);
+    ```
+
+## DESTRUCTURING
+
+Destructuring (desestructuración) permite extraer valores de objetos y arrays y asignarlos a variables de una manera más concisa.
+
+*   **Desestructuración de objetos:**
+
+    ```javascript
+    const persona = {
+      nombre: "Ana",
+      edad: 30,
+      ciudad: "Madrid"
+    };
+
+    const { nombre, edad } = persona;
+    console.log(nombre); // Imprime "Ana"
+    console.log(edad); // Imprime 30
+    ```
+
+*   **Desestructuración de arrays:**
+
+    ```javascript
+    const colores = ["rojo", "verde", "azul"];
+
+    const [primerColor, segundoColor] = colores;
+    console.log(primerColor); // Imprime "rojo"
+    console.log(segundoColor); // Imprime "verde"
+    ```
+
+## SPREAD Y REST OPERATORS
+
+Los spread y rest operators (operadores de propagación y resto) son herramientas poderosas para trabajar con arrays y objetos.
+
+*   **Spread operator:** Permite expandir un array o un objeto en elementos individuales.
+
+    ```javascript
+    const array1 = [1, 2, 3];
+    const array2 = [...array1, 4, 5];
+    console.log(array2); // Imprime [1, 2, 3, 4, 5]
+
+    const obj1 = { a: 1, b: 2 };
+    const obj2 = { ...obj1, c: 3 };
+    console.log(obj2); // Imprime { a: 1, b: 2, c: 3 }
+    ```
+
+*   **Rest operator:** Permite representar un número indefinido de argumentos como un array.
+
+    ```javascript
+    function sumar(...numeros) {
+      return numeros.reduce((total, num) => total + num, 0);
+    }
+
+    console.log(sumar(1, 2, 3, 4)); // Imprime 10
+    ```
+
+## PROMISES
+
+Las promises (promesas) son objetos que representan el resultado eventual de una operación asíncrona.
+
+*   **Creación de una promesa:**
+
+    ```javascript
+    const miPromesa = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("¡Éxito!");
+      }, 2000);
+    });
+    ```
+
+*   **Manejo de una promesa:**
+
+    ```javascript
+    miPromesa
+      .then(resultado => {
+        console.log("Resultado:", resultado); // Imprime "Resultado: ¡Éxito!"
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+    ```
+
+## ASYNC/AWAIT
+
+`async/await` es una sintaxis que facilita la escritura de código asíncrono de manera más legible y similar al código síncrono.
+
+*   **Función async:**
+
+    ```javascript
+    async function obtenerDatos() {
+      const promesa = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve("Datos obtenidos");
+        }, 1000);
+      });
+
+      const resultado = await promesa;
+      console.log(resultado); // Imprime "Datos obtenidos"
+    }
+
+    obtenerDatos();
+    ```
+
+*   **Manejo de errores:**
+
+    ```javascript
+    async function obtenerDatos() {
+      try {
+        const promesa = new Promise((resolve, reject) => {
+          setTimeout(() => {
+            reject("Error al obtener los datos");
+          }, 1000);
+        });
+
+        const resultado = await promesa;
+        console.log(resultado);
+      } catch (error) {
+        console.error("Error:", error); // Imprime "Error: Error al obtener los datos"
+      }
+    }
+
+    obtenerDatos();
+    ```
+
+## MODULOS
+
+Los módulos permiten dividir el código en archivos separados, facilitando la organización y reutilización del código.
+
+*   **Exportación:**
+
+    ```javascript
+    // archivo: modulo.js
+    export function sumar(a, b) {
+      return a + b;
+    }
+
+    export const PI = 3.14159;
+    ```
+
+*   **Importación:**
+
+    ```javascript
+    // archivo: main.js
+    import { sumar, PI } from './modulo.js';
+
+    console.log(sumar(5, 3)); // Imprime 8
+    console.log(PI); // Imprime 3.14159
+    ```
+
+## OBJETOS LITERALES MEJORADOS
+
+Los objetos literales mejorados ofrecen una sintaxis más concisa para definir objetos.
+
+*   **Inicialización de propiedades:**
+
+    ```javascript
+    const nombre = "Carlos";
+    const edad = 25;
+
+    const persona = {
+      nombre,
+      edad,
+      saludar() {
+        console.log(`Hola, soy ${this.nombre}`);
+      }
+    };
+
+    persona.saludar(); // Imprime "Hola, soy Carlos"
+    ```
+
+## PARAMETROS POR DEFECTO
+
+Los parámetros por defecto permiten asignar valores predeterminados a los parámetros de una función.
+
+*   **Ejemplo:**
+
+    ```javascript
+    function saludar(nombre = "Invitado") {
+      console.log(`Hola, ${nombre}!`);
+    }
+
+    saludar(); // Imprime "Hola, Invitado!"
+    saludar("María"); // Imprime "Hola, María!"
+    ```
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
+*   [ECMAScript 2015 (ES6) and later](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
+*   [You Don't Know JS Yet: Get Started](https://github.com/getify/You-Dont-Know-JS/tree/2nd-ed/get-started)

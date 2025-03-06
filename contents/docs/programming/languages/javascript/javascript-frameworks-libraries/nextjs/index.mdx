@@ -1,0 +1,163 @@
+---
+title: Next.js
+description: Framework de React para la creación de aplicaciones web con renderizado del lado del servidor (SSR) y generación de sitios estáticos (SSG).
+keywords: ["next.js", "react", "ssr", "ssg", "framework", "javascript", "desarrollo web", "rendimiento", "optimización", "seo"]
+---
+
+Next.js es un framework de React de código abierto que permite a los desarrolladores crear aplicaciones web de alto rendimiento con facilidad. Se destaca por su capacidad para realizar renderizado del lado del servidor (SSR), generación de sitios estáticos (SSG) y enrutamiento basado en el sistema de archivos, lo que simplifica el desarrollo y mejora la experiencia del usuario.
+
+## OBJETIVOS CLAVE
+
+*   **Mejora del rendimiento:** Next.js optimiza el rendimiento de las aplicaciones web mediante SSR y SSG, lo que reduce el tiempo de carga inicial y mejora la experiencia del usuario.
+*   **SEO amigable:** El renderizado del lado del servidor facilita el rastreo de los motores de búsqueda, lo que mejora el posicionamiento SEO de las aplicaciones.
+*   **Desarrollo simplificado:** Next.js proporciona un conjunto de herramientas y convenciones que simplifican el desarrollo de aplicaciones web complejas.
+*   **Escalabilidad:** Next.js permite crear aplicaciones web escalables que pueden manejar un gran volumen de tráfico.
+*   **Experiencia del desarrollador:** Ofrece una excelente experiencia al desarrollador con características como Fast Refresh (recarga rápida), enrutamiento intuitivo y soporte para TypeScript.
+
+## DESARROLLO DE NEXT.JS
+
+### 1. CREACION DE UN NUEVO PROYECTO
+
+Para crear un nuevo proyecto de Next.js, puedes utilizar el siguiente comando:
+
+```bash
+npx create-next-app mi-proyecto
+cd mi-proyecto
+npm run dev
+```
+
+Este comando crea un nuevo directorio llamado `mi-proyecto` con la estructura básica de un proyecto de Next.js, instala las dependencias necesarias y ejecuta el servidor de desarrollo.
+
+### 2. ENRUTAMIENTO
+
+Next.js utiliza un sistema de enrutamiento basado en el sistema de archivos. Cada archivo en el directorio `pages` se convierte automáticamente en una ruta. Por ejemplo, si creas un archivo llamado `pages/about.js`, se creará automáticamente una ruta `/about`.
+
+```jsx
+// pages/about.js
+function About() {
+  return <h1>Acerca de</h1>;
+}
+
+export default About;
+```
+
+### 3. RENDERIZADO DEL LADO DEL SERVIDOR (SSR)
+
+Next.js permite realizar renderizado del lado del servidor utilizando la función `getServerSideProps`. Esta función se ejecuta en el servidor en cada solicitud y permite obtener datos antes de renderizar la página.
+
+```jsx
+// pages/index.js
+function HomePage({ posts }) {
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+export async function getServerSideProps() {
+  // Obtener datos del servidor
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const posts = await res.json();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
+export default HomePage;
+```
+
+### 4. GENERACION DE SITIOS ESTATICOS (SSG)
+
+Next.js también permite generar sitios estáticos utilizando la función `getStaticProps`. Esta función se ejecuta en tiempo de compilación y permite obtener datos que no cambian con frecuencia.
+
+```jsx
+// pages/index.js
+function HomePage({ posts }) {
+  return (
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>{post.id} - {post.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+export async function getStaticProps() {
+  // Obtener datos del servidor
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  const posts = await res.json();
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
+export default HomePage;
+```
+
+### 5. API ROUTES
+
+Next.js permite crear API routes directamente en el directorio `pages/api`. Estos archivos se ejecutan en el servidor y permiten crear endpoints para manejar solicitudes HTTP.
+
+```jsx
+// pages/api/hello.js
+export default function handler(req, res) {
+  res.status(200).json({ text: 'Hola' });
+}
+```
+
+### 6. ESTILOS
+
+Next.js soporta diferentes formas de agregar estilos a las aplicaciones, incluyendo CSS Modules, Styled JSX y bibliotecas de CSS-in-JS como Styled Components y Emotion.
+
+**Ejemplo con CSS Modules:**
+
+```jsx
+// components/MyComponent.module.css
+.title {
+  color: blue;
+}
+```
+
+```jsx
+// components/MyComponent.js
+import styles from './MyComponent.module.css';
+
+function MyComponent() {
+  return <h1 className={styles.title}>Hola Mundo</h1>;
+}
+
+export default MyComponent;
+```
+
+### 7. DEPLOY
+
+Next.js se puede desplegar en diferentes plataformas como Vercel, Netlify, AWS y otras. Vercel es la plataforma recomendada por los creadores de Next.js y ofrece una integración perfecta con el framework.
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### BLOG PERSONAL
+
+Un blog personal es un excelente ejemplo para utilizar Next.js, ya que se puede aprovechar el SSG para generar las páginas de los posts en tiempo de compilación, lo que mejora el rendimiento y el SEO.
+
+### E-COMMERCE
+
+Next.js también se puede utilizar para crear tiendas en línea. En este caso, se puede utilizar SSR para renderizar las páginas de los productos en el servidor, lo que garantiza que los motores de búsqueda puedan rastrear el contenido y mejorar el posicionamiento SEO.
+
+### DASHBOARD
+
+Para crear dashboards, se puede utilizar Next.js con SSR para obtener los datos del servidor y renderizar la página en cada solicitud. Esto garantiza que los datos estén siempre actualizados.
+
+## FUENTES DEL DOCUMENTO
+
+*   [Next.js Official Documentation](https://nextjs.org/docs)
+*   [Vercel](https://vercel.com/)
+*   [React](https://reactjs.org/)

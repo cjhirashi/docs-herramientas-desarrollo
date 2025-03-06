@@ -1,0 +1,164 @@
+---
+title: Jest
+description: Marco de pruebas de JavaScript con un enfoque en la simplicidad y la confianza.
+keywords: ["jest", "testing", "javascript", "framework", "testing framework", "react", "node"]
+---
+
+Jest es un marco de pruebas de JavaScript desarrollado por Facebook, diseñado para asegurar la corrección de cualquier base de código de JavaScript. Es especialmente popular en proyectos de React, pero puede ser utilizado con cualquier biblioteca o marco de JavaScript. Jest se distingue por su simplicidad, configuración mínima y un conjunto de características robustas que facilitan la escritura, ejecución y depuración de pruebas.
+
+## OBJETIVOS CLAVE SOBRE JEST
+
+*   **Simplicidad:** Proporcionar una experiencia de prueba directa y fácil de usar.
+*   **Integración:** Funcionar sin problemas con proyectos de React, así como con otras bibliotecas y marcos de JavaScript.
+*   **Aislamiento:** Ejecutar pruebas en paralelo para mejorar la velocidad y evitar dependencias entre pruebas.
+*   **Cobertura:** Ofrecer informes de cobertura de código integrados para identificar áreas no probadas.
+*   **Mocks y Spies:** Facilitar la simulación de dependencias y el seguimiento de interacciones para pruebas más controladas.
+
+## DESARROLLO DE JEST
+
+### INSTALACION
+
+Para instalar Jest, puedes usar npm o yarn:
+
+```bash
+npm install --save-dev jest
+# o
+yarn add --dev jest
+```
+
+### CONFIGURACION BASICA
+
+Después de la instalación, puedes configurar Jest en tu `package.json`:
+
+```json
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+Esto te permite ejecutar tus pruebas con el comando `npm test` o `yarn test`.
+
+### ESTRUCTURA DE UN ARCHIVO DE PRUEBA
+
+Un archivo de prueba en Jest típicamente tiene la extensión `.test.js` o `.spec.js`. Aquí tienes un ejemplo básico:
+
+```javascript
+// sum.js
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = sum;
+```
+
+```javascript
+// sum.test.js
+const sum = require('./sum');
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+
+### CONCEPTOS CLAVE
+
+*   **`describe(name, fn)`:** Crea un bloque que agrupa varias pruebas relacionadas.
+*   **`test(name, fn)` o `it(name, fn)`:** Define una prueba individual.
+*   **`expect(value)`:** Inicia una aserción, que es una declaración sobre el valor que se está probando.
+*   **Matchers:** Funciones que se utilizan con `expect` para verificar diferentes condiciones (ej., `toBe`, `toEqual`, `toBeNull`).
+
+### EJEMPLOS DE IMPLEMENTACION
+
+#### PRUEBAS DE COMPONENTES DE REACT
+
+Jest es ideal para probar componentes de React. Aquí tienes un ejemplo usando `react-test-renderer`:
+
+```javascript
+import React from 'react';
+import renderer from 'react-test-renderer';
+import MyComponent from './MyComponent';
+
+test('MyComponent renders correctly', () => {
+  const tree = renderer
+    .create(<MyComponent name="Jest" />)
+    .toJSON();
+  expect(tree).toMatchSnapshot();
+});
+```
+
+Este ejemplo utiliza `toMatchSnapshot` para comparar el componente renderizado con una "snapshot" guardada, lo que ayuda a detectar cambios inesperados en la interfaz de usuario.
+
+#### MOCKS Y SPIES
+
+Jest facilita la simulación de funciones y módulos para aislar el código que estás probando.
+
+```javascript
+// api.js
+export const fetchData = () => {
+  return fetch('/api/data')
+    .then(response => response.json());
+};
+```
+
+```javascript
+// api.test.js
+import { fetchData } from './api';
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () => Promise.resolve({ data: 'test data' }),
+  })
+);
+
+test('fetchData returns data', async () => {
+  const data = await fetchData();
+  expect(data).toEqual({ data: 'test data' });
+  expect(fetch).toHaveBeenCalledTimes(1);
+});
+```
+
+En este ejemplo, `jest.fn()` simula la función `fetch` para que no haga una llamada real a la API. Esto permite probar la lógica de `fetchData` sin depender de un servidor en funcionamiento.
+
+#### PRUEBAS ASINCRONAS
+
+Jest soporta pruebas asíncronas utilizando `async/await` o promesas.
+
+```javascript
+// async.js
+export const fetchData = async () => {
+  const response = await fetch('/api/data');
+  const data = await response.json();
+  return data;
+};
+```
+
+```javascript
+// async.test.js
+import { fetchData } from './async';
+
+test('fetchData returns data', async () => {
+  const data = await fetchData();
+  expect(data).toBeDefined();
+});
+```
+
+El uso de `async/await` hace que las pruebas asíncronas sean más legibles y fáciles de escribir.
+
+### CARACTERISTICAS ADICIONALES
+
+*   **Cobertura de Código:** Jest puede generar informes de cobertura de código para mostrar qué partes de tu código están cubiertas por pruebas.
+*   **Watch Mode:** Jest tiene un "watch mode" que vuelve a ejecutar las pruebas automáticamente cuando cambian los archivos.
+*   **Paralelización:** Jest ejecuta pruebas en paralelo para reducir el tiempo total de ejecución.
+
+## CONCLUSION
+
+Jest es una herramienta poderosa y versátil para pruebas de JavaScript. Su simplicidad, integración con React y características robustas lo convierten en una excelente opción para cualquier proyecto de JavaScript. Al adoptar Jest, puedes mejorar la calidad de tu código, reducir errores y aumentar la confianza en tus implementaciones.
+
+## FUENTES DEL DOCUMENTO
+
+*   [Jest Official Documentation](https://jestjs.io/docs/getting-started)
+*   [React Testing Tutorial](https://reactjs.org/docs/testing-recipes.html)
+*   [Kent C. Dodds - Testing JavaScript](https://kentcdodds.com/blog/testing-javascript)
+```

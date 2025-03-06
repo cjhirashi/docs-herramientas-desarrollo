@@ -1,0 +1,207 @@
+---
+title: Destructuring
+description: Desempaquetado de valores de objetos y arrays en JavaScript.
+keywords: ["javascript", "destructuring", "arrays", "objects", "variables"]
+---
+
+El destructuring, o desempaquetado, es una característica de JavaScript que permite extraer valores de objetos o arrays y asignarlos a variables de una manera más concisa y legible. Esta funcionalidad simplifica la manipulación de datos y reduce la cantidad de código necesario para acceder a las propiedades de objetos y elementos de arrays.
+
+## OBJETIVOS CLAVE
+
+*   **Simplificar la extracción de datos:** Facilitar la asignación de valores de objetos y arrays a variables.
+*   **Mejorar la legibilidad del código:** Reducir la verbosidad y hacer el código más claro.
+*   **Aumentar la eficiencia:** Permitir la extracción de múltiples valores en una sola línea de código.
+
+## DESTRUCTURING DE OBJETOS
+
+El destructuring de objetos permite extraer valores de las propiedades de un objeto y asignarlos a variables con el mismo nombre (o con nombres diferentes si se especifica).
+
+**Sintaxis básica:**
+
+```javascript
+const objeto = {
+  propiedad1: 'valor1',
+  propiedad2: 'valor2',
+  propiedad3: 'valor3'
+};
+
+const { propiedad1, propiedad2 } = objeto;
+
+console.log(propiedad1); // Output: valor1
+console.log(propiedad2); // Output: valor2
+```
+
+En este ejemplo, `propiedad1` y `propiedad2` son extraídas del objeto y asignadas a variables con el mismo nombre.
+
+**Asignación a variables con nombres diferentes:**
+
+```javascript
+const objeto = {
+  propiedad1: 'valor1',
+  propiedad2: 'valor2'
+};
+
+const { propiedad1: nuevaVariable1, propiedad2: nuevaVariable2 } = objeto;
+
+console.log(nuevaVariable1); // Output: valor1
+console.log(nuevaVariable2); // Output: valor2
+```
+
+Aquí, `propiedad1` es asignada a la variable `nuevaVariable1` y `propiedad2` a `nuevaVariable2`.
+
+**Valores por defecto:**
+
+Se pueden asignar valores por defecto en caso de que la propiedad no exista en el objeto:
+
+```javascript
+const objeto = {
+  propiedad1: 'valor1'
+};
+
+const { propiedad1, propiedad2 = 'valorPorDefecto' } = objeto;
+
+console.log(propiedad1); // Output: valor1
+console.log(propiedad2); // Output: valorPorDefecto
+```
+
+En este caso, como `propiedad2` no existe en el objeto, se le asigna el valor por defecto 'valorPorDefecto'.
+
+**Destructuring anidado:**
+
+El destructuring también puede aplicarse a objetos anidados:
+
+```javascript
+const objeto = {
+  propiedad1: 'valor1',
+  propiedad2: {
+    subPropiedad1: 'subValor1',
+    subPropiedad2: 'subValor2'
+  }
+};
+
+const { propiedad2: { subPropiedad1, subPropiedad2 } } = objeto;
+
+console.log(subPropiedad1); // Output: subValor1
+console.log(subPropiedad2); // Output: subValor2
+```
+
+## DESTRUCTURING DE ARRAYS
+
+El destructuring de arrays permite extraer valores de un array y asignarlos a variables según su posición.
+
+**Sintaxis básica:**
+
+```javascript
+const array = ['valor1', 'valor2', 'valor3'];
+
+const [variable1, variable2] = array;
+
+console.log(variable1); // Output: valor1
+console.log(variable2); // Output: valor2
+```
+
+En este ejemplo, `variable1` recibe el primer elemento del array ('valor1') y `variable2` recibe el segundo elemento ('valor2').
+
+**Omitir elementos:**
+
+Se pueden omitir elementos utilizando comas:
+
+```javascript
+const array = ['valor1', 'valor2', 'valor3'];
+
+const [variable1, , variable3] = array;
+
+console.log(variable1); // Output: valor1
+console.log(variable3); // Output: valor3
+```
+
+Aquí, el segundo elemento del array es omitido.
+
+**Rest parameters:**
+
+Se puede utilizar el rest parameter (`...`) para capturar el resto de los elementos del array en una nueva variable:
+
+```javascript
+const array = ['valor1', 'valor2', 'valor3', 'valor4'];
+
+const [variable1, variable2, ...resto] = array;
+
+console.log(variable1); // Output: valor1
+console.log(variable2); // Output: valor2
+console.log(resto);      // Output: ['valor3', 'valor4']
+```
+
+En este caso, `resto` es un nuevo array que contiene todos los elementos restantes después de `variable1` y `variable2`.
+
+**Valores por defecto:**
+
+Al igual que con los objetos, se pueden asignar valores por defecto en caso de que el array no tenga suficientes elementos:
+
+```javascript
+const array = ['valor1'];
+
+const [variable1, variable2 = 'valorPorDefecto'] = array;
+
+console.log(variable1); // Output: valor1
+console.log(variable2); // Output: valorPorDefecto
+```
+
+### EJEMPLOS DE IMPLEMENTACION
+
+**Intercambio de variables:**
+
+El destructuring facilita el intercambio de valores entre variables sin necesidad de una variable temporal:
+
+```javascript
+let a = 1;
+let b = 2;
+
+[a, b] = [b, a];
+
+console.log(a); // Output: 2
+console.log(b); // Output: 1
+```
+
+**Funciones que retornan múltiples valores:**
+
+El destructuring es útil para trabajar con funciones que retornan arrays u objetos:
+
+```javascript
+function obtenerCoordenadas() {
+  return {
+    x: 10,
+    y: 20
+  };
+}
+
+const { x, y } = obtenerCoordenadas();
+
+console.log(x); // Output: 10
+console.log(y); // Output: 20
+```
+
+**Iteración con `for...of`:**
+
+El destructuring puede utilizarse en bucles `for...of` para iterar sobre arrays de objetos:
+
+```javascript
+const usuarios = [
+  { id: 1, nombre: 'Juan' },
+  { id: 2, nombre: 'Maria' },
+  { id: 3, nombre: 'Pedro' }
+];
+
+for (const { id, nombre } of usuarios) {
+  console.log(`ID: ${id}, Nombre: ${nombre}`);
+}
+```
+
+## CONCLUSION
+
+El destructuring es una herramienta poderosa en JavaScript que mejora la legibilidad y eficiencia del código al simplificar la extracción de datos de objetos y arrays. Su uso adecuado puede reducir la verbosidad y hacer que el código sea más fácil de mantener.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: Destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+*   [ES6 Features: Destructuring](https://es6-features.org/#ArrayMatching)
+*   [JavaScript.info: Destructuring assignment](https://javascript.info/destructuring-assignment)

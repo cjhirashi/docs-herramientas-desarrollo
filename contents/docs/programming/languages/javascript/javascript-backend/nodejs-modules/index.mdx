@@ -1,0 +1,258 @@
+---
+title: Módulos en Node.js
+description:  Exploracion profunda de los modulos en Node.js, su importancia, tipos, creacion y uso.
+keywords: ["node.js", "modulos", "require", "export", "module.exports", "import", "javascript"]
+---
+
+Los módulos en Node.js son una parte fundamental de la arquitectura de esta plataforma. Permiten organizar el código en unidades reutilizables y mantenibles, facilitando la creación de aplicaciones complejas. En esencia, un módulo es un archivo de JavaScript que exporta funcionalidades para ser utilizadas en otros archivos.
+
+## OBJETIVOS CLAVE
+
+*   **Comprender la importancia de los módulos:** Entender por qué los módulos son esenciales para la organización y reutilización del código en Node.js.
+*   **Conocer los tipos de módulos:** Identificar los módulos principales (core modules), los módulos locales (creados por el usuario) y los módulos de terceros (instalados mediante npm).
+*   **Aprender a crear y exportar módulos:** Dominar las técnicas para definir y exportar funcionalidades desde un módulo.
+*   **Saber cómo importar módulos:** Utilizar la función `require()` para importar y utilizar módulos en otros archivos.
+*   **Familiarizarse con `module.exports` y `exports`:** Entender las diferencias y usos de estas dos formas de exportar módulos.
+*   **Explorar los módulos ES6 (ESM):** Introducción a la sintaxis `import` y `export` en Node.js.
+
+## ¿POR QUE USAR MODULOS?
+
+Los módulos son cruciales en Node.js por varias razones:
+
+*   **Organización del código:** Permiten dividir una aplicación grande en partes más pequeñas y manejables.
+*   **Reutilización:** Facilitan la reutilización de código en diferentes partes de la aplicación o en otros proyectos.
+*   **Encapsulamiento:** Ayudan a mantener el código encapsulado, evitando conflictos de nombres y reduciendo la complejidad.
+*   **Mantenibilidad:** Mejoran la mantenibilidad del código al facilitar la identificación y corrección de errores.
+
+## TIPOS DE MODULOS
+
+Node.js tiene tres tipos principales de módulos:
+
+1.  **Módulos Principales (Core Modules):** Estos módulos vienen incluidos con Node.js y proporcionan funcionalidades básicas como manejo de archivos (`fs`), operaciones de red (`http`), utilidades del sistema operativo (`os`), entre otros.
+2.  **Módulos Locales (User-Defined Modules):** Son los módulos que creas tú mismo para organizar tu código.
+3.  **Módulos de Terceros (Third-Party Modules):** Son módulos que se instalan desde el administrador de paquetes de Node.js (npm). Estos módulos suelen ser bibliotecas o frameworks que ofrecen funcionalidades específicas.
+
+## MODULOS PRINCIPALES (CORE MODULES)
+
+Los módulos principales se cargan directamente usando `require()`. No es necesario instalarlos, ya que están integrados en Node.js.
+
+**Ejemplo: Usando el módulo `fs` (File System)**
+
+```javascript
+// Importar el módulo 'fs'
+const fs = require('fs');
+
+// Leer un archivo de forma síncrona
+try {
+    const data = fs.readFileSync('archivo.txt', 'utf8');
+    console.log(data);
+} catch (err) {
+    console.error("Error al leer el archivo:", err);
+}
+```
+
+## MODULOS LOCALES (USER-DEFINED MODULES)
+
+Para crear un módulo local, simplemente creas un archivo JavaScript y exportas las funcionalidades que deseas compartir.
+
+**Ejemplo: Creando un módulo `calculadora.js`**
+
+```javascript
+// calculadora.js
+function sumar(a, b) {
+    return a + b;
+}
+
+function restar(a, b) {
+    return a - b;
+}
+
+// Exportar las funciones
+module.exports = {
+    sumar: sumar,
+    restar: restar
+};
+```
+
+**Usando el módulo `calculadora.js` en `app.js`**
+
+```javascript
+// app.js
+const calculadora = require('./calculadora');
+
+console.log("Suma:", calculadora.sumar(5, 3)); // Output: Suma: 8
+console.log("Resta:", calculadora.restar(5, 3)); // Output: Resta: 2
+```
+
+## MODULOS DE TERCEROS (THIRD-PARTY MODULES)
+
+Los módulos de terceros se instalan usando npm (Node Package Manager). Primero, debes inicializar un proyecto Node.js con `npm init` y luego instalar el módulo deseado.
+
+**Ejemplo: Usando el módulo `lodash`**
+
+1.  **Inicializar el proyecto:**
+
+    ```bash
+    npm init -y
+    ```
+2.  **Instalar `lodash`:**
+
+    ```bash
+    npm install lodash
+    ```
+3.  **Usar `lodash` en `app.js`:**
+
+    ```javascript
+    // app.js
+    const _ = require('lodash');
+
+    const numeros = [1, 2, 2, 3, 4, 4, 5];
+    const numerosUnicos = _.uniq(numeros);
+
+    console.log("Números únicos:", numerosUnicos); // Output: Números únicos: [ 1, 2, 3, 4, 5 ]
+    ```
+
+## `MODULE.EXPORTS` VS. `EXPORTS`
+
+En Node.js, hay dos formas principales de exportar módulos: `module.exports` y `exports`.
+
+*   `module.exports`: Es el objeto que Node.js devuelve cuando se requiere un módulo. Puedes asignarle cualquier valor, incluyendo objetos, funciones, etc.
+*   `exports`: Es una referencia al objeto `module.exports` inicial. Puedes agregar propiedades a este objeto, pero no puedes reasignarlo.
+
+**Ejemplo: Usando `module.exports`**
+
+```javascript
+// modulo.js
+module.exports = {
+    nombre: "Ejemplo",
+    version: "1.0.0",
+    saludar: function() {
+        console.log("Hola desde el módulo!");
+    }
+};
+```
+
+**Ejemplo: Usando `exports`**
+
+```javascript
+// modulo.js
+exports.nombre = "Ejemplo";
+exports.version = "1.0.0";
+exports.saludar = function() {
+    console.log("Hola desde el módulo!");
+};
+```
+
+**Importante:** Si asignas un nuevo valor a `exports`, romperás la referencia a `module.exports`, y tu módulo no exportará nada.
+
+```javascript
+// NO FUNCIONARÁ
+exports = {
+    nombre: "Ejemplo",
+    version: "1.0.0"
+};
+```
+
+## MODULOS ES6 (ESM)
+
+A partir de Node.js 14, se introdujo soporte nativo para los módulos ES6 (ECMAScript Modules). Esto permite usar la sintaxis `import` y `export` que es estándar en JavaScript moderno.
+
+Para usar ESM en Node.js, debes seguir estos pasos:
+
+1.  **Asegurarte de tener una versión de Node.js que soporte ESM (v14 o superior).**
+2.  **Añadir `"type": "module"` en tu `package.json`.**
+3.  **Usar la extensión `.mjs` para tus archivos de módulo, o mantener la extensión `.js` si has configurado `"type": "module"` en `package.json`.**
+
+**Ejemplo: Creando un módulo ESM `calculadora.mjs`**
+
+```javascript
+// calculadora.mjs
+export function sumar(a, b) {
+    return a + b;
+}
+
+export function restar(a, b) {
+    return a - b;
+}
+```
+
+**Usando el módulo `calculadora.mjs` en `app.mjs`**
+
+```javascript
+// app.mjs
+import { sumar, restar } from './calculadora.mjs';
+
+console.log("Suma:", sumar(5, 3)); // Output: Suma: 8
+console.log("Resta:", restar(5, 3)); // Output: Resta: 2
+```
+
+## EJEMPLO COMPLETO
+
+**Estructura del proyecto:**
+
+```
+mi-proyecto/
+├── package.json
+├── app.js
+└── utils/
+    └── saludo.js
+```
+
+**`package.json`:**
+
+```json
+{
+  "name": "mi-proyecto",
+  "version": "1.0.0",
+  "description": "Ejemplo de módulos en Node.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Tu Nombre",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
+```
+
+**`utils/saludo.js`:**
+
+```javascript
+// utils/saludo.js
+function saludar(nombre) {
+    return `Hola, ${nombre}!`;
+}
+
+module.exports = {
+    saludar: saludar
+};
+```
+
+**`app.js`:**
+
+```javascript
+// app.js
+const saludoModule = require('./utils/saludo');
+const _ = require('lodash');
+
+const nombre = "Mundo";
+const mensaje = saludoModule.saludar(nombre);
+
+console.log(mensaje); // Output: Hola, Mundo!
+
+const numeros = [1, 2, 2, 3, 4, 4, 5];
+const numerosUnicos = _.uniq(numeros);
+
+console.log("Números únicos:", numerosUnicos); // Output: Números únicos: [ 1, 2, 3, 4, 5 ]
+```
+
+Para ejecutar este ejemplo, guarda los archivos, ejecuta `npm install` para instalar `lodash`, y luego ejecuta `node app.js`.
+
+## FUENTES DEL DOCUMENTO
+
+*   [Node.js Documentation](https://nodejs.org/en/docs/)
+*   [MDN Web Docs](https://developer.mozilla.org/en-US/)
+*   [npm Documentation](https://docs.npmjs.com/)
+*   [Lodash Documentation](https://lodash.com/docs/)

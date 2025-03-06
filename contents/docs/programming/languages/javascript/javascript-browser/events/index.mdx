@@ -1,0 +1,237 @@
+---
+title: Eventos Javascript
+description:  Exploración profunda de los eventos en JavaScript, su funcionamiento, tipos y cómo utilizarlos para crear interacciones dinámicas en la web.
+keywords: ["javascript", "eventos", "event listeners", "event handlers", "DOM", "interactividad web"]
+---
+
+Los eventos en JavaScript son acciones o ocurrencias que suceden en el navegador, como un clic del ratón, la carga de una página, el envío de un formulario, o la pulsación de una tecla.  JavaScript permite "escuchar" estos eventos y ejecutar código en respuesta a ellos, lo que posibilita la creación de páginas web interactivas y dinámicas.
+
+## OBJETIVOS CLAVE SOBRE EL TEMA
+
+*   **Comprender el Modelo de Eventos del DOM:**  Entender cómo los eventos se propagan a través del Document Object Model (DOM).
+*   **Manejar Eventos Comunes:**  Aprender a utilizar los eventos más frecuentes como `click`, `mouseover`, `keydown`, `submit`, etc.
+*   **Utilizar Event Listeners:**  Dominar el uso de `addEventListener` para adjuntar funciones a eventos de manera eficiente.
+*   **Prevenir el Comportamiento Predeterminado:**  Saber cómo evitar que un evento realice su acción por defecto (ej. la redirección de un enlace).
+*   **Delegación de Eventos:**  Implementar la delegación de eventos para optimizar el rendimiento y simplificar el manejo de eventos en elementos dinámicos.
+
+## ¿QUE SON LOS EVENTOS?
+
+Un evento es una señal que indica que algo ha ocurrido.  En el contexto de la web, estos eventos están relacionados con la interacción del usuario con la página o con el estado del navegador.  Cada elemento HTML en una página web puede ser "escuchado" para detectar ciertos eventos.
+
+## TIPOS DE EVENTOS
+
+JavaScript ofrece una amplia variedad de eventos, que se pueden clasificar en varias categorías:
+
+*   **Eventos del Ratón:**  `click`, `dblclick`, `mouseover`, `mouseout`, `mousemove`, `contextmenu`.
+*   **Eventos del Teclado:**  `keydown`, `keypress`, `keyup`.
+*   **Eventos de Formulario:**  `submit`, `focus`, `blur`, `change`, `input`.
+*   **Eventos de Ventana/Documento:**  `load`, `unload`, `resize`, `scroll`.
+*   **Eventos de Arrastre y Soltar:**  `dragstart`, `drag`, `dragenter`, `dragleave`, `drop`, `dragend`.
+*   **Eventos Táctiles (en dispositivos móviles):**  `touchstart`, `touchmove`, `touchend`, `touchcancel`.
+
+## MANEJADORES DE EVENTOS (EVENT HANDLERS)
+
+Un manejador de eventos es una función que se ejecuta cuando ocurre un evento específico.  Hay varias formas de asignar manejadores de eventos en JavaScript:
+
+1.  **Atributos HTML (En línea):**
+
+    Este es el método más antiguo y menos recomendado, ya que mezcla la estructura HTML con el comportamiento JavaScript.
+
+    ```html
+    <button onclick="alert('¡Hiciste clic!')">Haz clic aquí</button>
+    ```
+
+2.  **Propiedades del DOM:**
+
+    Se asigna una función directamente a la propiedad del evento del elemento DOM.
+
+    ```javascript
+    const boton = document.querySelector('button');
+    boton.onclick = function() {
+      alert('¡Hiciste clic!');
+    };
+    ```
+
+3.  **`addEventListener()`:**
+
+    Este es el método más moderno y flexible.  Permite adjuntar múltiples manejadores a un mismo evento y ofrece mayor control sobre la propagación del evento.
+
+    ```javascript
+    const boton = document.querySelector('button');
+    boton.addEventListener('click', function() {
+      alert('¡Hiciste clic!');
+    });
+    ```
+
+    *   **Ventajas de `addEventListener()`:**
+        *   Permite adjuntar múltiples manejadores al mismo evento.
+        *   Ofrece control sobre la fase de captura y burbuja del evento (ver más adelante).
+        *   Facilita la gestión de eventos y la separación de responsabilidades.
+
+## EL OBJETO EVENT
+
+Cuando ocurre un evento, se crea un objeto `Event` que contiene información detallada sobre el evento.  Este objeto se pasa como argumento a la función manejadora del evento.
+
+```javascript
+const boton = document.querySelector('button');
+boton.addEventListener('click', function(event) {
+  console.log('Tipo de evento:', event.type); // "click"
+  console.log('Elemento objetivo:', event.target); // El botón
+  console.log('Coordenadas del clic:', event.clientX, event.clientY);
+});
+```
+
+Algunas propiedades comunes del objeto `Event` son:
+
+*   `type`:  El tipo de evento (ej. "click", "keydown").
+*   `target`:  El elemento que originó el evento.
+*   `currentTarget`:  El elemento al que está adjunto el manejador de eventos (puede ser diferente de `target` en la delegación de eventos).
+*   `clientX`, `clientY`:  Las coordenadas del puntero del ratón en el momento del evento.
+*   `keyCode`:  El código de la tecla presionada (para eventos de teclado).
+*   `preventDefault()`:  Un método para prevenir el comportamiento predeterminado del evento.
+*   `stopPropagation()`:  Un método para detener la propagación del evento a través del DOM.
+
+## PROPAGACION DE EVENTOS: FASE DE CAPTURA Y FASE DE BURBUJA
+
+Cuando ocurre un evento en un elemento, este evento se propaga a través del DOM en dos fases:
+
+1.  **Fase de Captura:**  El evento viaja desde la raíz del documento hacia el elemento objetivo.  Los manejadores de eventos adjuntos en la fase de captura se ejecutan primero.
+2.  **Fase de Burbuja:**  El evento viaja desde el elemento objetivo hacia la raíz del documento.  Los manejadores de eventos adjuntos en la fase de burbuja se ejecutan después de los de la fase de captura.
+
+Por defecto, los manejadores de eventos se adjuntan en la fase de burbuja.  Sin embargo, se puede especificar la fase de captura al utilizar `addEventListener()`:
+
+```javascript
+elemento.addEventListener('click', function() {
+  console.log('Fase de captura');
+}, true); // El tercer argumento "true" indica la fase de captura
+
+elemento.addEventListener('click', function() {
+  console.log('Fase de burbuja');
+}, false); // El tercer argumento "false" (o omitido) indica la fase de burbuja
+```
+
+## DELEGACION DE EVENTOS
+
+La delegación de eventos es una técnica que consiste en adjuntar un manejador de eventos a un elemento padre en lugar de a cada uno de sus elementos hijos.  Cuando ocurre un evento en un elemento hijo, el evento se propaga hacia el elemento padre, y el manejador de eventos del padre se ejecuta.  Dentro del manejador, se puede determinar qué elemento hijo originó el evento utilizando la propiedad `event.target`.
+
+```html
+<ul id="lista">
+  <li>Elemento 1</li>
+  <li>Elemento 2</li>
+  <li>Elemento 3</li>
+</ul>
+
+<script>
+  const lista = document.getElementById('lista');
+
+  lista.addEventListener('click', function(event) {
+    if (event.target.tagName === 'LI') {
+      console.log('Hiciste clic en:', event.target.textContent);
+    }
+  });
+</script>
+```
+
+*   **Ventajas de la Delegación de Eventos:**
+    *   **Mejora el rendimiento:**  Reduce la cantidad de manejadores de eventos adjuntos al DOM.
+    *   **Simplifica el manejo de elementos dinámicos:**  No es necesario adjuntar nuevos manejadores de eventos a los elementos que se añaden dinámicamente al DOM.
+    *   **Reduce el consumo de memoria:**  Menos manejadores de eventos significan menos memoria utilizada.
+
+## PREVENIR EL COMPORTAMIENTO PREDETERMINADO
+
+Algunos eventos tienen un comportamiento predeterminado asociado.  Por ejemplo, al hacer clic en un enlace, el navegador normalmente navega a la URL especificada en el atributo `href`.  Se puede prevenir este comportamiento predeterminado utilizando el método `preventDefault()` del objeto `Event`.
+
+```html
+<a href="https://www.ejemplo.com" id="enlace">Visitar Ejemplo.com</a>
+
+<script>
+  const enlace = document.getElementById('enlace');
+
+  enlace.addEventListener('click', function(event) {
+    event.preventDefault(); // Previene la navegación a Ejemplo.com
+    alert('Enlace clickeado, pero la navegación fue prevenida.');
+  });
+</script>
+```
+
+## EJEMPLOS DE IMPLEMENTACION
+
+1.  **Mostrar/Ocultar Contenido al Hacer Clic:**
+
+    ```html
+    <button id="botonMostrarOcultar">Mostrar/Ocultar</button>
+    <div id="contenido" style="display: none;">
+      Este es el contenido que se mostrará u ocultará.
+    </div>
+
+    <script>
+      const botonMostrarOcultar = document.getElementById('botonMostrarOcultar');
+      const contenido = document.getElementById('contenido');
+
+      botonMostrarOcultar.addEventListener('click', function() {
+        if (contenido.style.display === 'none') {
+          contenido.style.display = 'block';
+        } else {
+          contenido.style.display = 'none';
+        }
+      });
+    </script>
+    ```
+
+2.  **Validación de Formulario en Tiempo Real:**
+
+    ```html
+    <form id="miFormulario">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre">
+      <span id="errorNombre" style="color: red;"></span>
+      <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+      const formulario = document.getElementById('miFormulario');
+      const nombreInput = document.getElementById('nombre');
+      const errorNombre = document.getElementById('errorNombre');
+
+      nombreInput.addEventListener('input', function() {
+        if (nombreInput.value.length < 3) {
+          errorNombre.textContent = 'El nombre debe tener al menos 3 caracteres.';
+        } else {
+          errorNombre.textContent = '';
+        }
+      });
+
+      formulario.addEventListener('submit', function(event) {
+        if (nombreInput.value.length < 3) {
+          event.preventDefault(); // Previene el envío del formulario
+          alert('Por favor, corrige los errores antes de enviar.');
+        }
+      });
+    </script>
+    ```
+
+3.  **Cambiar el Estilo de un Elemento al Pasar el Ratón:**
+
+    ```html
+    <div id="miDiv" style="width: 100px; height: 100px; background-color: lightblue;">
+      Pasa el ratón por encima
+    </div>
+
+    <script>
+      const miDiv = document.getElementById('miDiv');
+
+      miDiv.addEventListener('mouseover', function() {
+        miDiv.style.backgroundColor = 'lightgreen';
+      });
+
+      miDiv.addEventListener('mouseout', function() {
+        miDiv.style.backgroundColor = 'lightblue';
+      });
+    </script>
+    ```
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: Events](https://developer.mozilla.org/en-US/docs/Web/Events)
+*   [W3Schools: JavaScript Events](https://www.w3schools.com/js/js_events.asp)
+*   [Eloquent JavaScript: Handling Events](https://eloquentjavascript.net/15_event.html)

@@ -1,0 +1,128 @@
+---
+title: Forms en JavaScript
+description: Manipulación y validación de formularios en JavaScript.
+keywords: ["javascript", "forms", "html", "validation", "DOM"]
+---
+
+Los formularios son un componente esencial de las aplicaciones web, permitiendo a los usuarios interactuar y enviar datos al servidor. JavaScript juega un papel crucial en la manipulación y validación de estos formularios en el lado del cliente, mejorando la experiencia del usuario y reduciendo la carga en el servidor.
+
+## OBJETIVOS CLAVE
+
+*   **Acceso a Elementos del Formulario:** Aprender cómo acceder a los elementos de un formulario utilizando el DOM (Document Object Model).
+*   **Validación de Datos:** Implementar la validación de datos del lado del cliente para asegurar que la información ingresada por el usuario sea correcta y completa.
+*   **Manipulación de Eventos:** Utilizar JavaScript para capturar y manejar eventos relacionados con los formularios, como el envío (submit) y el cambio (change).
+*   **Mejora de la Experiencia del Usuario:** Proporcionar retroalimentación inmediata al usuario sobre la validez de los datos ingresados.
+
+## ACCESO A ELEMENTOS DEL FORMULARIO
+
+Para interactuar con un formulario en JavaScript, primero necesitas acceder a los elementos del formulario utilizando el DOM. Puedes hacerlo utilizando métodos como `document.getElementById()`, `document.querySelector()` o `document.querySelectorAll()`.
+
+**Ejemplo:**
+
+```html
+<form id="myForm">
+  <label for="name">Nombre:</label>
+  <input type="text" id="name" name="name"><br><br>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+  const form = document.getElementById('myForm');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+
+  console.log(form);
+  console.log(nameInput);
+  console.log(emailInput);
+</script>
+```
+
+En este ejemplo, obtenemos referencias al formulario y a los campos de entrada de nombre y correo electrónico utilizando sus IDs.
+
+## VALIDACION DE DATOS
+
+La validación de datos es un paso crucial para asegurar que la información enviada al servidor sea correcta y completa. JavaScript permite realizar validaciones en el lado del cliente antes de enviar los datos al servidor.
+
+**Ejemplo:**
+
+```javascript
+form.addEventListener('submit', function(event) {
+  let isValid = true;
+
+  if (nameInput.value.trim() === '') {
+    alert('El nombre es obligatorio');
+    isValid = false;
+  }
+
+  if (emailInput.value.trim() === '') {
+    alert('El email es obligatorio');
+    isValid = false;
+  } else if (!isValidEmail(emailInput.value)) {
+    alert('El email no es válido');
+    isValid = false;
+  }
+
+  if (!isValid) {
+    event.preventDefault(); // Evita que el formulario se envíe si no es válido
+  }
+});
+
+function isValidEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+```
+
+En este ejemplo, se agrega un event listener al formulario para el evento `submit`. Dentro de la función, se realizan validaciones para asegurar que los campos de nombre y correo electrónico no estén vacíos y que el correo electrónico tenga un formato válido. Si alguna validación falla, se muestra una alerta y se evita que el formulario se envíe utilizando `event.preventDefault()`.
+
+## MANIPULACION DE EVENTOS
+
+JavaScript permite capturar y manejar eventos relacionados con los formularios, como el envío (submit) y el cambio (change).
+
+**Ejemplo:**
+
+```javascript
+nameInput.addEventListener('change', function() {
+  console.log('El nombre ha cambiado a: ' + nameInput.value);
+});
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // Evita el envío del formulario para este ejemplo
+  console.log('Formulario enviado');
+  console.log('Nombre: ' + nameInput.value);
+  console.log('Email: ' + emailInput.value);
+});
+```
+
+En este ejemplo, se agrega un event listener al campo de nombre para el evento `change`. Cada vez que el valor del campo de nombre cambia, se muestra un mensaje en la consola. También se agrega un event listener al formulario para el evento `submit`. Cuando el formulario se envía, se evita el envío real del formulario utilizando `event.preventDefault()` y se muestran los valores de los campos en la consola.
+
+## MEJORA DE LA EXPERIENCIA DEL USUARIO
+
+Proporcionar retroalimentación inmediata al usuario sobre la validez de los datos ingresados mejora significativamente la experiencia del usuario.
+
+**Ejemplo:**
+
+```javascript
+nameInput.addEventListener('input', function() {
+  if (nameInput.value.trim() === '') {
+    nameInput.classList.add('error');
+  } else {
+    nameInput.classList.remove('error');
+  }
+});
+```
+
+En este ejemplo, se agrega un event listener al campo de nombre para el evento `input`. Cada vez que el usuario ingresa o borra texto en el campo, se verifica si el campo está vacío. Si está vacío, se agrega la clase `error` al campo, lo que permite aplicar estilos CSS para indicar que el campo es inválido. Si el campo no está vacío, se elimina la clase `error`.
+
+```css
+.error {
+  border: 1px solid red;
+}
+```
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: Forms](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Forms)
+*   [W3Schools: JavaScript Form Validation](https://www.w3schools.com/js/js_validation.asp)

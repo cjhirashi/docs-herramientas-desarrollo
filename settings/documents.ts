@@ -219,6 +219,10 @@ export const Documents: Paths[] = [
                             href: "/react",
                         },
                         {
+                          title: "Next.js",
+                          href: "/nextjs",
+                        },
+                        {
                             title: "Angular",
                             href: "/angular",
                         },

@@ -1,0 +1,317 @@
+---
+title: Codigo Limpio
+description:  Guia para escribir codigo Javascript limpio, mantenible y legible.
+keywords: ["javascript", "codigo limpio", "clean code", "mejores practicas", "legibilidad", "mantenimiento"]
+---
+
+El código limpio en JavaScript es fundamental para crear aplicaciones robustas, mantenibles y colaborativas. Se refiere a un estilo de programación que enfatiza la legibilidad, simplicidad y claridad del código. Un código limpio no solo es más fácil de entender para otros desarrolladores, sino que también reduce la probabilidad de errores y facilita la depuración.
+
+## OBJETIVOS CLAVE
+
+*   **Legibilidad:** El código debe ser fácil de leer y entender, como si fuera prosa.
+*   **Mantenibilidad:** Debe ser fácil de modificar y extender sin introducir nuevos errores.
+*   **Reusabilidad:** Los componentes y funciones deben ser diseñados para ser reutilizados en diferentes partes del proyecto.
+*   **Simplicidad:** Evitar la complejidad innecesaria y optar por soluciones claras y directas.
+*   **Testabilidad:** Facilitar la escritura de pruebas unitarias y de integración para asegurar la calidad del código.
+
+## 1. NOMBRES SIGNIFICATIVOS
+
+Elegir nombres descriptivos y significativos para variables, funciones y clases es crucial. Un buen nombre debe indicar claramente el propósito de la entidad que representa.
+
+**Ejemplo:**
+
+**Malo:**
+
+```javascript
+let d; // Dias transcurridos
+function f(x) {
+  // ...
+}
+```
+
+**Bueno:**
+
+```javascript
+let diasTranscurridos;
+function calcularImpuestos(ingreso) {
+  // ...
+}
+```
+
+## 2. FUNCIONES CHICAS Y MODULARES
+
+Las funciones deben ser pequeñas y realizar una única tarea bien definida. Esto facilita la comprensión, prueba y reutilización del código.
+
+**Ejemplo:**
+
+**Malo:**
+
+```javascript
+function procesarPedido(pedido) {
+  // Validar el pedido
+  if (!pedido.cliente || !pedido.productos || pedido.productos.length === 0) {
+    console.error("Pedido invalido");
+    return;
+  }
+
+  // Calcular el total
+  let total = 0;
+  for (let producto of pedido.productos) {
+    total += producto.precio * producto.cantidad;
+  }
+
+  // Aplicar descuentos
+  if (pedido.cliente.esPremium) {
+    total *= 0.9; // 10% de descuento
+  }
+
+  // Guardar en la base de datos
+  guardarPedidoEnDB(pedido, total);
+
+  // Enviar confirmacion al cliente
+  enviarEmailConfirmacion(pedido.cliente.email, total);
+}
+```
+
+**Bueno:**
+
+```javascript
+function validarPedido(pedido) {
+  if (!pedido.cliente || !pedido.productos || pedido.productos.length === 0) {
+    console.error("Pedido invalido");
+    return false;
+  }
+  return true;
+}
+
+function calcularTotalPedido(pedido) {
+  let total = 0;
+  for (let producto of pedido.productos) {
+    total += producto.precio * producto.cantidad;
+  }
+  return total;
+}
+
+function aplicarDescuentos(total, cliente) {
+  if (cliente.esPremium) {
+    total *= 0.9; // 10% de descuento
+  }
+  return total;
+}
+
+function procesarPedido(pedido) {
+  if (!validarPedido(pedido)) return;
+
+  let total = calcularTotalPedido(pedido);
+  total = aplicarDescuentos(total, pedido.cliente);
+
+  guardarPedidoEnDB(pedido, total);
+  enviarEmailConfirmacion(pedido.cliente.email, total);
+}
+```
+
+## 3. COMENTARIOS ADECUADOS
+
+Los comentarios deben explicar el *por qué* del código, no el *qué*. Evitar comentarios obvios que simplemente repiten lo que el código ya dice.
+
+**Ejemplo:**
+
+**Malo:**
+
+```javascript
+i++; // Incrementa i en 1
+```
+
+**Bueno:**
+
+```javascript
+// Ajusta el indice para apuntar al siguiente elemento en el array
+i++;
+```
+
+## 4. INDENTACION CONSISTENTE
+
+Mantener una indentación consistente hace que el código sea más legible y fácil de seguir. Utilizar 2 o 4 espacios para la indentación y adherirse a esta convención en todo el proyecto.
+
+**Ejemplo:**
+
+**Malo:**
+
+```javascript
+function ejemplo() {
+if (true) {
+console.log("Hola");
+}
+}
+```
+
+**Bueno:**
+
+```javascript
+function ejemplo() {
+  if (true) {
+    console.log("Hola");
+  }
+}
+```
+
+## 5. EVITAR LA DUPLICACION DE CODIGO 
+
+***DRY - DON'T REPEAT YOURSELF***
+
+La duplicación de código aumenta la probabilidad de errores y dificulta el mantenimiento. Extraer el código duplicado en funciones o componentes reutilizables.
+
+**Ejemplo:**
+
+**Malo:**
+
+```javascript
+function calcularAreaRectangulo(ancho, alto) {
+  return ancho * alto;
+}
+
+function calcularPerimetroRectangulo(ancho, alto) {
+  return 2 * ancho + 2 * alto;
+}
+```
+
+**Bueno:**
+
+```javascript
+function calcularArea(ancho, alto) {
+  return ancho * alto;
+}
+
+function calcularPerimetro(ancho, alto) {
+  return 2 * (ancho + alto);
+}
+```
+
+## 6. MANEJO DE ERRORES
+
+Implementar un manejo de errores adecuado para prevenir que la aplicación falle de manera inesperada. Utilizar bloques `try...catch` para capturar excepciones y proporcionar mensajes de error informativos.
+
+**Ejemplo:**
+
+```javascript
+function dividir(a, b) {
+  try {
+    if (b === 0) {
+      throw new Error("No se puede dividir por cero");
+    }
+    return a / b;
+  } catch (error) {
+    console.error("Error:", error.message);
+    return null;
+  }
+}
+```
+
+## 7. USO DE LINTERS Y FORMATTERS
+
+Utilizar linters (como ESLint) y formatters (como Prettier) para automatizar la aplicación de reglas de estilo y formato. Estas herramientas pueden detectar errores comunes y asegurar la consistencia del código en todo el proyecto.
+
+**Ejemplo:**
+
+Configuración de ESLint:
+
+```javascript
+// .eslintrc.js
+module.exports = {
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ]
+  }
+};
+```
+
+## 8. PRUEBAS UNITARIAS
+
+Escribir pruebas unitarias para verificar que cada componente o función funciona correctamente. Las pruebas unitarias ayudan a detectar errores tempranamente y aseguran que el código se comporta como se espera después de realizar cambios.
+
+**Ejemplo:**
+
+Usando Jest:
+
+```javascript
+// sum.js
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = sum;
+```
+
+```javascript
+// sum.test.js
+const sum = require('./sum');
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+
+## 9. USO DE TYPESCRIPT
+
+Considerar el uso de TypeScript para añadir tipado estático a JavaScript. TypeScript ayuda a detectar errores en tiempo de compilación, mejora la legibilidad del código y facilita la refactorización.
+
+**Ejemplo:**
+
+```typescript
+function saludar(nombre: string): string {
+  return `Hola, ${nombre}`;
+}
+
+console.log(saludar("Juan"));
+```
+
+## 10. DOCUMENTACION
+
+Documentar el código utilizando herramientas como JSDoc para generar documentación automática. Una buena documentación facilita la comprensión del código y ayuda a otros desarrolladores a utilizarlo correctamente.
+
+**Ejemplo:**
+
+```javascript
+/**
+ * Suma dos numeros.
+ * @param {number} a - El primer numero.
+ * @param {number} b - El segundo numero.
+ * @returns {number} La suma de a y b.
+ */
+function sumar(a, b) {
+  return a + b;
+}
+```
+
+## CONCLUSION
+
+Escribir código limpio en JavaScript es una inversión que produce beneficios a largo plazo. Al seguir estas prácticas, se puede crear código más legible, mantenible, reutilizable y fácil de probar, lo que resulta en aplicaciones de mayor calidad y un proceso de desarrollo más eficiente.
+
+## FUENTES DEL DOCUMENTO
+
+*   Robert C. Martin, "Clean Code: A Handbook of Agile Software Craftsmanship"
+*   Steve McConnell, "Code Complete: A Practical Handbook of Software Construction"
+*   [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+*   [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)

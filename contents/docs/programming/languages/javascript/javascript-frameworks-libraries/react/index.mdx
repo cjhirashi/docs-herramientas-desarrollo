@@ -1,0 +1,224 @@
+---
+title: React
+description: React es una biblioteca de JavaScript para construir interfaces de usuario interactivas y reutilizables.
+keywords: ["react", "javascript", "ui", "componentes", "frontend", "biblioteca"]
+---
+
+React es una biblioteca de JavaScript de código abierto diseñada para facilitar la creación de interfaces de usuario (UI) interactivas, especialmente en aplicaciones web de una sola página. Desarrollada y mantenida por Facebook (ahora Meta) y una gran comunidad de desarrolladores, React permite a los desarrolladores dividir la UI en componentes reutilizables, cada uno gestionando su propio estado. Esta arquitectura basada en componentes simplifica el desarrollo, la prueba y el mantenimiento de aplicaciones complejas.
+
+## OBJETIVOS CLAVE
+
+*   **Componentes Reutilizables:** React promueve la creación de componentes que pueden ser reutilizados en diferentes partes de la aplicación, lo que reduce la duplicación de código y facilita el mantenimiento.
+*   **Declarativo:** React permite a los desarrolladores describir cómo debe verse la UI en diferentes estados, en lugar de manipular directamente el DOM. Esto hace que el código sea más legible y fácil de entender.
+*   **Eficiencia:** React utiliza un DOM virtual para minimizar las actualizaciones directas al DOM real del navegador, lo que mejora el rendimiento de la aplicación.
+*   **Comunidad y Ecosistema:** React cuenta con una gran comunidad de desarrolladores y un ecosistema rico en bibliotecas y herramientas que facilitan el desarrollo de aplicaciones complejas.
+
+## DESARROLLO DE REACT
+
+### COMPONENTES
+
+En React, un componente es una pieza de código reutilizable que define una parte de la UI. Los componentes pueden ser funcionales o de clase.
+
+#### COMPONENTES FUNCIONALES
+
+Los componentes funcionales son funciones de JavaScript que reciben propiedades (props) como argumento y retornan elementos de React que describen la UI.
+
+```javascript
+function Saludo(props) {
+  return <h1>Hola, {props.nombre}!</h1>;
+}
+
+export default Saludo;
+```
+
+#### COMPONENTES DE CLASE
+
+Los componentes de clase son clases de JavaScript que extienden la clase `React.Component`. Estos componentes tienen un método `render()` que retorna los elementos de React.
+
+```javascript
+import React from 'react';
+
+class Saludo extends React.Component {
+  render() {
+    return <h1>Hola, {this.props.nombre}!</h1>;
+  }
+}
+
+export default Saludo;
+```
+
+### JSX
+
+JSX es una extensión de sintaxis para JavaScript que permite escribir código HTML dentro de JavaScript. React utiliza JSX para describir la estructura de la UI.
+
+```javascript
+const elemento = <h1>Hola, Mundo!</h1>;
+```
+
+JSX se transforma en llamadas a `React.createElement()` durante la compilación.
+
+### ESTADO (STATE)
+
+El estado de un componente es un objeto que contiene datos que pueden cambiar con el tiempo. Cuando el estado de un componente cambia, React actualiza la UI para reflejar los nuevos datos.
+
+```javascript
+import React, { useState } from 'react';
+
+function Contador() {
+  const [contador, setContador] = useState(0);
+
+  return (
+    <div>
+      <p>Contador: {contador}</p>
+      <button onClick={() => setContador(contador + 1)}>
+        Incrementar
+      </button>
+    </div>
+  );
+}
+
+export default Contador;
+```
+
+### PROPIEDADES (PROPS)
+
+Las propiedades son datos que se pasan de un componente padre a un componente hijo. Las propiedades son inmutables desde el punto de vista del componente hijo.
+
+```javascript
+function Saludo(props) {
+  return <h1>Hola, {props.nombre}!</h1>;
+}
+
+function App() {
+  return <Saludo nombre="Usuario" />;
+}
+
+export default App;
+```
+
+### CICLO DE VIDA DE LOS COMPONENTES
+
+Los componentes de clase en React tienen un ciclo de vida que incluye varios métodos que se ejecutan en diferentes momentos. Algunos de los métodos más comunes son:
+
+*   `constructor()`: Se ejecuta al crear el componente.
+*   `render()`: Se ejecuta para renderizar el componente.
+*   `componentDidMount()`: Se ejecuta después de que el componente se monta en el DOM.
+*   `componentDidUpdate()`: Se ejecuta después de que el componente se actualiza.
+*   `componentWillUnmount()`: Se ejecuta antes de que el componente se desmonte del DOM.
+
+### GESTION DE EVENTOS
+
+React proporciona un sistema de gestión de eventos que es similar al de HTML, pero con algunas diferencias. Los eventos en React se nombran en camelCase en lugar de minúsculas.
+
+```javascript
+function Boton() {
+  function handleClick() {
+    alert('¡Botón clickeado!');
+  }
+
+  return <button onClick={handleClick}>Haz clic aquí</button>;
+}
+
+export default Boton;
+```
+
+### HOOKS
+
+Los Hooks son funciones que permiten a los componentes funcionales acceder al estado y a otras características de React que solo estaban disponibles en los componentes de clase. Algunos de los Hooks más comunes son:
+
+*   `useState()`: Permite añadir estado a un componente funcional.
+*   `useEffect()`: Permite realizar efectos secundarios en un componente funcional.
+*   `useContext()`: Permite acceder al contexto en un componente funcional.
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function EjemploHook() {
+  const [contador, setContador] = useState(0);
+
+  useEffect(() => {
+    document.title = `Contador: ${contador}`;
+  }, [contador]);
+
+  return (
+    <div>
+      <p>Contador: {contador}</p>
+      <button onClick={() => setContador(contador + 1)}>
+        Incrementar
+      </button>
+    </div>
+  );
+}
+
+export default EjemploHook;
+```
+
+### ENRUTAMIENTO
+
+El enrutamiento en React permite navegar entre diferentes vistas o componentes en una aplicación de una sola página. React Router es una biblioteca popular para gestionar el enrutamiento en React.
+
+```javascript
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+function Inicio() {
+  return <h2>Inicio</h2>;
+}
+
+function AcercaDe() {
+  return <h2>Acerca De</h2>;
+}
+
+function App() {
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Inicio</Link>
+            </li>
+            <li>
+              <Link to="/acerca-de">Acerca De</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Route path="/" exact component={Inicio} />
+        <Route path="/acerca-de" component={AcercaDe} />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
+```
+
+### ESTILOS
+
+Hay varias formas de añadir estilos a los componentes de React:
+
+*   **Estilos en línea:** Se añaden directamente como atributos a los elementos.
+*   **Hojas de estilo CSS:** Se importan archivos CSS y se aplican clases a los elementos.
+*   **Módulos CSS:** Similar a las hojas de estilo CSS, pero con nombres de clase únicos para evitar conflictos.
+*   **Librerías de estilos:** Se utilizan librerías como Styled Components o Material-UI para gestionar los estilos.
+
+```javascript
+// Estilos en línea
+const estiloH1 = {
+  color: 'blue',
+  fontSize: '24px'
+};
+
+function Titulo() {
+  return <h1 style={estiloH1}>Título con estilo</h1>;
+}
+
+export default Titulo;
+```
+
+## FUENTES DEL DOCUMENTO
+
+*   [React Official Documentation](https://reactjs.org/)
+*   [React Router Documentation](https://reactrouter.com/)
+*   [Styled Components Documentation](https://styled-components.com/)
+*   [Material-UI Documentation](https://mui.com/)

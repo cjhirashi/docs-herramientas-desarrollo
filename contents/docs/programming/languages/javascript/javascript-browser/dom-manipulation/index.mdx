@@ -1,0 +1,257 @@
+---
+title: Manipulacion Del DOM Javascript
+description:  Guia completa sobre la manipulacion del DOM con Javascript, incluyendo seleccion de elementos, modificacion de atributos, creacion y eliminacion de nodos, y manejo de eventos.
+keywords: ["DOM", "Javascript", "manipulacion DOM", "seleccion elementos", "modificacion atributos", "creacion nodos", "eliminacion nodos", "eventos DOM"]
+---
+
+El Document Object Model (DOM) es una interfaz de programacion para documentos HTML y XML. Representa la pagina web como una estructura de arbol, donde cada elemento HTML es un nodo en el arbol. Javascript utiliza el DOM para interactuar con los elementos de una pagina web, permitiendo modificar su contenido, estilo y estructura.
+
+## OBJETIVOS CLAVE
+
+*   **Seleccion de Elementos:** Aprender a seleccionar elementos del DOM utilizando diferentes metodos.
+*   **Modificacion de Atributos:**  Entender como modificar los atributos de los elementos HTML.
+*   **Creacion y Eliminacion de Nodos:**  Saber como crear nuevos elementos y eliminarlos del DOM.
+*   **Manejo de Eventos:**  Aprender a responder a las interacciones del usuario mediante eventos.
+
+## SELECCION DE ELEMENTOS
+
+Javascript proporciona varios metodos para seleccionar elementos del DOM. Algunos de los mas comunes son:
+
+*   **`getElementById(id)`:**  Selecciona un elemento por su atributo `id`.
+
+    ```javascript
+    const elemento = document.getElementById("miElemento");
+    console.log(elemento); // Imprime el elemento con el id "miElemento"
+    ```
+
+*   **`getElementsByClassName(className)`:**  Selecciona todos los elementos con la clase especificada.
+
+    ```javascript
+    const elementos = document.getElementsByClassName("miClase");
+    console.log(elementos); // Imprime una HTMLCollection con todos los elementos de la clase "miClase"
+    ```
+
+*   **`getElementsByTagName(tagName)`:**  Selecciona todos los elementos con el nombre de etiqueta especificado.
+
+    ```javascript
+    const elementos = document.getElementsByTagName("p");
+    console.log(elementos); // Imprime una HTMLCollection con todos los parrafos (<p>)
+    ```
+
+*   **`querySelector(selector)`:**  Selecciona el primer elemento que coincide con el selector CSS especificado.
+
+    ```javascript
+    const elemento = document.querySelector(".miClase");
+    console.log(elemento); // Imprime el primer elemento con la clase "miClase"
+    ```
+
+*   **`querySelectorAll(selector)`:**  Selecciona todos los elementos que coinciden con el selector CSS especificado.
+
+    ```javascript
+    const elementos = document.querySelectorAll("div > p");
+    console.log(elementos); // Imprime una NodeList con todos los parrafos (<p>) que son hijos directos de un <div>
+    ```
+
+## MODIFICACION DE ATRIBUTOS
+
+Los atributos de los elementos HTML pueden ser modificados utilizando Javascript.
+
+*   **`getAttribute(attributeName)`:**  Obtiene el valor del atributo especificado.
+
+    ```javascript
+    const elemento = document.getElementById("miImagen");
+    const src = elemento.getAttribute("src");
+    console.log(src); // Imprime la URL de la imagen
+    ```
+
+*   **`setAttribute(attributeName, attributeValue)`:**  Establece el valor del atributo especificado.
+
+    ```javascript
+    const elemento = document.getElementById("miImagen");
+    elemento.setAttribute("src", "nueva_imagen.jpg"); // Cambia la URL de la imagen
+    ```
+
+*   **`removeAttribute(attributeName)`:**  Elimina el atributo especificado.
+
+    ```javascript
+    const elemento = document.getElementById("miEnlace");
+    elemento.removeAttribute("href"); // Elimina el atributo href del enlace
+    ```
+
+*   **Propiedades del Objeto Elemento:**  Muchos atributos HTML tienen propiedades correspondientes en el objeto elemento.
+
+    ```javascript
+    const elemento = document.getElementById("miCaja");
+    elemento.style.backgroundColor = "red"; // Cambia el color de fondo
+    elemento.innerHTML = "<p>Nuevo texto</p>"; // Cambia el contenido HTML
+    ```
+
+## CREACION Y ELIMINACION DE NODOS
+
+Javascript permite crear nuevos elementos HTML y agregarlos al DOM, asi como eliminar elementos existentes.
+
+*   **`createElement(tagName)`:**  Crea un nuevo elemento HTML con el nombre de etiqueta especificado.
+
+    ```javascript
+    const nuevoParrafo = document.createElement("p");
+    nuevoParrafo.textContent = "Este es un nuevo parrafo.";
+    ```
+
+*   **`createTextNode(text)`:**  Crea un nuevo nodo de texto.
+
+    ```javascript
+    const nuevoTexto = document.createTextNode("Este es un texto nuevo.");
+    ```
+
+*   **`appendChild(node)`:**  Agrega un nodo como hijo al final de otro nodo.
+
+    ```javascript
+    const contenedor = document.getElementById("miContenedor");
+    contenedor.appendChild(nuevoParrafo); // Agrega el parrafo al contenedor
+    ```
+
+*   **`insertBefore(newNode, existingNode)`:**  Inserta un nodo antes de otro nodo existente.
+
+    ```javascript
+    const lista = document.getElementById("miLista");
+    const primerElemento = lista.firstChild;
+    lista.insertBefore(nuevoElementoLista, primerElemento); // Inserta un nuevo elemento al principio de la lista
+    ```
+
+*   **`removeChild(node)`:**  Elimina un nodo hijo de otro nodo.
+
+    ```javascript
+    const lista = document.getElementById("miLista");
+    const elementoAEliminar = document.getElementById("elemento3");
+    lista.removeChild(elementoAEliminar); // Elimina el elemento con id "elemento3" de la lista
+    ```
+
+*   **`replaceChild(newNode, oldNode)`:**  Reemplaza un nodo hijo con otro nodo.
+
+    ```javascript
+    const lista = document.getElementById("miLista");
+    const nuevoElemento = document.createElement("li");
+    nuevoElemento.textContent = "Nuevo elemento";
+    const elementoAReemplazar = document.getElementById("elemento1");
+    lista.replaceChild(nuevoElemento, elementoAReemplazar); // Reemplaza el elemento con id "elemento1" con el nuevo elemento
+    ```
+
+## MANEJO DE EVENTOS
+
+El manejo de eventos permite a Javascript responder a las interacciones del usuario, como clics, movimientos del mouse, y pulsaciones de teclas.
+
+*   **`addEventListener(event, function)`:**  Registra un event listener para un evento especifico en un elemento.
+
+    ```javascript
+    const boton = document.getElementById("miBoton");
+    boton.addEventListener("click", function() {
+        alert("¡Boton clickeado!");
+    });
+    ```
+
+*   **Tipos de Eventos Comunes:**
+    *   `click`:  Cuando se hace clic en un elemento.
+    *   `mouseover`:  Cuando el mouse entra en un elemento.
+    *   `mouseout`:  Cuando el mouse sale de un elemento.
+    *   `keydown`:  Cuando se presiona una tecla.
+    *   `keyup`:  Cuando se suelta una tecla.
+    *   `submit`:  Cuando se envia un formulario.
+    *   `load`:  Cuando la pagina o un elemento se ha cargado completamente.
+
+*   **Objeto Evento:**  El event listener recibe un objeto evento que contiene informacion sobre el evento.
+
+    ```javascript
+    const enlace = document.getElementById("miEnlace");
+    enlace.addEventListener("click", function(event) {
+        event.preventDefault(); // Evita que el enlace se abra
+        console.log("Enlace clickeado");
+    });
+    ```
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### CAMBIAR EL TEXTO DE UN ELEMENTO AL HACER CLIC
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo de Manipulacion del DOM</title>
+</head>
+<body>
+    <p id="miParrafo">Texto inicial.</p>
+    <button id="miBoton">Cambiar Texto</button>
+
+    <script>
+        const parrafo = document.getElementById("miParrafo");
+        const boton = document.getElementById("miBoton");
+
+        boton.addEventListener("click", function() {
+            parrafo.textContent = "Texto cambiado al hacer clic.";
+        });
+    </script>
+</body>
+</html>
+```
+
+### AGREGAR UN NUEVO ELEMENTO A UNA LISTA
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo de Manipulacion del DOM</title>
+</head>
+<body>
+    <ul id="miLista">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+    </ul>
+    <button id="agregarElemento">Agregar Elemento</button>
+
+    <script>
+        const lista = document.getElementById("miLista");
+        const botonAgregar = document.getElementById("agregarElemento");
+
+        botonAgregar.addEventListener("click", function() {
+            const nuevoElemento = document.createElement("li");
+            nuevoElemento.textContent = "Nuevo elemento";
+            lista.appendChild(nuevoElemento);
+        });
+    </script>
+</body>
+</html>
+```
+
+### ELIMINAR UN ELEMENTO AL HACER CLIC
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo de Manipulacion del DOM</title>
+</head>
+<body>
+    <ul id="miLista">
+        <li>Elemento 1</li>
+        <li id="elementoAEliminar">Elemento a eliminar</li>
+        <li>Elemento 3</li>
+    </ul>
+
+    <script>
+        const lista = document.getElementById("miLista");
+        const elementoAEliminar = document.getElementById("elementoAEliminar");
+
+        elementoAEliminar.addEventListener("click", function() {
+            lista.removeChild(elementoAEliminar);
+        });
+    </script>
+</body>
+</html>
+```
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs - Document Object Model (DOM)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+*   [W3Schools - JavaScript HTML DOM](https://www.w3schools.com/js/js_htmldom.asp)
+*   [freeCodeCamp - How to Manipulate the DOM Using JavaScript](https://www.freecodecamp.org/news/how-to-manipulate-the-dom-using-javascript/)

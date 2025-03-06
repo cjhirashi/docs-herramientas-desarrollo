@@ -1,0 +1,158 @@
+---
+title: Vue.js
+description:  Framework progresivo de JavaScript para construir interfaces de usuario.
+keywords: ["vue", "vue.js", "framework javascript", "frontend", "componentes vue"]
+---
+
+Vue.js es un framework de JavaScript de código abierto para construir interfaces de usuario (UI) y aplicaciones de una sola página (SPA). Se caracteriza por ser progresivo, lo que significa que se puede adoptar gradualmente en proyectos existentes. Vue.js es conocido por su sintaxis sencilla, su tamaño reducido y su alto rendimiento, lo que lo convierte en una excelente opción tanto para proyectos pequeños como para aplicaciones complejas.
+
+## OBJETIVOS CLAVE SOBRE VUE.JS
+
+*   **Facilidad de Aprendizaje:** Vue.js está diseñado para ser fácil de aprender y utilizar. Su sintaxis es intuitiva y similar a HTML, lo que facilita la transición para desarrolladores con experiencia en HTML, CSS y JavaScript.
+*   **Flexibilidad:** Vue.js se puede integrar fácilmente en proyectos existentes o utilizarse para construir aplicaciones completamente nuevas. Su arquitectura modular permite a los desarrolladores elegir las características que necesitan sin sobrecargar el proyecto con funcionalidades innecesarias.
+*   **Rendimiento:** Vue.js ofrece un excelente rendimiento gracias a su DOM virtual y su eficiente sistema de reactividad. Esto permite construir interfaces de usuario rápidas y fluidas, incluso en aplicaciones complejas.
+*   **Componentes Reutilizables:** Vue.js se basa en componentes, que son bloques de código reutilizables que encapsulan la lógica y la interfaz de usuario. Esto facilita la construcción de aplicaciones modulares y mantenibles.
+*   **Comunidad Activa:** Vue.js cuenta con una comunidad activa y en crecimiento que proporciona soporte, recursos y herramientas para desarrolladores. Esto facilita la resolución de problemas y el aprendizaje continuo.
+
+## DESARROLLO DE VUE.JS
+
+### INSTALACION
+
+Para comenzar a utilizar Vue.js, puedes incluirlo directamente en tu página HTML mediante un CDN (Content Delivery Network) o instalarlo a través de npm (Node Package Manager).
+
+**CDN:**
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+```
+
+**NPM:**
+
+```bash
+npm install vue
+```
+
+### ESTRUCTURA BASICA DE UNA APLICACION VUE.JS
+
+Una aplicación Vue.js se compone de una instancia de Vue que se encarga de gestionar el estado y la interfaz de usuario. La instancia de Vue se crea con un objeto de opciones que define el comportamiento de la aplicación.
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Hola, Vue.js!'
+  }
+})
+```
+
+En este ejemplo, `el` especifica el elemento HTML donde se montará la aplicación Vue.js, y `data` define las propiedades que se utilizarán en la plantilla.
+
+### DIRECTIVAS
+
+Vue.js utiliza directivas para manipular el DOM de forma declarativa. Las directivas son atributos HTML especiales que comienzan con `v-`.
+
+*   `v-model`: Permite la vinculación bidireccional entre un elemento de formulario y una propiedad de la instancia de Vue.
+
+    ```html
+    <input type="text" v-model="message">
+    <p>Mensaje: {{ message }}</p>
+    ```
+*   `v-if`: Renderiza un elemento condicionalmente basado en el valor de una expresión.
+
+    ```html
+    <p v-if="showMessage">Este mensaje se muestra si showMessage es verdadero.</p>
+    ```
+*   `v-for`: Renderiza una lista de elementos basados en un array.
+
+    ```html
+    <ul>
+      <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+    </ul>
+    ```
+*   `v-bind`: Permite enlazar dinámicamente atributos HTML a expresiones de Vue.
+
+    ```html
+    <img v-bind:src="imageUrl" alt="Imagen">
+    <!-- Sintaxis abreviada -->
+    <img :src="imageUrl" alt="Imagen">
+    ```
+*   `v-on`: Permite escuchar eventos del DOM y ejecutar métodos de Vue.
+
+    ```html
+    <button v-on:click="greet">Saludar</button>
+    <!-- Sintaxis abreviada -->
+    <button @click="greet">Saludar</button>
+    ```
+
+### COMPONENTES
+
+Los componentes son bloques de código reutilizables que encapsulan la lógica y la interfaz de usuario. Un componente Vue.js se define con un objeto de opciones que especifica su plantilla, sus propiedades y su comportamiento.
+
+```javascript
+Vue.component('mi-componente', {
+  template: '<div>¡Hola desde mi componente!</div>'
+})
+```
+
+Luego, puedes utilizar el componente en tu plantilla HTML:
+
+```html
+<mi-componente></mi-componente>
+```
+
+### EJEMPLO DE IMPLEMENTACION
+
+A continuación, se muestra un ejemplo completo de una aplicación Vue.js que muestra una lista de tareas y permite agregar nuevas tareas:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aplicación de Tareas Vue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Lista de Tareas</h1>
+    <input type="text" v-model="newTask" @keyup.enter="addTask">
+    <button @click="addTask">Agregar Tarea</button>
+    <ul>
+      <li v-for="(task, index) in tasks" :key="index">
+        {{ task }}
+        <button @click="removeTask(index)">Eliminar</button>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        newTask: '',
+        tasks: ['Tarea 1', 'Tarea 2', 'Tarea 3']
+      },
+      methods: {
+        addTask: function() {
+          if (this.newTask.trim() !== '') {
+            this.tasks.push(this.newTask.trim());
+            this.newTask = '';
+          }
+        },
+        removeTask: function(index) {
+          this.tasks.splice(index, 1);
+        }
+      }
+    })
+  </script>
+</body>
+</html>
+```
+
+En este ejemplo, se utiliza `v-model` para vincular el valor del input a la propiedad `newTask`, `@keyup.enter` para agregar una tarea al presionar la tecla Enter, y `@click` para agregar y eliminar tareas. La directiva `v-for` se utiliza para mostrar la lista de tareas.
+
+## FUENTES DEL DOCUMENTO
+
+*   [Vue.js Official Documentation](https://vuejs.org/)
+*   [Vue.js Guide](https://vuejs.org/v2/guide/)
+*   [Vue.js API Reference](https://vuejs.org/v2/api/)
+*   [Vue Mastery](https://www.vuemastery.com/)

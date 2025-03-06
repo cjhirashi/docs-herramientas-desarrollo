@@ -1,0 +1,200 @@
+---
+title: Clases
+description:  Introducción y uso de clases en Javascript para la programación orientada a objetos.
+keywords: ["javascript", "clases", "POO", "orientado a objetos", "ES6", "prototipos"]
+---
+
+Las clases en JavaScript son una característica introducida en ECMAScript 2015 (ES6) que proporciona una sintaxis más clara y concisa para crear objetos y manejar la herencia, facilitando la programación orientada a objetos (POO). Aunque JavaScript es un lenguaje basado en prototipos, las clases ofrecen una forma más familiar para los desarrolladores que vienen de lenguajes como Java o C++.
+
+## OBJETIVOS CLAVE
+
+*   **Simplificar la creación de objetos:** Proporcionar una sintaxis más legible y estructurada para definir objetos y sus propiedades.
+*   **Facilitar la herencia:** Permitir la creación de jerarquías de clases mediante la herencia, reutilizando código y promoviendo la organización.
+*   **Mejorar la legibilidad del código:** Ofrecer una forma más intuitiva de entender y mantener el código orientado a objetos.
+*   **Encapsulamiento:** Aunque JavaScript no tiene encapsulamiento estricto como otros lenguajes, las clases ayudan a organizar el código y a definir interfaces claras.
+
+## DEFINICION DE CLASES
+
+Una clase en JavaScript se define utilizando la palabra clave `class`, seguida del nombre de la clase. Dentro de la clase, se pueden definir métodos, incluyendo un constructor para inicializar el objeto.
+
+```javascript
+class Persona {
+  constructor(nombre, edad) {
+    this.nombre = nombre;
+    this.edad = edad;
+  }
+
+  saludar() {
+    console.log(`Hola, mi nombre es ${this.nombre} y tengo ${this.edad} años.`);
+  }
+}
+
+// Crear una instancia de la clase Persona
+const persona1 = new Persona("Juan", 30);
+persona1.saludar(); // Imprime: Hola, mi nombre es Juan y tengo 30 años.
+```
+
+En este ejemplo:
+
+*   `class Persona { ... }` define la clase `Persona`.
+*   `constructor(nombre, edad) { ... }` es el constructor de la clase, que se llama cuando se crea una nueva instancia de la clase.
+*   `this.nombre = nombre;` y `this.edad = edad;` asignan los valores proporcionados a las propiedades del objeto.
+*   `saludar() { ... }` es un método de la clase que imprime un saludo.
+
+## HERENCIA
+
+La herencia permite crear nuevas clases basadas en clases existentes, heredando sus propiedades y métodos. Se utiliza la palabra clave `extends` para indicar la clase de la que se hereda.
+
+```javascript
+class Estudiante extends Persona {
+  constructor(nombre, edad, carrera) {
+    super(nombre, edad); // Llama al constructor de la clase padre
+    this.carrera = carrera;
+  }
+
+  estudiar() {
+    console.log(`${this.nombre} está estudiando ${this.carrera}.`);
+  }
+}
+
+// Crear una instancia de la clase Estudiante
+const estudiante1 = new Estudiante("Maria", 20, "Ingeniería");
+estudiante1.saludar(); // Imprime: Hola, mi nombre es Maria y tengo 20 años.
+estudiante1.estudiar(); // Imprime: Maria está estudiando Ingeniería.
+```
+
+En este ejemplo:
+
+*   `class Estudiante extends Persona { ... }` define la clase `Estudiante` que hereda de la clase `Persona`.
+*   `super(nombre, edad);` llama al constructor de la clase padre (`Persona`) para inicializar las propiedades heredadas.
+*   `this.carrera = carrera;` asigna el valor proporcionado a la propiedad `carrera` del objeto `Estudiante`.
+*   `estudiar() { ... }` es un método específico de la clase `Estudiante`.
+
+### METODOS ESTATICOS
+
+Los métodos estáticos son métodos que pertenecen a la clase en sí, en lugar de a las instancias de la clase. Se definen utilizando la palabra clave `static`.
+
+```javascript
+class Matematicas {
+  static sumar(a, b) {
+    return a + b;
+  }
+}
+
+// Llamar al método estático
+const resultado = Matematicas.sumar(5, 3);
+console.log(resultado); // Imprime: 8
+```
+
+En este ejemplo:
+
+*   `static sumar(a, b) { ... }` define un método estático llamado `sumar` que toma dos argumentos y devuelve su suma.
+*   `Matematicas.sumar(5, 3);` llama al método estático directamente desde la clase, sin necesidad de crear una instancia de la clase.
+
+### GETTERS Y SETTERS
+
+Los getters y setters son métodos especiales que permiten controlar el acceso a las propiedades de un objeto. Los getters se utilizan para obtener el valor de una propiedad, y los setters se utilizan para establecer el valor de una propiedad.
+
+```javascript
+class Circulo {
+  constructor(radio) {
+    this._radio = radio; // Utilizar un nombre diferente para la propiedad interna
+  }
+
+  get radio() {
+    return this._radio;
+  }
+
+  set radio(nuevoRadio) {
+    if (nuevoRadio > 0) {
+      this._radio = nuevoRadio;
+    } else {
+      console.log("El radio debe ser mayor que cero.");
+    }
+  }
+
+  get area() {
+    return Math.PI * this._radio * this._radio;
+  }
+}
+
+// Crear una instancia de la clase Circulo
+const circulo1 = new Circulo(5);
+console.log(circulo1.radio); // Imprime: 5
+
+circulo1.radio = 10;
+console.log(circulo1.radio); // Imprime: 10
+
+circulo1.radio = -2; // Imprime: El radio debe ser mayor que cero.
+console.log(circulo1.radio); // Imprime: 10 (el valor no se modificó)
+
+console.log(circulo1.area); // Imprime: 314.1592653589793
+```
+
+En este ejemplo:
+
+*   `get radio() { ... }` define un getter para la propiedad `radio`.
+*   `set radio(nuevoRadio) { ... }` define un setter para la propiedad `radio`, que incluye una validación para asegurar que el radio sea mayor que cero.
+*   `get area() { ... }` define un getter para la propiedad `area`, que calcula el área del círculo.
+
+### EJEMPLO COMPLETO
+
+A continuación, se presenta un ejemplo más completo que combina todos los conceptos anteriores:
+
+```javascript
+class Animal {
+  constructor(nombre, especie) {
+    this.nombre = nombre;
+    this.especie = especie;
+  }
+
+  saludar() {
+    console.log(`Hola, soy ${this.nombre} y soy un ${this.especie}.`);
+  }
+
+  static describir() {
+    console.log("Los animales son seres vivos que pertenecen al reino Animalia.");
+  }
+}
+
+class Perro extends Animal {
+  constructor(nombre, raza, edad) {
+    super(nombre, "Perro");
+    this.raza = raza;
+    this.edad = edad;
+  }
+
+  ladrar() {
+    console.log("¡Guau guau!");
+  }
+
+  get info() {
+    return `Nombre: ${this.nombre}, Raza: ${this.raza}, Edad: ${this.edad}`;
+  }
+}
+
+// Llamar al método estático de la clase Animal
+Animal.describir(); // Imprime: Los animales son seres vivos que pertenecen al reino Animalia.
+
+// Crear una instancia de la clase Perro
+const perro1 = new Perro("Max", "Labrador", 3);
+perro1.saludar(); // Imprime: Hola, soy Max y soy un Perro.
+perro1.ladrar(); // Imprime: ¡Guau guau!
+console.log(perro1.info); // Imprime: Nombre: Max, Raza: Labrador, Edad: 3
+```
+
+En este ejemplo:
+
+*   Se define una clase base `Animal` con un constructor, un método `saludar` y un método estático `describir`.
+*   Se define una clase `Perro` que hereda de `Animal`, con un constructor que llama al constructor de la clase padre, un método `ladrar` y un getter `info`.
+*   Se crea una instancia de la clase `Perro` y se utilizan sus métodos y propiedades.
+
+## CONCLUSION
+
+Las clases en JavaScript proporcionan una forma estructurada y legible de trabajar con la programación orientada a objetos. Facilitan la creación de objetos, la herencia y la organización del código, lo que resulta en un código más mantenible y comprensible. Aunque JavaScript es un lenguaje basado en prototipos, las clases ofrecen una sintaxis más familiar para muchos desarrolladores y ayudan a mejorar la calidad del código.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+*   [ECMAScript 2015 (ES6) specification](https://www.ecma-international.org/ecma-262/6.0/)
+*   [W3Schools: JavaScript Classes](https://www.w3schools.com/js/js_classes.asp)

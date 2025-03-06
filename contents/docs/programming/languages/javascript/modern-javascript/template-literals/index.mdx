@@ -1,0 +1,155 @@
+---
+title: Template Literals
+description: Explicación detallada de los template literals en JavaScript, su sintaxis, ventajas y casos de uso.
+keywords: ["template literals", "javascript", "ES6", "string interpolation", "tagged templates"]
+---
+
+Los template literals, también conocidos como template strings, son una característica introducida en ECMAScript 2015 (ES6) que proporciona una forma más flexible y legible de crear cadenas en JavaScript. Permiten la interpolación de expresiones y el uso de cadenas multilínea de manera más sencilla que las cadenas tradicionales.
+
+## ¿QUE SON LOS TEMPLATE LITERALS?
+
+Los template literals son una forma de definir cadenas en JavaScript utilizando comillas invertidas (`` ` ``) en lugar de comillas simples (`' '`) o dobles (`" "`). La principal ventaja de los template literals es que permiten la interpolación de variables y expresiones directamente dentro de la cadena, lo que facilita la creación de cadenas dinámicas.
+
+### SINTAXIS BASICA
+
+La sintaxis básica de un template literal es la siguiente:
+
+```javascript
+`Esta es una cadena de texto.`
+```
+
+Para interpolar una variable o expresión dentro de un template literal, se utiliza la siguiente sintaxis:
+
+```javascript
+`El resultado es: ${expresion}`
+```
+
+Donde `expresion` puede ser cualquier expresión válida de JavaScript, como una variable, una operación aritmética o una llamada a una función.
+
+## OBJETIVOS CLAVE
+
+*   **Facilitar la interpolación de cadenas:** Permitir la inserción de variables y expresiones directamente dentro de las cadenas sin necesidad de concatenación.
+*   **Mejorar la legibilidad del código:** Ofrecer una sintaxis más clara y concisa para la creación de cadenas dinámicas.
+*   **Soporte para cadenas multilínea:** Permitir la creación de cadenas que ocupan varias líneas en el código fuente sin necesidad de caracteres de escape.
+*   **Habilitar tagged templates:** Proporcionar una forma de procesar cadenas con funciones personalizadas, lo que abre la puerta a casos de uso avanzados como la internacionalización y el escape automático.
+
+## INTERPOLACION DE CADENAS
+
+Una de las principales ventajas de los template literals es la facilidad con la que se pueden interpolar variables y expresiones dentro de una cadena. En lugar de utilizar el operador de concatenación (`+`) para unir cadenas y variables, se puede utilizar la sintaxis `${}` para insertar el valor de una variable o el resultado de una expresión directamente en la cadena.
+
+```javascript
+const nombre = "Juan";
+const edad = 30;
+
+const mensaje = `Hola, mi nombre es ${nombre} y tengo ${edad} años.`;
+
+console.log(mensaje); // Output: Hola, mi nombre es Juan y tengo 30 años.
+```
+
+En este ejemplo, las variables `nombre` y `edad` se interpolan directamente dentro del template literal utilizando la sintaxis `${nombre}` y `${edad}`. El resultado es una cadena que contiene los valores de las variables.
+
+## CADENAS MULTILINEA
+
+Otra ventaja de los template literals es que permiten la creación de cadenas que ocupan varias líneas en el código fuente sin necesidad de caracteres de escape. En las cadenas tradicionales, para crear una cadena multilínea, se debe utilizar el carácter de escape `\n` para indicar un salto de línea. Con los template literals, simplemente se puede escribir la cadena en varias líneas y los saltos de línea se conservarán.
+
+```javascript
+const mensaje = `Esta es una cadena
+que ocupa varias
+líneas.`;
+
+console.log(mensaje);
+/*
+Output:
+Esta es una cadena
+que ocupa varias
+líneas.
+*/
+```
+
+En este ejemplo, la cadena `mensaje` ocupa tres líneas en el código fuente y los saltos de línea se conservan en la cadena resultante.
+
+## TAGGED TEMPLATES
+
+Los tagged templates son una característica avanzada de los template literals que permite procesar cadenas con funciones personalizadas. Un tagged template es una función que se llama con el template literal como argumento. La función recibe un array de cadenas y un array de valores interpolados.
+
+```javascript
+function tag(cadenas, ...valores) {
+  console.log(cadenas);
+  console.log(valores);
+
+  return "Procesado";
+}
+
+const nombre = "Juan";
+const edad = 30;
+
+const mensaje = tag`Hola, mi nombre es ${nombre} y tengo ${edad} años.`;
+
+console.log(mensaje);
+/*
+Output:
+[ 'Hola, mi nombre es ', ' y tengo ', ' años.' ]
+[ 'Juan', 30 ]
+Procesado
+*/
+```
+
+En este ejemplo, la función `tag` se llama con el template literal `Hola, mi nombre es ${nombre} y tengo ${edad} años.` como argumento. La función recibe un array de cadenas `cadenas` que contiene las partes estáticas del template literal y un array de valores `valores` que contiene los valores interpolados. La función puede procesar estos arrays y devolver una nueva cadena.
+
+Los tagged templates son útiles para casos de uso avanzados como la internacionalización, el escape automático de caracteres y la creación de lenguajes de dominio específico (DSL).
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### CREACION DE HTML DINAMICO
+
+Los template literals son muy útiles para la creación de HTML dinámico en JavaScript. Se pueden utilizar para interpolar variables y expresiones directamente dentro de las etiquetas HTML, lo que facilita la creación de interfaces de usuario dinámicas.
+
+```javascript
+const nombre = "Juan";
+const edad = 30;
+
+const html = `
+  <div>
+    <h1>Hola, mi nombre es ${nombre}</h1>
+    <p>Tengo ${edad} años.</p>
+  </div>
+`;
+
+document.body.innerHTML = html;
+```
+
+En este ejemplo, se crea una cadena HTML utilizando un template literal. Las variables `nombre` y `edad` se interpolan directamente dentro de las etiquetas HTML utilizando la sintaxis `${nombre}` y `${edad}`. El resultado es una cadena HTML que contiene los valores de las variables.
+
+### CREACION DE CONSULTAS SQL DINAMICAS
+
+Los template literals también son útiles para la creación de consultas SQL dinámicas. Se pueden utilizar para interpolar variables y expresiones directamente dentro de la consulta SQL, lo que facilita la creación de consultas personalizadas.
+
+```javascript
+const tabla = "usuarios";
+const columna = "nombre";
+const valor = "Juan";
+
+const sql = `
+  SELECT *
+  FROM ${tabla}
+  WHERE ${columna} = '${valor}'
+`;
+
+console.log(sql);
+/*
+Output:
+SELECT *
+FROM usuarios
+WHERE nombre = 'Juan'
+*/
+```
+
+En este ejemplo, se crea una consulta SQL utilizando un template literal. Las variables `tabla`, `columna` y `valor` se interpolan directamente dentro de la consulta SQL utilizando la sintaxis `${tabla}`, `${columna}` y `${valor}`. El resultado es una cadena SQL que contiene los valores de las variables.
+
+**Precaución:** Al utilizar template literals para crear consultas SQL dinámicas, es importante tener en cuenta la seguridad. Se debe evitar la interpolación directa de valores proporcionados por el usuario para prevenir ataques de inyección SQL. En su lugar, se deben utilizar mecanismos de escape o parametrización para garantizar que los valores se traten como datos y no como código SQL.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+*   [ES6 Features: Template Strings](https://es6-features.org/#StringInterpolation)
+*   [FreeCodeCamp: Template Literals in JavaScript](https://www.freecodecamp.org/news/template-literals-javascript/)

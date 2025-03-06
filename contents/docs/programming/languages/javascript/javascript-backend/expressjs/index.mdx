@@ -1,0 +1,223 @@
+---
+title: Express.js
+description: Framework de Node.js para construir aplicaciones web y APIs.
+keywords: ["express", "node.js", "framework", "web", "api", "servidor", "middleware", "routing"]
+---
+
+Express.js es un framework de aplicaciones web minimalista y flexible para Node.js. Proporciona un conjunto robusto de características para desarrollar aplicaciones web de una sola página, multipágina e híbridas, así como APIs (Interfaces de Programación de Aplicaciones). Se ha convertido en uno de los frameworks más populares para Node.js debido a su simplicidad, flexibilidad y la gran cantidad de middleware disponible.
+
+## OBJETIVOS CLAVE
+
+*   **Simplicidad:** Ofrece una sintaxis clara y concisa que facilita el desarrollo de aplicaciones web.
+*   **Flexibilidad:** Permite a los desarrolladores estructurar las aplicaciones de la manera que mejor se adapte a sus necesidades.
+*   **Middleware:** Soporta el uso de middleware, funciones que pueden modificar las solicitudes y respuestas, lo que permite añadir funcionalidades de manera modular.
+*   **Routing:** Proporciona un sistema de routing robusto para definir cómo la aplicación responde a las peticiones de los clientes.
+*   **Comunidad:** Cuenta con una gran comunidad de desarrolladores que contribuyen con middleware y ofrecen soporte.
+
+## INSTALACION
+
+Para comenzar a utilizar Express.js, primero debes tener Node.js instalado en tu sistema. Una vez que tengas Node.js, puedes instalar Express.js utilizando npm (Node Package Manager):
+
+```bash
+npm install express --save
+```
+
+El flag `--save` añade Express.js como una dependencia en el archivo `package.json` de tu proyecto.
+
+## CREACION DE UN SERVIDOR BASICO
+
+A continuación, se muestra un ejemplo de cómo crear un servidor básico con Express.js:
+
+```javascript
+// Importa el módulo express
+const express = require('express');
+
+// Crea una instancia de la aplicación express
+const app = express();
+
+// Define el puerto en el que el servidor escuchará
+const port = 3000;
+
+// Define una ruta para la raíz del sitio
+app.get('/', (req, res) => {
+  res.send('¡Hola Mundo!');
+});
+
+// Inicia el servidor y escucha en el puerto especificado
+app.listen(port, () => {
+  console.log(`La aplicación está escuchando en el puerto ${port}`);
+});
+```
+
+Este código crea un servidor que escucha en el puerto 3000 y responde con "¡Hola Mundo!" cuando se accede a la raíz del sitio (`/`).
+
+## ROUTING
+
+El routing se refiere a la determinación de cómo una aplicación responde a una petición del cliente a un endpoint específico, que es una URI (Uniform Resource Identifier) y un método de petición HTTP específico (GET, POST, PUT, DELETE, etc.).
+
+Express.js permite definir rutas utilizando los métodos HTTP estándar:
+
+```javascript
+app.get('/users', (req, res) => {
+  res.send('Lista de usuarios');
+});
+
+app.post('/users', (req, res) => {
+  res.send('Crear un nuevo usuario');
+});
+
+app.put('/users/:id', (req, res) => {
+  const userId = req.params.id;
+  res.send(`Actualizar usuario con ID ${userId}`);
+});
+
+app.delete('/users/:id', (req, res) => {
+  const userId = req.params.id;
+  res.send(`Eliminar usuario con ID ${userId}`);
+});
+```
+
+En este ejemplo, se definen rutas para obtener, crear, actualizar y eliminar usuarios. El uso de `:id` en la ruta permite capturar parámetros de la URL.
+
+## MIDDLEWARE
+
+El middleware son funciones que tienen acceso al objeto de petición (`req`), al objeto de respuesta (`res`) y a la siguiente función de middleware en el ciclo de petición/respuesta de la aplicación. Las funciones de middleware pueden realizar las siguientes tareas:
+
+*   Ejecutar cualquier código.
+*   Realizar cambios en los objetos de petición y respuesta.
+*   Finalizar el ciclo de petición/respuesta.
+*   Llamar a la siguiente función de middleware en la pila.
+
+Express.js viene con varios middleware incorporados, como `express.static` para servir archivos estáticos y `express.json` para analizar el cuerpo de las peticiones con formato JSON. También puedes crear tu propio middleware:
+
+```javascript
+// Middleware personalizado para registrar la hora de cada petición
+const logger = (req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next(); // Llama a la siguiente función de middleware
+};
+
+// Aplica el middleware a todas las rutas
+app.use(logger);
+
+// Otro ejemplo de middleware para autenticación
+const authenticate = (req, res, next) => {
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey === 'secreto') {
+    next(); // Permite el acceso a la ruta
+  } else {
+    res.status(401).send('No autorizado');
+  }
+};
+
+// Aplica el middleware de autenticación a una ruta específica
+app.get('/protected', authenticate, (req, res) => {
+  res.send('Acceso concedido');
+});
+```
+
+En este ejemplo, se define un middleware `logger` que registra la hora y la URL de cada petición. También se define un middleware `authenticate` que verifica una clave de API en el encabezado de la petición.
+
+## MANEJO DE ERRORES
+
+El manejo de errores es una parte importante de cualquier aplicación web. Express.js proporciona un mecanismo para capturar y manejar errores utilizando middleware de manejo de errores:
+
+```javascript
+// Middleware de manejo de errores
+const errorHandler = (err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Algo salió mal!');
+};
+
+// Aplica el middleware de manejo de errores al final de la pila de middleware
+app.use(errorHandler);
+
+// Ruta que genera un error
+app.get('/error', (req, res, next) => {
+  throw new Error('Este es un error de prueba');
+});
+```
+
+En este ejemplo, se define un middleware `errorHandler` que registra el error en la consola y envía una respuesta de error al cliente.
+
+### USO DE PLANTILLAS
+
+Express.js soporta el uso de motores de plantillas para generar HTML dinámicamente. Algunos motores de plantillas populares incluyen Pug, EJS y Handlebars.
+
+Para usar un motor de plantillas, primero debes instalarlo:
+
+```bash
+npm install pug --save
+```
+
+Luego, debes configurar Express.js para usar el motor de plantillas:
+
+```javascript
+// Configura el motor de plantillas
+app.set('view engine', 'pug');
+
+// Define una ruta que renderiza una plantilla
+app.get('/template', (req, res) => {
+  res.render('index', { title: 'Hola', message: '¡Bienvenido a mi sitio!' });
+});
+```
+
+En este ejemplo, se configura Express.js para usar el motor de plantillas Pug y se define una ruta que renderiza la plantilla `index.pug` con los datos proporcionados.
+
+## APIS RESTFUL
+
+Express.js es ideal para construir APIs RESTful. Una API RESTful es una interfaz que utiliza los métodos HTTP estándar para realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) en los recursos.
+
+A continuación, se muestra un ejemplo de cómo construir una API RESTful para gestionar una lista de tareas:
+
+```javascript
+// Middleware para analizar el cuerpo de las peticiones con formato JSON
+app.use(express.json());
+
+// Array para almacenar las tareas (simulando una base de datos)
+let tasks = [];
+
+// GET /tasks: Obtiene la lista de tareas
+app.get('/tasks', (req, res) => {
+  res.json(tasks);
+});
+
+// POST /tasks: Crea una nueva tarea
+app.post('/tasks', (req, res) => {
+  const task = {
+    id: tasks.length + 1,
+    title: req.body.title,
+    completed: false
+  };
+  tasks.push(task);
+  res.status(201).json(task);
+});
+
+// PUT /tasks/:id: Actualiza una tarea existente
+app.put('/tasks/:id', (req, res) => {
+  const taskId = parseInt(req.params.id);
+  const task = tasks.find(t => t.id === taskId);
+  if (!task) {
+    return res.status(404).send('Tarea no encontrada');
+  }
+  task.title = req.body.title || task.title;
+  task.completed = req.body.completed !== undefined ? req.body.completed : task.completed;
+  res.json(task);
+});
+
+// DELETE /tasks/:id: Elimina una tarea existente
+app.delete('/tasks/:id', (req, res) => {
+  const taskId = parseInt(req.params.id);
+  tasks = tasks.filter(t => t.id !== taskId);
+  res.status(204).send();
+});
+```
+
+En este ejemplo, se definen rutas para obtener, crear, actualizar y eliminar tareas utilizando los métodos HTTP GET, POST, PUT y DELETE.
+
+## FUENTES DEL DOCUMENTO
+
+*   [Express.js Official Website](https://expressjs.com/)
+*   [MDN Web Docs - Express](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs)
+*   [Node.js Official Website](https://nodejs.org/)
+*   [npm Official Website](https://www.npmjs.com/)

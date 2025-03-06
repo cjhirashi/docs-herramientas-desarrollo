@@ -1,0 +1,146 @@
+---
+title: Angular
+description: Marco de desarrollo de aplicaciones web de código abierto mantenido por Google.
+keywords: ["angular", "framework", "javascript", "typescript", "web development", "google"]
+---
+
+Angular es un marco de desarrollo de aplicaciones web de código abierto, liderado por el equipo de Angular en Google y por una comunidad de individuos y empresas. Angular está escrito en TypeScript. Proporciona una arquitectura estándar para construir aplicaciones web dinámicas, facilitando la creación de aplicaciones escalables y mantenibles.
+
+## OBJETIVOS CLAVE
+
+*   **Productividad:** Acelerar el desarrollo de aplicaciones con componentes reutilizables y herramientas poderosas.
+*   **Rendimiento:** Crear aplicaciones rápidas y eficientes que ofrezcan una excelente experiencia de usuario.
+*   **Escalabilidad:** Diseñar aplicaciones que puedan crecer y adaptarse a las necesidades cambiantes del negocio.
+*   **Mantenibilidad:** Facilitar el mantenimiento y la actualización de las aplicaciones a lo largo del tiempo.
+
+## DESARROLLO DE ANGULAR
+
+Angular se basa en una arquitectura de componentes. Una aplicación Angular se compone de una serie de componentes interconectados, cada uno responsable de una parte específica de la interfaz de usuario.
+
+### COMPONENTES
+
+Un componente Angular consta de tres partes principales:
+
+1.  **Template:** Define la estructura HTML de la interfaz de usuario.
+2.  **Clase:** Contiene la lógica de negocio y los datos del componente.
+3.  **Metadatos:** Proporcionan información adicional sobre el componente, como su selector CSS y su template.
+
+**Ejemplo de un componente Angular:**
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-mi-componente',
+  templateUrl: './mi-componente.component.html',
+  styleUrls: ['./mi-componente.component.css']
+})
+export class MiComponente {
+  mensaje: string = 'Hola, mundo!';
+}
+```
+
+```html
+<!-- mi-componente.component.html -->
+<h1>{{ mensaje }}</h1>
+```
+
+### MODULOS
+
+Los módulos en Angular son contenedores que agrupan componentes, directivas, pipes y servicios relacionados. Cada aplicación Angular tiene al menos un módulo raíz, llamado `AppModule`. Los módulos ayudan a organizar el código y a facilitar la reutilización de componentes en diferentes partes de la aplicación.
+
+**Ejemplo de un módulo Angular:**
+
+```typescript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { MiComponente } from './mi-componente.component';
+
+@NgModule({
+  declarations: [
+    MiComponente
+  ],
+  imports: [
+    BrowserModule
+  ],
+  providers: [],
+  bootstrap: [MiComponente]
+})
+export class AppModule { }
+```
+
+### SERVICIOS
+
+Los servicios en Angular son clases que encapsulan la lógica de negocio y los datos que se comparten entre diferentes componentes. Los servicios se utilizan para realizar tareas como la comunicación con un servidor, el almacenamiento de datos y la gestión del estado de la aplicación.
+
+**Ejemplo de un servicio Angular:**
+
+```typescript
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MiServicio {
+
+  constructor(private http: HttpClient) { }
+
+  obtenerDatos() {
+    return this.http.get('/api/datos');
+  }
+}
+```
+
+### ENRUTAMIENTO (ROUTING)
+
+El enrutamiento en Angular permite navegar entre diferentes vistas y componentes de la aplicación. El enrutador de Angular utiliza una configuración de rutas para determinar qué componente se debe mostrar en función de la URL actual.
+
+**Ejemplo de configuración de rutas en Angular:**
+
+```typescript
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+### DIRECTIVAS
+
+Las directivas en Angular son instrucciones que modifican el comportamiento o la apariencia de los elementos del DOM. Angular proporciona una serie de directivas integradas, como `ngIf`, `ngFor` y `ngClass`. También es posible crear directivas personalizadas para extender la funcionalidad de Angular.
+
+**Ejemplo de uso de la directiva `ngIf`:**
+
+```html
+<div *ngIf="mostrarMensaje">
+  Este mensaje se muestra si la variable 'mostrarMensaje' es verdadera.
+</div>
+```
+
+### PIPES
+
+Los pipes en Angular son funciones que transforman los datos antes de mostrarlos en la interfaz de usuario. Angular proporciona una serie de pipes integrados, como `date`, `uppercase` y `lowercase`. También es posible crear pipes personalizados para realizar transformaciones específicas.
+
+**Ejemplo de uso del pipe `date`:**
+
+```html
+<p>Fecha actual: {{ fechaActual | date:'dd/MM/yyyy' }}</p>
+```
+
+## FUENTES DEL DOCUMENTO
+
+*   [Angular Official Documentation](https://angular.io/docs)
+*   [Angular Tutorial](https://angular.io/tutorial)
+*   [Stack Overflow - Angular](https://stackoverflow.com/questions/tagged/angular)

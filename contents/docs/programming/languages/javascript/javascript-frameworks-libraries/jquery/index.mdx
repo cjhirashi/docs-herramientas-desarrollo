@@ -1,0 +1,200 @@
+---
+title: jQuery
+description: Librería de JavaScript para simplificar la manipulación del DOM, el manejo de eventos, animaciones y AJAX.
+keywords: ["jQuery", "JavaScript", "DOM", "AJAX", "librería JavaScript", "manipulación DOM", "eventos JavaScript", "animaciones jQuery"]
+---
+
+## INTRODUCCION A JQUERY
+
+jQuery es una biblioteca de JavaScript rápida, pequeña y rica en funciones. Facilita cosas como el recorrido y la manipulación de documentos HTML, el manejo de eventos, la animación y AJAX para un desarrollo web más rápido. jQuery simplifica la forma de interactuar con el DOM (Document Object Model) de una página web.
+
+### OBJETIVOS CLAVE
+
+*   **Simplificar la manipulación del DOM:** jQuery proporciona una sintaxis concisa y fácil de usar para seleccionar y modificar elementos HTML.
+*   **Manejo de eventos:** Facilita la asignación de funciones a eventos del navegador, como clics, cambios y envíos de formularios.
+*   **Animaciones:** Ofrece métodos sencillos para crear animaciones y efectos visuales en las páginas web.
+*   **AJAX:** Simplifica las solicitudes AJAX para cargar datos de forma asíncrona sin recargar la página.
+*   **Compatibilidad entre navegadores:** jQuery maneja las diferencias entre navegadores, lo que permite escribir código que funcione de manera consistente en diferentes navegadores.
+
+## DESARROLLO DE JQUERY
+
+### INSTALACION
+
+Para utilizar jQuery, primero debes incluir la biblioteca en tu proyecto web. Puedes hacerlo de dos maneras:
+
+1.  **Descargar jQuery:** Descarga la última versión de jQuery desde el sitio web oficial ([https://jquery.com/](https://jquery.com/)) e incluye el archivo JavaScript descargado en tu HTML.
+
+    ```html
+    <script src="jquery-3.6.0.min.js"></script>
+    ```
+
+2.  **Usar un CDN (Content Delivery Network):** Incluye jQuery desde un CDN, lo que puede mejorar el rendimiento al permitir que el navegador cargue jQuery desde un servidor cercano al usuario.
+
+    ```html
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    ```
+
+### SINTAXIS BASICA
+
+La sintaxis básica de jQuery es:
+
+```javascript
+$(selector).action()
+```
+
+*   `$()`: Es la función jQuery, también conocida como el selector de jQuery.
+*   `selector`: Es una cadena que especifica los elementos HTML a los que se aplicará la acción.
+*   `action()`: Es el método jQuery que se ejecutará en los elementos seleccionados.
+
+### EJEMPLOS DE IMPLEMENTACION
+
+#### SELECCION DE ELEMENTOS
+
+*   **Seleccionar por ID:**
+
+    ```javascript
+    $("#miElemento").hide(); // Oculta el elemento con el ID "miElemento"
+    ```
+
+*   **Seleccionar por clase:**
+
+    ```javascript
+    $(".miClase").show(); // Muestra todos los elementos con la clase "miClase"
+    ```
+
+*   **Seleccionar por etiqueta:**
+
+    ```javascript
+    $("p").css("color", "blue"); // Cambia el color del texto de todos los párrafos a azul
+    ```
+
+#### MANIPULACION DEL DOM
+
+*   **Modificar el contenido de un elemento:**
+
+    ```javascript
+    $("#miElemento").text("Nuevo texto"); // Cambia el texto del elemento con el ID "miElemento"
+    ```
+
+*   **Añadir un atributo a un elemento:**
+
+    ```javascript
+    $("img").attr("src", "imagen.jpg"); // Establece el atributo "src" de todas las imágenes
+    ```
+
+*   **Añadir una clase a un elemento:**
+
+    ```javascript
+    $("#miElemento").addClass("resaltado"); // Añade la clase "resaltado" al elemento con el ID "miElemento"
+    ```
+
+#### MANEJO DE EVENTOS
+
+*   **Evento click:**
+
+    ```javascript
+    $("button").click(function() {
+      alert("¡Botón clickeado!");
+    });
+    ```
+
+*   **Evento hover:**
+
+    ```javascript
+    $("#miElemento").hover(function() {
+      $(this).css("background-color", "yellow");
+    }, function() {
+      $(this).css("background-color", "white");
+    });
+    ```
+
+#### ANIMACIONES
+
+*   **Efecto fadeOut:**
+
+    ```javascript
+    $("#miElemento").fadeOut(); // Oculta el elemento con un efecto de desvanecimiento
+    ```
+
+*   **Efecto slideUp:**
+
+    ```javascript
+    $("#miElemento").slideUp(); // Oculta el elemento con un efecto de deslizamiento hacia arriba
+    ```
+
+*   **Animación personalizada:**
+
+    ```javascript
+    $("#miElemento").animate({
+      width: "300px",
+      opacity: 0.5
+    }, 1000); // Anima el ancho y la opacidad del elemento durante 1 segundo
+    ```
+
+#### AJAX
+
+*   **Cargar datos desde un archivo externo:**
+
+    ```javascript
+    $("#miElemento").load("datos.txt"); // Carga el contenido del archivo "datos.txt" en el elemento con el ID "miElemento"
+    ```
+
+*   **Realizar una solicitud GET:**
+
+    ```javascript
+    $.get("miServidor.php", function(data) {
+      $("#miElemento").html(data); // Inserta la respuesta del servidor en el elemento con el ID "miElemento"
+    });
+    ```
+
+### EJEMPLO COMPLETO
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("button").click(function() {
+        $("#miElemento").toggle(); // Muestra u oculta el elemento al hacer clic en el botón
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <button>Mostrar/Ocultar</button>
+  <div id="miElemento">
+    Este es un elemento que se puede mostrar u ocultar con jQuery.
+  </div>
+
+</body>
+</html>
+```
+
+En este ejemplo, al hacer clic en el botón, se muestra u oculta el elemento con el ID "miElemento".
+
+### VENTAJAS DE USAR JQUERY
+
+*   **Sintaxis sencilla:** Facilita la escritura de código JavaScript.
+*   **Compatibilidad entre navegadores:** Maneja las diferencias entre navegadores.
+*   **Gran comunidad:** Amplia documentación y soporte en línea.
+*   **Extensible:** Permite la creación de plugins personalizados.
+
+### DESVENTAJAS DE USAR JQUERY
+
+*   **Tamaño de la biblioteca:** Puede aumentar el tiempo de carga de la página.
+*   **Dependencia:** Requiere la inclusión de la biblioteca jQuery.
+*   **Rendimiento:** En algunos casos, el código JavaScript nativo puede ser más rápido.
+
+## CONCLUSION
+
+jQuery es una herramienta poderosa para el desarrollo web que simplifica la manipulación del DOM, el manejo de eventos, las animaciones y AJAX. Aunque tiene algunas desventajas, sus ventajas superan a sus inconvenientes en muchos casos, lo que la convierte en una opción popular para los desarrolladores web.
+
+### FUENTES DEL DOCUMENTO
+
+*   [jQuery Official Website](https://jquery.com/)
+*   [W3Schools jQuery Tutorial](https://www.w3schools.com/jquery/)
+*   [jQuery API Documentation](https://api.jquery.com/)

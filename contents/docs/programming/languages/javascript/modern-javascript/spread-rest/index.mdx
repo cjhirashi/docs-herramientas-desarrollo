@@ -1,0 +1,201 @@
+---
+title: Spread y Rest
+description: Explicación detallada de los operadores Spread y Rest en JavaScript, sus usos, diferencias y ejemplos prácticos.
+keywords: ["javascript", "spread operator", "rest operator", "ES6", "funciones", "arrays", "objetos"]
+---
+
+Los operadores Spread y Rest son características introducidas en ECMAScript 6 (ES6) que permiten trabajar de manera más flexible con arrays y objetos. Aunque su sintaxis es similar (tres puntos: `...`), su función es diferente dependiendo del contexto en el que se utilicen.
+
+## OBJETIVOS CLAVE
+
+1.  **Comprender la diferencia** entre el operador Spread y el operador Rest.
+2.  **Utilizar el operador Spread** para expandir arrays y objetos.
+3.  **Utilizar el operador Rest** para recolectar argumentos en funciones y desestructurar arrays y objetos.
+4.  **Aplicar estos operadores** en casos prácticos para mejorar la legibilidad y eficiencia del código.
+
+## OPERADOR SPREAD
+
+El operador Spread (`...`) permite expandir un iterable (como un array o una cadena) en lugares donde se esperan cero o más argumentos (para llamadas a funciones) o elementos (para literales de array) o pares clave-valor (para literales de objeto).
+
+### EXPANDIENDO ARRAYS
+
+Una de las aplicaciones más comunes del operador Spread es expandir un array en otro array.
+
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+const combinedArray = [...arr1, ...arr2];
+console.log(combinedArray); // Output: [1, 2, 3, 4, 5, 6]
+```
+
+En este ejemplo, el operador Spread expande `arr1` y `arr2` dentro de `combinedArray`, creando un nuevo array que contiene todos los elementos de ambos arrays.
+
+### COPIANDO ARRAYS
+
+El operador Spread también se puede utilizar para crear una copia superficial de un array.
+
+```javascript
+const originalArray = [1, 2, 3];
+const copiedArray = [...originalArray];
+
+console.log(copiedArray); // Output: [1, 2, 3]
+
+// Modificar copiedArray no afecta originalArray
+copiedArray[0] = 10;
+console.log(originalArray); // Output: [1, 2, 3]
+console.log(copiedArray);  // Output: [10, 2, 3]
+```
+
+Es importante tener en cuenta que esta es una copia superficial. Si el array contiene objetos, solo se copiarán las referencias a esos objetos, no los objetos en sí.
+
+### EXPANDIENDO OBJETOS
+
+El operador Spread también se puede utilizar para expandir las propiedades de un objeto en otro objeto.
+
+```javascript
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3, d: 4 };
+
+const combinedObject = { ...obj1, ...obj2 };
+console.log(combinedObject); // Output: { a: 1, b: 2, c: 3, d: 4 }
+```
+
+Si hay propiedades con el mismo nombre en ambos objetos, la propiedad del último objeto prevalecerá.
+
+```javascript
+const obj1 = { a: 1, b: 2 };
+const obj2 = { a: 10, c: 3 };
+
+const combinedObject = { ...obj1, ...obj2 };
+console.log(combinedObject); // Output: { a: 10, b: 2, c: 3 }
+```
+
+### UTILIZANDO SPREAD CON FUNCIONES
+
+El operador Spread puede ser utilizado para pasar los elementos de un array como argumentos a una función.
+
+```javascript
+function sum(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+console.log(sum(...numbers)); // Output: 6
+```
+
+## OPERADOR REST
+
+El operador Rest (`...`) permite representar un número indefinido de argumentos como un array. Se utiliza principalmente en dos contextos:
+
+1.  **Parámetros de funciones:** Permite a una función aceptar un número variable de argumentos.
+2.  **Desestructuración:** Permite extraer una parte de un array u objeto y asignar el resto a una nueva variable.
+
+### PARAMETROS REST EN FUNCIONES
+
+Cuando se utiliza en la lista de parámetros de una función, el operador Rest permite recolectar todos los argumentos restantes en un array.
+
+```javascript
+function myFun(a, b, ...args) {
+  console.log("a", a)
+  console.log("b", b)
+  console.log("args", args)
+}
+
+myFun("uno", "dos", "tres", "cuatro", "cinco");
+// Output:
+// a uno
+// b dos
+// args [ 'tres', 'cuatro', 'cinco' ]
+```
+
+En este ejemplo, `a` y `b` reciben los dos primeros argumentos, y todos los argumentos restantes se recolectan en el array `args`.
+
+### DESESTRUCTURACION CON REST
+
+El operador Rest también se puede utilizar en la desestructuración de arrays y objetos.
+
+#### DESESTRUCTURACION DE ARRAYS
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const [first, second, ...rest] = numbers;
+
+console.log(first);  // Output: 1
+console.log(second); // Output: 2
+console.log(rest);   // Output: [3, 4, 5]
+```
+
+Aquí, `first` y `second` reciben los dos primeros elementos del array, y el resto de los elementos se recolectan en el array `rest`.
+
+#### DESESTRUCTURACION DE OBJETOS
+
+```javascript
+const person = {
+  name: "Juan",
+  age: 30,
+  city: "Madrid",
+  country: "España"
+};
+
+const { name, age, ...address } = person;
+
+console.log(name);    // Output: Juan
+console.log(age);     // Output: 30
+console.log(address); // Output: { city: 'Madrid', country: 'España' }
+```
+
+En este caso, `name` y `age` reciben los valores correspondientes del objeto, y el resto de las propiedades se recolectan en el objeto `address`.
+
+## DIFERENCIAS CLAVE
+
+| Característica | Operador Spread                               | Operador Rest                                  |
+| :------------- | :-------------------------------------------- | :--------------------------------------------- |
+| Función        | Expande un iterable en elementos individuales | Recolecta elementos en un array                |
+| Uso            | Llamadas a funciones, literales de array y objeto | Parámetros de funciones, desestructuración |
+| Contexto       | Donde se esperan múltiples valores           | Donde se espera un número variable de valores |
+
+## EJEMPLOS PRACTICOS
+
+### COMBINANDO MULTIPLES ARRAYS
+
+```javascript
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const arr3 = [5, 6];
+
+const combined = [...arr1, ...arr2, ...arr3];
+console.log(combined); // Output: [1, 2, 3, 4, 5, 6]
+```
+
+### CREANDO UNA COPIA DE UN OBJETO CON MODIFICACIONES
+
+```javascript
+const original = { a: 1, b: 2, c: 3 };
+const modified = { ...original, b: 20 };
+
+console.log(original); // Output: { a: 1, b: 2, c: 3 }
+console.log(modified); // Output: { a: 1, b: 20, c: 3 }
+```
+
+### IMPLEMENTANDO UNA FUNCION SUMA CON UN NUMERO VARIABLE DE ARGUMENTOS
+
+```javascript
+function sum(...numbers) {
+  return numbers.reduce((acc, num) => acc + num, 0);
+}
+
+console.log(sum(1, 2, 3));       // Output: 6
+console.log(sum(1, 2, 3, 4, 5)); // Output: 15
+```
+
+## CONCLUSION
+
+Los operadores Spread y Rest son herramientas poderosas en JavaScript que facilitan la manipulación de arrays y objetos, así como la creación de funciones más flexibles. Comprender sus diferencias y aplicaciones puede mejorar significativamente la legibilidad y eficiencia del código.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+*   [MDN Web Docs: Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Rest_parameters)
+*   [ES6 Features - Spread Operator](https://www.tutorialspoint.com/es6/es6_spread_operator.htm)
+*   [ES6 Features - Rest Parameter](https://www.tutorialspoint.com/es6/es6_rest_parameter.htm)

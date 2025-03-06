@@ -1,0 +1,152 @@
+---
+title: Tipos de Testing en JavaScript
+description: Exploración de los diferentes tipos de pruebas en JavaScript, incluyendo pruebas unitarias, de integración y end-to-end.
+keywords: ["testing", "javascript", "pruebas unitarias", "pruebas de integracion", "pruebas end-to-end", "jest", "mocha", "cypress", "calidad del software"]
+---
+
+El testing es una parte fundamental del desarrollo de software, especialmente en JavaScript, donde la naturaleza dinámica y la complejidad de las aplicaciones modernas requieren una verificación exhaustiva. Los tests aseguran que el código funcione como se espera, previenen regresiones, facilitan la refactorización y mejoran la calidad general del software. En JavaScript, existen varios tipos de pruebas que se pueden aplicar, cada uno con un enfoque y propósito distintos.
+
+## OBJETIVOS CLAVE SOBRE EL TEMA
+
+*   **Comprender los diferentes tipos de pruebas:** Identificar las características y propósitos de las pruebas unitarias, de integración y end-to-end.
+*   **Aplicar las pruebas adecuadas:** Seleccionar el tipo de prueba más apropiado según el componente o funcionalidad que se esté evaluando.
+*   **Mejorar la calidad del código:** Utilizar las pruebas para detectar errores, prevenir regresiones y facilitar la refactorización.
+*   **Automatizar el proceso de testing:** Integrar las pruebas en un flujo de trabajo automatizado para garantizar una verificación continua del código.
+
+## PRUEBAS UNITARIAS
+
+Las pruebas unitarias son el tipo de prueba más básico y se centran en verificar el comportamiento de unidades individuales de código, como funciones, métodos o clases. El objetivo es aislar cada unidad y probarla de forma independiente para asegurar que funciona correctamente.
+
+*   **Características:**
+    *   **Aislamiento:** Se aísla la unidad de código del resto del sistema, utilizando mocks o stubs para simular dependencias externas.
+    *   **Rapidez:** Las pruebas unitarias deben ejecutarse rápidamente para permitir una retroalimentación rápida durante el desarrollo.
+    *   **Especificidad:** Se centran en probar casos de uso específicos y escenarios de error para asegurar la robustez de la unidad.
+
+*   **Ejemplo con Jest:**
+
+```javascript
+// sum.js
+function sum(a, b) {
+  return a + b;
+}
+
+module.exports = sum;
+```
+
+```javascript
+// sum.test.js
+const sum = require('./sum');
+
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
+```
+
+En este ejemplo, se prueba la función `sum` para asegurar que devuelve el resultado correcto al sumar dos números.
+
+## PRUEBAS DE INTEGRACION
+
+Las pruebas de integración verifican la interacción entre diferentes unidades o componentes del sistema. El objetivo es asegurar que las unidades trabajen juntas correctamente y que la integración no introduzca errores.
+
+*   **Características:**
+    *   **Interacción:** Se prueban las interacciones entre diferentes partes del sistema, como módulos, servicios o bases de datos.
+    *   **Dependencias:** Se consideran las dependencias externas y se asegura que la integración con estas dependencias funcione correctamente.
+    *   **Cobertura:** Se busca cubrir los diferentes caminos de ejecución y escenarios de interacción entre los componentes.
+
+*   **Ejemplo con Jest:**
+
+Supongamos que tenemos dos funciones, una que obtiene datos de un usuario y otra que los procesa:
+
+```javascript
+// user.js
+const api = require('./api');
+
+async function getUser(id) {
+  const response = await api.getUser(id);
+  return response.data;
+}
+
+module.exports = getUser;
+```
+
+```javascript
+// api.js
+async function getUser(id) {
+  // Simulación de una llamada a una API
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve({ data: { id: id, name: 'User ' + id } });
+    }, 50);
+  });
+}
+
+module.exports = { getUser };
+```
+
+```javascript
+// user.test.js
+const getUser = require('./user');
+const api = require('./api');
+
+jest.mock('./api');
+
+test('fetches user data from API', async () => {
+  api.getUser.mockResolvedValue({ data: { id: 1, name: 'User 1' } });
+
+  const user = await getUser(1);
+  expect(user).toEqual({ id: 1, name: 'User 1' });
+  expect(api.getUser).toHaveBeenCalledWith(1);
+});
+```
+
+En este ejemplo, se utiliza `jest.mock` para simular la llamada a la API y asegurar que la función `getUser` interactúa correctamente con la API.
+
+## PRUEBAS END-TO-END (E2E)
+
+Las pruebas end-to-end (E2E) simulan el comportamiento de un usuario real interactuando con la aplicación. El objetivo es verificar que la aplicación funciona correctamente de principio a fin, incluyendo la interfaz de usuario, la lógica del servidor y la base de datos.
+
+*   **Características:**
+    *   **Simulación:** Se simula el comportamiento de un usuario real, interactuando con la aplicación a través de la interfaz de usuario.
+    *   **Cobertura completa:** Se busca cubrir los diferentes flujos de usuario y escenarios de uso de la aplicación.
+    *   **Entorno real:** Se ejecutan en un entorno lo más parecido posible al entorno de producción para asegurar la validez de las pruebas.
+
+*   **Ejemplo con Cypress:**
+
+```javascript
+// cypress/integration/app.spec.js
+describe('My First Test', () => {
+  it('Visits the app root url', () => {
+    cy.visit('/');
+    cy.contains('h1', 'Welcome to Your Vue.js App');
+  });
+})
+```
+
+Este ejemplo utiliza Cypress para visitar la página principal de una aplicación Vue.js y verificar que el título principal sea el esperado.
+
+## HERRAMIENTAS DE TESTING
+
+Existen diversas herramientas y frameworks para realizar pruebas en JavaScript, cada uno con sus propias características y ventajas. Algunas de las herramientas más populares son:
+
+*   **Jest:** Un framework de testing desarrollado por Facebook, conocido por su facilidad de uso, velocidad y funcionalidades integradas como mocks y cobertura de código.
+*   **Mocha:** Un framework de testing flexible y extensible que permite utilizar diferentes librerías de aserción y mocks.
+*   **Chai:** Una librería de aserción que se puede utilizar con Mocha u otros frameworks de testing.
+*   **Sinon.JS:** Una librería para crear mocks, stubs y spies que facilita el aislamiento de las unidades de código durante las pruebas.
+*   **Cypress:** Un framework de testing end-to-end diseñado específicamente para aplicaciones web modernas, que permite escribir pruebas de forma intuitiva y depurar fácilmente.
+*   **Selenium:** Una herramienta de automatización de pruebas que permite controlar navegadores web y simular interacciones de usuario.
+
+## MEJORES PRACTICAS
+
+*   **Escribir pruebas claras y concisas:** Las pruebas deben ser fáciles de entender y mantener, con nombres descriptivos y una estructura clara.
+*   **Cubrir todos los casos de uso:** Las pruebas deben cubrir los diferentes escenarios de uso y casos de error para asegurar la robustez del código.
+*   **Automatizar el proceso de testing:** Las pruebas deben integrarse en un flujo de trabajo automatizado para garantizar una verificación continua del código.
+*   **Utilizar mocks y stubs:** Utilizar mocks y stubs para aislar las unidades de código y simular dependencias externas.
+*   **Realizar pruebas de forma regular:** Las pruebas deben realizarse de forma regular durante el desarrollo para detectar errores y prevenir regresiones.
+
+## FUENTES DEL DOCUMENTO
+
+*   [Jest Documentation](https://jestjs.io/docs/getting-started)
+*   [Mocha Documentation](https://mochajs.org/)
+*   [Cypress Documentation](https://docs.cypress.io/)
+*   [Selenium Documentation](https://www.selenium.dev/documentation/)
+*   Martin Fowler - [Test Pyramid](https://martinfowler.com/bliki/TestPyramid.html)

@@ -1,0 +1,220 @@
+---
+title: Patrones de Diseño Comunes
+description: Exploración de los patrones de diseño más utilizados en JavaScript para crear código mantenible, escalable y eficiente.
+keywords: ["patrones de diseño", "javascript", "programación orientada a objetos", "arquitectura de software", "singleton", "factory", "observer"]
+---
+
+Los patrones de diseño son soluciones reutilizables a problemas comunes que surgen durante el desarrollo de software. En JavaScript, estos patrones nos ayudan a escribir código más limpio, modular y fácil de mantener. Al comprender y aplicar estos patrones, los desarrolladores pueden mejorar la estructura y la organización de sus aplicaciones, lo que conduce a un código más robusto y escalable.
+
+## OBJETIVOS CLAVE
+
+*   **Mejorar la Reutilización del Código:** Facilitar la reutilización de soluciones probadas y comprobadas.
+*   **Aumentar la Mantenibilidad:** Hacer que el código sea más fácil de entender, modificar y depurar.
+*   **Promover la Escalabilidad:** Permitir que las aplicaciones crezcan y se adapten a nuevas funcionalidades sin comprometer la estructura existente.
+*   **Estandarizar la Comunicación:** Proporcionar un vocabulario común para discutir y diseñar soluciones de software.
+
+## DESARROLLO DE LOS PATRONES
+
+A continuación, se describen algunos de los patrones de diseño más comunes en JavaScript, junto con ejemplos de implementación.
+
+### 1. PATRON MODULO
+
+El patrón módulo se utiliza para encapsular variables y funciones dentro de un objeto, proporcionando privacidad y evitando la contaminación del espacio de nombres global.
+
+**Implementación:**
+
+```javascript
+const modulo = (function() {
+  let contador = 0;
+
+  function incrementar() {
+    contador++;
+  }
+
+  function obtenerContador() {
+    return contador;
+  }
+
+  return {
+    incrementar: incrementar,
+    obtenerContador: obtenerContador
+  };
+})();
+
+modulo.incrementar();
+console.log(modulo.obtenerContador()); // Output: 1
+```
+
+**Explicación:**
+
+*   Se utiliza una función anónima autoejecutable (IIFE) para crear un ámbito privado.
+*   La variable `contador` y la función `incrementar` son privadas y no accesibles directamente desde fuera del módulo.
+*   El objeto retornado expone las funciones `incrementar` y `obtenerContador`, que pueden ser utilizadas para interactuar con el módulo.
+
+### 2. PATRON SINGLETON
+
+El patrón singleton asegura que una clase tenga solo una instancia y proporciona un punto de acceso global a ella.
+
+**Implementación:**
+
+```javascript
+const Singleton = (function() {
+  let instancia;
+
+  function crearInstancia() {
+    const objeto = new Object("¡Soy la instancia!");
+    return objeto;
+  }
+
+  return {
+    obtenerInstancia: function() {
+      if (!instancia) {
+        instancia = crearInstancia();
+      }
+      return instancia;
+    }
+  };
+})();
+
+const instancia1 = Singleton.obtenerInstancia();
+const instancia2 = Singleton.obtenerInstancia();
+
+console.log(instancia1 === instancia2); // Output: true
+```
+
+**Explicación:**
+
+*   La variable `instancia` mantiene la única instancia de la clase.
+*   La función `crearInstancia` crea una nueva instancia si no existe.
+*   La función `obtenerInstancia` devuelve la instancia existente o crea una nueva si es necesario.
+
+### 3. PATRON FACTORY
+
+El patrón factory proporciona una interfaz para crear objetos sin especificar sus clases concretas.
+
+**Implementación:**
+
+```javascript
+function Creador(tipo) {
+  if (tipo === "Circulo") {
+    return new Circulo();
+  } else if (tipo === "Cuadrado") {
+    return new Cuadrado();
+  }
+}
+
+function Circulo() {
+  this.dibujar = function() {
+    console.log("Dibujando un círculo");
+  }
+}
+
+function Cuadrado() {
+  this.dibujar = function() {
+    console.log("Dibujando un cuadrado");
+  }
+}
+
+const circulo = Creador("Circulo");
+circulo.dibujar(); // Output: Dibujando un círculo
+
+const cuadrado = Creador("Cuadrado");
+cuadrado.dibujar(); // Output: Dibujando un cuadrado
+```
+
+**Explicación:**
+
+*   La función `Creador` actúa como la fábrica, creando objetos de diferentes tipos basados en el parámetro `tipo`.
+*   Las funciones `Circulo` y `Cuadrado` son las clases concretas que se crean.
+
+### 4. PATRON OBSERVER
+
+El patrón observer define una dependencia uno-a-muchos entre objetos, de modo que cuando un objeto cambia de estado, todos sus dependientes son notificados y actualizados automáticamente.
+
+**Implementación:**
+
+```javascript
+function Subject() {
+  this.observers = [];
+
+  this.subscribe = function(observer) {
+    this.observers.push(observer);
+  }
+
+  this.unsubscribe = function(observer) {
+    this.observers = this.observers.filter(obs => obs !== observer);
+  }
+
+  this.fire = function(data) {
+    this.observers.forEach(observer => {
+      observer.update(data);
+    });
+  }
+}
+
+function Observer(name) {
+  this.name = name;
+  this.update = function(data) {
+    console.log(`${this.name}: ${data}`);
+  }
+}
+
+const subject = new Subject();
+
+const observer1 = new Observer("Observer 1");
+const observer2 = new Observer("Observer 2");
+
+subject.subscribe(observer1);
+subject.subscribe(observer2);
+
+subject.fire("¡Nuevo evento!");
+// Output:
+// Observer 1: ¡Nuevo evento!
+// Observer 2: ¡Nuevo evento!
+
+subject.unsubscribe(observer2);
+
+subject.fire("¡Otro evento!");
+// Output:
+// Observer 1: ¡Otro evento!
+```
+
+**Explicación:**
+
+*   `Subject` mantiene una lista de `observers` y proporciona métodos para suscribir, desuscribir y notificar a los observers.
+*   `Observer` define el método `update` que se llama cuando el subject emite un evento.
+
+### 5. PATRON PROTOTYPE
+
+El patrón prototype permite crear nuevos objetos copiando un objeto existente, conocido como prototipo.
+
+**Implementación:**
+
+```javascript
+const prototipo = {
+  saludar: function() {
+    console.log("Hola, soy un prototipo");
+  }
+};
+
+const objeto1 = Object.create(prototipo);
+objeto1.saludar(); // Output: Hola, soy un prototipo
+
+const objeto2 = Object.create(prototipo);
+objeto2.saludar(); // Output: Hola, soy un prototipo
+```
+
+**Explicación:**
+
+*   `prototipo` es un objeto que sirve como base para crear nuevos objetos.
+*   `Object.create(prototipo)` crea un nuevo objeto que hereda las propiedades y métodos de `prototipo`.
+
+## CONCLUSION
+
+Los patrones de diseño son herramientas poderosas que ayudan a los desarrolladores de JavaScript a escribir código más organizado, mantenible y escalable. Al comprender y aplicar estos patrones, se pueden resolver problemas comunes de manera eficiente y mejorar la calidad general del software.
+
+## FUENTES DEL DOCUMENTO
+
+*   [Addy Osmani - Learning JavaScript Design Patterns](https://www.patterns.dev/posts/classic-design-patterns/)
+*   [Sourcemaking - Design Patterns](https://sourcemaking.com/design_patterns)
+*   [Wikipedia - Design Patterns](https://en.wikipedia.org/wiki/Software_design_pattern)

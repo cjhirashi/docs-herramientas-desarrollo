@@ -1,0 +1,239 @@
+---
+title: NPM (NODE PACKAGE MANAGER)
+description:  GESTIONA PAQUETES DE NODE.JS, FACILITANDO LA INSTALACION, ACTUALIZACION Y ELIMINACION DE LIBRERIAS Y HERRAMIENTAS.
+keywords: ["NPM", "NODE.JS", "PAQUETES", "LIBRERIAS", "DEPENDENCIAS", "GESTION DE PAQUETES"]
+---
+
+NPM (Node Package Manager) es el gestor de paquetes predeterminado para el entorno de ejecución de JavaScript Node.js.  Es una herramienta de línea de comandos que permite a los desarrolladores instalar, compartir y gestionar dependencias de código de manera eficiente.  NPM facilita la reutilización de código, la gestión de versiones y la colaboración en proyectos de Node.js.
+
+## OBJETIVOS CLAVE SOBRE NPM
+
+1.  **Gestion de Dependencias:** NPM simplifica la tarea de añadir, actualizar y eliminar librerías y herramientas que un proyecto necesita para funcionar correctamente.
+2.  **Reutilizacion de Codigo:** Permite a los desarrolladores compartir sus propios paquetes y utilizar los paquetes creados por otros, fomentando la reutilización de código y la colaboración.
+3.  **Gestion de Versiones:** NPM facilita la gestión de versiones de los paquetes, permitiendo especificar qué versiones de las dependencias son compatibles con un proyecto.
+4.  **Publicacion de Paquetes:** Permite a los desarrolladores publicar sus propios paquetes en el registro de NPM, haciéndolos accesibles a la comunidad global de desarrolladores de Node.js.
+5.  **Automatizacion de Tareas:** NPM puede utilizarse para automatizar tareas comunes de desarrollo, como la ejecución de pruebas, la construcción de proyectos y la ejecución de scripts personalizados.
+
+## INSTALACION DE NPM
+
+NPM se instala automáticamente con Node.js. Para verificar si NPM está instalado, abre una terminal o línea de comandos y ejecuta el siguiente comando:
+
+```bash
+npm -v
+```
+
+Esto mostrará la versión de NPM instalada en tu sistema. Si no está instalado, descarga e instala Node.js desde el sitio web oficial: [https://nodejs.org/](https://nodejs.org/)
+
+## USO BASICO DE NPM
+
+### INICIALIZAR UN PROYECTO
+
+Para comenzar a utilizar NPM en un proyecto, primero debes inicializarlo. Esto crea un archivo `package.json` que contiene metadatos sobre el proyecto y sus dependencias.
+
+```bash
+npm init
+```
+
+Este comando te guiará a través de una serie de preguntas para configurar el archivo `package.json`. Puedes aceptar los valores predeterminados o personalizarlos según tus necesidades.
+
+Para crear un archivo `package.json` con valores predeterminados, puedes usar la opción `-y` o `--yes`:
+
+```bash
+npm init -y
+```
+
+### INSTALAR PAQUETES
+
+Para instalar un paquete, utiliza el comando `npm install` seguido del nombre del paquete. Por ejemplo, para instalar el paquete `lodash`:
+
+```bash
+npm install lodash
+```
+
+Esto instalará la última versión del paquete `lodash` y lo añadirá como una dependencia en el archivo `package.json`.
+
+Para instalar una versión específica de un paquete, utiliza el símbolo `@` seguido del número de versión:
+
+```bash
+npm install lodash@4.17.21
+```
+
+Para guardar un paquete como una dependencia de desarrollo (es decir, una dependencia que solo es necesaria durante el desarrollo y no en producción), utiliza la opción `--save-dev` o `-D`:
+
+```bash
+npm install --save-dev jest
+```
+
+### DESINSTALAR PAQUETES
+
+Para desinstalar un paquete, utiliza el comando `npm uninstall` seguido del nombre del paquete:
+
+```bash
+npm uninstall lodash
+```
+
+Esto eliminará el paquete `lodash` de la carpeta `node_modules` y lo removerá de las dependencias en el archivo `package.json`.
+
+### ACTUALIZAR PAQUETES
+
+Para actualizar un paquete a la última versión, utiliza el comando `npm update` seguido del nombre del paquete:
+
+```bash
+npm update lodash
+```
+
+Para actualizar todos los paquetes en un proyecto a sus últimas versiones compatibles, ejecuta:
+
+```bash
+npm update
+```
+
+### EJECUTAR SCRIPTS
+
+NPM permite definir scripts personalizados en el archivo `package.json` que pueden ser ejecutados utilizando el comando `npm run`. Por ejemplo, puedes definir un script para ejecutar pruebas:
+
+```json
+{
+  "name": "mi-proyecto",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+Para ejecutar este script, utiliza el siguiente comando:
+
+```bash
+npm run test
+```
+
+## ARCHIVO PACKAGE.JSON
+
+El archivo `package.json` es un archivo JSON que contiene metadatos sobre el proyecto y sus dependencias.  Es esencial para la gestión de proyectos de Node.js y permite a NPM gestionar las dependencias de manera eficiente.
+
+### ESTRUCTURA BASICA
+
+Un archivo `package.json` típico puede contener los siguientes campos:
+
+*   `name`: El nombre del paquete.
+*   `version`: La versión del paquete.
+*   `description`: Una descripción del paquete.
+*   `main`: El punto de entrada principal del paquete.
+*   `scripts`: Un objeto que define scripts personalizados.
+*   `dependencies`: Un objeto que lista las dependencias del paquete.
+*   `devDependencies`: Un objeto que lista las dependencias de desarrollo del paquete.
+*   `repository`: Un objeto que especifica el repositorio de código del paquete.
+*   `keywords`: Un array de palabras clave relacionadas con el paquete.
+*   `author`: El autor del paquete.
+*   `license`: La licencia del paquete.
+
+### EJEMPLO DE PACKAGE.JSON
+
+```json
+{
+  "name": "mi-proyecto",
+  "version": "1.0.0",
+  "description": "Un proyecto de ejemplo con Node.js y NPM",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "jest": "^27.0.0"
+  },
+  "keywords": [
+    "node.js",
+    "npm",
+    "express",
+    "lodash"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/mi-proyecto.git"
+  }
+}
+```
+
+## SEMANTIC VERSIONING (SEMVER)
+
+NPM utiliza Semantic Versioning (SemVer) para gestionar las versiones de los paquetes. SemVer es un esquema de versionado que utiliza tres números: `MAJOR.MINOR.PATCH`.
+
+*   `MAJOR`: Incrementado cuando se hacen cambios incompatibles en la API.
+*   `MINOR`: Incrementado cuando se añaden funcionalidades de manera compatible hacia atrás.
+*   `PATCH`: Incrementado cuando se hacen correcciones de errores compatibles hacia atrás.
+
+En el archivo `package.json`, puedes especificar rangos de versiones permitidas para las dependencias utilizando los siguientes símbolos:
+
+*   `^`: Permite actualizaciones a versiones MINOR y PATCH.
+*   `~`: Permite actualizaciones a versiones PATCH.
+*   `>`: Mayor que la versión especificada.
+*   `<`: Menor que la versión especificada.
+*   `>=`: Mayor o igual que la versión especificada.
+*   `<=`: Menor o igual que la versión especificada.
+*   `=`: Igual a la versión especificada.
+*   `*`: Cualquier versión.
+
+## REGISTRO DE NPM
+
+El registro de NPM es una base de datos pública de paquetes de Node.js.  Permite a los desarrolladores publicar y compartir sus propios paquetes con la comunidad global.
+
+### PUBLICAR UN PAQUETE
+
+Para publicar un paquete en el registro de NPM, sigue estos pasos:
+
+1.  Crea una cuenta en el sitio web de NPM: [https://www.npmjs.com/](https://www.npmjs.com/)
+2.  Inicia sesión en NPM desde la línea de comandos:
+
+```bash
+npm login
+```
+
+1.  Navega al directorio de tu paquete.
+2.  Publica el paquete:
+
+```bash
+npm publish
+```
+
+Asegúrate de que el archivo `package.json` esté configurado correctamente y que el paquete cumpla con las políticas de NPM.
+
+## NPM VS YARN
+
+Yarn es otro gestor de paquetes para Node.js que fue desarrollado por Facebook.  Aunque NPM es el gestor de paquetes predeterminado, Yarn ofrece algunas ventajas, como una mayor velocidad y determinismo en la gestión de dependencias.
+
+### DIFERENCIAS CLAVE
+
+*   **Velocidad:** Yarn tiende a ser más rápido que NPM en la instalación de dependencias debido a su enfoque en el paralelismo y el almacenamiento en caché.
+*   **Determinismo:** Yarn utiliza un archivo `yarn.lock` para asegurar que las dependencias se instalen de manera determinista, lo que significa que siempre obtendrás las mismas versiones de las dependencias en diferentes entornos.
+*   **Seguridad:** Yarn realiza comprobaciones de seguridad para verificar la integridad de los paquetes instalados.
+
+### USO DE YARN
+
+Para instalar Yarn, puedes utilizar NPM:
+
+```bash
+npm install -g yarn
+```
+
+Una vez instalado, puedes utilizar los comandos de Yarn de manera similar a NPM:
+
+*   `yarn init`: Inicializa un nuevo proyecto.
+*   `yarn add <paquete>`: Añade una dependencia.
+*   `yarn remove <paquete>`: Elimina una dependencia.
+*   `yarn install`: Instala las dependencias del proyecto.
+*   `yarn upgrade <paquete>`: Actualiza una dependencia.
+
+## FUENTES DEL DOCUMENTO
+
+*   Sitio web oficial de NPM: [https://www.npmjs.com/](https://www.npmjs.com/)
+*   Documentación de NPM: [https://docs.npmjs.com/](https://docs.npmjs.com/)
+*   Sitio web oficial de Node.js: [https://nodejs.org/](https://nodejs.org/)
+*   Documentación de Yarn: [https://yarnpkg.com/](https://yarnpkg.com/)
