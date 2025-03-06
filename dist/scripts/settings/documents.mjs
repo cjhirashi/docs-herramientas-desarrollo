@@ -217,6 +217,10 @@ export const Documents = [
                                         href: "/react",
                                     },
                                     {
+                                        title: "Next.js",
+                                        href: "/nextjs",
+                                    },
+                                    {
                                         title: "Angular",
                                         href: "/angular",
                                     },
