@@ -1,5 +1,160 @@
 ---
 title: HTML
-description: desc
-keywords: ["introducción", "guía", "nextjs", "documents"]
+description: Lenguaje de marcado para la estructura de contenido web.
+keywords: ["HTML", "lenguaje de marcado", "estructura web", "elementos HTML", "atributos HTML", "semántica HTML", "DOM", "accesibilidad web"]
 ---
+
+## INTRODUCCION A HTML
+
+HTML (HyperText Markup Language) es el lenguaje de marcado estándar para crear páginas web. Define la estructura del contenido web, incluyendo texto, imágenes, enlaces y otros elementos multimedia. HTML no es un lenguaje de programación; en cambio, utiliza etiquetas para estructurar y presentar el contenido. Los navegadores web interpretan estas etiquetas y muestran el contenido de la página web de acuerdo con ellas.
+
+## OBJETIVOS CLAVE DE HTML
+
+*   **Estructura del Contenido:** Definir la jerarquía y organización del contenido en una página web.
+*   **Presentación:** Especificar cómo se debe mostrar el contenido en el navegador (aunque el estilo visual se maneja principalmente con CSS).
+*   **Hipervínculos:** Crear enlaces a otras páginas web o recursos en línea.
+*   **Multimedia:** Integrar imágenes, audio y video en las páginas web.
+*   **Formularios:** Crear formularios para recopilar datos del usuario.
+*   **Accesibilidad:** Asegurar que el contenido sea accesible para todos los usuarios, incluyendo aquellos con discapacidades.
+
+## INFORMACION RELEVANTE SOBRE HTML
+
+### ESTRUCTURA BASICA DE UN DOCUMENTO HTML
+
+Un documento HTML típico tiene la siguiente estructura básica:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de la página</title>
+</head>
+<body>
+    <!-- Contenido de la página -->
+</body>
+</html>
+```
+
+*   **`<!DOCTYPE html>`**: Declara el tipo de documento como HTML5.
+*   **`<html>`**: Elemento raíz del documento HTML.
+*   **`<head>`**: Contiene metadatos sobre el documento, como el título, la codificación de caracteres y enlaces a hojas de estilo.
+*   **`<meta>`**: Proporciona metadatos adicionales, como la codificación de caracteres (`charset`) y la configuración de la ventana gráfica (`viewport`).
+*   **`<title>`**: Define el título de la página que se muestra en la pestaña del navegador.
+*   **`<body>`**: Contiene el contenido visible de la página web.
+
+### ELEMENTOS HTML
+
+Los elementos HTML están definidos por etiquetas, que consisten en un nombre de etiqueta encerrado entre corchetes angulares (`<` y `>`). La mayoría de los elementos tienen una etiqueta de apertura y una etiqueta de cierre.
+
+Ejemplos de elementos HTML comunes:
+
+*   **`<h1>` a `<h6>`**: Encabezados de diferentes niveles.
+*   **`<p>`**: Párrafo de texto.
+*   **`<a>`**: Enlace (hipervínculo).
+*   **`<img>`**: Imagen.
+*   **`<ul>`**: Lista no ordenada.
+*   **`<ol>`**: Lista ordenada.
+*   **`<li>`**: Elemento de lista.
+*   **`<div>`**: Contenedor genérico.
+*   **`<span>`**: Contenedor en línea genérico.
+*   **`<form>`**: Formulario para recopilar datos del usuario.
+*   **`<input>`**: Campo de entrada de formulario.
+*   **`<button>`**: Botón.
+*   **`<textarea>`**: Área de texto para entrada de texto multilínea.
+*   **`<select>`**: Menú desplegable.
+*   **`<table>`**: Tabla.
+*   **`<tr>`**: Fila de tabla.
+*   **`<td>`**: Celda de tabla.
+*   **`<header>`**: Encabezado de sección.
+*   **`<nav>`**: Sección de navegación.
+*   **`<article>`**: Artículo independiente.
+*   **`<aside>`**: Contenido secundario.
+*   **`<footer>`**: Pie de página.
+
+### ATRIBUTOS HTML
+
+Los atributos proporcionan información adicional sobre los elementos HTML. Se especifican en la etiqueta de apertura y consisten en un nombre y un valor.
+
+Ejemplos de atributos HTML comunes:
+
+*   **`class`**: Define una clase CSS para aplicar estilos.
+*   **`id`**: Define un identificador único para el elemento.
+*   **`src`**: Especifica la URL de una imagen (para el elemento `<img>`).
+*   **`href`**: Especifica la URL de un enlace (para el elemento `<a>`).
+*   **`alt`**: Proporciona texto alternativo para una imagen (importante para la accesibilidad).
+*   **`title`**: Proporciona un título para el elemento (que se muestra como información sobre herramientas).
+*   **`style`**: Permite aplicar estilos CSS directamente al elemento (aunque generalmente se recomienda usar hojas de estilo externas).
+*    **`width`**: Define el ancho de un elemento (como una imagen).
+*   **`height`**: Define la altura de un elemento.
+*   **`name`**: Especifica el nombre de un elemento de formulario.
+*   **`value`**: Especifica el valor de un elemento de formulario.
+*   **`type`**: Especifica el tipo de un elemento de formulario (por ejemplo, "text", "email", "password", "submit").
+*   **`placeholder`**: Proporciona un texto de marcador de posición en un campo de formulario.
+*   **`required`**: Indica que un campo de formulario es obligatorio.
+*   **`disabled`**: Desactiva un elemento de formulario.
+
+### SEMANTICA HTML
+
+La semántica HTML se refiere al uso de etiquetas HTML para dar significado al contenido de una página web, en lugar de simplemente definir su apariencia visual. El uso de etiquetas semánticas mejora la accesibilidad, el SEO (Search Engine Optimization) y la comprensión del código.
+
+Ejemplos de etiquetas semánticas:
+
+*   **`<article>`**: Representa un artículo independiente en un documento, como una publicación de blog o una noticia.
+*   **`<aside>`**: Representa contenido relacionado pero secundario al contenido principal, como una barra lateral.
+*   **`<nav>`**: Representa una sección de navegación en un documento.
+*   **`<header>`**: Representa el encabezado de una sección o página.
+*   **`<footer>`**: Representa el pie de página de una sección o página.
+*   **`<main>`**: Representa el contenido principal de un documento.
+*   **`<section>`**: Representa una sección genérica de un documento.
+*   **`<figure>` y `<figcaption>`**: Se utilizan para agrupar una imagen con su leyenda.
+*   **`<time>`**: Representa una fecha y/o hora.
+*   **`<mark>`**: Representa texto resaltado.
+*   **`<details>` y `<summary>`**: Se utilizan para crear un widget de detalles desplegable.
+
+### ACCESIBILIDAD WEB
+
+La accesibilidad web se refiere a la práctica de diseñar y desarrollar sitios web que sean utilizables por personas con discapacidades. HTML juega un papel crucial en la accesibilidad web al proporcionar la estructura y la semántica necesarias para que las tecnologías de asistencia (como los lectores de pantalla) interpreten y presenten el contenido de manera significativa.
+
+Principios clave de accesibilidad HTML:
+
+*   **Texto alternativo para imágenes:** Utilizar el atributo `alt` en las etiquetas `<img>` para proporcionar una descripción textual de la imagen.
+*   **Estructura de encabezados adecuada:** Utilizar los encabezados (`<h1>` a `<h6>`) en orden lógico para estructurar el contenido.
+*   **Etiquetas semánticas:** Utilizar etiquetas semánticas para dar significado al contenido.
+*   **Formularios accesibles:** Asegurarse de que los formularios sean accesibles proporcionando etiquetas claras y utilizando los atributos apropiados (como `aria-label` y `aria-describedby`).
+*   **Contraste de color adecuado:** Asegurarse de que haya suficiente contraste entre el texto y el fondo para que el contenido sea legible.
+*   **Navegación por teclado:** Asegurarse de que todos los elementos interactivos sean accesibles a través del teclado.
+
+### HTML5 Y NUEVAS CARACTERISTICAS
+
+HTML5 es la última versión principal de HTML y ha introducido muchas nuevas características y mejoras, incluyendo:
+
+*   **Nuevas etiquetas semánticas:** Como `<article>`, `<aside>`, `<nav>`, `<header>`, `<footer>`, `<main>`, `<section>`.
+*   **Soporte multimedia mejorado:** Elementos `<audio>` y `<video>` para integrar audio y video sin necesidad de plugins.
+*   **Canvas:** Elemento `<canvas>` para dibujar gráficos dinámicos mediante JavaScript.
+*   **APIs:** Nuevas APIs para acceder a características del dispositivo, como la geolocalización y el almacenamiento local.
+*   **Formularios mejorados:** Nuevos tipos de input (como `email`, `date`, `number`) y atributos de validación.
+*   **WebSockets:** Para comunicación bidireccional en tiempo real entre el cliente y el servidor.
+*   **Web Storage:** Para almacenar datos localmente en el navegador del usuario.
+
+## PROCESO DE INSTALACION
+
+HTML no requiere instalación. Simplemente necesitas un editor de texto para escribir el código HTML y un navegador web para visualizarlo.
+
+1.  **Editor de texto:** Puedes utilizar cualquier editor de texto básico (como Notepad en Windows o TextEdit en macOS), o un editor de código más avanzado como Visual Studio Code, Sublime Text, Atom, etc.
+2.  **Navegador web:** La mayoría de los sistemas operativos vienen con un navegador web preinstalado (como Chrome, Firefox, Safari, Edge).
+
+Para crear y visualizar una página HTML:
+
+1.  Abre tu editor de texto.
+2.  Escribe el código HTML.
+3.  Guarda el archivo con la extensión `.html` (por ejemplo, `index.html`).
+4.  Abre el archivo `.html` en tu navegador web.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs - HTML](https://developer.mozilla.org/es/docs/Web/HTML)
+*   [W3Schools - HTML Tutorial](https://www.w3schools.com/html/)
+*   [HTML.com - HTML Tutorial](https://html.com/)
+*   [freeCodeCamp - HTML Tutorial](https://www.freecodecamp.org/news/html-tutorial-for-beginners/)

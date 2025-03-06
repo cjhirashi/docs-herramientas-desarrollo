@@ -1,0 +1,125 @@
+---
+title: Divisiones y Spans (<div>, <span>)
+description: Explicación detallada de los elementos <div> y <span> en HTML, su uso para estructurar y estilizar contenido, y las diferencias clave entre ambos.
+keywords: ["div", "span", "html", "css", "estructura", "estilo", "bloque", "en línea"]
+---
+
+Los elementos `<div>` y `<span>` son dos de los elementos más fundamentales y versátiles en HTML.  Aunque ambos se utilizan para agrupar contenido, su comportamiento y propósito son distintos.  Comprender estas diferencias es crucial para crear una estructura HTML semánticamente correcta y aplicar estilos CSS de manera efectiva.
+
+## OBJETIVOS CLAVE
+
+*   Entender la diferencia fundamental entre elementos de bloque (`<div>`) y elementos en línea (`<span>`).
+*   Aprender a utilizar `<div>` para estructurar secciones principales de una página web.
+*   Aprender a utilizar `<span>` para aplicar estilos específicos a porciones de texto o elementos dentro de una línea.
+*   Comprender cómo estos elementos interactúan con CSS para controlar la presentación visual.
+*   Conocer las mejores prácticas para el uso de `<div>` y `<span>` en el contexto de la semántica HTML5.
+
+## ELEMENTO `<DIV>` (DIVISION)
+
+El elemento `<div>`, abreviatura de "division", es un contenedor de bloque genérico.  Se utiliza para agrupar otros elementos HTML en secciones lógicas.  Por defecto, un `<div>` ocupa todo el ancho disponible de su contenedor padre y siempre comienza en una nueva línea.  Esencialmente, crea una "caja" rectangular que puede contener otros elementos, texto, imágenes, etc.
+
+**Características principales de `<div>`:**
+
+*   **Elemento de bloque:**  Ocupa todo el ancho disponible y comienza en una nueva línea.
+*   **Contenedor genérico:**  Puede contener cualquier tipo de contenido HTML.
+*   **Utilizado para la estructura:**  Ayuda a organizar el contenido en secciones lógicas.
+*   **Estilizable:**  Se puede aplicar estilos CSS para controlar su apariencia (ancho, alto, color de fondo, márgenes, etc.).
+
+**Ejemplo de uso:**
+
+```html
+<div id="header">
+  <h1>Mi Sitio Web</h1>
+  <nav>
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Acerca de</a></li>
+      <li><a href="#">Servicios</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </nav>
+</div>
+
+<div id="main-content">
+  <article>
+    <h2>Título del Artículo</h2>
+    <p>Este es el contenido del artículo...</p>
+  </article>
+</div>
+
+<div id="footer">
+  <p>© 2023 Mi Sitio Web</p>
+</div>
+```
+
+En este ejemplo, se utilizan `<div>` para crear las secciones principales de una página web: encabezado, contenido principal y pie de página.  Cada `<div>` actúa como un contenedor para el contenido correspondiente.  El atributo `id` se utiliza para identificar cada `<div>` y aplicar estilos CSS específicos.
+
+## ELEMENTO `<SPAN>`
+
+El elemento `<span>` es un contenedor en línea genérico.  Se utiliza para agrupar pequeñas porciones de texto u otros elementos en línea dentro de una línea de texto.  A diferencia de `<div>`, `<span>` no crea una nueva línea; simplemente envuelve el contenido especificado.
+
+**Características principales de `<span>`:**
+
+*   **Elemento en línea:**  No crea una nueva línea; fluye con el texto circundante.
+*   **Contenedor genérico:**  Puede contener texto u otros elementos en línea.
+*   **Utilizado para el estilo:**  Se utiliza para aplicar estilos específicos a porciones de texto.
+*   **Estilizable:**  Se puede aplicar estilos CSS para controlar su apariencia (color, fuente, tamaño, etc.).
+
+**Ejemplo de uso:**
+
+```html
+<p>Este es un párrafo de texto.  Quiero resaltar la palabra <span style="color: red;">importante</span> en rojo.</p>
+
+<p>Este es un párrafo con un <span class="highlight">fragmento</span> resaltado.</p>
+```
+
+En el primer ejemplo, se utiliza `<span>` para cambiar el color de la palabra "importante" a rojo.  En el segundo ejemplo, se utiliza `<span>` con una clase CSS para aplicar un estilo de resaltado.
+
+## DIFERENCIAS CLAVE ENTRE `<DIV>` Y `<SPAN>`
+
+| Característica | `<div>` | `<span>` |
+|---|---|---|
+| Tipo de elemento | Bloque | En línea |
+| Comportamiento | Crea una nueva línea | No crea una nueva línea |
+| Uso principal | Estructura de la página | Estilo de porciones de texto |
+| Ancho | Ocupa todo el ancho disponible | Se ajusta al contenido |
+| Contenido | Puede contener cualquier elemento HTML | Puede contener texto u otros elementos en línea |
+
+## CUÁNDO USAR `<DIV>` Y `<SPAN>`
+
+*   **Usar `<div>`:**
+    *   Para crear secciones principales de una página web (encabezado, pie de página, barra lateral, etc.).
+    *   Para agrupar elementos relacionados para facilitar el diseño y la manipulación con CSS y JavaScript.
+    *   Para crear layouts complejos utilizando CSS.
+*   **Usar `<span>`:**
+    *   Para aplicar estilos específicos a palabras o frases dentro de un párrafo.
+    *   Para agregar iconos o símbolos dentro de una línea de texto.
+    *   Para manipular porciones de texto con JavaScript.
+
+## SEMÁNTICA HTML5 Y ALTERNATIVAS A `<DIV>`
+
+Con la introducción de HTML5, se han introducido elementos semánticos que proporcionan un significado más específico a la estructura de una página web.  Estos elementos incluyen:
+
+*   `<header>`:  Representa el encabezado de una sección o página.
+*   `<nav>`:  Representa una sección de navegación.
+*   `<main>`:  Representa el contenido principal de una página.
+*   `<article>`:  Representa un artículo independiente.
+*   `<aside>`:  Representa contenido relacionado pero secundario.
+*   `<footer>`:  Representa el pie de página de una sección o página.
+
+Si bien `<div>` sigue siendo útil para agrupar contenido genérico, se recomienda utilizar estos elementos semánticos cuando sea apropiado para mejorar la accesibilidad y el SEO de tu sitio web.  En lugar de usar `<div id="header">`, usa `<header>`.
+
+## MEJORES PRÁCTICAS
+
+*   **Usar elementos semánticos HTML5 cuando sea posible.**  Esto mejora la accesibilidad y el SEO.
+*   **Evitar el uso excesivo de `<div>` y `<span>`.**  Demasiados elementos pueden dificultar la lectura y el mantenimiento del código.
+*   **Usar clases CSS para aplicar estilos en lugar de estilos en línea.**  Esto facilita la reutilización y el mantenimiento de los estilos.
+*   **Mantener la estructura HTML limpia y organizada.**  Esto facilita la comprensión y la modificación del código.
+*   **Comentar el código para explicar la función de cada `<div>` y `<span>`.**  Esto facilita la colaboración y el mantenimiento a largo plazo.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: `<div>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div)
+*   [MDN Web Docs: `<span>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span)
+*   [W3Schools: HTML `<div>` Tag](https://www.w3schools.com/tags/tag_div.asp)
+*   [W3Schools: HTML `<span>` Tag](https://www.w3schools.com/tags/tag_span.asp)

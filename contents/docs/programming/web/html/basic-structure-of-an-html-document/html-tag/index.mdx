@@ -1,0 +1,114 @@
+---
+title: LA ETIQUETA <html>
+description:  Documentación sobre la etiqueta HTML, su propósito, estructura y uso en la creación de páginas web.
+keywords: ["html", "etiqueta html", "estructura html", "documento html", "root element"]
+---
+
+La etiqueta `<html>` es el elemento raíz de todo documento HTML.  Actúa como el contenedor principal para todo el código HTML que conforma una página web.  Define el inicio y el final del documento, indicando al navegador que interprete el contenido como código HTML.  Sin esta etiqueta, el navegador no podría identificar el documento como HTML y, por lo tanto, no lo renderizaría correctamente.
+
+## OBJETIVOS CLAVE SOBRE LA ETIQUETA `<html>`
+
+*   **Definir la raíz del documento:**  La etiqueta `<html>` encapsula todo el contenido HTML, estableciendo el punto de partida para la interpretación del navegador.
+*   **Indicar la versión de HTML:**  Aunque no es obligatorio, se recomienda incluir el atributo `lang` dentro de la etiqueta `<html>` para especificar el idioma principal del documento.  Esto ayuda a los navegadores y motores de búsqueda a procesar el contenido correctamente.
+*   **Contener las secciones principales:**  Dentro de la etiqueta `<html>` se encuentran las dos secciones principales de un documento HTML: `<head>` y `<body>`.
+
+## ESTRUCTURA BASICA
+
+La estructura básica de un documento HTML con la etiqueta `<html>` se presenta de la siguiente manera:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de la página</title>
+</head>
+<body>
+    <h1>Encabezado principal</h1>
+    <p>Este es un párrafo de texto.</p>
+</body>
+</html>
+```
+
+En este ejemplo:
+
+*   `<!DOCTYPE html>`:  Declara el tipo de documento como HTML5.  Debe ser la primera línea del documento.
+*   `<html lang="es">`:  Define el elemento raíz del documento HTML y especifica el idioma español.
+*   `<head>`:  Contiene metadatos sobre el documento, como el título, la codificación de caracteres y la configuración de la ventana gráfica.
+*   `<body>`:  Contiene el contenido visible de la página web, como encabezados, párrafos, imágenes y enlaces.
+
+## ATRIBUTOS
+
+La etiqueta `<html>` puede aceptar varios atributos, aunque el más común es el atributo `lang`.
+
+*   **`lang`**:  Especifica el idioma principal del documento.  Por ejemplo, `lang="en"` para inglés, `lang="es"` para español, `lang="fr"` para francés, etc.  Este atributo es importante para la accesibilidad y la optimización para motores de búsqueda (SEO).
+*   **`xmlns`**:  Define el espacio de nombres XML para el documento.  Este atributo es menos común en HTML5, pero puede ser necesario en algunos casos.
+*   **`manifest`**: Especifica la URL de la lista de recursos de caché del navegador.
+
+## IMPORTANCIA DE LA ETIQUETA `<html>`
+
+La etiqueta `<html>` es fundamental para la correcta interpretación y visualización de una página web.  Sin ella, el navegador no sabría cómo procesar el contenido, lo que resultaría en una visualización incorrecta o en la imposibilidad de mostrar la página.
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### EJEMPLO 1: DOCUMENTO HTML BASICO
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Webpage</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>This is a simple HTML document.</p>
+</body>
+</html>
+```
+
+### EJEMPLO 2: USO DEL ATRIBUTO `LANG`
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Primera Página Web</title>
+</head>
+<body>
+    <h1>¡Hola, Mundo!</h1>
+    <p>Este es un documento HTML sencillo.</p>
+</body>
+</html>
+```
+
+### EJEMPLO 3:  INCORPORANDO METADATOS ADICIONALES
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Une page web simple en HTML.">
+    <meta name="keywords" content="HTML, page web, exemple">
+    <title>Ma Première Page Web</title>
+</head>
+<body>
+    <h1>Bonjour, le monde!</h1>
+    <p>Ceci est un document HTML simple.</p>
+</body>
+</html>
+```
+
+## CONSEJOS ADICIONALES
+
+*   Siempre incluye la etiqueta `<!DOCTYPE html>` al principio del documento para asegurar que el navegador interprete el código como HTML5.
+*   Utiliza el atributo `lang` para especificar el idioma principal del documento.
+*   Asegúrate de que todas las demás etiquetas HTML estén correctamente anidadas dentro de la etiqueta `<html>`.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: \<html> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html)
+*   [W3Schools: HTML `<html>` Tag](https://www.w3schools.com/tags/tag_html.asp)

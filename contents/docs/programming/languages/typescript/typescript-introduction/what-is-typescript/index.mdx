@@ -1,0 +1,153 @@
+---
+title: ¿Qué es typescript?
+description:  TypeScript es un superconjunto de JavaScript que añade tipado estático opcional.
+keywords: ["typescript", "javascript", "tipado estatico", "desarrollo web"]
+---
+
+TypeScript es un lenguaje de programación de código abierto desarrollado por Microsoft. Se define como un superconjunto de JavaScript, lo que significa que cualquier código JavaScript válido también es código TypeScript válido. La principal diferencia es que TypeScript añade tipado estático opcional al lenguaje, lo que permite detectar errores en tiempo de compilación en lugar de en tiempo de ejecución.
+
+## OBJETIVOS CLAVE
+
+*   **Tipado Estático:** Permite definir tipos de datos para las variables, parámetros de funciones y valores de retorno. Esto ayuda a prevenir errores comunes que ocurren en JavaScript debido a su naturaleza de tipado dinámico.
+*   **Compatibilidad con JavaScript:** TypeScript se compila a JavaScript, lo que significa que puede ejecutarse en cualquier entorno que soporte JavaScript, como navegadores web, Node.js, y otros.
+*   **Características Avanzadas:** Introduce características como clases, interfaces, módulos y genéricos, que facilitan la creación de código más estructurado y mantenible.
+*   **Herramientas de Desarrollo:** Ofrece herramientas de desarrollo mejoradas, como autocompletado, refactorización y detección de errores en tiempo real en editores de código como Visual Studio Code.
+
+## TIPADO ESTATICO
+
+El tipado estático es una de las características más importantes de TypeScript. Permite especificar el tipo de dato que una variable debe contener.
+
+**Ejemplo:**
+
+```typescript
+let nombre: string = "Juan";
+let edad: number = 30;
+let esEstudiante: boolean = true;
+
+function saludar(nombre: string): string {
+  return `Hola, ${nombre}`;
+}
+```
+
+En este ejemplo, `nombre` es una variable de tipo `string`, `edad` es de tipo `number`, y `esEstudiante` es de tipo `boolean`. La función `saludar` acepta un argumento de tipo `string` y retorna un valor de tipo `string`.
+
+## CLASES E INTERFACES
+
+TypeScript introduce clases e interfaces, que son conceptos fundamentales en la programación orientada a objetos.
+
+**Ejemplo de Clase:**
+
+```typescript
+class Persona {
+  nombre: string;
+  edad: number;
+
+  constructor(nombre: string, edad: number) {
+    this.nombre = nombre;
+    this.edad = edad;
+  }
+
+  saludar(): void {
+    console.log(`Hola, mi nombre es ${this.nombre} y tengo ${this.edad} años.`);
+  }
+}
+
+let persona = new Persona("Maria", 25);
+persona.saludar(); // Output: Hola, mi nombre es Maria y tengo 25 años.
+```
+
+**Ejemplo de Interfaz:**
+
+```typescript
+interface Figura {
+  area(): number;
+}
+
+class Rectangulo implements Figura {
+  ancho: number;
+  alto: number;
+
+  constructor(ancho: number, alto: number) {
+    this.ancho = ancho;
+    this.alto = alto;
+  }
+
+  area(): number {
+    return this.ancho * this.alto;
+  }
+}
+
+let rectangulo = new Rectangulo(10, 5);
+console.log(`El area del rectangulo es: ${rectangulo.area()}`); // Output: El area del rectangulo es: 50
+```
+
+## GENERICS
+
+Los genéricos permiten escribir código que puede trabajar con una variedad de tipos sin perder la seguridad del tipado.
+
+**Ejemplo:**
+
+```typescript
+function identidad<T>(arg: T): T {
+  return arg;
+}
+
+let valorString: string = identidad<string>("Hola");
+let valorNumero: number = identidad<number>(123);
+
+console.log(valorString); // Output: Hola
+console.log(valorNumero); // Output: 123
+```
+
+## MODULOS
+
+Los módulos permiten organizar el código en unidades lógicas y reutilizables.
+
+**Ejemplo:**
+
+```typescript
+// modulo.ts
+export function saludar(nombre: string): string {
+  return `Hola, ${nombre}`;
+}
+
+// app.ts
+import { saludar } from './modulo';
+
+console.log(saludar("Carlos")); // Output: Hola, Carlos
+```
+
+## COMPILACION
+
+TypeScript necesita ser compilado a JavaScript para poder ejecutarse en un navegador o en Node.js. El compilador de TypeScript (`tsc`) se encarga de esta tarea.
+
+**Ejemplo de Compilación:**
+
+1.  Crear un archivo `tsconfig.json` para configurar las opciones del compilador.
+
+    ```json
+    {
+      "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "outDir": "./dist",
+        "strict": true
+      },
+      "include": [
+        "./src/**/*"
+      ]
+    }
+    ```
+2.  Ejecutar el comando `tsc` en la terminal para compilar los archivos TypeScript.
+
+    ```bash
+    tsc
+    ```
+
+    Esto generará los archivos JavaScript correspondientes en el directorio `dist`.
+
+## FUENTES DEL DOCUMENTO
+
+*   [TypeScript Official Documentation](https://www.typescriptlang.org/docs/)
+*   [Microsoft TypeScript](https://github.com/microsoft/typescript)
+*   [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)

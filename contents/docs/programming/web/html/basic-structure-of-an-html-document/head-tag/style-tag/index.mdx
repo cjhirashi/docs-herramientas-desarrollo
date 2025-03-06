@@ -1,0 +1,176 @@
+---
+title: LA ETIQUETA <STYLE>
+description:  Exploración detallada de la etiqueta <style> en HTML, su uso para la inserción de CSS, atributos, y mejores prácticas.
+keywords: ["HTML", "CSS", "style", "etiqueta style", "estilos en línea", "hojas de estilo", "diseño web"]
+---
+
+La etiqueta `<style>` es un elemento fundamental en HTML que permite a los desarrolladores insertar reglas de estilo CSS (Cascading Style Sheets) directamente dentro de un documento HTML. Esta etiqueta es crucial para definir la apariencia visual de los elementos HTML, controlando aspectos como colores, fuentes, márgenes, y más.
+
+## OBJETIVOS CLAVE SOBRE LA ETIQUETA `<STYLE>`
+
+1.  **Integración de Estilos:** Facilitar la inclusión de estilos CSS dentro de un documento HTML, ya sea para estilos específicos de una página o para prototipos rápidos.
+2.  **Control de la Presentación:** Permitir a los desarrolladores controlar la presentación visual de los elementos HTML, mejorando la experiencia del usuario y la estética del sitio web.
+3.  **Flexibilidad en el Diseño:** Ofrecer flexibilidad en el diseño web, permitiendo la modificación de estilos en función de las necesidades específicas de cada página o componente.
+
+## ¿QUE ES LA ETIQUETA `<STYLE>`?
+
+La etiqueta `<style>` se utiliza para definir estilos CSS que se aplicarán a los elementos HTML en un documento. Puede colocarse dentro de la sección `<head>` del documento, donde se definen los estilos globales para toda la página, o dentro del `<body>` para aplicar estilos a secciones específicas.
+
+## SINTAXIS BASICA
+
+La sintaxis básica de la etiqueta `<style>` es la siguiente:
+
+```html
+<style>
+  /* Reglas de estilo CSS */
+  selector {
+    propiedad: valor;
+  }
+</style>
+```
+
+Donde:
+
+*   `<style>`: Es la etiqueta que indica el inicio de la sección de estilos.
+*   `/* Reglas de estilo CSS */`: Es un comentario que indica dónde se deben escribir las reglas de estilo CSS.
+*   `selector`: Es el elemento HTML al que se aplicarán los estilos (por ejemplo, `p`, `h1`, `div`, etc.).
+*   `propiedad`: Es la característica del elemento que se va a modificar (por ejemplo, `color`, `font-size`, `margin`, etc.).
+*   `valor`: Es el valor que se le asignará a la propiedad (por ejemplo, `red`, `16px`, `10px`, etc.).
+
+## ATRIBUTOS DE LA ETIQUETA `<STYLE>`
+
+La etiqueta `<style>` admite varios atributos, aunque los más comunes son:
+
+*   **`type`**: Especifica el tipo de contenido que se encuentra dentro de la etiqueta. El valor predeterminado y recomendado es `"text/css"`.
+
+    ```html
+    <style type="text/css">
+      /* Reglas de estilo CSS */
+    </style>
+    ```
+*   **`media`**: Define para qué tipo de medio se aplicarán los estilos. Esto permite adaptar los estilos a diferentes dispositivos, como pantallas, impresoras, etc.
+
+    ```html
+    <style type="text/css" media="screen">
+      /* Estilos para pantallas */
+    </style>
+
+    <style type="text/css" media="print">
+      /* Estilos para impresión */
+    </style>
+    ```
+
+*   **`scoped`**: (En desuso en HTML5) Se utilizaba para aplicar estilos solo al elemento padre y sus descendientes. Ya no se recomienda su uso.
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### EJEMPLO 1: ESTILOS GLOBALES EN EL `<HEAD>`
+
+En este ejemplo, se definen estilos globales para todos los elementos `<h1>` y `<p>` en la página.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de Estilos Globales</title>
+  <style type="text/css">
+    h1 {
+      color: blue;
+      text-align: center;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Este es un título</h1>
+  <p>Este es un párrafo con estilos definidos en la etiqueta &lt;style&gt; dentro del &lt;head&gt;.</p>
+</body>
+</html>
+```
+
+### EJEMPLO 2: ESTILOS ESPECIFICOS EN EL `<BODY>`
+
+En este ejemplo, se definen estilos específicos para un `<div>` dentro del `<body>`.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de Estilos Específicos</title>
+</head>
+<body>
+  <div style="border: 1px solid black; padding: 10px;">
+    <style type="text/css">
+      p {
+        color: green;
+      }
+    </style>
+    <p>Este párrafo tiene estilos definidos dentro de un &lt;div&gt; en el &lt;body&gt;.</p>
+  </div>
+  <p>Este párrafo no se ve afectado por los estilos anteriores.</p>
+</body>
+</html>
+```
+
+### EJEMPLO 3: USO DEL ATRIBUTO MEDIA
+
+En este ejemplo, se utilizan diferentes estilos para la pantalla y la impresión.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo del Atributo Media</title>
+  <style type="text/css" media="screen">
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <style type="text/css" media="print">
+    body {
+      font-size: 12pt;
+    }
+  </style>
+</head>
+<body>
+  <h1>Este es un título</h1>
+  <p>Este párrafo se mostrará con la fuente Arial en la pantalla y con un tamaño de fuente de 12 puntos al imprimir.</p>
+</body>
+</html>
+```
+
+## MEJORES PRACTICAS
+
+1.  **Ubicación:** Generalmente, es mejor colocar la etiqueta `<style>` dentro de la sección `<head>` del documento para asegurar que los estilos se carguen antes de que se renderice el contenido.
+2.  **Organización:** Para proyectos grandes, es recomendable utilizar hojas de estilo externas en lugar de incluir estilos directamente en el HTML. Esto facilita el mantenimiento y la reutilización de los estilos.
+3.  **Especificidad:** Evitar el uso excesivo de estilos en línea (atributo `style`) ya que dificulta la gestión y el mantenimiento del código. Es preferible utilizar clases y selectores CSS para aplicar estilos de manera más organizada.
+4.  **Media Queries:** Utilizar el atributo `media` para adaptar los estilos a diferentes dispositivos y medios, mejorando la experiencia del usuario en diferentes contextos.
+5.  **Validación:** Asegurarse de que el código CSS dentro de la etiqueta `<style>` sea válido para evitar problemas de renderizado y compatibilidad.
+
+## ALTERNATIVAS A LA ETIQUETA `<STYLE>`
+
+Aunque la etiqueta `<style>` es útil para insertar estilos CSS en un documento HTML, existen alternativas que pueden ser más adecuadas en ciertos casos:
+
+*   **Hojas de Estilo Externas:** Son archivos `.css` que contienen reglas de estilo y se vinculan al documento HTML mediante la etiqueta `<link>`. Esta es la opción más recomendada para proyectos grandes y complejos, ya que facilita la gestión y el mantenimiento de los estilos.
+
+    ```html
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    ```
+*   **Estilos en Línea:** Se aplican directamente a los elementos HTML mediante el atributo `style`. Aunque son útiles para aplicar estilos específicos a un solo elemento, su uso excesivo puede dificultar el mantenimiento del código.
+
+    ```html
+    <p style="color: red;">Este párrafo tiene estilos en línea.</p>
+    ```
+
+## CONCLUSION
+
+La etiqueta `<style>` es una herramienta poderosa para insertar estilos CSS directamente en un documento HTML. Permite a los desarrolladores controlar la apariencia visual de los elementos HTML y adaptar los estilos a diferentes dispositivos y medios. Sin embargo, es importante utilizarla de manera organizada y considerar alternativas como las hojas de estilo externas para proyectos grandes y complejos.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: &lt;style&gt;](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style)
+*   [W3Schools: HTML Style Tag](https://www.w3schools.com/tags/tag_style.asp)
+*   [CSS - Cascading Style Sheets](https://www.w3.org/Style/CSS/)

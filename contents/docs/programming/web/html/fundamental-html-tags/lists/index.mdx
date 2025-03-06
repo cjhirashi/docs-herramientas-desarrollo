@@ -1,0 +1,245 @@
+---
+title: Listas (UL, OL, LI)
+description:  Guía completa sobre cómo crear y personalizar listas en HTML utilizando las etiquetas <ul>, <ol> y <li>.
+keywords: ["HTML", "listas", "UL", "OL", "LI", "listas no ordenadas", "listas ordenadas", "elementos de lista"]
+---
+
+## INTRODUCCION A LAS LISTAS EN HTML (UL, OL, LI)
+
+Las listas son elementos fundamentales en HTML que permiten organizar y presentar información de manera estructurada.  Existen dos tipos principales de listas: listas no ordenadas (`<ul>`) y listas ordenadas (`<ol>`).  Ambos tipos utilizan la etiqueta `<li>` para definir cada elemento de la lista.  Comprender cómo utilizar estas etiquetas es esencial para crear contenido web bien organizado y fácil de leer.
+
+## OBJETIVOS CLAVE SOBRE LAS LISTAS EN HTML
+
+*   **Comprender la diferencia entre listas ordenadas y no ordenadas:** Saber cuándo utilizar `<ul>` y cuándo utilizar `<ol>`.
+*   **Aprender a crear listas básicas:** Utilizar las etiquetas `<ul>`, `<ol>` y `<li>` correctamente.
+*   **Personalizar listas:**  Modificar el estilo de las listas utilizando atributos HTML y CSS.
+*   **Anidar listas:** Crear listas dentro de listas para representar jerarquías de información.
+*   **Utilizar listas para la navegación:** Implementar menús de navegación utilizando listas.
+
+## LISTAS NO ORDENADAS (`<UL>`)
+
+Las listas no ordenadas se utilizan para presentar elementos sin un orden específico.  Se representan con la etiqueta `<ul>` (unordered list) y cada elemento dentro de la lista se define con la etiqueta `<li>` (list item).  Por defecto, los elementos de una lista no ordenada se muestran con viñetas.
+
+**Ejemplo:**
+
+```html
+<ul>
+  <li>Elemento 1</li>
+  <li>Elemento 2</li>
+  <li>Elemento 3</li>
+</ul>
+```
+
+**Resultado:**
+
+*   Elemento 1
+*   Elemento 2
+*   Elemento 3
+
+## LISTAS ORDENADAS (`<OL>`)
+
+Las listas ordenadas se utilizan para presentar elementos en un orden específico.  Se representan con la etiqueta `<ol>` (ordered list) y cada elemento dentro de la lista se define con la etiqueta `<li>` (list item).  Por defecto, los elementos de una lista ordenada se muestran con números.
+
+**Ejemplo:**
+
+```html
+<ol>
+  <li>Primer elemento</li>
+  <li>Segundo elemento</li>
+  <li>Tercer elemento</li>
+</ol>
+```
+
+**Resultado:**
+
+1.  Primer elemento
+2.  Segundo elemento
+3.  Tercer elemento
+
+## LA ETIQUETA `<LI>`
+
+La etiqueta `<li>` (list item) se utiliza para definir cada elemento dentro de una lista, ya sea ordenada (`<ol>`) o no ordenada (`<ul>`).  Es importante recordar que la etiqueta `<li>` siempre debe ser un hijo directo de `<ul>` o `<ol>`.
+
+**Ejemplo:**
+
+```html
+<ul>
+  <li>Este es un elemento de lista.</li>
+  <li>Este es otro elemento de lista.</li>
+</ul>
+
+<ol>
+  <li>Este es el primer elemento.</li>
+  <li>Este es el segundo elemento.</li>
+</ol>
+```
+
+## ATRIBUTOS DE LAS LISTAS ORDENADAS (`<OL>`)
+
+La etiqueta `<ol>` permite utilizar atributos para personalizar la numeración de la lista.  Los atributos más comunes son:
+
+*   **`type`:**  Especifica el tipo de marcador numérico a utilizar.  Los valores posibles son:
+    *   `1`:  Números (por defecto).
+    *   `a`:  Letras minúsculas.
+    *   `A`:  Letras mayúsculas.
+    *   `i`:  Números romanos en minúsculas.
+    *   `I`:  Números romanos en mayúsculas.
+*   **`start`:**  Especifica el valor inicial de la numeración.
+
+**Ejemplo:**
+
+```html
+<ol type="A" start="3">
+  <li>Elemento C</li>
+  <li>Elemento D</li>
+  <li>Elemento E</li>
+</ol>
+```
+
+**Resultado:**
+
+A. Elemento C
+B. Elemento D
+C. Elemento E
+
+## ANIDAMIENTO DE LISTAS
+
+Es posible anidar listas dentro de otras listas para crear estructuras jerárquicas.  Esto se logra incluyendo una lista (`<ul>` o `<ol>`) dentro de un elemento de lista (`<li>`).
+
+**Ejemplo:**
+
+```html
+<ul>
+  <li>Café</li>
+  <li>Té
+    <ul>
+      <li>Té negro</li>
+      <li>Té verde</li>
+    </ul>
+  </li>
+  <li>Leche</li>
+</ul>
+```
+
+**Resultado:**
+
+*   Café
+*   Té
+    *   Té negro
+    *   Té verde
+*   Leche
+
+## PERSONALIZACION DE LISTAS CON CSS
+
+Las listas pueden ser personalizadas ampliamente utilizando CSS.  Algunas propiedades comunes para estilizar listas son:
+
+*   **`list-style-type`:**  Especifica el tipo de marcador para las listas no ordenadas (`<ul>`) o el tipo de numeración para las listas ordenadas (`<ol>`).  Para listas no ordenadas, se pueden usar valores como `disc`, `circle`, `square` o `none`.  Para listas ordenadas, se pueden usar valores como `decimal`, `lower-alpha`, `upper-alpha`, `lower-roman` o `upper-roman`.
+*   **`list-style-image`:**  Permite utilizar una imagen como marcador para las listas no ordenadas.
+*   **`list-style-position`:**  Controla la posición del marcador en relación con el contenido del elemento de lista.  Los valores posibles son `inside` (el marcador se coloca dentro del elemento de lista) y `outside` (el marcador se coloca fuera del elemento de lista).
+*   **`padding` y `margin`:**  Controlan el espacio alrededor de los elementos de la lista.
+
+**Ejemplo:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: square;
+}
+
+ol {
+  list-style-type: upper-roman;
+}
+</style>
+</head>
+<body>
+
+<h2>Lista no ordenada con estilo cuadrado:</h2>
+<ul>
+  <li>Café</li>
+  <li>Té</li>
+  <li>Leche</li>
+</ul>
+
+<h2>Lista ordenada con números romanos en mayúsculas:</h2>
+<ol>
+  <li>Café</li>
+  <li>Té</li>
+  <li>Leche</li>
+</ol>
+
+</body>
+</html>
+```
+
+**Resultado:**
+
+## LISTA NO ORDENADA CON ESTILO CUADRADO:
+
+*   Café
+*   Té
+*   Leche
+
+## LISTA ORDENADA CON NUMEROS ROMANOS EN MAYUSCULAS:
+
+I. Café
+II. Té
+III. Leche
+
+### LISTAS PARA LA NAVEGACION
+
+Las listas son una herramienta común para crear menús de navegación en sitios web.  Combinadas con enlaces (`<a>`) y CSS, las listas pueden transformarse en menús de navegación atractivos y funcionales.
+
+**Ejemplo:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="#home">Inicio</a></li>
+  <li><a href="#news">Noticias</a></li>
+  <li><a href="#contact">Contacto</a></li>
+  <li><a href="#about">Acerca de</a></li>
+</ul>
+
+</body>
+</html>
+```
+
+Este código crea una barra de navegación horizontal con enlaces a diferentes secciones del sitio web.  La propiedad `list-style-type: none;` elimina las viñetas de la lista, y el CSS se utiliza para estilizar los enlaces y la apariencia general del menú.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: Lists](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul)
+*   [W3Schools: HTML Lists](https://www.w3schools.com/html/html_lists.asp)

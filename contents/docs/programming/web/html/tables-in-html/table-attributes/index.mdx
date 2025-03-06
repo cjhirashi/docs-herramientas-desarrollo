@@ -1,0 +1,124 @@
+---
+title: Atributos de Tabla (colspan, rowspan)
+description: Explicación detallada de los atributos colspan y rowspan en HTML para la creación de tablas complejas.
+keywords: ["html", "tabla", "colspan", "rowspan", "atributos", "diseño web"]
+---
+
+## ATRIBUTOS COLSPAN Y ROWSPAN EN TABLAS HTML
+
+Los atributos `colspan` y `rowspan` son herramientas poderosas en HTML que permiten crear tablas con celdas que se extienden a lo largo de varias columnas o filas, respectivamente. Estos atributos son fundamentales para diseñar tablas complejas y presentar datos de manera clara y organizada.
+
+## OBJETIVOS CLAVE
+
+*   Entender el propósito y la funcionalidad de los atributos `colspan` y `rowspan`.
+*   Aprender a utilizar estos atributos para crear diseños de tabla personalizados.
+*   Comprender cómo estos atributos afectan la estructura y la presentación de los datos en una tabla.
+*   Proporcionar ejemplos prácticos de implementación para facilitar la comprensión.
+
+## COLSPAN: COMBINAR COLUMNAS
+
+El atributo `colspan` se utiliza en la etiqueta `<td>` (celda de datos) o `<th>` (celda de encabezado) para especificar cuántas columnas debe abarcar una celda. El valor de `colspan` es un número entero que indica el número de columnas que la celda debe ocupar.
+
+### SINTAXIS COLSPAN
+
+```html
+<td colspan="numero_de_columnas">Contenido de la celda</td>
+<th colspan="numero_de_columnas">Contenido del encabezado</th>
+```
+
+### EJEMPLO COLSPAN
+
+En este ejemplo, la primera celda de la primera fila abarca dos columnas:
+
+```html
+<table>
+  <tr>
+    <th colspan="2">Información Personal</th>
+  </tr>
+  <tr>
+    <td>Nombre:</td>
+    <td>Juan Pérez</td>
+  </tr>
+  <tr>
+    <td>Edad:</td>
+    <td>30</td>
+  </tr>
+</table>
+```
+
+En este caso, el encabezado "Información Personal" se extiende sobre las dos columnas siguientes, proporcionando un título claro para los datos que se presentan debajo.
+
+## ROWSPAN: COMBINAR FILAS
+
+El atributo `rowspan` se utiliza de manera similar a `colspan`, pero en lugar de combinar columnas, combina filas. Se aplica a las etiquetas `<td>` o `<th>` y especifica cuántas filas debe abarcar una celda.
+
+### SINTAXIS ROWSPAN
+
+```html
+<td rowspan="numero_de_filas">Contenido de la celda</td>
+<th rowspan="numero_de_filas">Contenido del encabezado</th>
+```
+
+### EJEMPLO ROWSPAN
+
+En este ejemplo, la primera celda de la primera fila abarca dos filas:
+
+```html
+<table>
+  <tr>
+    <th rowspan="2">Datos</th>
+    <td>Nombre:</td>
+  </tr>
+  <tr>
+    <td>Juan Pérez</td>
+  </tr>
+</table>
+```
+
+Aquí, la celda de encabezado "Datos" se extiende sobre las dos filas siguientes, lo que puede ser útil para etiquetar un conjunto de datos relacionados.
+
+## EJEMPLO COMPLETO: USO DE COLSPAN Y ROWSPAN COMBINADOS
+
+Para ilustrar cómo se pueden utilizar `colspan` y `rowspan` juntos, consideremos el siguiente ejemplo:
+
+```html
+<table>
+  <tr>
+    <th colspan="3">Horario de Clases</th>
+  </tr>
+  <tr>
+    <th>Hora</th>
+    <th>Lunes</th>
+    <th>Martes</th>
+  </tr>
+  <tr>
+    <td>8:00 - 9:00</td>
+    <td>Matemáticas</td>
+    <td rowspan="2">Historia</td>
+  </tr>
+  <tr>
+    <td>9:00 - 10:00</td>
+    <td>Ciencias</td>
+  </tr>
+</table>
+```
+
+En este ejemplo:
+
+*   La celda de encabezado "Horario de Clases" abarca tres columnas (`colspan="3"`).
+*   La celda "Historia" abarca dos filas (`rowspan="2"`), indicando que la clase de Historia se extiende por dos horas en el día martes.
+
+## CONSIDERACIONES IMPORTANTES
+
+1.  **Estructura de la Tabla:** Al usar `colspan` y `rowspan`, es crucial mantener una estructura de tabla coherente. Asegúrate de que el número total de celdas en cada fila (teniendo en cuenta los atributos `colspan`) sea consistente.
+2.  **Accesibilidad:** Asegúrate de que las tablas complejas sean accesibles. Utiliza encabezados de tabla (`<th>`) adecuadamente y proporciona atributos `scope` para mejorar la navegación para los usuarios de lectores de pantalla.
+3.  **Diseño Responsivo:** Las tablas pueden ser difíciles de manejar en dispositivos móviles. Considera utilizar técnicas de diseño responsivo, como la reorganización de las celdas o la conversión de la tabla en una lista, para mejorar la experiencia del usuario en pantallas más pequeñas.
+
+## CONCLUSION
+
+Los atributos `colspan` y `rowspan` son herramientas esenciales para crear tablas HTML complejas y bien estructuradas. Permiten combinar celdas horizontal y verticalmente, lo que facilita la presentación de datos de manera clara y organizada. Al comprender y utilizar estos atributos de manera efectiva, puedes mejorar significativamente la usabilidad y la presentación de tus tablas HTML.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: \<table> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table)
+*   [W3Schools: HTML Tables](https://www.w3schools.com/html/html_tables.asp)

@@ -1,0 +1,242 @@
+---
+title: Encabezados de Columna (<th>)
+description:  Explicación detallada del elemento HTML <th>, su uso, atributos y mejores prácticas para la creación de tablas accesibles y semánticamente correctas.
+keywords: ["HTML", "th", "encabezado de columna", "tabla", "accesibilidad", "semántica", "atributo scope", "<thead>", "<tr>", "<td>"]
+---
+
+El elemento HTML `<th>` (table header cell) define una celda como encabezado en una tabla.  A diferencia de las celdas de datos estándar (`<td>`), los encabezados de columna se utilizan para proporcionar contexto y descripción para las columnas de la tabla.  El uso correcto de `<th>` es crucial para la accesibilidad y la semántica de las tablas HTML.
+
+## OBJETIVOS CLAVE SOBRE EL TEMA
+
+*   **Semántica:** Utilizar `<th>` para indicar claramente qué celdas actúan como encabezados de columna.
+*   **Accesibilidad:**  Asegurar que los lectores de pantalla puedan interpretar correctamente la estructura de la tabla y asociar los datos con sus encabezados correspondientes.
+*   **Estilo:**  Comprender cómo los navegadores aplican estilos por defecto a los elementos `<th>` y cómo personalizar estos estilos con CSS.
+*   **Atributo `scope`:**  Utilizar el atributo `scope` para especificar el alcance del encabezado (columna, fila, grupo de columnas o grupo de filas).
+
+## ESTRUCTURA BASICA
+
+Un elemento `<th>` se utiliza dentro de una fila (`<tr>`) dentro de una tabla (`<table>`).  Generalmente, los encabezados de columna se colocan en la primera fila de la tabla, dentro del elemento `<thead>`.
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Juan Pérez</td>
+      <td>30</td>
+      <td>Ingeniero</td>
+    </tr>
+    <tr>
+      <td>María García</td>
+      <td>25</td>
+      <td>Doctora</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+En este ejemplo, `Nombre`, `Edad` y `Profesión` son los encabezados de las columnas correspondientes.
+
+## ATRIBUTOS IMPORTANTES
+
+El atributo más importante para `<th>` es `scope`.  Este atributo ayuda a los lectores de pantalla a entender a qué celdas de datos se aplica el encabezado.
+
+*   **`scope="col"`:**  Indica que el encabezado se aplica a todas las celdas de la columna actual.
+*   **`scope="row"`:**  Indica que el encabezado se aplica a todas las celdas de la fila actual.
+*   **`scope="colgroup"`:** Indica que el encabezado se aplica a un grupo de columnas.  Este valor se usa con el elemento `<colgroup>`.
+*   **`scope="rowgroup"`:** Indica que el encabezado se aplica a un grupo de filas.  Este valor se usa con los elementos `<thead>`, `<tbody>` y `<tfoot>`.
+
+**Ejemplo con `scope="col"`:**
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Juan Pérez</td>
+      <td>30</td>
+      <td>Ingeniero</td>
+    </tr>
+    <tr>
+      <td>María García</td>
+      <td>25</td>
+      <td>Doctora</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+**Ejemplo con `scope="row"`:**
+
+```html
+<table>
+  <tbody>
+    <tr>
+      <th scope="row">Nombre</th>
+      <td>Juan Pérez</td>
+    </tr>
+    <tr>
+      <th scope="row">Edad</th>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th scope="row">Profesión</th>
+      <td>Ingeniero</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+## ESTILOS POR DEFECTO Y PERSONALIZACION CON CSS
+
+Por defecto, los navegadores suelen aplicar los siguientes estilos a los elementos `<th>`:
+
+*   `font-weight: bold;` (texto en negrita)
+*   `text-align: center;` (texto centrado)
+
+Estos estilos se pueden personalizar fácilmente con CSS.
+
+**Ejemplo de personalización con CSS:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: normal; /* Elimina la negrita por defecto */
+  text-align: center; /* Alinea el texto al centro */
+}
+</style>
+</head>
+<body>
+
+<h2>Tabla con Encabezados Personalizados</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Juan Pérez</td>
+      <td>30</td>
+      <td>Ingeniero</td>
+    </tr>
+    <tr>
+      <td>María García</td>
+      <td>25</td>
+      <td>Doctora</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
+```
+
+En este ejemplo, se ha eliminado la negrita por defecto y se ha cambiado el color de fondo de los encabezados.
+
+## ACCESIBILIDAD
+
+El uso correcto de `<th>` y el atributo `scope` es fundamental para la accesibilidad de las tablas.  Los lectores de pantalla utilizan esta información para proporcionar contexto a los usuarios, especialmente a aquellos con discapacidades visuales.  Sin la semántica adecuada, los usuarios pueden tener dificultades para entender la relación entre los datos y sus encabezados correspondientes.
+
+## MEJORES PRACTICAS
+
+*   **Siempre usar `<th>` para los encabezados:** No utilizar `<td>` con estilos CSS para simular encabezados.
+*   **Utilizar el atributo `scope`:** Especificar el alcance de cada encabezado para mejorar la accesibilidad.
+*   **Colocar los encabezados en `<thead>`:**  Utilizar el elemento `<thead>` para agrupar los encabezados de columna.
+*   **Simplificar las tablas complejas:**  Si una tabla es demasiado compleja, considerar dividirla en tablas más pequeñas o utilizar un formato diferente para presentar la información.
+
+## EJEMPLOS DE IMPLEMENTACION
+
+**Tabla con encabezados de columna y fila:**
+
+```html
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">Producto A</th>
+      <th scope="col">Producto B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Ventas</th>
+      <td>100</td>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th scope="row">Costos</th>
+      <td>50</td>
+      <td>75</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+**Tabla con `colgroup` y `scope="colgroup"`:**
+
+```html
+<table>
+  <colgroup>
+    <col span="2">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+      <th scope="colgroup" colspan="2">Información Personal</th>
+      <th scope="col">Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nombre</td>
+      <td>Juan Pérez</td>
+      <td>Ingeniero</td>
+    </tr>
+    <tr>
+      <td>Edad</td>
+      <td>30</td>
+      <td>Doctora</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+En este ejemplo, las primeras dos columnas (Nombre y Edad) están agrupadas bajo el encabezado "Información Personal".  El atributo `colspan="2"` indica que el encabezado abarca dos columnas.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: \<th>: The Table Header cell element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th)
+*   [W3C: HTML Table Structure](https://www.w3.org/TR/html52/tabular-data.html)
+*   [WebAIM: Creating Accessible Tables](https://webaim.org/techniques/tables/)

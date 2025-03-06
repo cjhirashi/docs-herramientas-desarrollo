@@ -1,0 +1,93 @@
+---
+title: La etiqueta <form>
+description:  Documentación sobre la etiqueta HTML <form>, sus atributos, usos y mejores prácticas.
+keywords: ["HTML", "form", "etiqueta form", "formulario HTML", "atributos form", "métodos form", "envío de datos", "validación form"]
+---
+
+La etiqueta `<form>` en HTML es un elemento fundamental para la creación de formularios web. Los formularios permiten a los usuarios interactuar con un sitio web, ingresando datos que luego pueden ser procesados por el servidor. Esta etiqueta actúa como un contenedor para diferentes elementos de formulario, como campos de texto, botones, casillas de verificación, etc.
+
+## OBJETIVOS CLAVE SOBRE LA ETIQUETA `<FORM>`
+
+1.  **Recopilación de Datos:** Facilitar la recopilación de información del usuario, como datos personales, comentarios, o preferencias.
+2.  **Interacción Usuario-Servidor:** Permitir la interacción entre el usuario y el servidor, enviando los datos ingresados para su procesamiento.
+3.  **Estructura y Organización:** Proporcionar una estructura clara y organizada para los elementos del formulario, mejorando la usabilidad y accesibilidad.
+4.  **Validación de Datos:** Integrar mecanismos de validación para asegurar que los datos ingresados cumplan con los requisitos necesarios antes de ser enviados al servidor.
+
+## DESARROLLO DE LA ETIQUETA EN CUESTION
+
+La etiqueta `<form>` es un contenedor que define un formulario HTML para la entrada de datos del usuario. Dentro de esta etiqueta, se pueden incluir varios elementos de formulario como `<input>`, `<textarea>`, `<select>`, `<button>`, entre otros.
+
+### ATRIBUTOS PRINCIPALES
+
+*   **action:** Especifica la URL a la que se enviarán los datos del formulario cuando se envíe.
+*   **method:** Define el método HTTP que se utilizará para enviar los datos del formulario. Los valores comunes son `GET` y `POST`.
+    *   `GET`: Los datos del formulario se añaden a la URL en forma de parámetros. Es adecuado para cantidades pequeñas de datos y no debe usarse para información sensible.
+    *   `POST`: Los datos del formulario se envían en el cuerpo de la solicitud HTTP. Es más seguro y puede manejar mayores cantidades de datos.
+*   **accept-charset:** Especifica la codificación de caracteres utilizada para el envío del formulario.
+*   **autocomplete:** Indica si el navegador debe autocompletar los campos del formulario. Puede ser `on` o `off`.
+*   **enctype:** Especifica cómo deben codificarse los datos del formulario antes de enviarlos al servidor. Es importante cuando se incluyen archivos en el formulario. Los valores comunes son:
+    *   `application/x-www-form-urlencoded`: Es el valor predeterminado. Todos los caracteres se codifican antes de ser enviados.
+    *   `multipart/form-data`: Se utiliza cuando el formulario incluye elementos `<input type="file">`.
+    *   `text/plain`: Los datos se envían sin codificación.
+*   **name:** Especifica un nombre para el formulario.
+*   **novalidate:** Desactiva la validación del formulario por parte del navegador.
+*   **target:** Especifica dónde se mostrará la respuesta después de enviar el formulario. Puede ser `_blank`, `_self`, `_parent`, `_top`, o el nombre de un `<iframe>`.
+
+### EJEMPLOS DE IMPLEMENTACION
+
+#### FORMULARIO BASICO CON LOS METODOS GET Y POST
+
+```html
+<!-- Formulario con método GET -->
+<form action="/procesar-formulario" method="get">
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre"><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email"><br><br>
+  <input type="submit" value="Enviar (GET)">
+</form>
+
+<!-- Formulario con método POST -->
+<form action="/procesar-formulario" method="post">
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre"><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email"><br><br>
+  <input type="submit" value="Enviar (POST)">
+</form>
+```
+
+#### FORMULARIO CON SUBIDA DE ARCHIVOS
+
+```html
+<form action="/subir-archivo" method="post" enctype="multipart/form-data">
+  <label for="archivo">Selecciona un archivo:</label><br>
+  <input type="file" id="archivo" name="archivo"><br><br>
+  <input type="submit" value="Subir Archivo">
+</form>
+```
+
+#### FORMULARIO CON VALIDACION DESACTIVADA
+
+```html
+<form action="/procesar-formulario" method="post" novalidate>
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre" required><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
+  <input type="submit" value="Enviar sin Validar">
+</form>
+```
+
+### MEJORES PRACTICAS
+
+*   **Usar Etiquetas `<label>`:** Asocia cada campo del formulario con una etiqueta `<label>` para mejorar la accesibilidad y usabilidad.
+*   **Validación:** Implementar validación tanto en el lado del cliente (con HTML5 y JavaScript) como en el lado del servidor para asegurar la integridad de los datos.
+*   **Seguridad:** Utilizar el método `POST` para enviar datos sensibles y proteger el formulario contra ataques CSRF (Cross-Site Request Forgery).
+*   **Accesibilidad:** Asegurarse de que el formulario sea accesible para todos los usuarios, incluyendo aquellos con discapacidades, mediante el uso adecuado de atributos ARIA y etiquetas semánticas.
+*   **Estructura Clara:** Organizar los elementos del formulario de manera lógica y coherente para facilitar su comprensión y uso.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: The HTML form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+*   [W3Schools: HTML Forms](https://www.w3schools.com/html/html_forms.asp)

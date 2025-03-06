@@ -1,0 +1,218 @@
+---
+title: Filas (<tr>)
+description:  Información detallada sobre el elemento HTML <tr>, su uso, atributos y mejores prácticas para la creación de tablas accesibles y semánticas.
+keywords: ["HTML", "table", "tr", "row", "fila", "tabla HTML", "estructura de tabla", "accesibilidad", "semántica"]
+---
+
+El elemento HTML `<tr>` (Table Row) define una fila de celdas en una tabla. Las filas son los bloques de construcción horizontales de una tabla, y dentro de cada fila se colocan las celdas de datos (`<td>`) o las celdas de encabezado (`<th>`). El uso correcto de `<tr>` es fundamental para estructurar tablas de manera semántica y accesible.
+
+## OBJETIVOS CLAVE SOBRE EL TEMA
+
+1.  **Estructura Semántica:** Comprender cómo `<tr>` contribuye a la estructura semántica de una tabla.
+2.  **Accesibilidad:** Asegurar que las tablas sean accesibles para todos los usuarios, incluyendo aquellos que utilizan tecnologías de asistencia.
+3.  **Uso Correcto:** Aprender a utilizar `<tr>` correctamente en combinación con otros elementos de tabla como `<table>`, `<th>`, y `<td>`.
+4.  **Atributos:** Conocer los atributos importantes que se pueden utilizar con `<tr>` para mejorar la presentación y accesibilidad.
+
+## ESTRUCTURA BASICA
+
+La estructura básica de una fila en una tabla HTML se compone del elemento `<tr>` que contiene uno o más elementos `<td>` (Table Data Cell) o `<th>` (Table Header Cell).
+
+```html
+<table>
+  <tr>
+    <th>Encabezado 1</th>
+    <th>Encabezado 2</th>
+  </tr>
+  <tr>
+    <td>Dato 1</td>
+    <td>Dato 2</td>
+  </tr>
+</table>
+```
+
+En este ejemplo, la primera fila contiene celdas de encabezado (`<th>`), mientras que la segunda fila contiene celdas de datos (`<td>`).
+
+## ATRIBUTOS
+
+Aunque el uso de atributos directamente en el elemento `<tr>` para estilos está en desuso en favor de CSS, algunos atributos aún pueden ser relevantes para la accesibilidad y la compatibilidad con versiones anteriores.
+
+*   **`scope` (para elementos `<th>` dentro de `<tr>`):** Define la celda de encabezado que proporciona información para las celdas de datos. Los valores pueden ser `col`, `row`, `colgroup`, o `rowgroup`.
+
+    ```html
+    <table>
+      <tr>
+        <th></th>
+        <th scope="col">Columna 1</th>
+        <th scope="col">Columna 2</th>
+      </tr>
+      <tr>
+        <th scope="row">Fila 1</th>
+        <td>Dato 1</td>
+        <td>Dato 2</td>
+      </tr>
+    </table>
+    ```
+
+*   **Atributos de Accesibilidad ARIA:** Los atributos ARIA (Accessible Rich Internet Applications) pueden ser utilizados para mejorar la accesibilidad de las tablas, especialmente para usuarios de tecnologías de asistencia.
+
+    ```html
+    <tr aria-rowindex="2">
+      <th scope="row">Fila 1</th>
+      <td>Dato 1</td>
+      <td>Dato 2</td>
+    </tr>
+    ```
+
+## MEJORES PRACTICAS
+
+1.  **Semántica Correcta:** Utilizar `<tr>` dentro de un elemento `<table>` y asegurarse de que contenga elementos `<td>` o `<th>`.
+2.  **Encabezados Claros:** Utilizar `<th>` para los encabezados de columna y fila, y el atributo `scope` para asociar los encabezados con las celdas de datos correspondientes.
+3.  **Accesibilidad:** Proporcionar alternativas de texto para las tablas complejas y utilizar atributos ARIA para mejorar la accesibilidad.
+4.  **Estilos con CSS:** Evitar el uso de atributos de estilo directamente en el elemento `<tr>` y, en su lugar, utilizar CSS para controlar la apariencia de las filas.
+5.  **Tablas Simples:** Para diseños más complejos, considerar si una tabla es realmente necesaria o si se puede lograr el mismo resultado con elementos HTML y CSS más apropiados.
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### TABLA BASICA
+
+```html
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Profesión</th>
+  </tr>
+  <tr>
+    <td>Juan Pérez</td>
+    <td>30</td>
+    <td>Ingeniero</td>
+  </tr>
+  <tr>
+    <td>María García</td>
+    <td>25</td>
+    <td>Doctora</td>
+  </tr>
+</table>
+```
+
+### TABLA CON ENCABEZADOS DE FILA
+
+```html
+<table>
+  <tr>
+    <th></th>
+    <th scope="col">Lunes</th>
+    <th scope="col">Martes</th>
+    <th scope="col">Miércoles</th>
+  </tr>
+  <tr>
+    <th scope="row">Mañana</th>
+    <td>Trabajo</td>
+    <td>Trabajo</td>
+    <td>Trabajo</td>
+  </tr>
+  <tr>
+    <th scope="row">Tarde</th>
+    <td>Estudio</td>
+    <td>Estudio</td>
+    <td>Estudio</td>
+  </tr>
+</table>
+```
+
+### ESTILOS CON CSS
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+</style>
+</head>
+<body>
+
+<h2>Tabla de Ejemplo</h2>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Profesión</th>
+  </tr>
+  <tr>
+    <td>Juan Pérez</td>
+    <td>30</td>
+    <td>Ingeniero</td>
+  </tr>
+  <tr>
+    <td>María García</td>
+    <td>25</td>
+    <td>Doctora</td>
+  </tr>
+</table>
+
+</body>
+</html>
+```
+
+En este ejemplo, CSS se utiliza para aplicar estilos a la tabla, incluyendo bordes, relleno, alineación del texto y colores de fondo.
+
+## CONSIDERACIONES DE ACCESIBILIDAD
+
+*   **Etiquetas `<th>`:** Utilizar etiquetas `<th>` para los encabezados de las filas y columnas. Esto ayuda a los lectores de pantalla a entender la estructura de la tabla.
+*   **Atributo `scope`:** El atributo `scope` en las etiquetas `<th>` especifica si el encabezado se aplica a una columna, fila o grupo de columnas/filas.
+*   **Resumen y Captions:** Para tablas complejas, proporcionar un resumen con el atributo `summary` en la etiqueta `<table>` o usar la etiqueta `<caption>` para describir el propósito de la tabla.
+*   **ARIA Attributes:** Utilizar atributos ARIA como `aria-label`, `aria-describedby`, y `role="table"` para mejorar la accesibilidad.
+
+## EJEMPLO DE TABLA ACCESIBLE
+
+```html
+<table role="table" aria-label="Tabla de datos de empleados">
+  <caption>Datos de empleados</caption>
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Juan Pérez</th>
+      <td>30</td>
+      <td>Ingeniero</td>
+    </tr>
+    <tr>
+      <th scope="row">María García</th>
+      <td>25</td>
+      <td>Doctora</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+En este ejemplo, se utilizan atributos ARIA y etiquetas semánticas para mejorar la accesibilidad de la tabla.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: \<tr>: The Table Row element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr)
+*   [W3C: HTML Table Structure](https://www.w3.org/TR/html52/tabular-data.html)
+*   [WebAIM: Creating Accessible Tables](https://webaim.org/techniques/tables/)

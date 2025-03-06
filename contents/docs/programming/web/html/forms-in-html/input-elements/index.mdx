@@ -1,0 +1,200 @@
+---
+title: Elementos de Entrada (<input>, <textarea>, <select>)
+description:  Guía completa sobre los elementos de entrada en HTML `<input>`, `<textarea>`, y `<select>`. Aprende sobre sus atributos, tipos y cómo utilizarlos para crear formularios interactivos y accesibles.
+keywords: ["HTML", "formulario", "input", "textarea", "select", "atributos", "tipos", "accesibilidad", "desarrollo web", "frontend"]
+---
+
+Los elementos de entrada son componentes esenciales en el desarrollo web, ya que permiten a los usuarios interactuar con las páginas y enviar información al servidor.  En HTML, los principales elementos de entrada son `<input>`, `<textarea>`, y `<select>`. Cada uno de estos elementos tiene propósitos específicos y atributos que controlan su comportamiento y apariencia. Comprender cómo utilizar estos elementos de manera efectiva es crucial para crear formularios accesibles y fáciles de usar.
+
+## OBJETIVOS CLAVE SOBRE LOS ELEMENTOS DE ENTRADA
+
+*   **Comprender los diferentes tipos de elementos de entrada:**  Conocer las diferencias entre `<input>`, `<textarea>`, y `<select>`, y cuándo utilizar cada uno.
+*   **Dominar los atributos de los elementos de entrada:**  Aprender a utilizar los atributos HTML para personalizar el comportamiento y la apariencia de los elementos de entrada.
+*   **Crear formularios accesibles:**  Implementar prácticas de accesibilidad para garantizar que los formularios sean utilizables por todos los usuarios, incluyendo aquellos con discapacidades.
+*   **Validar la entrada del usuario:**  Utilizar la validación del lado del cliente y del servidor para asegurar que la información ingresada por los usuarios sea correcta y segura.
+*   **Mejorar la experiencia del usuario:**  Diseñar formularios intuitivos y fáciles de usar que guíen a los usuarios a través del proceso de envío de información.
+
+## ELEMENTO `<INPUT>`
+
+El elemento `<input>` es el más versátil de los tres, ya que puede representar una amplia variedad de tipos de entrada, desde campos de texto simples hasta selectores de fecha y botones de carga de archivos.  El tipo de entrada se especifica mediante el atributo `type`.
+
+### TIPOS COMUNES DE `<INPUT>`
+
+*   **`text`:**  Crea un campo de texto de una sola línea para ingresar texto simple.
+
+    ```html
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre">
+    ```
+
+*   **`password`:**  Similar al tipo `text`, pero oculta el texto ingresado con asteriscos o puntos.
+
+    ```html
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password">
+    ```
+
+*   **`email`:**  Crea un campo de texto diseñado para ingresar direcciones de correo electrónico.  Algunos navegadores realizan una validación básica para asegurar que el texto ingresado tenga el formato de una dirección de correo electrónico válida.
+
+    ```html
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email">
+    ```
+
+*   **`number`:**  Crea un campo numérico que permite ingresar solo números.  Puedes utilizar los atributos `min`, `max`, y `step` para controlar el rango y el incremento de los números permitidos.
+
+    ```html
+    <label for="edad">Edad:</label>
+    <input type="number" id="edad" name="edad" min="0" max="120">
+    ```
+
+*   **`date`:**  Crea un selector de fecha que permite a los usuarios elegir una fecha de un calendario.
+
+    ```html
+    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+    ```
+
+*   **`radio`:**  Crea un botón de opción que permite a los usuarios seleccionar una opción de un grupo de opciones mutuamente excluyentes.  Los botones de opción que pertenecen al mismo grupo deben tener el mismo valor para el atributo `name`.
+
+    ```html
+    <p>Género:</p>
+    <input type="radio" id="masculino" name="genero" value="masculino">
+    <label for="masculino">Masculino</label><br>
+    <input type="radio" id="femenino" name="genero" value="femenino">
+    <label for="femenino">Femenino</label><br>
+    <input type="radio" id="otro" name="genero" value="otro">
+    <label for="otro">Otro</label>
+    ```
+
+*   **`checkbox`:**  Crea una casilla de verificación que permite a los usuarios seleccionar una o más opciones de una lista.
+
+    ```html
+    <p>Intereses:</p>
+    <input type="checkbox" id="musica" name="intereses" value="musica">
+    <label for="musica">Música</label><br>
+    <input type="checkbox" id="deporte" name="intereses" value="deporte">
+    <label for="deporte">Deporte</label><br>
+    <input type="checkbox" id="cine" name="intereses" value="cine">
+    <label for="cine">Cine</label>
+    ```
+
+*   **`file`:**  Crea un botón de carga de archivos que permite a los usuarios seleccionar uno o más archivos de su sistema.
+
+    ```html
+    <label for="archivo">Seleccionar archivo:</label>
+    <input type="file" id="archivo" name="archivo">
+    ```
+
+*   **`submit`:**  Crea un botón que envía el formulario al servidor.
+
+    ```html
+    <input type="submit" value="Enviar">
+    ```
+
+*   **`reset`:**  Crea un botón que restablece los valores del formulario a sus valores predeterminados.
+
+    ```html
+    <input type="reset" value="Restablecer">
+    ```
+
+*   **`button`:**  Crea un botón genérico que no tiene un comportamiento predeterminado.  Se utiliza generalmente con JavaScript para realizar acciones personalizadas.
+
+    ```html
+    <button type="button">Haz clic aquí</button>
+    ```
+
+### ATRIBUTOS COMUNES DE `<INPUT>`
+
+*   **`id`:**  Especifica un identificador único para el elemento.  Se utiliza para referenciar el elemento en CSS y JavaScript.
+*   **`name`:**  Especifica el nombre del elemento.  Se utiliza para identificar el elemento cuando se envía el formulario al servidor.
+*   **`value`:**  Especifica el valor del elemento.  Para los campos de texto, este es el texto que se muestra en el campo.  Para los botones de opción y las casillas de verificación, este es el valor que se envía al servidor si el elemento está seleccionado.
+*   **`placeholder`:**  Especifica un texto de marcador de posición que se muestra en el campo cuando está vacío.
+*   **`required`:**  Especifica que el campo es obligatorio y debe ser completado antes de enviar el formulario.
+*   **`disabled`:**  Deshabilita el elemento, impidiendo que el usuario interactúe con él.
+*   **`readonly`:**  Hace que el campo sea de solo lectura, permitiendo que el usuario vea el valor pero no lo modifique.
+*   **`maxlength`:**  Especifica la longitud máxima de caracteres que se pueden ingresar en el campo.
+*   **`min` y `max`:**  Especifican los valores mínimo y máximo permitidos para los campos de tipo `number` y `date`.
+*   **`step`:**  Especifica el incremento entre los valores permitidos para los campos de tipo `number`.
+*    **`autocomplete`:** Permite habilitar o deshabilitar el autocompletado del navegador para el campo.
+
+## ELEMENTO `<TEXTAREA>`
+
+El elemento `<textarea>` crea un campo de texto de múltiples líneas que permite a los usuarios ingresar texto más extenso, como comentarios o descripciones.
+
+```html
+<label for="comentarios">Comentarios:</label><br>
+<textarea id="comentarios" name="comentarios" rows="4" cols="50">
+Escribe tus comentarios aquí...
+</textarea>
+```
+
+### ATRIBUTOS COMUNES DE `<TEXTAREA>`
+
+*   **`id`:**  Especifica un identificador único para el elemento.
+*   **`name`:**  Especifica el nombre del elemento.
+*   **`rows`:**  Especifica el número de filas visibles en el campo.
+*   **`cols`:**  Especifica el número de columnas visibles en el campo.
+*   **`placeholder`:**  Especifica un texto de marcador de posición que se muestra en el campo cuando está vacío.
+*   **`required`:**  Especifica que el campo es obligatorio.
+*   **`disabled`:**  Deshabilita el elemento.
+*   **`readonly`:**  Hace que el campo sea de solo lectura.
+*   **`maxlength`:**  Especifica la longitud máxima de caracteres que se pueden ingresar en el campo.
+*   **`wrap`:**  Controla cómo se ajusta el texto dentro del campo.  Los valores posibles son `soft` (el texto se ajusta visualmente pero no se insertan saltos de línea) y `hard` (se insertan saltos de línea en el texto).
+
+## ELEMENTO `<SELECT>`
+
+El elemento `<select>` crea un menú desplegable que permite a los usuarios seleccionar una opción de una lista de opciones predefinidas.  Las opciones se definen dentro del elemento `<select>` utilizando el elemento `<option>`.
+
+```html
+<label for="pais">País:</label>
+<select id="pais" name="pais">
+  <option value="mexico">México</option>
+  <option value="estados_unidos">Estados Unidos</option>
+  <option value="canada">Canadá</option>
+  <option value="otro">Otro</option>
+</select>
+```
+
+### ATRIBUTOS COMUNES DE `<SELECT>`
+
+*   **`id`:**  Especifica un identificador único para el elemento.
+*   **`name`:**  Especifica el nombre del elemento.
+*   **`required`:**  Especifica que el campo es obligatorio.
+*   **`disabled`:**  Deshabilita el elemento.
+*   **`multiple`:**  Permite a los usuarios seleccionar múltiples opciones del menú desplegable.
+
+### ATRIBUTOS COMUNES DE `<OPTION>`
+
+*   **`value`:**  Especifica el valor de la opción.  Este es el valor que se envía al servidor si la opción está seleccionada.
+*   **`selected`:**  Especifica que la opción está seleccionada por defecto.
+*   **`disabled`:**  Deshabilita la opción, impidiendo que el usuario la seleccione.
+
+## ACCESIBILIDAD
+
+Es fundamental garantizar que los formularios sean accesibles para todos los usuarios, incluyendo aquellos con discapacidades.  Aquí hay algunas prácticas recomendadas para mejorar la accesibilidad de los formularios:
+
+*   **Utilizar etiquetas `<label>`:**  Asociar cada elemento de entrada con una etiqueta `<label>` utilizando el atributo `for` de la etiqueta y el atributo `id` del elemento de entrada.  Esto permite a los usuarios que utilizan lectores de pantalla comprender el propósito de cada campo.
+*   **Proporcionar instrucciones claras:**  Utilizar texto descriptivo para explicar el propósito de cada campo y proporcionar instrucciones sobre cómo completarlo correctamente.
+*   **Utilizar atributos ARIA:**  Utilizar atributos ARIA (Accessible Rich Internet Applications) para proporcionar información adicional sobre la estructura y el comportamiento del formulario a los lectores de pantalla.
+*   **Asegurar un contraste de color adecuado:**  Utilizar colores que proporcionen un contraste adecuado entre el texto y el fondo para que el texto sea fácil de leer para los usuarios con discapacidades visuales.
+*   **Probar el formulario con lectores de pantalla:**  Utilizar un lector de pantalla para probar el formulario y asegurarse de que sea fácil de usar para los usuarios con discapacidades visuales.
+
+## VALIDACION
+
+La validación es el proceso de verificar que la información ingresada por los usuarios sea correcta y segura.  La validación se puede realizar tanto en el lado del cliente (en el navegador) como en el lado del servidor.
+
+### VALIDACION DEL LADO DEL CLIENTE
+
+La validación del lado del cliente se realiza en el navegador utilizando HTML5 y JavaScript.  HTML5 proporciona varios atributos que se pueden utilizar para realizar una validación básica, como `required`, `type`, `min`, `max`, y `pattern`.  JavaScript se puede utilizar para realizar una validación más compleja.
+
+### VALIDACION DEL LADO DEL SERVIDOR
+
+La validación del lado del servidor se realiza en el servidor utilizando un lenguaje de programación como PHP, Python, o Java.  La validación del lado del servidor es esencial para garantizar la seguridad de la aplicación, ya que los usuarios pueden deshabilitar la validación del lado del cliente en su navegador.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs:  `<input>`](https://developer.mozilla.org/es/docs/Web/HTML/Element/Input)
+*   [MDN Web Docs:  `<textarea>`](https://developer.mozilla.org/es/docs/Web/HTML/Element/textarea)
+*   [MDN Web Docs:  `<select>`](https://developer.mozilla.org/es/docs/Web/HTML/Element/select)
+*   [W3C:  HTML Forms](https://www.w3.org/MarkUp/html3/forms.html)

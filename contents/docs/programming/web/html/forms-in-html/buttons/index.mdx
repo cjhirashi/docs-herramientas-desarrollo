@@ -1,0 +1,138 @@
+---
+title: Botones (<button>)
+description:  Documentación detallada sobre el elemento HTML <button>, sus atributos, usos y mejores prácticas.
+keywords: ["HTML", "button", "botones", "formulario", "accesibilidad", "JavaScript", "CSS"]
+---
+
+El elemento `<button>` en HTML es fundamental para la creación de interfaces interactivas en la web. Permite a los usuarios realizar acciones específicas, como enviar un formulario, abrir un diálogo o ejecutar una función JavaScript. Este documento proporciona una guía completa sobre el uso, atributos y mejores prácticas del elemento `<button>`.
+
+## OBJETIVOS CLAVE
+
+*   Comprender la estructura y sintaxis del elemento `<button>`.
+*   Aprender sobre los diferentes tipos de botones y sus usos.
+*   Conocer los atributos importantes que modifican el comportamiento y la apariencia de los botones.
+*   Implementar botones accesibles y compatibles con diferentes dispositivos y navegadores.
+*   Integrar botones con JavaScript para crear interacciones dinámicas.
+
+## ESTRUCTURA BASICA
+
+La estructura básica de un botón en HTML es la siguiente:
+
+```html
+<button>Texto del Botón</button>
+```
+
+El texto entre las etiquetas `<button>` y `</button>` es lo que se mostrará al usuario.
+
+## TIPOS DE BOTONES
+
+El atributo `type` especifica el tipo de botón. Los tipos más comunes son:
+
+*   **`submit`**: Envía el formulario al que pertenece. Este es el tipo predeterminado si no se especifica el atributo `type`.
+*   **`reset`**: Restablece los campos del formulario a sus valores predeterminados.
+*   **`button`**: No tiene un comportamiento predeterminado. Se utiliza generalmente con JavaScript para ejecutar una función.
+
+Ejemplo:
+
+```html
+<button type="submit">Enviar</button>
+<button type="reset">Restablecer</button>
+<button type="button" onclick="miFuncion()">Haz clic aquí</button>
+```
+
+## ATRIBUTOS IMPORTANTES
+
+*   **`type`**: Especifica el tipo de botón (submit, reset, button).
+*   **`name`**: Define un nombre para el botón, útil para procesar formularios en el servidor.
+*   **`value`**: Define el valor asociado con el botón, que se envía al servidor cuando se envía el formulario.
+*   **`disabled`**: Desactiva el botón, impidiendo que el usuario interactúe con él.
+*   **`form`**: Especifica el formulario al que pertenece el botón. Esto permite asociar un botón con un formulario que está fuera de la estructura normal del formulario.
+*   **`formaction`**: Especifica la URL a la que se enviará el formulario cuando se haga clic en el botón. Anula el atributo `action` del formulario.
+*   **`formenctype`**: Especifica cómo se deben codificar los datos del formulario antes de enviarlos al servidor. Anula el atributo `enctype` del formulario.
+*   **`formmethod`**: Especifica el método HTTP (GET o POST) que se utilizará para enviar los datos del formulario. Anula el atributo `method` del formulario.
+*   **`formnovalidate`**: Especifica que el formulario no debe validarse cuando se envíe. Anula el atributo `novalidate` del formulario.
+*   **`formtarget`**: Especifica dónde se mostrará la respuesta después de enviar el formulario. Anula el atributo `target` del formulario.
+
+Ejemplo:
+
+```html
+<form action="/procesar-formulario" method="post" id="miFormulario">
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre"><br><br>
+  <button type="submit" name="enviar" value="enviar">Enviar</button>
+  <button type="button" onclick="alert('¡Hola!')" disabled>Botón Desactivado</button>
+  <button type="submit" form="miFormulario" formaction="/procesar-otro-formulario">Enviar a otro formulario</button>
+</form>
+```
+
+## ACCESIBILIDAD
+
+Es crucial asegurar que los botones sean accesibles para todos los usuarios, incluyendo aquellos que utilizan tecnologías de asistencia.
+
+*   **Texto descriptivo**: Asegúrate de que el texto del botón sea claro y descriptivo.
+*   **Atributo `aria-label`**: Utiliza el atributo `aria-label` para proporcionar una descripción más detallada del botón para los usuarios de lectores de pantalla.
+*   **Atributo `aria-describedby`**: Utiliza el atributo `aria-describedby` para asociar el botón con un elemento que contiene una descripción adicional.
+*   **Contraste de color**: Asegúrate de que haya suficiente contraste entre el color del texto y el color de fondo del botón.
+
+Ejemplo:
+
+```html
+<button type="button" onclick="abrirDialogo()" aria-label="Abrir el diálogo de confirmación">Abrir Diálogo</button>
+```
+
+## ESTILOS CON CSS
+
+Los botones pueden ser estilizados con CSS para que coincidan con el diseño de tu sitio web. Puedes modificar el color, la fuente, el tamaño, el borde y otros aspectos visuales.
+
+Ejemplo:
+
+```html
+<style>
+  .miBoton {
+    background-color: #4CAF50; /* Verde */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .miBoton:hover {
+    background-color: #3e8e41;
+  }
+</style>
+
+<button class="miBoton">Haz clic aquí</button>
+```
+
+## INTEGRACION CON JAVASCRIPT
+
+Los botones son frecuentemente utilizados con JavaScript para crear interacciones dinámicas en la página web. Puedes adjuntar eventos a los botones, como `onclick`, `onmouseover`, `onmouseout`, etc., para ejecutar funciones JavaScript.
+
+Ejemplo:
+
+```html
+<button type="button" onclick="mostrarMensaje()">Mostrar Mensaje</button>
+
+<script>
+  function mostrarMensaje() {
+    alert("¡Botón clickeado!");
+  }
+</script>
+```
+
+## MEJORES PRACTICAS
+
+*   **Usar el tipo correcto**: Utiliza el atributo `type` para especificar el tipo de botón correcto (submit, reset, button).
+*   **Accesibilidad**: Asegúrate de que los botones sean accesibles para todos los usuarios.
+*   **Estilos consistentes**: Mantén un estilo consistente para todos los botones en tu sitio web.
+*   **Evitar el uso excesivo de JavaScript**: Utiliza JavaScript solo cuando sea necesario para mejorar la interactividad.
+*   **Probar en diferentes navegadores**: Asegúrate de que los botones funcionen correctamente en diferentes navegadores y dispositivos.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: &lt;button&gt;](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button)
+*   [W3Schools: HTML Button Tag](https://www.w3schools.com/tags/tag_button.asp)
+*   [Accessibility Guidelines](https://www.w3.org/WAI/standards-guidelines/)

@@ -1,0 +1,167 @@
+---
+title: Estructura Basica de un Documento HTML
+description:  Exploración de la estructura fundamental de un documento HTML, incluyendo la declaración doctype, las etiquetas html, head y body, y su importancia en la creación de páginas web.
+keywords: ["HTML", "estructura HTML", "doctype", "head", "body", "etiquetas HTML", "desarrollo web"]
+---
+
+Un documento HTML es la base de cualquier página web. Define la estructura y el contenido de la página, permitiendo que los navegadores interpreten y muestren la información de manera adecuada. Comprender la estructura básica de un documento HTML es fundamental para cualquier desarrollador web, ya que proporciona el marco sobre el cual se construye la interfaz de usuario y se organiza el contenido.
+
+## OBJETIVOS CLAVE
+
+*   Entender la función de cada elemento esencial en la estructura de un documento HTML.
+*   Aprender a crear un documento HTML válido y bien estructurado.
+*   Comprender la importancia de la declaración `<!DOCTYPE html>`.
+*   Conocer las etiquetas `<head>` y `<body>` y sus respectivos contenidos.
+
+## 1.  DECLARACION `<!DOCTYPE html>`
+
+La declaración `<!DOCTYPE html>` es la primera línea en un documento HTML5. No es una etiqueta HTML, sino una instrucción para el navegador web sobre la versión de HTML que se está utilizando en el documento. En HTML5, la declaración es simple y concisa:
+
+```html
+<!DOCTYPE html>
+```
+
+Esta declaración asegura que el navegador interprete el documento en modo estándar, lo cual es crucial para evitar comportamientos inesperados y garantizar la compatibilidad entre diferentes navegadores.
+
+## 2.  ETIQUETA `<HTML>`
+
+La etiqueta `<html>` es el elemento raíz de cada página HTML. Envuelve todo el contenido del documento y le indica al navegador que está tratando con un documento HTML. Debe incluir un atributo `lang` que especifique el idioma principal del documento, lo cual es importante para la accesibilidad y la optimización para motores de búsqueda (SEO).
+
+```html
+<html lang="es">
+  <!-- Contenido del documento -->
+</html>
+```
+
+## 3.  ETIQUETA `<HEAD>`
+
+La etiqueta `<head>` contiene metadatos sobre el documento HTML, como el título de la página, enlaces a hojas de estilo (CSS), scripts (JavaScript) y otras informaciones que no se muestran directamente en el contenido de la página.
+
+### ELEMENTOS COMUNES DENTRO DE `<HEAD>`:
+
+*   **`<title>`:** Define el título de la página que se muestra en la barra de título del navegador o en la pestaña.
+
+    ```html
+    <title>Mi Página Web</title>
+    ```
+
+*   **`<meta>`:** Proporciona metadatos sobre el documento, como la codificación de caracteres, la descripción de la página y las palabras clave para los motores de búsqueda.
+
+    ```html
+    <meta charset="UTF-8">
+    <meta name="description" content="Descripción de mi página web.">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ```
+
+    *   `charset`: Especifica la codificación de caracteres del documento. `UTF-8` es la codificación recomendada para admitir una amplia gama de caracteres.
+    *   `name="description"`: Proporciona una breve descripción de la página, utilizada por los motores de búsqueda.
+    *   `name="keywords"`: Define palabras clave relevantes para la página, útiles para el SEO.
+    *   `name="viewport"`: Configura el viewport para dispositivos móviles, asegurando que la página se ajuste correctamente a diferentes tamaños de pantalla.
+
+*   **`<link>`:** Enlaza hojas de estilo externas (CSS) al documento HTML.
+
+    ```html
+    <link rel="stylesheet" href="styles.css">
+    ```
+
+*   **`<style>`:** Permite incluir estilos CSS directamente en el documento HTML (aunque no es la práctica recomendada para proyectos grandes).
+
+    ```html
+    <style>
+      body {
+        background-color: #f0f0f0;
+      }
+    </style>
+    ```
+
+*   **`<script>`:** Enlaza o incluye scripts de JavaScript en el documento HTML.
+
+    ```html
+    <script src="script.js"></script>
+    ```
+
+## 4.  ETIQUETA `<BODY>`
+
+La etiqueta `<body>` contiene todo el contenido visible de la página web, como texto, imágenes, enlaces, formularios y otros elementos interactivos. Es el cuerpo principal del documento HTML donde se construye la interfaz de usuario.
+
+### EJEMPLO DE CONTENIDO DENTRO DE `<BODY>`:
+
+```html
+<body>
+  <header>
+    <h1>Bienvenido a mi página web</h1>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Acerca de</a>
+      <a href="#">Servicios</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Sección principal</h2>
+      <p>Este es el contenido principal de la página.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2023 Mi Página Web</p>
+  </footer>
+</body>
+```
+
+## ESTRUCTURA COMPLETA DE UN DOCUMENTO HTML
+
+A continuación, se muestra un ejemplo completo de la estructura básica de un documento HTML:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Ejemplo de estructura básica de un documento HTML.">
+  <meta name="keywords" content="HTML, estructura, head, body">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estructura Básica HTML</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Mi Página Web</h1>
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Acerca de</a>
+      <a href="#">Servicios</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Bienvenido</h2>
+      <p>Este es un ejemplo de la estructura básica de un documento HTML.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2023 Mi Página Web</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
+```
+
+## IMPORTANCIA DE UNA ESTRUCTURA HTML ADECUADA
+
+*   **Compatibilidad:** Asegura que la página se visualice correctamente en diferentes navegadores y dispositivos.
+*   **Accesibilidad:** Facilita la navegación para usuarios con discapacidades, especialmente cuando se utilizan lectores de pantalla.
+*   **SEO:** Mejora el posicionamiento en los motores de búsqueda al proporcionar una estructura clara y semántica.
+*   **Mantenibilidad:** Facilita la actualización y el mantenimiento del código, ya que la estructura es clara y organizada.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: HTML](https://developer.mozilla.org/es/docs/Web/HTML)
+*   [W3Schools: HTML Tutorial](https://www.w3schools.com/html/)
+*   [HTML5 Doctor](https://html5doctor.com/)

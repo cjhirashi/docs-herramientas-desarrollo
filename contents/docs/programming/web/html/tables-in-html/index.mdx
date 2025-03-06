@@ -1,0 +1,288 @@
+---
+title: Tablas en HTML
+description:  Guía completa sobre cómo crear y estructurar tablas en HTML para presentar datos de manera organizada y accesible.
+keywords: ["HTML", "tablas", "table", "tr", "th", "td", "estructura", "accesibilidad", "diseño web"]
+---
+
+## INTRODUCCION A LAS TABLAS EN HTML
+
+Las tablas en HTML son una herramienta fundamental para organizar y presentar datos de manera estructurada en la web. Permiten mostrar información en filas y columnas, facilitando la comparación y el análisis de datos. Aunque en el pasado se utilizaban para el diseño de páginas web, su uso principal hoy en día es la presentación de datos tabulares.
+
+## OBJETIVOS CLAVE
+
+*   **Comprender la estructura básica de una tabla HTML:** Aprender a utilizar los elementos `<table>`, `<tr>`, `<th>` y `<td>` para definir la estructura de la tabla.
+*   **Crear tablas accesibles:** Implementar atributos y prácticas que mejoren la accesibilidad de las tablas para usuarios con discapacidades.
+*   **Aplicar estilos a las tablas:** Utilizar CSS para mejorar la apariencia visual de las tablas y hacerlas más atractivas.
+*   **Utilizar características avanzadas de las tablas:** Explorar atributos como `colspan`, `rowspan`, `<thead>`, `<tbody>` y `<tfoot>` para crear tablas más complejas y semánticas.
+
+## ESTRUCTURA BASICA DE UNA TABLA
+
+La estructura básica de una tabla en HTML se define mediante los siguientes elementos:
+
+*   `<table>`: Define la tabla. Es el contenedor principal de todos los demás elementos de la tabla.
+*   `<tr>`: Define una fila de la tabla (Table Row).
+*   `<th>`: Define una celda de encabezado (Table Header). Se utiliza para los encabezados de las columnas o filas.
+*   `<td>`: Define una celda de datos (Table Data). Contiene los datos que se muestran en la tabla.
+
+A continuación, se muestra un ejemplo de una tabla básica:
+
+```html
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Profesión</th>
+  </tr>
+  <tr>
+    <td>Juan Pérez</td>
+    <td>30</td>
+    <td>Ingeniero</td>
+  </tr>
+  <tr>
+    <td>María García</td>
+    <td>25</td>
+    <td>Abogada</td>
+  </tr>
+</table>
+```
+
+Este código HTML generará una tabla con tres columnas (Nombre, Edad, Profesión) y dos filas de datos.
+
+## ATRIBUTOS IMPORTANTES
+
+Existen varios atributos que se pueden utilizar para personalizar y mejorar la funcionalidad de las tablas:
+
+*   `border`: Define el borde de la tabla. Aunque se puede usar, es preferible utilizar CSS para estilizar los bordes.
+*   `colspan`: Especifica cuántas columnas debe ocupar una celda.
+*   `rowspan`: Especifica cuántas filas debe ocupar una celda.
+*   `width`: Define el ancho de la tabla. Es preferible utilizar CSS para definir el ancho.
+*   `summary`: Proporciona un resumen del contenido de la tabla para mejorar la accesibilidad.
+
+Ejemplo de uso de `colspan` y `rowspan`:
+
+```html
+<table>
+  <tr>
+    <th colspan="3">Información Personal</th>
+  </tr>
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Profesión</th>
+  </tr>
+  <tr>
+    <td>Juan Pérez</td>
+    <td>30</td>
+    <td rowspan="2">Ingeniero</td>
+  </tr>
+  <tr>
+    <td>María García</td>
+    <td>25</td>
+  </tr>
+</table>
+```
+
+En este ejemplo, la celda "Información Personal" ocupa tres columnas gracias al atributo `colspan="3"`. La celda "Ingeniero" ocupa dos filas gracias al atributo `rowspan="2"`.
+
+## ACCESIBILIDAD EN LAS TABLAS
+
+La accesibilidad es un aspecto crucial al crear tablas HTML. Para asegurar que las tablas sean accesibles para todos los usuarios, incluyendo aquellos que utilizan lectores de pantalla, se deben seguir las siguientes prácticas:
+
+*   **Utilizar el elemento `<th>` para los encabezados:** Esto permite a los lectores de pantalla identificar las celdas de encabezado y asociarlas con las celdas de datos correspondientes.
+*   **Utilizar el atributo `scope` en los elementos `<th>`:** El atributo `scope` especifica si el encabezado se aplica a una columna (`col`) o a una fila (`row`).
+
+```html
+<table>
+  <tr>
+    <th scope="col">Nombre</th>
+    <th scope="col">Edad</th>
+    <th scope="col">Profesión</th>
+  </tr>
+  <tr>
+    <th scope="row">Juan Pérez</th>
+    <td>30</td>
+    <td>Ingeniero</td>
+  </tr>
+  <tr>
+    <th scope="row">María García</th>
+    <td>25</td>
+    <td>Abogada</td>
+  </tr>
+</table>
+```
+
+*   **Utilizar el atributo `<caption>` para proporcionar un título a la tabla:** El elemento `<caption>` proporciona un título descriptivo para la tabla, lo que ayuda a los usuarios a entender el propósito de la tabla.
+
+```html
+<table>
+  <caption>Información de Empleados</caption>
+  <tr>
+    <th scope="col">Nombre</th>
+    <th scope="col">Edad</th>
+    <th scope="col">Profesión</th>
+  </tr>
+  <tr>
+    <th scope="row">Juan Pérez</th>
+    <td>30</td>
+    <td>Ingeniero</td>
+  </tr>
+  <tr>
+    <th scope="row">María García</th>
+    <td>25</td>
+    <td>Abogada</td>
+  </tr>
+</table>
+```
+
+*   **Utilizar los elementos `<thead>`, `<tbody>` y `<tfoot>`:** Estos elementos permiten estructurar la tabla en secciones lógicas, lo que facilita la navegación y la comprensión de la tabla.
+
+```html
+<table>
+  <caption>Información de Empleados</caption>
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Juan Pérez</th>
+      <td>30</td>
+      <td>Ingeniero</td>
+    </tr>
+    <tr>
+      <th scope="row">María García</th>
+      <td>25</td>
+      <td>Abogada</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3">Total de empleados: 2</td>
+    </tr>
+  </tfoot>
+</table>
+```
+
+## ESTILOS CSS PARA TABLAS
+
+El uso de CSS es fundamental para mejorar la apariencia visual de las tablas. Algunos estilos comunes incluyen:
+
+*   **Bordes:** Se pueden definir bordes para la tabla, las celdas de encabezado y las celdas de datos.
+
+```css
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse; /* Para combinar los bordes */
+}
+```
+
+*   **Padding:** Define el espacio entre el contenido de la celda y el borde.
+
+```css
+th, td {
+  padding: 8px;
+}
+```
+
+*   **Alineación del texto:** Se puede alinear el texto dentro de las celdas.
+
+```css
+th, td {
+  text-align: left; /* Alinea el texto a la izquierda */
+}
+```
+
+*   **Colores de fondo:** Se pueden definir colores de fondo para la tabla, las celdas de encabezado y las celdas de datos.
+
+```css
+th {
+  background-color: #f2f2f2; /* Color de fondo gris claro */
+}
+```
+
+*   **Estilos de fuente:** Se pueden definir estilos de fuente para el texto dentro de las celdas.
+
+```css
+th {
+  font-weight: bold; /* Texto en negrita */
+}
+```
+
+## EJEMPLO COMPLETO CON CSS
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+caption {
+  caption-side: bottom;
+  font-style: italic;
+  padding-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<h2>Tabla de Empleados</h2>
+
+<table>
+  <caption>Información detallada de los empleados</caption>
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Juan Pérez</th>
+      <td>30</td>
+      <td>Ingeniero</td>
+    </tr>
+    <tr>
+      <th scope="row">María García</th>
+      <td>25</td>
+      <td>Abogada</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3">Total de empleados: 2</td>
+    </tr>
+  </tfoot>
+</table>
+
+</body>
+</html>
+```
+
+## CONCLUSION
+
+Las tablas en HTML son una herramienta esencial para la presentación de datos estructurados en la web. Comprender su estructura básica, atributos y cómo aplicar estilos CSS es fundamental para crear tablas accesibles y visualmente atractivas. Al seguir las prácticas recomendadas de accesibilidad, se asegura que todos los usuarios puedan acceder y comprender la información presentada en las tablas.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: \<table> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table)
+*   [W3Schools: HTML Tables](https://www.w3schools.com/html/html_tables.asp)
+*   [WebAIM: Creating Accessible Tables](https://webaim.org/techniques/tables/)

@@ -1,0 +1,146 @@
+---
+title: CELDAS DE DATOS (<td>)
+description: Explicación detallada del elemento HTML <td>, utilizado para definir celdas dentro de una tabla.
+keywords: ["html", "td", "celda de datos", "tabla", "elemento HTML", "atributos td", "ejemplos td"]
+---
+
+El elemento HTML `<td>` (table data cell) se utiliza para definir una celda que contiene datos dentro de una tabla. Es un elemento esencial en la estructura de tablas HTML, ya que organiza la información en filas y columnas, facilitando la presentación de datos tabulares de manera clara y estructurada.
+
+## OBJETIVOS CLAVE SOBRE EL ELEMENTO `<td>`
+
+1.  **Contener Datos:** El objetivo principal de `<td>` es albergar datos que pertenecen a una tabla. Estos datos pueden ser texto, imágenes, enlaces, o incluso otros elementos HTML.
+
+2.  **Estructurar Tablas:** `<td>` ayuda a definir la estructura de una tabla, organizando los datos en filas y columnas. Cada `<td>` representa una celda en una fila específica.
+
+3.  **Facilitar la Presentación:** Al utilizar `<td>`, los desarrolladores pueden presentar datos de manera organizada y fácil de entender para los usuarios.
+
+El elemento `<td>` debe estar contenido dentro de un elemento `<tr>` (table row), que define una fila en la tabla. A su vez, el elemento `<tr>` debe estar dentro de un elemento `<table>`.
+
+## ATRIBUTOS COMUNES DE `<td>`
+
+*   **`colspan`**: Especifica el número de columnas que debe ocupar la celda. Por ejemplo, `colspan="2"` hará que la celda ocupe el espacio de dos columnas.
+*   **`rowspan`**: Especifica el número de filas que debe ocupar la celda. Por ejemplo, `rowspan="2"` hará que la celda ocupe el espacio de dos filas.
+*   **`headers`**: Especifica una lista de IDs de elementos `<th>` (table header) que proporcionan encabezados para la celda. Esto es útil para la accesibilidad, especialmente en tablas complejas.
+*   **`align`**: Especifica la alineación horizontal del contenido dentro de la celda. Los valores posibles son `left`, `right`, `center`, `justify`.  **Nota:** Este atributo está obsoleto en HTML5 y se recomienda usar CSS en su lugar.
+*   **`valign`**: Especifica la alineación vertical del contenido dentro de la celda. Los valores posibles son `top`, `middle`, `bottom`, `baseline`.  **Nota:** Este atributo está obsoleto en HTML5 y se recomienda usar CSS en su lugar.
+*   **`width`**: Especifica el ancho de la celda.  **Nota:** Este atributo está obsoleto en HTML5 y se recomienda usar CSS en su lugar.
+*   **`height`**: Especifica la altura de la celda.  **Nota:** Este atributo está obsoleto en HTML5 y se recomienda usar CSS en su lugar.
+
+## EJEMPLOS DE IMPLEMENTACIÓN
+
+**Ejemplo 1: Tabla básica con `<td>`**
+
+```html
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Profesión</th>
+  </tr>
+  <tr>
+    <td>Juan Pérez</td>
+    <td>30</td>
+    <td>Ingeniero</td>
+  </tr>
+  <tr>
+    <td>María López</td>
+    <td>25</td>
+    <td>Doctora</td>
+  </tr>
+</table>
+```
+
+En este ejemplo, cada `<td>` contiene datos específicos para cada columna (Nombre, Edad, Profesión) en cada fila.
+
+**Ejemplo 2: Uso de `colspan`**
+
+```html
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th colspan="2">Información de Contacto</th>
+  </tr>
+  <tr>
+    <td>Juan Pérez</td>
+    <td>Email: juan@example.com</td>
+    <td>Teléfono: 123-456-7890</td>
+  </tr>
+</table>
+```
+
+Aquí, el encabezado "Información de Contacto" ocupa dos columnas gracias al atributo `colspan="2"`.
+
+**Ejemplo 3: Uso de `rowspan`**
+
+```html
+<table>
+  <tr>
+    <th>Nombre</th>
+    <td>Juan Pérez</td>
+  </tr>
+  <tr>
+    <th rowspan="2">Teléfono</th>
+    <td>Casa: 123-456-7890</td>
+  </tr>
+  <tr>
+    <td>Móvil: 987-654-3210</td>
+  </tr>
+</table>
+```
+
+En este caso, el encabezado "Teléfono" ocupa dos filas gracias al atributo `rowspan="2"`.
+
+**Ejemplo 4: Atributos de alineación (obsoletos, usar CSS en su lugar)**
+
+Aunque los atributos `align` y `valign` están obsoletos, es importante saber cómo funcionaban para entender código antiguo:
+
+```html
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+  </tr>
+  <tr>
+    <td align="center">Juan Pérez</td>
+    <td valign="middle">30</td>
+  </tr>
+</table>
+```
+
+Para lograr la misma alineación con CSS, se puede hacer lo siguiente:
+
+```html
+<style>
+  td {
+    text-align: center; /* Alineación horizontal */
+    vertical-align: middle; /* Alineación vertical */
+  }
+</style>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+  </tr>
+  <tr>
+    <td>Juan Pérez</td>
+    <td>30</td>
+  </tr>
+</table>
+```
+
+## MEJORES PRÁCTICAS
+
+1.  **Usar CSS para Estilos:** Evitar el uso de atributos de estilo obsoletos como `align`, `valign`, `width`, y `height`. En su lugar, utilizar CSS para controlar la apariencia de las celdas.
+
+2.  **Accesibilidad:** Utilizar el atributo `headers` para relacionar celdas de datos con sus encabezados correspondientes, especialmente en tablas complejas.
+
+3.  **Estructura Semántica:** Asegurarse de que la estructura de la tabla sea lógica y semántica. Utilizar `<th>` para los encabezados de las columnas y filas, y `<td>` para los datos.
+
+4.  **Validación:** Validar el código HTML para asegurarse de que las tablas estén correctamente estructuradas y que no haya errores de sintaxis.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: \<td>: The Table Data Cell element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td)
+*   [W3Schools: HTML \<td> tag](https://www.w3schools.com/tags/tag_td.asp)
+*   [HTML Table Tutorial](https://www.htmldog.com/guides/html/tables/)

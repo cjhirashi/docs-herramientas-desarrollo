@@ -1,0 +1,147 @@
+---
+title: Atributos de Formulario (action, method)
+description: Explicación detallada de los atributos 'action' y 'method' en formularios HTML, su función, uso y mejores prácticas.
+keywords: ["HTML", "formulario", "action", "method", "GET", "POST", "atributos de formulario"]
+---
+
+Los formularios HTML son componentes esenciales para la interacción del usuario en la web. Permiten recopilar datos del usuario y enviarlos al servidor para su procesamiento. Dos de los atributos más importantes que definen el comportamiento de un formulario son `action` y `method`. Este documento explora en detalle estos atributos, su función, uso y las mejores prácticas asociadas.
+
+## OBJETIVOS CLAVE
+
+*   Entender la función del atributo `action`.
+*   Comprender la diferencia entre los métodos `GET` y `POST`.
+*   Aprender a utilizar correctamente los atributos `action` y `method` en formularios HTML.
+*   Conocer las implicaciones de seguridad al elegir entre `GET` y `POST`.
+
+## ATRIBUTO ACTION
+
+El atributo `action` especifica la URL a la que se enviarán los datos del formulario cuando el usuario lo envíe. Esta URL generalmente apunta a un script del lado del servidor (por ejemplo, PHP, Python, Node.js) que procesará los datos recibidos.
+
+**Sintaxis:**
+
+```html
+<form action="URL_DEL_SCRIPT" method="método">
+  <!-- Elementos del formulario -->
+</form>
+```
+
+**Ejemplo:**
+
+```html
+<form action="/procesar_formulario.php" method="post">
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre"><br><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email"><br><br>
+  <input type="submit" value="Enviar">
+</form>
+```
+
+En este ejemplo, cuando el usuario envíe el formulario, los datos se enviarán a `/procesar_formulario.php`.
+
+## ATRIBUTO METHOD
+
+El atributo `method` especifica el método HTTP que se utilizará para enviar los datos del formulario al servidor. Los dos métodos más comunes son `GET` y `POST`.
+
+### METODO GET
+
+El método `GET` envía los datos del formulario como parte de la URL. Los datos se adjuntan a la URL como una cadena de consulta, donde cada par nombre-valor está separado por un signo igual (=) y los pares están separados por un signo ampersand (&).
+
+**Ejemplo:**
+
+```html
+<form action="/buscar.php" method="get">
+  <label for="termino">Buscar:</label>
+  <input type="text" id="termino" name="termino">
+  <input type="submit" value="Buscar">
+</form>
+```
+
+Si el usuario ingresa "ejemplo" en el campo de búsqueda, la URL resultante podría ser: `/buscar.php?termino=ejemplo`.
+
+**Características del método GET:**
+
+*   Los datos se muestran en la URL, lo que facilita marcarlos como favoritos o compartirlos.
+*   Tiene una longitud máxima de URL limitada (generalmente 2048 caracteres), lo que restringe la cantidad de datos que se pueden enviar.
+*   No es adecuado para enviar información sensible, ya que los datos son visibles en la URL y pueden quedar almacenados en el historial del navegador o en los registros del servidor.
+*   Es idempotente, lo que significa que realizar la misma solicitud varias veces tiene el mismo efecto que realizarla una sola vez.
+
+### METODO POST
+
+El método `POST` envía los datos del formulario como parte del cuerpo de la solicitud HTTP. Los datos no son visibles en la URL.
+
+**Ejemplo:**
+
+```html
+<form action="/procesar_login.php" method="post">
+  <label for="usuario">Usuario:</label><br>
+  <input type="text" id="usuario" name="usuario"><br><br>
+  <label for="clave">Contraseña:</label><br>
+  <input type="password" id="clave" name="clave"><br><br>
+  <input type="submit" value="Iniciar Sesión">
+</form>
+```
+
+En este ejemplo, los datos del usuario y la contraseña se envían al servidor de forma segura, sin aparecer en la URL.
+
+**Características del método POST:**
+
+*   Los datos no se muestran en la URL, lo que lo hace más seguro para enviar información sensible.
+*   No tiene una longitud máxima de datos tan estricta como `GET`, lo que permite enviar cantidades mayores de información.
+*   No es idempotente, lo que significa que realizar la misma solicitud varias veces puede tener efectos diferentes (por ejemplo, crear múltiples entradas en una base de datos).
+
+## CUANDO USAR GET VS. POST
+
+La elección entre `GET` y `POST` depende del tipo de operación que se va a realizar y de la naturaleza de los datos que se van a enviar.
+
+*   **GET:** Se utiliza principalmente para recuperar datos del servidor. Es adecuado para operaciones que no modifican el estado del servidor, como búsquedas, consultas o visualización de información.
+*   **POST:** Se utiliza principalmente para enviar datos al servidor para crear, actualizar o eliminar recursos. Es adecuado para operaciones que modifican el estado del servidor, como el registro de usuarios, el envío de comentarios o la carga de archivos.
+
+## IMPLICACIONES DE SEGURIDAD
+
+Es crucial considerar las implicaciones de seguridad al elegir entre `GET` y `POST`.
+
+*   Nunca envíes información sensible (como contraseñas, números de tarjetas de crédito o información personal) utilizando el método `GET`, ya que los datos son visibles en la URL y pueden ser interceptados o almacenados en el historial del navegador.
+*   Utiliza siempre el método `POST` para enviar información sensible.
+*   Implementa medidas de seguridad adicionales, como el cifrado HTTPS, para proteger los datos en tránsito entre el navegador y el servidor.
+*   Valida y sanitiza los datos recibidos del formulario en el lado del servidor para prevenir ataques de inyección (como SQL injection o Cross-Site Scripting - XSS).
+
+## EJEMPLOS DE IMPLEMENTACION
+
+### EJEMPLO 1: FORMULARIO DE CONTACTO (POST)
+
+```html
+<form action="/enviar_correo.php" method="post">
+  <label for="nombre">Nombre:</label><br>
+  <input type="text" id="nombre" name="nombre" required><br><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br><br>
+
+  <label for="mensaje">Mensaje:</label><br>
+  <textarea id="mensaje" name="mensaje" rows="4" cols="50" required></textarea><br><br>
+
+  <input type="submit" value="Enviar Mensaje">
+</form>
+```
+
+En este ejemplo, se utiliza el método `POST` para enviar los datos del formulario de contacto al script `/enviar_correo.php`, que se encargará de enviar el correo electrónico.
+
+### EJEMPLO 2: FORMULARIO DE BUSQUEDA (GET)
+
+```html
+<form action="/resultados_busqueda.php" method="get">
+  <label for="busqueda">Buscar:</label>
+  <input type="text" id="busqueda" name="busqueda">
+  <input type="submit" value="Buscar">
+</form>
+```
+
+En este ejemplo, se utiliza el método `GET` para enviar el término de búsqueda al script `/resultados_busqueda.php`, que mostrará los resultados de la búsqueda.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: &lt;form&gt;: The Form element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+*   [W3Schools: HTML Forms](https://www.w3schools.com/html/html_forms.asp)
+*   [OWASP: Cross-Site Scripting (XSS)](https://owasp.org/www-community/attacks/xss/)
+*   [OWASP: SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)

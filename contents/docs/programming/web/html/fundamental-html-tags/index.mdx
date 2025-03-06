@@ -1,0 +1,256 @@
+---
+title: Etiquetas HTML Fundamentales
+description:  Exploración en profundidad de las etiquetas HTML esenciales para la estructura y contenido de páginas web.
+keywords: ["HTML", "etiquetas HTML", "estructura HTML", "semántica HTML", "desarrollo web"]
+---
+
+Las etiquetas HTML son los bloques de construcción básicos de cualquier página web. Definen la estructura, el contenido y la semántica de un documento HTML. Comprender las etiquetas fundamentales es crucial para cualquier desarrollador web, ya que permite crear páginas bien estructuradas, accesibles y optimizadas para los motores de búsqueda.
+
+## OBJETIVOS CLAVE
+
+*   Comprender la función y el propósito de las etiquetas HTML fundamentales.
+*   Aprender a utilizar correctamente las etiquetas para estructurar el contenido de una página web.
+*   Conocer las etiquetas semánticas que mejoran la accesibilidad y el SEO.
+*   Aplicar las etiquetas HTML en la creación de páginas web prácticas y funcionales.
+
+## ETIQUETAS DE ESTRUCTURA BASICA
+
+*   **`<!DOCTYPE html>`**:  Define la versión de HTML que se está utilizando.  Siempre debe ser la primera línea en un documento HTML5.
+
+    ```html
+    <!DOCTYPE html>
+    ```
+
+*   **`<html>`**:  Es el elemento raíz que contiene todo el contenido de la página HTML.
+
+    ```html
+    <html>
+    ...
+    </html>
+    ```
+
+*   **`<head>`**:  Contiene metadatos sobre el documento HTML, como el título, la codificación de caracteres, enlaces a hojas de estilo y scripts.  No se muestra directamente en el navegador.
+
+    ```html
+    <head>
+        <meta charset="UTF-8">
+        <title>Mi Página Web</title>
+        <link rel="stylesheet" href="estilos.css">
+    </head>
+    ```
+
+*   **`<title>`**:  Especifica el título de la página, que se muestra en la pestaña del navegador y en los resultados de búsqueda.
+
+    ```html
+    <title>Etiquetas HTML Fundamentales</title>
+    ```
+
+*   **`<body>`**:  Contiene todo el contenido visible de la página web, como texto, imágenes, enlaces, etc.
+
+    ```html
+    <body>
+        <h1>Bienvenido a mi página</h1>
+        <p>Este es un párrafo de texto.</p>
+    </body>
+    ```
+
+## ETIQUETAS DE ENCABEZADO
+
+Las etiquetas de encabezado (`<h1>` a `<h6>`) se utilizan para definir títulos y subtítulos en una página web.  `<h1>` representa el título principal, mientras que `<h6>` representa el subtítulo de menor importancia.
+
+```html
+<h1>Título Principal</h1>
+<h2>Subtítulo</h2>
+<h3>Subtítulo de Nivel 3</h3>
+```
+
+Es importante utilizar los encabezados de forma jerárquica para estructurar el contenido de manera lógica y mejorar la accesibilidad.
+
+## ETIQUETAS DE TEXTO
+
+*   **`<p>`**:  Define un párrafo de texto.
+
+    ```html
+    <p>Este es un párrafo de texto. Puede contener varias líneas y se separa de otros párrafos por un espacio en blanco.</p>
+    ```
+
+*   **`<a>`**:  Crea un hipervínculo a otra página web, un archivo o una ubicación dentro de la misma página.
+
+    ```html
+    <a href="https://www.ejemplo.com">Visita Ejemplo.com</a>
+    ```
+
+*   **`<img>`**:  Inserta una imagen en la página web.
+
+    ```html
+    <img src="imagen.jpg" alt="Descripción de la imagen">
+    ```
+
+*   **`<span>`**:  Es un contenedor en línea que se utiliza para aplicar estilos o manipular una parte específica del texto.
+
+    ```html
+    <p>Este es un <span>texto resaltado</span>.</p>
+    ```
+
+*   **`<strong>`**:  Indica texto importante, que generalmente se muestra en negrita.
+
+    ```html
+    <p>Esto es <strong>muy importante</strong>.</p>
+    ```
+
+*   **`<em>`**:  Indica énfasis en el texto, que generalmente se muestra en cursiva.
+
+    ```html
+    <p>Esto es <em>énfasis</em>.</p>
+    ```
+
+## ETIQUETAS DE LISTAS
+
+*   **`<ul>`**:  Crea una lista no ordenada (con viñetas).
+
+    ```html
+    <ul>
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+    </ul>
+    ```
+
+*   **`<ol>`**:  Crea una lista ordenada (numerada).
+
+    ```html
+    <ol>
+        <li>Primer elemento</li>
+        <li>Segundo elemento</li>
+        <li>Tercer elemento</li>
+    </ol>
+    ```
+
+*   **`<li>`**:  Define un elemento de la lista.
+
+## ETIQUETAS DE TABLAS
+
+*   **`<table>`**:  Crea una tabla.
+
+    ```html
+    <table>
+        <thead>
+            <tr>
+                <th>Encabezado 1</th>
+                <th>Encabezado 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Dato 1</td>
+                <td>Dato 2</td>
+            </tr>
+            <tr>
+                <td>Dato 3</td>
+                <td>Dato 4</td>
+            </tr>
+        </tbody>
+    </table>
+    ```
+
+*   **`<tr>`**:  Define una fila de la tabla.
+*   **`<th>`**:  Define una celda de encabezado de la tabla.
+*   **`<td>`**:  Define una celda de datos de la tabla.
+
+## ETIQUETAS SEMANTICAS
+
+Las etiquetas semánticas proporcionan significado al contenido de la página, lo que mejora la accesibilidad y el SEO.
+
+*   **`<header>`**:  Define la sección de encabezado de un documento o sección.
+
+    ```html
+    <header>
+        <h1>Mi Blog</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Acerca de</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+    ```
+
+*   **`<nav>`**:  Define una sección de navegación.
+*   **`<article>`**:  Define un artículo independiente.
+
+    ```html
+    <article>
+        <h2>Título del Artículo</h2>
+        <p>Contenido del artículo...</p>
+    </article>
+    ```
+
+*   **`<aside>`**:  Define contenido relacionado pero separado del contenido principal.
+
+    ```html
+    <aside>
+        <h3>Enlaces Relacionados</h3>
+        <ul>
+            <li><a href="#">Enlace 1</a></li>
+            <li><a href="#">Enlace 2</a></li>
+        </ul>
+    </aside>
+    ```
+
+*   **`<footer>`**:  Define la sección de pie de página de un documento o sección.
+
+    ```html
+    <footer>
+        <p>© 2023 Mi Blog</p>
+    </footer>
+    ```
+
+## EJEMPLO DE IMPLEMENTACION
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etiquetas HTML Fundamentales</title>
+</head>
+<body>
+
+    <header>
+        <h1>Mi Página Web</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <h2>Bienvenido</h2>
+            <p>Este es un ejemplo de una página web básica utilizando etiquetas HTML fundamentales.</p>
+            <img src="imagen.jpg" alt="Imagen de ejemplo">
+        </article>
+
+        <aside>
+            <h3>Información Adicional</h3>
+            <p>Aquí puedes encontrar información adicional sobre nuestra empresa.</p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>© 2023 Mi Página Web</p>
+    </footer>
+
+</body>
+</html>
+```
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+*   [W3Schools: HTML Tutorial](https://www.w3schools.com/html/default.asp)
+*   [freeCodeCamp: Learn HTML](https://www.freecodecamp.org/learn/responsive-web-design/basic-html-and-html5/)

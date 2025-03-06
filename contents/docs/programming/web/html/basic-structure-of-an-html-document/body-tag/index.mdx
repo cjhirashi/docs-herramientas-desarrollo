@@ -1,0 +1,144 @@
+---
+title: La etiqueta <body>
+description:  Documentación detallada sobre la etiqueta <body> en HTML, su propósito, atributos y mejores prácticas.
+keywords: ["HTML", "body", "etiqueta body", "estructura HTML", "contenido HTML", "atributos body"]
+---
+
+La etiqueta `<body>` en HTML es un elemento fundamental que define el cuerpo del documento HTML. Contiene todo el contenido visible de una página web, como texto, imágenes, enlaces, tablas y otros elementos multimedia. Esencialmente, todo lo que se muestra en el navegador está contenido dentro de la etiqueta `<body>`.
+
+## OBJETIVOS CLAVE SOBRE LA ETIQUETA `<BODY>`
+
+*   **Contenedor Principal:** Actúa como el principal contenedor para todo el contenido visible de la página.
+*   **Estructura:** Define la estructura básica del contenido de la página.
+*   **Presentación:** Influye en la presentación visual del contenido a través de atributos y estilos CSS.
+*   **Accesibilidad:** Permite la organización lógica del contenido para mejorar la accesibilidad.
+
+## DESARROLLO DE LA ETIQUETA `<BODY>`
+
+### ESTRUCTURA BASICA
+
+La etiqueta `<body>` se utiliza dentro de la etiqueta `<html>` después de la etiqueta `<head>`. La estructura básica de un documento HTML con la etiqueta `<body>` es la siguiente:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título de la página</title>
+</head>
+<body>
+    <!-- Aquí va todo el contenido visible de la página -->
+    <h1>Encabezado principal</h1>
+    <p>Este es un párrafo de texto.</p>
+</body>
+</html>
+```
+
+### ATRIBUTOS DE LA ETIQUETA `<BODY>`
+
+Aunque la etiqueta `<body>` soporta atributos, muchos de los atributos de presentación que solían ser comunes en HTML 4 (como `bgcolor`, `text`, `link`, `vlink`, `alink`) están obsoletos en HTML5. Se recomienda utilizar CSS para controlar la presentación visual de la página.
+
+#### ATRIBUTOS COMUNES
+
+*   **`onload`:** Especifica un script para ser ejecutado cuando la página ha terminado de cargar.
+*   **`onunload`:** Especifica un script para ser ejecutado cuando el usuario abandona la página.
+*   **`onbeforeunload`:** Especifica un script para ser ejecutado antes de que la página se descargue.
+
+#### EJEMPLOS DE USO DE ATRIBUTOS
+
+```html
+<body onload="alert('La página ha cargado completamente.')">
+    <h1>Bienvenido a mi página</h1>
+    <p>Este es el contenido de la página.</p>
+</body>
+```
+
+En este ejemplo, se muestra una alerta cuando la página termina de cargar.
+
+### MEJORES PRACTICAS
+
+1.  **Usar CSS para la Presentación:** Evitar el uso de atributos de presentación obsoletos y utilizar CSS para controlar el estilo y la apariencia del contenido.
+2.  **Estructura Semántica:** Organizar el contenido de manera lógica utilizando elementos semánticos como `<header>`, `<nav>`, `<article>`, `<aside>`, y `<footer>` dentro del `<body>`.
+3.  **Accesibilidad:** Asegurarse de que el contenido sea accesible para todos los usuarios, incluyendo aquellos con discapacidades, utilizando atributos ARIA y siguiendo las pautas de accesibilidad web (WCAG).
+4.  **Optimización:** Optimizar el contenido para mejorar el rendimiento de la página, como comprimir imágenes y minimizar el uso de scripts pesados.
+
+### EJEMPLOS DE IMPLEMENTACION
+
+#### EJEMPLO 1: ESTRUCTURA BASICA CON ELEMENTOS SEMANTICOS
+
+```html
+<body>
+    <header>
+        <h1>Título del Sitio</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h2>Título del Artículo</h2>
+            <p>Contenido del artículo...</p>
+        </article>
+        <aside>
+            <h3>Información Adicional</h3>
+            <p>Información relacionada...</p>
+        </aside>
+    </main>
+    <footer>
+        <p>© 2023 Mi Sitio Web</p>
+    </footer>
+</body>
+```
+
+#### EJEMPLO 2: USO DE CSS PARA ESTILOS
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo con CSS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido</h1>
+    </header>
+    <main>
+        <p>Este es el contenido principal de la página.</p>
+    </main>
+</body>
+</html>
+```
+
+En este ejemplo, se utiliza CSS para definir la fuente, el color de fondo y otros estilos visuales del `<body>` y sus elementos hijos.
+
+### CONCLUSION
+
+La etiqueta `<body>` es un componente esencial de cualquier documento HTML. Su correcta utilización, combinada con CSS para la presentación y elementos semánticos para la estructura, asegura que el contenido de la página sea accesible, bien organizado y visualmente atractivo.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: \<body>](https://developer.mozilla.org/es/docs/Web/HTML/Element/body)
+*   [W3Schools: HTML body Tag](https://www.w3schools.com/tags/tag_body.asp)
+*   [HTML5 Specification](https://html.spec.whatwg.org/multipage/semantics.html#the-body-element)

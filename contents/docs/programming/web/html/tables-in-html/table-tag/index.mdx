@@ -1,0 +1,268 @@
+---
+title: La etiqueta <table>
+description:  Documentación detallada sobre la etiqueta HTML <table>, sus atributos, usos y mejores prácticas para la creación de tablas accesibles y semánticas.
+keywords: ["HTML", "table", "etiqueta table", "tabla HTML", "atributos table", "accesibilidad table", "semántica table", "diseño web", "desarrollo web"]
+---
+
+La etiqueta `<table>` en HTML se utiliza para crear tablas de datos en una página web. Las tablas son una forma estructurada de presentar información en filas y columnas, lo que facilita la lectura y comprensión de los datos. Aunque las tablas se utilizaban antiguamente para el diseño de páginas web, su uso principal ahora es para mostrar datos tabulares.
+
+## OBJETIVOS CLAVE SOBRE LA ETIQUETA `<table>`
+
+1.  **Estructuración de Datos:** Facilitar la presentación de datos en un formato ordenado y fácil de entender.
+2.  **Accesibilidad:** Asegurar que las tablas sean accesibles para todos los usuarios, incluyendo aquellos que utilizan tecnologías de asistencia.
+3.  **Semántica:** Utilizar las etiquetas HTML apropiadas para definir la estructura de la tabla, mejorando la semántica del documento.
+4.  **Responsividad:** Adaptar las tablas a diferentes tamaños de pantalla para una experiencia de usuario óptima en dispositivos móviles y de escritorio.
+
+## ESTRUCTURA BASICA DE UNA TABLA
+
+Una tabla HTML se define con la etiqueta `<table>`. Dentro de esta etiqueta, se utilizan otras etiquetas para definir las filas, las celdas de encabezado y las celdas de datos.
+
+*   `<table>`: Define la tabla.
+*   `<thead>`: Define el encabezado de la tabla.
+*   `<tbody>`: Define el cuerpo de la tabla.
+*   `<tfoot>`: Define el pie de la tabla.
+*   `<tr>`: Define una fila de la tabla.
+*   `<th>`: Define una celda de encabezado en una tabla.
+*   `<td>`: Define una celda de datos en una tabla.
+*   `<figcaption>`: Define un título o leyenda para la tabla.
+*   `<col>`: Especifica propiedades para cada columna.
+*   `<colgroup>`: Agrupa columnas para aplicarles estilos o propiedades.
+
+A continuación, se muestra un ejemplo básico de una tabla:
+
+```html
+<table>
+  <caption>Tabla de ejemplo</caption>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Juan Pérez</td>
+      <td>30</td>
+      <td>Ingeniero</td>
+    </tr>
+    <tr>
+      <td>María García</td>
+      <td>25</td>
+      <td>Diseñadora</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3">Fuente: Datos ficticios</td>
+    </tr>
+  </tfoot>
+</table>
+```
+
+## ATRIBUTOS DE LA ETIQUETA `<table>`
+
+La etiqueta `<table>` tiene varios atributos que permiten controlar su apariencia y comportamiento. Algunos de los atributos más comunes son:
+
+*   `border`: Define el ancho del borde de la tabla. (Este atributo está obsoleto en HTML5 y se recomienda usar CSS para definir los bordes).
+*   `cellpadding`: Define el espacio entre el contenido de la celda y el borde de la celda. (Este atributo está obsoleto en HTML5 y se recomienda usar CSS para definir el relleno).
+*   `cellspacing`: Define el espacio entre las celdas. (Este atributo está obsoleto en HTML5 y se recomienda usar CSS para definir el espaciado).
+*   `width`: Define el ancho de la tabla. (Este atributo está obsoleto en HTML5 y se recomienda usar CSS para definir el ancho).
+*   `summary`: Proporciona un resumen del contenido de la tabla para mejorar la accesibilidad.
+*   `data-*`: Permite almacenar datos personalizados privados a la página o aplicación.
+
+Ejemplo de uso de algunos atributos (aunque se recomienda usar CSS para el estilo):
+
+```html
+<table style="width:100%; border-collapse: collapse;">
+  <caption>Tabla de ejemplo con estilos CSS</caption>
+  <thead>
+    <tr>
+      <th style="border: 1px solid black; padding: 8px; text-align: left;">Nombre</th>
+      <th style="border: 1px solid black; padding: 8px; text-align: left;">Edad</th>
+      <th style="border: 1px solid black; padding: 8px; text-align: left;">Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid black; padding: 8px;">Juan Pérez</td>
+      <td style="border: 1px solid black; padding: 8px;">30</td>
+      <td style="border: 1px solid black; padding: 8px;">Ingeniero</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black; padding: 8px;">María García</td>
+      <td style="border: 1px solid black; padding: 8px;">25</td>
+      <td style="border: 1px solid black; padding: 8px;">Diseñadora</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="3" style="border: 1px solid black; padding: 8px; text-align: center;">
+        Fuente: Datos ficticios
+      </td>
+    </tr>
+  </tfoot>
+</table>
+```
+
+## ACCESIBILIDAD EN TABLAS
+
+Es crucial hacer que las tablas sean accesibles para todos los usuarios, especialmente aquellos que utilizan tecnologías de asistencia como lectores de pantalla. Aquí hay algunas prácticas recomendadas:
+
+1.  **Usar `<th>` para los encabezados:** Utilizar la etiqueta `<th>` para definir las celdas de encabezado. Esto proporciona información semántica importante para los lectores de pantalla.
+2.  **Atributo `scope`:** Utilizar el atributo `scope` en las etiquetas `<th>` para especificar si el encabezado se aplica a una columna (`scope="col"`) o a una fila (`scope="row"`).
+3.  **Atributo `<caption>`:** Proporcionar un título descriptivo para la tabla utilizando la etiqueta `<caption>`. Esto ayuda a los usuarios a entender el propósito de la tabla.
+4.  **Atributo `summary`:** Aunque está obsoleto, se puede usar el atributo `aria-describedby` para proporcionar una descripción detallada de la tabla.
+5.  **Estructura lógica:** Asegurarse de que la estructura de la tabla sea lógica y fácil de entender. Evitar el uso excesivo de celdas combinadas (`colspan` y `rowspan`) que pueden dificultar la navegación para los usuarios de lectores de pantalla.
+
+Ejemplo de tabla accesible:
+
+```html
+<table aria-describedby="tabla-descripcion">
+  <caption>
+    Tabla de datos de empleados
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Profesión</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Juan Pérez</td>
+      <td>30</td>
+      <td>Ingeniero</td>
+    </tr>
+    <tr>
+      <td>María García</td>
+      <td>25</td>
+      <td>Diseñadora</td>
+    </tr>
+  </tbody>
+</table>
+<p id="tabla-descripcion">
+  Esta tabla muestra información básica de los empleados de la empresa.
+</p>
+```
+
+## RESPONSIVIDAD EN TABLAS
+
+Las tablas pueden ser difíciles de manejar en dispositivos móviles debido a su diseño inherentemente horizontal. Aquí hay algunas técnicas para hacer que las tablas sean responsivas:
+
+1.  **Desbordamiento Horizontal:** Envolver la tabla en un contenedor con `overflow-x: auto;` para permitir el desplazamiento horizontal en pantallas pequeñas.
+
+    ```html
+    <div style="overflow-x: auto;">
+      <table>
+        <!-- Contenido de la tabla -->
+      </table>
+    </div>
+    ```
+
+2.  **Apilamiento de Celdas:** Utilizar CSS para cambiar la disposición de la tabla en pantallas pequeñas, apilando las celdas en lugar de mostrarlas en filas y columnas.
+
+    ```css
+    @media screen and (max-width: 600px) {
+      table {
+        display: block;
+      }
+      thead {
+        display: none;
+      }
+      tr {
+        display: block;
+        margin-bottom: 10px;
+      }
+      td {
+        display: block;
+        text-align: right;
+        border-bottom: 1px solid #ddd;
+      }
+      td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+      }
+    }
+    ```
+
+    ```html
+    <table>
+      <caption>
+        Tabla de datos de empleados
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Profesión</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Nombre">Juan Pérez</td>
+          <td data-label="Edad">30</td>
+          <td data-label="Profesión">Ingeniero</td>
+        </tr>
+        <tr>
+          <td data-label="Nombre">María García</td>
+          <td data-label="Edad">25</td>
+          <td data-label="Profesión">Diseñadora</td>
+        </tr>
+      </tbody>
+    </table>
+    ```
+
+3.  **Ocultar Columnas:** Ocultar columnas menos importantes en pantallas pequeñas utilizando CSS.
+
+    ```css
+    @media screen and (max-width: 600px) {
+      .ocultar-en-movil {
+        display: none;
+      }
+    }
+    ```
+
+    ```html
+    <table>
+      <caption>
+        Tabla de datos de empleados
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Edad</th>
+          <th scope="col" class="ocultar-en-movil">Profesión</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>30</td>
+          <td class="ocultar-en-movil">Ingeniero</td>
+        </tr>
+        <tr>
+          <td>María García</td>
+          <td>25</td>
+          <td class="ocultar-en-movil">Diseñadora</td>
+        </tr>
+      </tbody>
+    </table>
+    ```
+
+## MEJORES PRACTICAS
+
+*   **Usar CSS para el estilo:** Evitar el uso de atributos HTML obsoletos para el estilo de la tabla. Utilizar CSS para controlar la apariencia de la tabla, incluyendo bordes, relleno, espaciado y colores.
+*   **Semántica adecuada:** Utilizar las etiquetas HTML apropiadas para definir la estructura de la tabla. Esto mejora la semántica del documento y facilita la accesibilidad.
+*   **Accesibilidad:** Asegurarse de que las tablas sean accesibles para todos los usuarios. Utilizar las etiquetas `<th>`, el atributo `scope` y la etiqueta `<caption>` para proporcionar información semántica y contexto.
+*   **Responsividad:** Adaptar las tablas a diferentes tamaños de pantalla para una experiencia de usuario óptima en dispositivos móviles y de escritorio.
+*   **Evitar el uso excesivo de celdas combinadas:** El uso excesivo de `colspan` y `rowspan` puede dificultar la navegación para los usuarios de lectores de pantalla. Tratar de mantener la estructura de la tabla lo más simple posible.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: \<table>](https://developer.mozilla.org/es/docs/Web/HTML/Element/table)
+*   [W3Schools: HTML Tables](https://www.w3schools.com/html/html_tables.asp)
+*   [CSS-Tricks: Responsive Data Tables](https://css-tricks.com/responsive-data-tables/)
+*   [WebAIM: Creating Accessible Tables](https://webaim.org/techniques/tables/)

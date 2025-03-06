@@ -1,0 +1,169 @@
+---
+title: Imagenes (<img>)
+description: La etiqueta <img> en HTML permite insertar imágenes en una página web.
+keywords: ["html", "img", "imagenes", "etiqueta img", "atributos img", "src", "alt"]
+---
+
+## INTRODUCCION A LA ETIQUETA IMG
+
+La etiqueta `<img>` es un elemento fundamental en HTML que permite insertar imágenes en una página web. A diferencia de otras etiquetas, `<img>` es un elemento vacío, lo que significa que no necesita una etiqueta de cierre. Su función principal es mostrar una imagen en el navegador, y para ello utiliza atributos esenciales como `src` y `alt`.
+
+## OBJETIVOS CLAVE
+
+1.  **Mostrar Imágenes:** Permitir la visualización de imágenes en una página web.
+2.  **Atributo `src`:** Comprender y utilizar correctamente el atributo `src` para especificar la ruta de la imagen.
+3.  **Atributo `alt`:** Comprender y utilizar el atributo `alt` para proporcionar texto alternativo para la imagen.
+4.  **Atributos de Dimensionamiento:** Utilizar atributos como `width` y `height` para controlar el tamaño de la imagen.
+5.  **Accesibilidad:** Asegurar que las imágenes sean accesibles para todos los usuarios, incluyendo aquellos que utilizan lectores de pantalla.
+
+## ESTRUCTURA BASICA
+
+La estructura básica de la etiqueta `<img>` es la siguiente:
+
+```html
+<img src="ruta/a/la/imagen.jpg" alt="Descripción de la imagen">
+```
+
+*   **`src` (source):** Especifica la URL de la imagen que se va a mostrar. Este atributo es obligatorio.
+*   **`alt` (alternative text):** Proporciona un texto alternativo para la imagen. Este atributo es esencial para la accesibilidad y se muestra si la imagen no se puede cargar.
+
+## ATRIBUTO SRC
+
+El atributo `src` es el más importante de la etiqueta `<img>`, ya que define la ubicación de la imagen que se va a mostrar. La URL puede ser:
+
+*   **URL Absoluta:** Una dirección completa que incluye el protocolo (ej. `http://www.ejemplo.com/imagenes/logo.png`).
+*   **URL Relativa:** Una dirección relativa al archivo HTML actual (ej. `imagenes/logo.png`).
+
+**Ejemplo de URL Absoluta:**
+
+```html
+<img src="https://www.ejemplo.com/imagenes/paisaje.jpg" alt="Paisaje de montaña">
+```
+
+**Ejemplo de URL Relativa:**
+
+Si tienes un archivo HTML en la carpeta `mi_sitio_web` y la imagen en `mi_sitio_web/imagenes/perfil.jpg`:
+
+```html
+<img src="imagenes/perfil.jpg" alt="Foto de perfil">
+```
+
+## ATRIBUTO ALT
+
+El atributo `alt` proporciona un texto alternativo para la imagen. Este texto se muestra si la imagen no se puede cargar y es utilizado por los lectores de pantalla para describir la imagen a los usuarios con discapacidades visuales.
+
+**Importancia del Atributo `alt`:**
+
+*   **Accesibilidad:** Permite que los usuarios con discapacidades visuales comprendan el contenido de la imagen.
+*   **SEO:** Los motores de búsqueda utilizan el texto alternativo para entender el contenido de la imagen, lo que puede mejorar el SEO de tu sitio web.
+*   **Experiencia del Usuario:** Si la imagen no se carga, el texto alternativo proporciona información sobre lo que debería mostrarse.
+
+**Ejemplo:**
+
+```html
+<img src="imagenes/gato.jpg" alt="Un gato atigrado durmiendo en una cesta">
+```
+
+## ATRIBUTOS DE DIMENSIONAMIENTO: WIDTH Y HEIGHT
+
+Los atributos `width` y `height` se utilizan para especificar el ancho y el alto de la imagen en píxeles. Aunque es posible usar estos atributos, se recomienda utilizar CSS para controlar el tamaño de las imágenes, ya que ofrece mayor flexibilidad y control.
+
+**Ejemplo con Atributos `width` y `height`:**
+
+```html
+<img src="imagenes/playa.jpg" alt="Playa tropical" width="500" height="300">
+```
+
+**Ejemplo con CSS:**
+
+```html
+<img src="imagenes/playa.jpg" alt="Playa tropical" style="width:500px; height:300px;">
+```
+
+O, mejor aún, utilizando una clase CSS:
+
+```html
+<style>
+.imagen-mediana {
+  width: 500px;
+  height: 300px;
+}
+</style>
+
+<img src="imagenes/playa.jpg" alt="Playa tropical" class="imagen-mediana">
+```
+
+## CONSIDERACIONES ADICIONALES
+
+*   **Formatos de Imagen:** Los formatos de imagen más comunes son JPEG, PNG, GIF y SVG. Cada formato tiene sus propias características y es adecuado para diferentes tipos de imágenes.
+    *   **JPEG:** Ideal para fotografías y imágenes con muchos colores.
+    *   **PNG:** Adecuado para imágenes con transparencia y gráficos con texto.
+    *   **GIF:** Utilizado para animaciones simples y gráficos con pocos colores.
+    *   **SVG:** Formato vectorial ideal para iconos y gráficos escalables.
+*   **Optimización de Imágenes:** Es importante optimizar las imágenes para reducir su tamaño de archivo sin perder calidad. Esto mejora la velocidad de carga de la página web.
+*   **Imágenes Responsivas:** Para asegurar que las imágenes se vean bien en diferentes dispositivos, se pueden utilizar técnicas de diseño responsivo, como el atributo `srcset` y el elemento `<picture>`.
+
+## EJEMPLOS DE IMPLEMENTACION
+
+**Ejemplo 1: Imagen con URL Relativa y Texto Alternativo:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de Imagen</title>
+</head>
+<body>
+  <h1>Mi Página con Imagen</h1>
+  <img src="imagenes/montana.jpg" alt="Una vista impresionante de una montaña nevada">
+</body>
+</html>
+```
+
+**Ejemplo 2: Imagen con URL Absoluta y Dimensionamiento con CSS:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de Imagen con CSS</title>
+  <style>
+    .imagen-grande {
+      width: 800px;
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Imagen con Estilo CSS</h1>
+  <img src="https://www.ejemplo.com/imagenes/ciudad.jpg" alt="Una ciudad moderna al atardecer" class="imagen-grande">
+</body>
+</html>
+```
+
+**Ejemplo 3: Imagen con Enlace:**
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ejemplo de Imagen con Enlace</title>
+</head>
+<body>
+  <h1>Imagen con Enlace</h1>
+  <a href="https://www.ejemplo.com">
+    <img src="imagenes/logo.png" alt="Logo de Ejemplo">
+  </a>
+</body>
+</html>
+```
+
+## CONCLUSION
+
+La etiqueta `<img>` es esencial para mostrar imágenes en una página web. Utilizando los atributos `src` y `alt` correctamente, y considerando la optimización y accesibilidad, puedes mejorar significativamente la experiencia del usuario y el SEO de tu sitio web.
+
+## FUENTES DEL DOCUMENTO
+
+*   [MDN Web Docs: \<img>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img)
+*   [W3Schools: HTML \<img> Tag](https://www.w3schools.com/tags/tag_img.asp)
+*   [Google Developers: Optimize Images](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/optimize-images)

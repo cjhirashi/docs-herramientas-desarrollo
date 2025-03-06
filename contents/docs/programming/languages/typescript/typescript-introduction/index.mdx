@@ -1,0 +1,248 @@
+---
+title: Introduccion a TypeScript
+description:  Introduccion a TypeScript Un superconjunto de JavaScript que añade tipado estático opcional.
+keywords: ["typescript", "javascript", "tipado estatico", "desarrollo web", "angular", "node.js"]
+---
+
+TypeScript es un lenguaje de programación de código abierto desarrollado por Microsoft. Se describe como un superconjunto de JavaScript, lo que significa que cualquier código JavaScript válido también es código TypeScript válido. La principal diferencia es que TypeScript añade tipado estático opcional, lo que permite detectar errores en tiempo de compilación en lugar de en tiempo de ejecución. Esto facilita la escritura de código más robusto y mantenible, especialmente en proyectos grandes y complejos.
+
+## OBJETIVOS CLAVE SOBRE EL TEMA
+
+1.  **Entender el Propósito de TypeScript:** Comprender por qué se creó TypeScript y qué problemas busca resolver.
+2.  **Conocer las Características Principales:** Familiarizarse con las características clave como el tipado estático, las interfaces, las clases y los módulos.
+3.  **Configurar un Entorno de Desarrollo:** Aprender a configurar un entorno de desarrollo para escribir y compilar código TypeScript.
+4.  **Escribir Código TypeScript Básico:** Ser capaz de escribir programas sencillos en TypeScript y entender cómo el tipado estático ayuda a prevenir errores.
+5.  **Comprender la Transpilación:** Entender cómo TypeScript se convierte en JavaScript compatible con los navegadores y Node.js.
+
+## ¿POR QUE TYPESCRIPT?
+
+JavaScript es un lenguaje dinámico y flexible, lo que lo hace ideal para el desarrollo web rápido. Sin embargo, esta flexibilidad puede llevar a errores difíciles de detectar en proyectos grandes. TypeScript aborda este problema añadiendo un sistema de tipos estático.
+
+*   **Tipado Estático:** Permite definir los tipos de variables, parámetros de funciones y valores de retorno. El compilador de TypeScript verifica estos tipos durante la compilación y señala cualquier inconsistencia.
+*   **Mejor Refactorización:** El tipado estático facilita la refactorización del código, ya que el compilador puede identificar todas las ubicaciones donde un cambio podría causar un error.
+*   **Autocompletado y Navegación:** Los IDEs (Entornos de Desarrollo Integrados) pueden usar la información de tipo para proporcionar autocompletado más preciso y facilitar la navegación por el código.
+
+## CARACTERISTICAS PRINCIPALES DE TYPESCRIPT
+
+1.  **Tipos Estáticos:**
+
+    *   TypeScript permite especificar tipos para variables, parámetros de funciones y valores de retorno.
+
+    ```typescript
+    function saludar(nombre: string): string {
+        return "Hola, " + nombre;
+    }
+
+    let usuario: string = "Juan";
+    console.log(saludar(usuario)); // Hola, Juan
+    ```
+
+    En este ejemplo, `nombre` está tipado como `string`, y la función `saludar` también devuelve un `string`. Si intentamos pasar un número a la función, el compilador de TypeScript mostrará un error.
+
+2.  **Interfaces:**
+
+    *   Las interfaces definen contratos que las clases deben cumplir.
+
+    ```typescript
+    interface Persona {
+        nombre: string;
+        edad: number;
+        saludar(): string;
+    }
+
+    class Empleado implements Persona {
+        nombre: string;
+        edad: number;
+
+        constructor(nombre: string, edad: number) {
+            this.nombre = nombre;
+            this.edad = edad;
+        }
+
+        saludar(): string {
+            return "Hola, soy " + this.nombre + " y tengo " + this.edad + " años.";
+        }
+    }
+
+    let empleado: Persona = new Empleado("Carlos", 30);
+    console.log(empleado.saludar()); // Hola, soy Carlos y tengo 30 años.
+    ```
+
+    Aquí, la interfaz `Persona` define que cualquier objeto que la implemente debe tener las propiedades `nombre` y `edad`, y un método `saludar`.
+
+3.  **Clases:**
+
+    *   TypeScript soporta clases, lo que facilita la programación orientada a objetos.
+
+    ```typescript
+    class Animal {
+        nombre: string;
+
+        constructor(nombre: string) {
+            this.nombre = nombre;
+        }
+
+        mover(distanciaEnMetros: number = 0) {
+            console.log(`${this.nombre} se movió ${distanciaEnMetros}m.`);
+        }
+    }
+
+    class Perro extends Animal {
+        ladrar() {
+            console.log("¡Guau! ¡Guau!");
+        }
+    }
+
+    const perro = new Perro("Max");
+    perro.ladrar(); // ¡Guau! ¡Guau!
+    perro.mover(10); // Max se movió 10m.
+    ```
+
+    Este ejemplo muestra cómo se pueden definir clases y cómo se puede usar la herencia.
+
+4.  **Módulos:**
+
+    *   Los módulos permiten organizar el código en archivos separados y reutilizables.
+
+    ```typescript
+    // archivo: moduloSaludar.ts
+    export function saludar(nombre: string): string {
+        return "Hola, " + nombre;
+    }
+
+    // archivo: app.ts
+    import { saludar } from './moduloSaludar';
+
+    let usuario: string = "Ana";
+    console.log(saludar(usuario)); // Hola, Ana
+    ```
+
+    Aquí, la función `saludar` se exporta desde el módulo `moduloSaludar.ts` y se importa en `app.ts`.
+
+5.  **Generics:**
+
+    *   Los generics permiten escribir código que puede trabajar con diferentes tipos sin perder la seguridad de tipos.
+
+    ```typescript
+    function identidad<T>(arg: T): T {
+        return arg;
+    }
+
+    let miIdentidad: <U>(arg: U) => U = identidad;
+
+    console.log(miIdentidad<string>("Hola")); // Hola
+    console.log(miIdentidad<number>(123)); // 123
+    ```
+
+    En este ejemplo, la función `identidad` utiliza un tipo genérico `T`, lo que permite que funcione con cualquier tipo de dato.
+
+## CONFIGURACION DE UN ENTORNO DE DESARROLLO
+
+1.  **Instalar Node.js y npm:**
+
+    *   TypeScript requiere Node.js y npm (Node Package Manager) para su instalación y gestión de dependencias. Puedes descargarlos desde [nodejs.org](https://nodejs.org/).
+
+2.  **Instalar TypeScript:**
+
+    *   Abre una terminal o línea de comandos y ejecuta el siguiente comando para instalar TypeScript globalmente:
+
+    ```bash
+    npm install -g typescript
+    ```
+
+3.  **Crear un Proyecto TypeScript:**
+
+    *   Crea una carpeta para tu proyecto y navega a ella en la terminal.
+    *   Inicializa un proyecto Node.js:
+
+    ```bash
+    npm init -y
+    ```
+
+4.  **Configurar el Compilador de TypeScript:**
+
+    *   Crea un archivo `tsconfig.json` en la raíz de tu proyecto para configurar las opciones del compilador de TypeScript.
+
+    ```json
+    {
+        "compilerOptions": {
+            "target": "es5",
+            "module": "commonjs",
+            "strict": true,
+            "esModuleInterop": true,
+            "outDir": "dist"
+        },
+        "include": [
+            "src/**/*"
+        ]
+    }
+    ```
+
+    *   `target`: Especifica la versión de JavaScript a la que se transpilara el código (ej: `es5`, `es6`, `esnext`).
+    *   `module`: Especifica el sistema de módulos a utilizar (ej: `commonjs`, `es6`).
+    *   `strict`: Habilita todas las comprobaciones de tipo estrictas.
+    *   `esModuleInterop`: Permite la interoperabilidad entre módulos CommonJS y ES.
+    *   `outDir`: Especifica el directorio de salida para los archivos JavaScript transpilados.
+    *   `include`: Especifica los archivos TypeScript que se incluirán en la compilación.
+
+5.  **Escribir y Compilar Código TypeScript:**
+
+    *   Crea una carpeta `src` y añade un archivo TypeScript (ej: `src/index.ts`).
+    *   Escribe tu código TypeScript.
+    *   Compila el código TypeScript ejecutando el siguiente comando en la terminal:
+
+    ```bash
+    tsc
+    ```
+
+    Esto generará los archivos JavaScript correspondientes en el directorio `dist`.
+
+## TRANSPILACION
+
+TypeScript no es directamente ejecutable por los navegadores web o Node.js. En su lugar, el código TypeScript se *transpila* a JavaScript. La transpilación es el proceso de convertir el código TypeScript en código JavaScript compatible con el entorno de destino.
+
+El compilador de TypeScript (`tsc`) se encarga de este proceso. Lee los archivos TypeScript, realiza comprobaciones de tipo y genera archivos JavaScript equivalentes.
+
+```typescript
+// src/index.ts
+function saludar(nombre: string): string {
+    return "Hola, " + nombre;
+}
+
+let usuario: string = "Juan";
+console.log(saludar(usuario));
+```
+
+Después de ejecutar `tsc`, se generará el siguiente archivo JavaScript en el directorio `dist`:
+
+```javascript
+// dist/index.js
+function saludar(nombre) {
+    return "Hola, " + nombre;
+}
+var usuario = "Juan";
+console.log(saludar(usuario));
+```
+
+Este código JavaScript puede ser ejecutado en cualquier navegador o en Node.js.
+
+## HISTORIA SOBRE EL TEMA, QUIEN LO DESARROLLO
+
+TypeScript fue creado por Anders Hejlsberg en Microsoft. Hejlsberg es también conocido por ser el arquitecto principal de C# y Turbo Pascal. El desarrollo de TypeScript comenzó en 2010, y la primera versión pública (0.8) fue lanzada en octubre de 2012.
+
+La motivación detrás de TypeScript era proporcionar una forma de escribir código JavaScript más escalable y mantenible, especialmente para proyectos grandes. Microsoft tenía la necesidad de un lenguaje que pudiera manejar la complejidad de sus aplicaciones web internas, y JavaScript, aunque flexible, carecía de las características necesarias para un desarrollo a gran escala.
+
+Desde su lanzamiento, TypeScript ha ganado una gran popularidad en la comunidad de desarrollo web. Ha sido adoptado por muchos proyectos de código abierto y empresas, y es el lenguaje preferido para el desarrollo de aplicaciones Angular.
+
+## INFORMACION RELEVANTE SOBRE EL TEMA EN CUESTION
+
+*   **Compatibilidad con JavaScript:** TypeScript es compatible con JavaScript, lo que significa que puedes usar código JavaScript existente en proyectos TypeScript y viceversa.
+*   **Comunidad Activa:** TypeScript tiene una comunidad activa y un ecosistema de herramientas y bibliotecas en constante crecimiento.
+*   **Adopción en la Industria:** TypeScript es ampliamente utilizado en la industria del desarrollo web, especialmente en proyectos que requieren escalabilidad y mantenibilidad.
+*   **Integración con IDEs:** TypeScript tiene una excelente integración con IDEs populares como Visual Studio Code, lo que facilita la escritura y depuración de código.
+
+## FUENTES DEL DOCUMENTO
+
+*   [TypeScript Official Website](https://www.typescriptlang.org/)
+*   [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+*   [Node.js Official Website](https://nodejs.org/)

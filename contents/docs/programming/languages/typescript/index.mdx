@@ -1,5 +1,90 @@
 ---
-title: Lenguajes de programación
-description: Esta sección proporciona una descripción general de cómo comenzar a utilizar Documents, Kit de inicio de documentos de Next.js.
-keywords: ["introducción", "guía", "nextjs", "documents"]
+title: Typescript
+description: Typescript es un superconjunto de Javascript que añade tipado estático opcional.
+keywords: ["typescript", "javascript", "tipado estatico", "desarrollo web", "angular", "react", "node.js"]
 ---
+
+Typescript es un lenguaje de programación de código abierto desarrollado por Microsoft. Se define como un superconjunto de Javascript, lo que significa que cualquier código Javascript válido también es código Typescript válido. La principal diferencia es que Typescript añade tipado estático opcional. Esto permite a los desarrolladores definir los tipos de datos que se utilizan en su código, lo que puede ayudar a prevenir errores y mejorar la legibilidad del código.
+
+## HISTORIA
+
+Typescript fue anunciado por primera vez en octubre de 2012 por Anders Hejlsberg, un arquitecto de software en Microsoft que también fue el arquitecto principal de C#. El objetivo principal de Typescript era proporcionar una forma de desarrollar aplicaciones Javascript a gran escala de manera más eficiente y con menos errores.
+
+Antes de Typescript, Javascript era un lenguaje dinámico y no tipado. Esto significaba que los errores de tipo solo se detectaban en tiempo de ejecución, lo que podía ser problemático para aplicaciones grandes y complejas. Typescript abordó este problema al introducir un sistema de tipos estático opcional que permite a los desarrolladores especificar los tipos de datos que se utilizan en su código.
+
+La primera versión de Typescript (0.8) fue lanzada en abril de 2014. Desde entonces, Typescript ha evolucionado significativamente, con nuevas características y mejoras que se añaden regularmente. Algunas de las características clave que se han añadido a Typescript a lo largo del tiempo incluyen:
+
+*   **Tipos de unión e intersección:** Permiten a los desarrolladores especificar que una variable puede ser de uno de varios tipos, o de todos los tipos especificados.
+*   **Tipos genéricos:** Permiten a los desarrolladores escribir código que puede funcionar con una variedad de tipos de datos diferentes.
+*   **Decoradores:** Permiten a los desarrolladores añadir metadatos a clases y métodos.
+*   **Tipos condicionales:** Permiten a los desarrolladores definir tipos que dependen de otros tipos.
+
+## OBJETIVOS CLAVE DE TYPESCRIPT
+
+Los objetivos principales de Typescript son:
+
+1.  **Mejorar la productividad del desarrollador:** Al proporcionar tipado estático opcional, Typescript ayuda a los desarrolladores a detectar errores en tiempo de compilación en lugar de tiempo de ejecución. Esto puede ahorrar tiempo y esfuerzo al depurar el código.
+2.  **Facilitar el desarrollo de aplicaciones a gran escala:** Typescript proporciona características como módulos, clases e interfaces que facilitan la organización y el mantenimiento del código en proyectos grandes.
+3.  **Mejorar la legibilidad del código:** Al especificar los tipos de datos que se utilizan en el código, Typescript puede hacer que el código sea más fácil de entender y mantener.
+4.  **Proporcionar una mejor experiencia de desarrollo:** Typescript proporciona características como autocompletado, refactorización y navegación de código que pueden mejorar la experiencia de desarrollo.
+
+## INFORMACION RELEVANTE SOBRE TYPESCRIPT
+
+*   **Compatibilidad con Javascript:** Typescript es compatible con Javascript, lo que significa que cualquier código Javascript válido también es código Typescript válido. Esto facilita la transición de Javascript a Typescript.
+*   **Tipado estático opcional:** Typescript permite a los desarrolladores especificar los tipos de datos que se utilizan en su código, pero esto es opcional. Los desarrolladores pueden optar por utilizar tipado dinámico si lo prefieren.
+*   **Compilación a Javascript:** El código Typescript se compila a Javascript, lo que significa que se puede ejecutar en cualquier navegador o entorno que soporte Javascript.
+*   **Soporte para bibliotecas Javascript:** Typescript proporciona soporte para bibliotecas Javascript existentes a través de archivos de definición de tipos. Estos archivos describen la forma de las bibliotecas Javascript, lo que permite a Typescript proporcionar verificación de tipos y autocompletado para estas bibliotecas.
+*   **Amplia adopción:** Typescript ha sido ampliamente adoptado por la comunidad de desarrollo web y es utilizado por muchas empresas grandes, incluyendo Microsoft, Google y Facebook.
+
+## INSTALACION DE TYPESCRIPT
+
+Para instalar Typescript, necesitarás Node.js y npm (Node Package Manager) instalados en tu sistema. Una vez que tengas Node.js y npm instalados, puedes instalar Typescript globalmente utilizando el siguiente comando:
+
+```bash
+npm install -g typescript
+```
+
+Esto instalará el compilador de Typescript (tsc) globalmente, lo que te permitirá compilar archivos Typescript desde la línea de comandos.
+
+También puedes instalar Typescript localmente en un proyecto utilizando el siguiente comando:
+
+```bash
+npm install --save-dev typescript
+```
+
+Esto instalará Typescript como una dependencia de desarrollo en tu proyecto.
+
+## EJEMPLO DE CODIGO TYPESCRIPT
+
+Aquí hay un ejemplo sencillo de código Typescript:
+
+```typescript
+function saludar(nombre: string) {
+  return "Hola, " + nombre;
+}
+
+let usuario = "Juan";
+
+console.log(saludar(usuario));
+```
+
+En este ejemplo, la función `saludar` toma un argumento de tipo `string` y devuelve un saludo. La variable `usuario` también se declara como de tipo `string`.
+
+Si intentas pasar un valor que no sea una cadena a la función `saludar`, Typescript mostrará un error en tiempo de compilación. Por ejemplo:
+
+```typescript
+function saludar(nombre: string) {
+  return "Hola, " + nombre;
+}
+
+let usuario = 123; // Error: Type 'number' is not assignable to type 'string'.
+
+console.log(saludar(usuario));
+```
+
+## FUENTES DEL DOCUMENTO
+
+*   [Sitio web oficial de Typescript](https://www.typescriptlang.org/)
+*   [Documentación de Typescript](https://www.typescriptlang.org/docs/)
+*   [Typescript en Wikipedia](https://es.wikipedia.org/wiki/TypeScript)
+*   [Libro "Pro Typescript" de Steve Fenton](https://www.apress.com/gp/book/9781484244703)
