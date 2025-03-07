@@ -1,0 +1,296 @@
+---
+title: Morphic
+description: Motor de respuestas de IA con interfaz de usuario generativa.
+keywords: [ "nextjs", "app", "ia"]
+---
+
+![Banner](https://vercel.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4bu9bW4KbJbngc4H0rPV4Q%2F3c062ebb49d1e1bbc3115f6071f5d901%2FCleanShot_2024-04-08_at_20.22.17_2x.png&w=1920&q=75)
+
+
+## LINKS
+
+<CardGrid>
+  <Card
+    title="Template"
+    href="#"
+    icon="alignJustify"
+    variant="small"
+    external={true}
+  />
+  <Card
+    title="Demo"
+    href="https://www.morphic.sh/"
+    icon="alignJustify"
+    variant="small"
+    external={true}
+  />
+  <Card
+    title="Repositorio GitHub"
+    href="https://github.com/miurla/morphic"
+    icon="alignJustify"
+    variant="small"
+    external={true}
+  />
+  
+</CardGrid>
+---
+
+## DESCRIPCION GENERAL 
+
+
+
+### STACK
+
+* [**Next.js**](https://nextjs.org/): enrutador de aplicaciones, componentes de servidor React
+* [**TypeScript**](https://www.typescriptlang.org/): seguridad de tipos
+* [**Vercel AI SDK**](https://sdk.vercel.ai/docs/introduction): transmisión de texto/IU generativa
+
+#### IA Y BUSQUEDA
+
+* [**OpenAI**:](https://openai.com/) proveedor de IA predeterminado (opcional: Google AI, Anthropic, Groq, Ollama, Azure OpenAI, DeepSeek, Fireworks)
+* [**Tavily AI**](https://tavily.com/): proveedor de búsqueda predeterminado
+* **Proveedores alternativos**:
+  * [**SearXNG**](https://docs.searxng.org/): búsqueda autoalojada
+  * [**Exa**](https://exa.ai/): búsqueda neuronal
+
+#### Almacenamiento de datos
+
+* [**Upstash**](https://upstash.com/): Redis sin servidor
+* [**Redis**](https://redis.io/): opción de Redis local
+
+#### UI y estilo
+
+* [**Tailwind CSS**](https://tailwindcss.com/): marco de CSS que prioriza la utilidad
+* [**shadcn/ui**](https://ui.shadcn.com/): reutilizable Componentes
+* [**Radix UI**](https://www.radix-ui.com/): componentes accesibles y sin estilo
+* [**Lucide Icons**](https://lucide.dev/): iconos hermosos y consistentes
+
+### LICENCIA
+
+Apache-2.0.
+
+### CARACTERISTICAS
+
+* Búsqueda impulsada por IA con GenerativeUI
+* Comprensión de preguntas en lenguaje natural
+* Compatibilidad con varios proveedores de búsqueda (Tavily, SearXNG, Exa)
+* Selección de modelos desde la interfaz de usuario (cambio entre los modelos de IA disponibles)
+* Modelos de razonamiento con proceso de pensamiento visible
+* Chat e historial
+* Funcionalidad de historial de chat (opcional)
+* Compartir resultados de búsqueda (opcional)
+* Compatibilidad con Redis (local/Upstash)
+* Proveedores de IA
+
+#### SE ADMITEN LOS SIGUIENTES PROVEEDORES DE IA:
+
+* OpenAI (predeterminado)
+* Google Generative AI
+* Azure OpenAI
+* Anthropic
+* Ollama
+* Groq
+* DeepSeek
+* Fireworks
+* xAI (Grok)
+* Compatible con OpenAI
+
+Los modelos se configuran en `public/config/models.json`. Cada modelo requiere que se configure su *clave API* correspondiente en las variables del entorno.
+
+[Consulte la Guía de configuración para obtener más detalles](https://github.com/miurla/morphic/blob/main/docs/CONFIGURATION.md).
+
+#### CAPACIDADES DE BUSQUEDA 
+
+* Búsqueda específica de URL
+* Compatibilidad con búsqueda de video (opcional)
+* Integración de SearXNG con:
+  * Profundidad de búsqueda personalizable (básica/avanzada)
+  * Motores configurables
+  * Límite de resultados ajustable
+  * Opciones de búsqueda segura
+  * Filtrado de rango de tiempo personalizado
+
+#### Características adicionales
+
+* Compatible con implementación de Docker
+* Integración de motor de búsqueda del navegador
+
+### CONTACTO 
+---
+## CLONAR REPOSITORIO 
+
+<Step>
+  <StepItem title="Clonar repositorio">
+
+    Clona el repositorio de GitHub y accede a la nueva carpeta del proyecto
+   
+    ```bash
+    git clone https://github.com/miurla/morphic.git
+    cd morphic
+    ```
+
+  </StepItem>
+
+  <StepItem title="Conectar con nuevo repositorio de GitHub">
+    
+    1. Crea un nuevo repositorio en [GitHub](https://github.com/)
+    2. Verificar qué origen tiene asignado el repositorio del proyecto
+        ```bash
+        git remote -v
+        ```
+    2. Ejectura el comando de reasignación de Origen del proyecto con el siguiente comando:
+        ```bash
+        git remote set-url origin https://github.com/miurla/morphic.git
+        ```
+
+  </StepItem>
+
+  <StepItem title="Instalar dependencias">
+    
+    Instala todas las dependencias del proyecto
+    
+    ```bash
+    bun install
+    ```
+
+  </StepItem>
+  <StepItem title="Variables de entorno">
+  
+    Complete las variables de entorno requeridas en `.env.local`:
+
+    ```bash
+    # Required
+    OPENAI_API_KEY=     # Get from https://platform.openai.com/api-keys
+    TAVILY_API_KEY=     # Get from https://app.tavily.com/home
+    ```
+  
+  </StepItem>
+  <StepItem title="Ejecutar la App de forma local">
+  
+    Usando bun
+
+    ```bash
+    bun dev
+    ```
+
+    Usando Docker
+
+    ```bash
+    docker compose up -d
+    ```
+
+    Visita en tu navegador: [http://localhost:3000](http://localhost:3000)
+  
+  </StepItem>
+
+  <StepItem title="Desplegar">
+  
+    Aloje su propia versión en vivo de Morphic con Vercel, Cloudflare Pages o Docker.
+
+    #### VERCEL
+
+    #### IMAGEN PRECOMPILADA DE DOCKER 
+
+    Las imágenes de Docker prediseñadas están disponibles en GitHub Container Registry:
+
+    ```bash
+    docker pull ghcr.io/miurla/morphic:latest
+    ```
+
+    Puedes usarlo con docker-compose:
+
+    ```bash
+    services:
+      morphic:
+        image: ghcr.io/miurla/morphic:latest
+        env_file: .env.local
+        ports:
+          - '3000:3000'
+        volumes:
+          - ./models.json:/app/public/config/models.json # Optional: Override default model configuration
+    ```
+    La configuración del modelo predeterminada se encuentra en `public/config/models.json`. Para la implementación de Docker, puede crear `models.json` junto con `.env.local` para anular la configuración predeterminada.
+  
+  </StepItem>
+</Step>
+
+## 🔎 Motor de Búsqueda
+
+### Configurando el Motor de Búsqueda en tu Navegador
+
+Si quieres usar Morphic como un motor de búsqueda en tu navegador, sigue estos pasos:
+
+1.  Abre la configuración de tu navegador.
+2.  Navega a la sección de configuración del motor de búsqueda.
+3.  Selecciona "Administrar motores de búsqueda y búsqueda de sitios".
+4.  Bajo "Búsqueda de sitios", haz clic en "Añadir".
+5.  Rellena los campos de la siguiente manera:
+    *   **Motor de búsqueda**: Morphic
+    *   **Atajo**: morphic
+    *   **URL con %s en lugar de la consulta**: `https://morphic.sh/search?q=%s`
+6.  Haz clic en "Añadir" para guardar el nuevo motor de búsqueda.
+7.  Encuentra "Morphic" en la lista de búsqueda de sitios, haz clic en los tres puntos junto a él y selecciona "Establecer como predeterminado".
+
+Esto te permitirá usar Morphic como tu motor de búsqueda predeterminado en el navegador.
+
+## ✅ Modelos Verificados
+
+### Lista de modelos aplicables a todos
+
+*   OpenAI
+    *   o3-mini
+    *   gpt-4o
+    *   gpt-4o-mini
+    *   gpt-4-turbo
+    *   gpt-3.5-turbo
+*   Google
+    *   Gemini 2.0 Pro (Experimental)
+    *   Gemini 2.0 Flash Thinking (Experimental)
+    *   Gemini 2.0 Flash
+*   Anthropic
+    *   Claude 3.5 Sonnet
+    *   Claude 3.5 Hike
+*   Ollama
+    *   qwen2.5
+    *   deepseek-r1
+*   Groq
+    *   deepseek-r1-distill-llama-70b
+*   DeepSeek
+    *   DeepSeek V3
+    *   DeepSeek R1
+*   xAI
+    *   grok-2
+    *   grok-2-vision
+
+## ⚡ Implementación del SDK de IA
+
+### Versión Actual: AI SDK UI
+
+Esta versión de Morphic utiliza la implementación AI SDK UI, que se recomienda para uso en producción. Proporciona un mejor rendimiento de streaming y actualizaciones de la interfaz de usuario del lado del cliente más fiables.
+
+### Versión Anterior: AI SDK RSC (v0.2.34 y anteriores)
+
+La implementación de React Server Components (RSC) de AI SDK se utilizó en versiones hasta [v0.2.34](https://github.com/miurla/morphic/releases/tag/v0.2.34) pero ahora se considera experimental y no se recomienda para producción. Si necesitas consultar la implementación de RSC, por favor, revisa la etiqueta de la versión v0.2.34.
+
+> Nota: v0.2.34 fue la versión final que utilizó la implementación de RSC antes de migrar a AI SDK UI.
+
+Para obtener más información sobre cómo elegir entre AI SDK UI y RSC, consulta la [documentación oficial](https://sdk.vercel.ai/docs/getting-started/navigating-the-library#when-to-use-ai-sdk-rsc).
+
+## 📦 Código Abierto vs Oferta en la Nube
+
+Morphic es software de código abierto disponible bajo la licencia Apache-2.0.
+
+Para mantener un desarrollo sostenible y proporcionar características listas para la nube, ofrecemos una versión alojada de Morphic junto con nuestra oferta de código abierto. La solución en la nube hace que Morphic sea accesible para usuarios no técnicos y proporciona características adicionales, manteniendo al mismo tiempo la funcionalidad principal abierta y disponible para los desarrolladores.
+
+Para nuestro servicio en la nube, visita [morphic.sh](https://morphic.sh).
+
+## 👥 Contribuyendo
+
+¡Damos la bienvenida a las contribuciones a Morphic! Ya sean informes de errores, solicitudes de características o pull requests, todas las contribuciones son apreciadas.
+
+Por favor, consulta nuestra [Guía de Contribución](CONTRIBUTING.md) para detalles sobre:
+
+*   Cómo enviar problemas
+*   Cómo enviar pull requests
+*   Convenciones de mensajes de commit
+*   Configuración del entorno de desarrollo

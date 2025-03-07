@@ -1369,52 +1369,43 @@ export const Documents: Paths[] = [
     spacer: true,
   },
   {
-    title: "Introducción",
+    title: "Templates",
     href: "/dev-templates",
     heading: "Templates de desarrollo",
     items: [
-      {
-        title: "Para documentación",
-        href: "/app-documentation",
-        items: [
-          {
-            title: "Rubix Documents",
-            href: "/rubix-documents",
+        {
+          title: "Rubix Documents",
+          href: "/rubix-documents",
+          items: [
+            {
+              title: "Componentes",
+              href: "/components"
+            },
+          ]
+        },
+        {
+          title: "Hume AI - Empathic Voice Interface Starter",
+          href: "/hume-ai",
+        },
+        {
+          title: "Next.js OpenAI Doc Search Starter",
+          href: "/doc-search",
+        },
+        {
+            title: "Morphic",
+            href: "/morphic",
             items: [
-              {
-                title: "Componentes",
-                href: "/components"
-              },
+                {
+                    title: "Configuración",
+                    href: "/configuration",
+                },
+                {
+                    title: "Licenciamiento",
+                    href: "/license",
+                },
             ]
-          }
-        ]
-      },
-      {
-        title: "Aplicaciones SaaS",
-        href: "/app-saas",
-      },
-      {
-        title: "Aplicaciones de Cursos",
-        href: "/app-courses",
-      },
-      {
-        title: "Aplicaciones de Inteligencia Artificial",
-        href: "/app-ai",
-        items: [
-          {
-            title: "Hume AI - Empathic Voice Interface Starter",
-            href: "/hume-ai",
-          },
-          {
-            title: "Next.js OpenAI Doc Search Starter",
-            href: "/doc-search",
-          },
-        ]
-      },
-      {
-        title: "Aplicaciones LandingPages",
-        href: "/app-landingpages",
-      },
+        },
+
     ],
   },
   {
