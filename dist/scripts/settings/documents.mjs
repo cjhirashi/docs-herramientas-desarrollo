@@ -1355,6 +1355,22 @@ export const Documents = [
                     {
                         title: "Supabase",
                         href: "/supabase",
+                        items: [
+                            {
+                                title: "Desarrollo local y CLI",
+                                href: "/local-development",
+                                items: [
+                                    {
+                                        title: "Supabase CLI",
+                                        href: "/getting-started"
+                                    },
+                                    {
+                                        title: "Configuración",
+                                        href: "/configuration"
+                                    },
+                                ]
+                            }
+                        ]
                     },
                 ]
             },
