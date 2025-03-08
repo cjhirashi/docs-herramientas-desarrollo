@@ -1424,6 +1424,14 @@ export const Documents = [
                 title: "LangChain + Next.js Starter",
                 href: "/langchain-nextjs-starter",
             },
+            {
+                title: "AgentGPT - AI Agents with Langchain & OpenAI",
+                href: "/ai-agents-langchain",
+            },
+            {
+                title: "Paddle Billing Subscription Starter",
+                href: "/paddle-billing-subscription",
+            },
         ],
     },
     {
