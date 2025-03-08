@@ -1390,22 +1390,22 @@ export const Documents: Paths[] = [
     heading: "Templates de desarrollo",
     items: [
         {
-          title: "Rubix Documents",
-          href: "/rubix-documents",
-          items: [
+            title: "Rubix Documents",
+            href: "/rubix-documents",
+            items: [
             {
               title: "Componentes",
               href: "/components"
             },
-          ]
+            ]
         },
         {
-          title: "Hume AI - Empathic Voice Interface Starter",
-          href: "/hume-ai",
+            title: "Hume AI - Empathic Voice Interface Starter",
+            href: "/hume-ai",
         },
         {
-          title: "Next.js OpenAI Doc Search Starter",
-          href: "/doc-search",
+            title: "Next.js OpenAI Doc Search Starter",
+            href: "/doc-search",
         },
         {
             title: "Morphic",
@@ -1428,6 +1428,14 @@ export const Documents: Paths[] = [
         {
             title: "LangChain + Next.js Starter",
             href: "/langchain-nextjs-starter",
+        },
+        {
+            title: "AgentGPT - AI Agents with Langchain & OpenAI",
+            href: "/ai-agents-langchain",
+        },
+        {
+            title: "Paddle Billing Subscription Starter",
+            href: "/paddle-billing-subscription",
         },
 
     ],
