@@ -1420,6 +1420,10 @@ export const Documents = [
                 title: "Finwise: SaaS Landing Page",
                 href: "/saas-landing-page",
             },
+            {
+                title: "LangChain + Next.js Starter",
+                href: "/langchain-nextjs-starter",
+            },
         ],
     },
     {
