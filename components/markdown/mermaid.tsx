@@ -55,7 +55,7 @@ const Mermaid = ({ chart, className }: MermaidProps) => {
     return null
   }
 
-  return <div className={memoizedClassName} ref={ref} />
+  return <div className={`${memoizedClassName} `} ref={ref} />
 }
 
 const MermaidMemo = React.memo(Mermaid)

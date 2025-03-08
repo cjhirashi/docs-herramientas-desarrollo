@@ -1,0 +1,51 @@
+---
+title: Configuración de CLI de Supabase
+description: Desarrollar localmente, implementar en la plataforma Supabase y configurar flujos de trabajo de CI/CD
+keywords: ["supabase", "desarrollo local", "docker", "supabase cli"]
+---
+
+<CardGrid>
+    <Card
+        title="Fuente"
+        href="https://supabase.com/docs/guides/local-development/cli/config"
+        icon="alignJustify"
+        variant="small"
+        external={true}
+    />
+</CardGrid>
+
+Se genera un archivo `supabase/config.toml` después de ejecutar `supabase init`.
+
+Puede editar este archivo para cambiar la configuración de su proyecto que se ejecuta localmente. Después de realizar los cambios, deberá reiniciar usando `supabase stop` y luego `supabase start` para que los cambios surtan efecto.
+
+## CONFIGURACION GENERAL 
+
+### project_id
+
+
+| Nombre       | Default |                    Requerido |
+| :------------ | :----------------: | -----------------------: |
+| `project_id` |     None      | `true` |
+
+
+**Descripción** 
+
+Una cadena que se utiliza para distinguir diferentes proyectos de Supabase en el mismo `host`. El valor predeterminado es el nombre del directorio de trabajo cuando se ejecuta `supabase init`.
+
+---
+
+## CONFIGURACION DE AUTENTICACION 
+
+### auth.enabled#
+
+| Nombre       | Default |                    Requerido |
+| :------------ | :----------------: | -----------------------: |
+| `auth.enabled` |     true      | `false` |
+
+**Descripción**
+
+Habilite el servicio GoTrue local.
+
+**Ve también**
+
+* [Configuración del servidor de autenticación](https://supabase.com/docs/reference/self-hosting-auth/generates-an-email-action-link)

@@ -1,0 +1,120 @@
+---
+title: Supabase CLI
+description: Desarrollar localmente, implementar en la plataforma Supabase y configurar flujos de trabajo de CI/CD
+keywords: ["supabase", "desarrollo local", "docker", "supabase cli"]
+---
+
+<CardGrid>
+    <Card
+        title="Fuente"
+        href="https://supabase.com/docs/guides/local-development/cli/getting-started?queryGroups=platform&platform=npm"
+        icon="alignJustify"
+        variant="small"
+        external={true}
+    />
+</CardGrid>
+
+Supabase CLI le permite ejecutar toda la pila de Supabase de forma local, en su máquina o en un entorno de CI. Con solo dos comandos, puede configurar e iniciar un nuevo proyecto local:
+
+1. para crear un nuevo proyecto local
+
+    ```bash
+    supabase init
+    ```
+2. para iniciar los servicios de Supabase
+
+    ```bash
+    supabase start
+    ```
+
+## INSTALACION DEL CLI DE SUPABASE 
+
+instalar la CLI como dependencia de desarrollo a través de npm:
+
+```bash
+npm install supabase --save-dev
+```
+
+## ACTUALIZACION DEL CLI DE SUPABASE 
+
+Si ha instalado la CLI como dependencia de desarrollo a través de npm, puede actualizarla con:
+
+```bash
+npm update supabase --save-dev
+```
+
+Si tiene contenedores de Supabase ejecutándose localmente, deténgalos y elimine sus volúmenes de datos antes de continuar con la actualización. Esto garantiza que los servicios administrados de Supabase puedan aplicar nuevas migraciones en un estado limpio de la base de datos local.
+
+<Note title="Realizar copias de seguridad y detener la ejecución de contenedores">
+    Recuerde guardar todos los cambios en el esquema local y en los datos antes de detenerse porque el indicador `--no-backup` los eliminará.
+
+    ```bash
+    supabase db diff -f my_schema
+    supabase db dump --local --data-only > supabase/seed.sql
+    supabase stop --no-backup
+    ```
+</Note>
+
+## EJECUCION DE SUPABASE LOCALMENTE 
+
+La CLI de Supabase utiliza contenedores Docker para administrar la pila de desarrollo local. Siga la guía oficial para instalar y configurar Docker Desktop:
+
+![Docker](https://supabase.com/docs/_next/image?url=%2Fdocs%2Fimg%2Fguides%2Fcli%2Fdocker-win.png&w=3840&q=75&dpl=dpl_9xAnUGkSbk4dufV62sNRezafXykJ)
+
+<Note title="Alternativamente, puede utilizar una herramienta de contenedor diferente que ofrezca API compatibles con Docker.">
+    * **Rancher Desktop** (macOS, Windows, Linux)
+    * **Podman** (macOS, Windows, Linux)
+    * **OrbStack** (macOS)
+    * **colima** (macOS)
+</Note>
+
+Dentro de la carpeta donde quieres crear tu proyecto, ejecuta:
+
+```bash
+supabase init
+```
+
+Esto creará una nueva carpeta `Supabase`. Es seguro enviar esta carpeta a su sistema de control de versiones.
+
+Ahora, para iniciar el Supabase stack, ejecute:
+
+```bash
+supabase start
+```
+
+Esto lleva tiempo en la primera ejecución porque el CLI necesita descargar las imágenes de Docker a su máquina local. El CLI incluye todo el conjunto de herramientas de Supabase y algunas imágenes adicionales que son útiles para el desarrollo local (como un servidor SMTP local y una herramienta de comparación de bases de datos).
+
+## ACCEDE A LOS SERVICIOS DE TU PROYECTO 
+
+Una vez que todos los servicios de Supabase estén en ejecución, verá un resultado que contiene sus credenciales locales de Supabase. Debería verse así, con las URL y las claves que usará en su proyecto local:
+
+```bash
+
+Started supabase local development setup.
+
+         API URL: http://localhost:54321
+          DB URL: postgresql://postgres:postgres@localhost:54322/postgres
+      Studio URL: http://localhost:54323
+    Inbucket URL: http://localhost:54324
+        anon key: eyJh......
+service_role key: eyJh......
+
+```
+
+## STUDIO
+
+```bash
+# Default URL:
+http://localhost:54323
+```
+
+El entorno de desarrollo local incluye Supabase Studio, una interfaz gráfica para trabajar con su base de datos.
+
+![Studio](https://supabase.com/docs/img/guides/cli/local-studio.png)
+
+## DETENER LOS SERVICIOS LOCALES 
+Cuando haya terminado de trabajar en su proyecto de Supabase, puede detener la pila (sin restablecer su base de datos local):
+
+```bash
+supabase stop
+```

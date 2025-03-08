@@ -1,0 +1,78 @@
+---
+title: Desarrollo Local y CLI
+description: Cómo configurar un entorno de desarrollo local para Supabase.
+keywords: ["supabase", "desarrollo local", "docker", "supabase cli"]
+---
+
+<CardGrid>
+  <Card
+    title="Fuente"
+    href="https://supabase.com/docs/guides/local-development"
+    icon="alignJustify"
+    variant="small"
+    external={true}
+  />
+</CardGrid>
+
+
+Puedes ejecutar Supabase localmente usando el Supabase CLI. Esto te permite desarrollar y probar tu aplicación en un entorno aislado antes de desplegarla en la nube.
+
+## REQUISITOS PREVIOS 
+
+*   [Docker](https://www.docker.com/get-started/)
+*   [Supabase CLI](https://supabase.com/docs/reference/cli/installing-the-cli)
+
+## COMENZAR
+
+1.  Instala Suplabase CLI:
+
+    ```bash
+    npm install supabase --save-dev
+
+    ```
+
+2.  Inicializa un nuevo proyecto:
+
+    ```bash
+    supabase init
+    ```
+
+3.  Inicia Supabase:
+
+    ```bash
+    supabase start
+    ```
+
+    Esto iniciará todos los servicios de Supabase en Docker. La primera vez que ejecutes este comando, Docker descargará las imágenes necesarias, lo cual puede tardar unos minutos.
+
+4.  Tu API de Supabase ahora debería estar disponible en `http://localhost:54321`.
+
+## DESARROLLO LOCAL 
+
+El desarrollo local con Supabase le permite trabajar en sus proyectos en un entorno autónomo en su máquina local. Trabajar localmente tiene varias ventajas:
+
+1. **Desarrollo más rápido**: puede realizar cambios y ver los resultados al instante sin tener que esperar a que se realicen implementaciones remotas.
+
+2. **Trabajo sin conexión**: puede continuar con el desarrollo incluso sin una conexión a Internet.
+
+3. **Rentabilidad**: el desarrollo local es gratuito y no consume la cuota de su proyecto.
+
+4. **Privacidad mejorada**: los datos confidenciales permanecen en su máquina local durante el desarrollo.
+
+5. **Pruebas sencillas**: puede experimentar con diferentes configuraciones y funciones sin afectar su entorno de producción.
+
+Para comenzar con el desarrollo local, deberá instalar la CLI de Supabase y Docker. La CLI de Supabase le permite iniciar y administrar su pila local de Supabase, mientras que Docker se utiliza para ejecutar los servicios necesarios.
+
+Una vez configurado, puede inicializar un nuevo proyecto de Supabase, iniciar la pila local y comenzar a desarrollar su aplicación utilizando los servicios locales de Supabase. Esto incluye acceso a una base de datos Postgres local, autenticación, almacenamiento y otras funciones de Supabase.
+
+## CLI
+
+La CLI de Supabase es una herramienta poderosa que permite a los desarrolladores administrar sus proyectos de Supabase directamente desde la terminal. Proporciona un conjunto de comandos para varias tareas, que incluyen:
+
+* Configurar y administrar entornos de desarrollo locales
+* Generar tipos de TypeScript para el esquema de su base de datos
+* Manejar migraciones de bases de datos
+* Administrar variables de entorno y secretos
+* Implementar su proyecto en la plataforma Supabase
+
+Con la CLI, puede optimizar su flujo de trabajo de desarrollo, automatizar tareas repetitivas y mantener la coherencia en diferentes entornos. Es una herramienta esencial tanto para el desarrollo local como para los procesos de CI/CD.
