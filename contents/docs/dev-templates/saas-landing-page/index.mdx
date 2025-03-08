@@ -1,0 +1,161 @@
+---
+title: Finwise SaaS Landing Page
+description: Plantilla de página de destino liviana y fácil de personalizar para SaaS, creada con Next.js y Tailwind.
+keywords: [ "nextjs", "app", "saas"]
+---
+
+![Banner](https://vercel.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F3mWrk0YjcDMlhdk7OR5SEc%2F2ea03a8ac3a5f751adb43b066cf1da9b%2Ffinwise-thumbnail.png&w=3840&q=75)
+
+
+## LINKS
+
+<CardGrid>
+  <Card
+    title="Template"
+    href="https://vercel.com/templates/next.js/finwise-saas-landing-page"
+    icon="alignJustify"
+    variant="small"
+    external={true}
+  />
+  <Card
+    title="Demo"
+    href="https://finwise-omega.vercel.app/"
+    icon="alignJustify"
+    variant="small"
+    external={true}
+  />
+  <Card
+    title="Repositorio GitHub"
+    href="https://github.com/nexi-launch/finwise-landing-page"
+    icon="alignJustify"
+    variant="small"
+    external={true}
+  />
+  
+</CardGrid>
+---
+
+## DESCRIPCION GENERAL 
+
+Finwise es una plantilla de página de destino ligera, fácilmente configurable y personalizable con CSS de Next.js y Tailwind. Está diseñada para ser adaptable, eficiente y perfecta para cualquier lanzamiento de producto, cartera o sitio promocional.
+
+Pruebe la demostración aquí: https://finwise-omega.vercel.app.
+
+Consulte la documentación a continuación para comenzar.
+
+### STACK TECNOLOGICO
+
+* **Framework**: Next.js
+* **Caso de uso**: AI
+* **CSS**: Tailwind
+* **Database**: Supabase
+
+### LICENCIA
+
+Este proyecto es de código abierto y está disponible bajo la licencia MIT. Puedes usarlo, modificarlo y distribuirlo para proyectos personales o comerciales.
+
+### CARACTERISTICAS
+
+* Enrutador de aplicaciones Next.js con TypeScript
+* Tailwind CSS v3 para una personalización flexible del estilo
+* Transiciones suaves con tecnología de Framer Motion
+* Optimización de fuentes incorporada con next/font
+* Optimización automática de imágenes a través de next/image
+* Acceso a más de 31 paquetes de íconos a través de React Icons
+* Puntuación de Lighthouse casi perfecta
+* Componentes modulares, responsivos y escalables
+* Actualizaciones gratuitas de por vida
+
+#### SECCIONES
+
+* Hero
+* Partners or Clients Logos
+* Features
+* Pricing
+* Testimonials
+* FAQ
+* Statistics
+* CTA
+* Footer
+
+#### REQUISITOS PREVIOS 
+
+Antes de comenzar, asegúrese de tener instalado lo siguiente:
+
+* **Node.js**: versión 18 o posterior
+* **npm**: versión 8 o posterior (incluida con Node.js)
+* **Editor de código**: se recomienda VS Code.
+
+### CONTACTO 
+---
+## CLONAR REPOSITORIO 
+
+<Step>
+  <StepItem title="Clonar repositorio">
+   
+    Clona el repositorio de GitHub y accede a la nueva carpeta del proyecto
+   
+    ```bash
+    git clone https://github.com/nexi-launch/finwise-landing-page
+    cd finwise-landing-page
+  ```
+
+  </StepItem>
+
+  <StepItem title="Conectar con nuevo repositorio de GitHub">
+    
+    1. Crea un nuevo repositorio en [GitHub](https://github.com/)
+    2. Verificar qué origen tiene asignado el repositorio del proyecto clonado
+        ```bash
+        git remote -v
+        ```
+    2. Ejectura el comando de reasignación de Origen del proyecto con el siguiente comando:
+        ```bash
+        git remote set-url origin [URL de nuevo repositorio]
+        ```
+  </StepItem>
+
+  <StepItem title="Instalar dependencias">
+    
+    Instala todas las dependencias del proyecto
+    
+    ```bash
+    npm install
+    ```
+  </StepItem>
+
+  <StepItem title="Correr el servidor">
+
+    - **Ejecutar en modo desarrollo**:
+    
+      ```bash
+      pnpm run dev
+      ```
+
+    - **Ejecutar en modo producción**:
+      1. Construir aplicación:
+        ```bash
+        pnpm run build
+        ```
+      2. Ejecutar en modo producción:
+        Construir aplicación:
+        ```bash
+        pnpm run start
+        ```
+
+  </StepItem>
+
+  <StepItem title="Customization">
+    
+    1. **Editar colores**: Actualizar globals.css para los colores primarios, secundarios, de fondo y de acento.
+
+    2. **Actualizar detalles del sitio**: Personalizar `siteDetails.ts` en `/src/data` para reflejar la información de tu marca y del sitio.
+
+    3. **Modificar contenido**: Los archivos en `/src/data` manejan datos de navegación, funciones, precios, testimonios y más.
+
+    4. **Reemplazar favicon**: Agregar tu ícono a `/src/app/favicon.ico`.
+
+    5. **Agregar imágenes**: Actualizar `public/images` para los metadatos de Open Graph (p. ej., og-image.jpg, twitter-image.jpg).
+
+  </StepItem>
+</Step>
