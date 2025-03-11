@@ -139,6 +139,10 @@ export const Documents = [
                                         href: "/forms",
                                     },
                                     {
+                                        title: "Navegación",
+                                        href: "/navigation",
+                                    },
+                                    {
                                         title: "AJAX y Fetch",
                                         href: "/ajax-fetch",
                                     },
@@ -1320,6 +1324,28 @@ export const Documents = [
                 title: "Next JS",
                 href: "/nextjs",
             },
+            {
+                title: "Shadcn UI",
+                href: "/shadcn-ui",
+                items: [
+                    {
+                        title: "Instalación",
+                        href: "/installation"
+                    },
+                    {
+                        title: "Componente JSON",
+                        href: "/components-json"
+                    },
+                    {
+                        title: "Tematización",
+                        href: "/theming"
+                    },
+                    {
+                        title: "Modo Oscuro",
+                        href: "/dark-mode"
+                    },
+                ]
+            },
         ]
     },
     {
@@ -1375,64 +1401,6 @@ export const Documents = [
                 ]
             },
         ]
-    },
-    {
-        spacer: true,
-    },
-    {
-        title: "Templates",
-        href: "/dev-templates",
-        heading: "Templates de desarrollo",
-        items: [
-            {
-                title: "Rubix Documents",
-                href: "/rubix-documents",
-                items: [
-                    {
-                        title: "Componentes",
-                        href: "/components"
-                    },
-                ]
-            },
-            {
-                title: "Hume AI - Empathic Voice Interface Starter",
-                href: "/hume-ai",
-            },
-            {
-                title: "Next.js OpenAI Doc Search Starter",
-                href: "/doc-search",
-            },
-            {
-                title: "Morphic",
-                href: "/morphic",
-                items: [
-                    {
-                        title: "Configuración",
-                        href: "/configuration",
-                    },
-                    {
-                        title: "Licenciamiento",
-                        href: "/license",
-                    },
-                ]
-            },
-            {
-                title: "Finwise: SaaS Landing Page",
-                href: "/saas-landing-page",
-            },
-            {
-                title: "LangChain + Next.js Starter",
-                href: "/langchain-nextjs-starter",
-            },
-            {
-                title: "AgentGPT - AI Agents with Langchain & OpenAI",
-                href: "/ai-agents-langchain",
-            },
-            {
-                title: "Paddle Billing Subscription Starter",
-                href: "/paddle-billing-subscription",
-            },
-        ],
     },
     {
         spacer: true,
