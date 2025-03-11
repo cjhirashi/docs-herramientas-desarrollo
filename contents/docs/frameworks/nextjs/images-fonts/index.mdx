@@ -1,0 +1,256 @@
+---
+title: Imágenes y fuentes
+description:  optimización automática de imágenes y fuentes para un mejor rendimiento.
+keywords: ["nextjs", "documents"]
+---
+
+<CardGrid>
+    <Card
+        title="Configuración nuevo proyecto"
+        href="https://nextjs.org/docs/app/getting-started/layouts-and-pages"
+        icon="alignJustify"
+        variant="small"
+        external={true}
+    />
+</CardGrid>
+
+---
+
+## Cómo optimizar imágenes y fuentes
+
+***Next.js*** incluye optimización automática de imágenes y fuentes para un mejor rendimiento y experiencia del usuario. Esta página le indicará cómo comenzar a utilizarlas.
+
+## Manejo de activos estáticos
+
+Puedes almacenar archivos estáticos, como imágenes y fuentes, en una carpeta llamada `public` en el directorio raíz. Luego, tu código puede hacer referencia a los archivos dentro de `public` a partir de la URL base (`/`).
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fpublic-folder.png&w=1920&q=75)
+
+---
+
+## Optimización de imágenes
+
+El componente `<Image>` de ***Next.js*** extiende el elemento ***HTML*** `<img>` para proporcionar:
+
+- Optimización de tamaño: Entrega automática de imágenes con el tamaño correcto para cada dispositivo, utilizando formatos de imagen modernos como ***WebP*** y ***AVIF***.
+- Estabilidad visual: evita que el diseño se modifique automáticamente cuando se cargan las imágenes.
+- Cargas de página más rápidas: las imágenes se cargan solo cuando ingresan a la ventana gráfica mediante la carga diferida nativa del navegador, con marcadores de posición de desenfoque opcionales.
+- Flexibilidad de activos: cambio de tamaño de imágenes a pedido, incluso imágenes almacenadas en servidores remotos.
+
+Para comenzar a usar `<Image>`, impórtelo desde `next/image` y represéntelo dentro de su componente.
+
+`app/page.tsx`
+
+```tsx
+import Image from 'next/image'
+
+export default function Page() {
+    return <Image src="" alt="" />
+}
+```
+
+La propiedad `src` puede ser una imagen ***local*** o ***remota***.
+
+### Imágenes locales
+
+Para utilizar una imagen local, importe sus archivos de imagen `.jpg`, `.png` o `.webp` desde su carpeta pública.
+
+`app/page.tsx`
+
+```tsx
+import Image from 'next/image'
+import profilePic from './me.png'
+
+export default function Page() {
+    return (
+        <Image
+        src={profilePic}
+        alt="Picture of the author"
+        // width={500} automatically provided
+        // height={500} automatically provided
+        // blurDataURL="data:..." automatically provided
+        // placeholder="blur" // Optional blur-up while loading
+        />
+    )
+}
+```
+
+***Next.js*** determinará automáticamente el ancho y la altura intrínsecos de la imagen en función del archivo importado. Estos valores se utilizan para determinar la relación de aspecto de la imagen y evitar cambios de diseño acumulativos mientras se carga la imagen.
+
+### Imágenes remotas
+
+Para utilizar una imagen remota, puede proporcionar una cadena ***URL*** para la propiedad `src`.
+
+`app/page.tsx`
+
+```tsx
+import Image from 'next/image'
+
+export default function Page() {
+    return (
+        <Image
+        src="https://s3.amazonaws.com/my-bucket/profile.png"
+        alt="Picture of the author"
+        width={500}
+        height={500}
+        />
+    )
+}
+```
+
+Dado que ***Next.js*** no tiene acceso a archivos remotos durante el proceso de compilación, deberá proporcionar manualmente los atributos de `width`, `height` y `blurDataURL` opcional. Los atributos de ancho y alto se utilizan para inferir la relación de aspecto correcta de la imagen y evitar cambios de diseño a partir de la carga de la imagen.
+
+Luego, para permitir de forma segura imágenes de servidores remotos, debe definir una lista de patrones de ***URL*** compatibles en `next.config.js`. Sea lo más específico posible para evitar un uso malintencionado. Por ejemplo, la siguiente configuración solo permitirá imágenes de un depósito de ***AWS S3*** específico:
+
+`next.config.ts`
+
+```tsx
+import { NextConfig } from 'next'
+
+const config: NextConfig = {
+    images: {
+        remotePatterns: [
+        {
+            protocol: 'https',
+            hostname: 's3.amazonaws.com',
+            port: '',
+            pathname: '/my-bucket/**',
+            search: '',
+        },
+        ],
+    },
+}
+
+export default config
+```
+
+# Optimización de fuentes
+
+El módulo `next/font` optimiza automáticamente sus fuentes y elimina las solicitudes de red externa para mejorar la privacidad y el rendimiento.
+
+Incluye alojamiento automático integrado para cualquier archivo de fuente. Esto significa que puedes cargar fuentes web de manera óptima sin cambiar el diseño.
+
+Para comenzar a usar `next/font`, impórtelo desde `next/font/local` o `next/font/google`, llámelo como una función con las opciones adecuadas y configure el nombre de clase del elemento al que desea aplicar la fuente. Por ejemplo:
+
+`app/layout.tsx`
+
+```tsx
+import { Geist } from 'next/font/google'
+
+const geist = Geist({
+    subsets: ['latin'],
+})
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+    return (
+        <html lang="en" className={geist.className}>
+        <body>{children}</body>
+        </html>
+    )
+}
+```
+
+### Fuentes de Google
+
+Puedes alojar automáticamente cualquier ***fuente de Google***. Las fuentes se incluyen en la implementación y se distribuyen desde el mismo dominio que tu implementación, lo que significa que el navegador no envía solicitudes a ***Google*** cuando el usuario visita tu sitio.
+
+Para comenzar a usar una ***fuente de Google***, importe la fuente elegida desde `next/font/google`:
+`app/layout.tsx`
+
+```tsx
+import { Geist } from 'next/font/google'
+
+const geist = Geist({
+    subsets: ['latin'],
+})
+
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    return (
+        <html lang="en" className={geist.className}>
+        <body>{children}</body>
+        </html>
+    )
+}
+```
+
+Recomendamos utilizar fuentes variables para obtener el mejor rendimiento y flexibilidad. Pero si no puede utilizar una fuente variable, deberá especificar un peso:
+
+```tsx
+import { Roboto } from 'next/font/google'
+
+const roboto = Roboto({
+    weight: '400',
+    subsets: ['latin'],
+})
+
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    return (
+        <html lang="en" className={roboto.className}>
+        <body>{children}</body>
+        </html>
+    )
+}
+```
+
+### Fuentes locales
+
+Para utilizar una fuente local, importe su fuente desde `next/font/local` y especifique el origen de su archivo de fuente local en la carpeta `public`.
+
+`app/layout.tsx`
+
+```tsx
+import localFont from 'next/font/local'
+
+const myFont = localFont({
+    src: './my-font.woff2',
+})
+
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    return (
+        <html lang="en" className={myFont.className}>
+        <body>{children}</body>
+        </html>
+    )
+}
+```
+
+Si desea utilizar varios archivos para una sola familia de fuentes, `src` puede ser una matriz:
+
+```tsx
+const roboto = localFont({
+    src: [
+        {
+        path: './Roboto-Regular.woff2',
+        weight: '400',
+        style: 'normal',
+        },
+        {
+        path: './Roboto-Italic.woff2',
+        weight: '400',
+        style: 'italic',
+        },
+        {
+        path: './Roboto-Bold.woff2',
+        weight: '700',
+        style: 'normal',
+        },
+        {
+        path: './Roboto-BoldItalic.woff2',
+        weight: '700',
+        style: 'italic',
+        },
+    ],
+})
+```
