@@ -1,0 +1,178 @@
+---
+title: Layout y Pages
+description:  enrutamiento basado en el sistema de archivos.
+keywords: ["nextjs", "documents"]
+---
+
+<CardGrid>
+    <Card
+        title="Configuración nuevo proyecto"
+        href="https://nextjs.org/docs/app/getting-started/layouts-and-pages"
+        icon="alignJustify"
+        variant="small"
+        external={true}
+    />
+</CardGrid>
+
+---
+
+## CREANDO UNA `page` 
+
+Una página es una interfaz de usuario que se representa en una ruta específica. Para crear una página, agregue un archivo de página dentro del directorio de la aplicación y exporte un componente de ***React*** de manera predeterminada. Por ejemplo, para crear una página de índice (`/`):
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fpage-special-file.png&w=1920&q=75)
+
+`app/page.tsx`
+
+```tsx
+export default function Page() {
+  return <h1>Hello Next.js!</h1>
+}
+```
+
+---
+
+## CREANDO UN `layout`
+
+Un ***layout*** es una interfaz de usuario que se comparte entre varias ***páginas***. Durante la navegación, los ***layouts*** conservan el estado, siguen siendo interactivos y no se vuelven a mostrar.
+
+Puedes definir un ***layout*** de forma predeterminada exportando un componente ***React*** desde un archivo de ***layout***. El componente debe aceptar un `children` que puede ser una página u otro ***layout***.
+
+Por ejemplo, para crear un ***layout*** que acepte su página de índice como secundaria, agregue un archivo de ***layout*** dentro del directorio de la aplicación:
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Flayout-special-file.png&w=1920&q=75)
+
+`app/layout.tsx`
+
+```tsx
+export default function DashboardLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    return (
+        <html lang="en">
+        <body>
+            {/* Layout UI */}
+            {/* Place children where you want to render a page or nested layout */}
+            <main>{children}</main>
+        </body>
+        </html>
+    )
+}
+```
+
+El diseño anterior se denomina ***root layout*** porque se define en la raíz del directorio de la aplicación. El diseño raíz es obligatorio y debe contener etiquetas `<html>` y de `<body>`.
+
+---
+
+## CREANDO UNA RUTA ANIDADA 
+
+Una ruta anidada es una ruta compuesta por varios segmentos de ***URL***. Por ejemplo, la ruta `/blog/[slug]` está compuesta por tres segmentos:
+
+- `/` (Segmento raíz)
+- `blog` (Segmento)
+- `[slug]` (Segmento de hoja)
+
+En ***Next.js***:
+
+- Las carpetas se utilizan para definir los segmentos de ruta que se asignan a los segmentos de URL.
+- Los archivos (como la ***page*** y el ***layout***) se utilizan para crear la interfaz de usuario que se muestra para un segmento.
+
+Para crear rutas anidadas, puedes anidar carpetas unas dentro de otras. Por ejemplo, para agregar una ruta para `/blog`, crea una carpeta llamada ***blog*** en el directorio de la aplicación. Luego, para que `/blog` sea accesible públicamente, agrega un archivo de página:
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fblog-nested-route.png&w=1920&q=75)
+
+`app/blog/page.tsx`
+
+```tsx
+import { getPosts } from '@/lib/posts'
+import { Post } from '@/ui/post'
+
+export default async function Page() {
+    const posts = await getPosts()
+    
+    return (
+        <ul>
+        {posts.map((post) => (
+            <Post key={post.id} post={post} />
+        ))}
+        </ul>
+    )
+}
+```
+
+Puede continuar anidando carpetas para crear rutas anidadas. Por ejemplo, para crear una ruta para una publicación de blog específica, cree una nueva carpeta `[slug]` dentro del blog y agregue un archivo de página (`page.tsx`):
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fblog-post-nested-route.png&w=1920&q=75)
+
+`app/blog/[slug]/page.tsx`
+
+```tsx
+function generateStaticParams() {}
+
+export default function Page() {
+    return <h1>Hello, Blog Post Page!</h1>
+}
+```
+
+<aside>
+ℹ️
+
+Bueno saber
+
+Al incluir el nombre de una carpeta entre corchetes (por ejemplo, `[slug]`), se crea un segmento de ruta dinámica especial que se utiliza para generar varias páginas a partir de datos. Esto resulta útil para publicaciones de blogs, páginas de productos, etc.
+
+</aside>
+
+---
+
+## `layouts` ANIDADOS 
+
+De manera predeterminada, los ***layouts*** en la jerarquía de carpetas también están anidados, lo que significa que envuelven los ***layouts*** secundarios a través de su `children`. Puedes anidar `layouts` agregando un `layout` dentro de segmentos de ruta específicos (`carpetas`).
+
+Por ejemplo, para crear un `layout` para la ruta `/blog`, agregue un nuevo archivo de `layout` dentro de la ***carpeta blog***.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fnested-layouts.png&w=1920&q=75)
+
+`app/blog/layout.tsx`
+
+```tsx
+export default function BlogLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    return <section>{children}</section>
+}
+```
+
+Si combinara los dos ***layouts*** anteriores, el ***root layout*** (`app/layout.js`) envolvería el ***layout*** del blog (`app/blog/layout.js`), que envolvería el blog (`app/blog/page.js`) y la página de publicación del blog (`app/blog/[slug]/page.js`).
+
+## ENLACES ENTRE PAGINAS 
+
+Puede utilizar el componente `<Link>` para navegar entre rutas. `<Link>` es un componente integrado de ***Next.js*** que extiende la etiqueta ***HTML*** `<a>` para proporcionar precarga y navegación del lado del cliente.
+
+Por ejemplo, para generar una lista de publicaciones de ***blog***, importe `<Link>` desde `next/link` y pase una propiedad `href` al componente:
+
+`app/ui/post.tsx`
+
+```tsx
+import Link from 'next/link'
+
+export default async function Post({ post }) {
+    const posts = await getPosts()
+    
+    return (
+        <ul>
+        {posts.map((post) => (
+            <li key={post.slug}>
+            <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+            </li>
+        ))}
+        </ul>
+    )
+}
+```
+
+`<Link>` es la forma principal y recomendada de navegar entre rutas en su aplicación ***Next.js***. Sin embargo, también puede usar el ***hook*** `useRouter` para una navegación más avanzada.

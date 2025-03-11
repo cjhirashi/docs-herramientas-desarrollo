@@ -1,5 +1,272 @@
 ---
 title: Next.js
-description: Esta 
-keywords: ["introducción", "guía", "nextjs", "documents"]
+description: Configuración de nuevo proyecto en Next.js
+keywords: ["nextjs", "documents"]
 ---
+
+<CardGrid>
+    <Card
+        title="Configuración nuevo proyecto"
+        href="https://nextjs.org/docs/app/getting-started/installation"
+        icon="alignJustify"
+        variant="small"
+        external={true}
+    />
+</CardGrid>
+
+---
+
+## Cómo configurar un nuevo proyecto Next.js
+
+
+### Requisitos del sistema
+
+- Node.js 18.18 o posterior.
+- Se admiten macOS, Windows (incluido WSL) y Linux.
+
+---
+
+## Instalación automática
+
+Recomendamos iniciar una nueva aplicación ***Next.js*** usando `create-next-app`, que configura todo automáticamente. Para crear un proyecto, ejecute:
+
+```bash
+npx create-next-app@latest
+```
+
+On installation, you'll see the following prompts:
+
+```bash
+What is your project named? my-app
+Would you like to use TypeScript? No / Yes
+Would you like to use ESLint? No / Yes
+Would you like to use Tailwind CSS? No / Yes
+Would you like your code inside a `src/` directory? No / Yes
+Would you like to use App Router? (recommended) No / Yes
+Would you like to use Turbopack for `next dev`?  No / Yes
+Would you like to customize the import alias (`@/*` by default)? No / Yes
+What import alias would you like configured? @/*
+```
+
+Después de las indicaciones, `create-next-app` creará una carpeta con el nombre de su proyecto e instalará las dependencias requeridas.
+
+---
+
+## instalación manual
+
+Para crear manualmente una nueva aplicación ***Next.js***, instale los paquetes necesarios:
+
+```bash
+npm install next@latest react@latest react-dom@latest
+```
+
+Abra su archivo `package.json` y agregue los siguientes scripts:
+
+```json
+{
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    }
+}
+```
+
+Estos scripts hacen referencia a las diferentes etapas del desarrollo de una aplicación:
+
+- `dev`: ejecuta `next dev` para iniciar ***Next.js*** en modo de desarrollo.
+- `build`: ejecuta la `next build` para crear la aplicación para uso en producción.
+- `start`: ejecuta el `next start` para iniciar un servidor de producción ***Next.js***.
+- `lint`: ejecuta `next lint` para configurar la configuración ***ESLint*** incorporada de Next.js.
+
+### Crear el directorio de la aplicación
+
+***Next.js*** utiliza enrutamiento del sistema de archivos, lo que significa que las rutas en su aplicación están determinadas por cómo estructura sus archivos.
+
+Cree una carpeta de aplicación, luego agregue un archivo `layout.tsx` y `page.tsx`. Estos se representarán cuando el usuario visite la raíz de su aplicación (`/`).
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fapp-getting-started.png&w=1920&q=75)
+
+Cree un diseño raíz dentro de `app/layout.tsx` con las etiquetas `<html>` y `<body>` requeridas:
+
+`app/layout.tsx`
+
+```tsx
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    return (
+        <html lang="en">
+        <body>{children}</body>
+        </html>
+    )
+}
+```
+
+Finalmente, cree una página de inicio `app/page.tsx` con algún contenido inicial:
+
+`app/page.tsx`
+
+```tsx
+export default function Page() {
+    return <h1>Hello, Next.js!</h1>
+}
+```
+
+<aside>
+ℹ️
+
+Es bueno saberlo:
+
+- Si olvida crear `layout.tsx`, ***Next.js*** creará automáticamente este archivo cuando ejecute el servidor de desarrollo con `next dev`.
+- Opcionalmente, puedes usar un directorio `src` en la raíz de tu proyecto para separar el código de tu aplicación de los archivos de configuración.
+</aside>
+
+### Crea la carpeta pública (opcional)
+
+Opcionalmente, puede crear una carpeta pública en la raíz de su proyecto para almacenar activos estáticos como imágenes, fuentes, etc. Luego, su código puede hacer referencia a los archivos dentro de `public` a partir de la URL base (`/`).
+
+---
+
+## Ejecute el servidor de desarrollo
+
+1. Ejecute `npm run dev` para iniciar el servidor de desarrollo.
+2. Visite [http://localhost:3000](http://localhost:3000/) para ver su aplicación.
+3. Edite el archivo `app/page.tsx` y guárdelo para ver el resultado actualizado en su navegador.
+
+---
+
+## Configurar TypeScript
+
+<aside>
+ℹ️
+
+Versión mínima de TypeScript: v4.5.2
+
+</aside>
+
+***Next.js*** viene con soporte ***TypeScript*** incorporado. Para agregar ***TypeScript*** a su proyecto, cambie el nombre de un archivo a `.ts/.tsx`. Ejecute `next dev`, ***Next.js*** instalará automáticamente las dependencias necesarias y agregará un archivo `tsconfig.json` con las opciones de configuración recomendadas.
+
+### Complemento IDE
+
+***Next.js*** incluye un complemento ***TypeScript*** personalizado y un verificador de tipos, que ***VSCode*** y otros editores de código pueden usar para la verificación de tipos avanzada y el autocompletado.
+
+Puede habilitar el complemento en ***VSCode*** de la siguiente manera:
+
+1. Abrir la paleta de comandos (`Ctrl/⌘` + `Shift + P`)
+2. Buscando *"TypeScript: Select TypeScript Version”*
+3. Seleccionar *"Use Workspace Version”*
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Ftypescript-command-palette.png&w=1920&q=75)
+
+Ahora, al editar archivos, se habilitará el complemento personalizado. Cuando se ejecute la próxima compilación, se utilizará el verificador de tipo personalizado.
+
+Consulte la página de configuración de ***TypeScript*** para obtener más información sobre cómo usar ***TypeScript*** en su proyecto.
+
+---
+
+## Configurar ESLint
+
+***Next.js*** viene con ***ESLint*** incorporado, que instala automáticamente los paquetes necesarios y configura los ajustes adecuados cuando crea un nuevo proyecto con `create-next-app`.
+
+Para agregar ***ESLint*** a un proyecto existente, agregue el siguiente ***lint*** como ***script*** a `package.json`:
+
+`package.json`
+```json
+{
+    "scripts": {
+        "lint": "next lint"
+    }
+}
+```
+
+Luego, ejecute `npm run lint` y se le guiará a través del proceso de instalación y configuración.
+
+```bash
+pnpm lint
+```
+
+Verás un mensaje como este:
+
+<aside>
+
+? How would you like to configure ESLint?
+
+❯ Strict (recommended)
+Base
+Cancel
+
+</aside>
+
+- **`Strict`**: incluye la configuración ***ESLint*** básica de ***Next.js*** junto con un conjunto de reglas ***Core Web Vitals*** más estricto. Esta es la configuración recomendada para los desarrolladores que configuran ***ESLint*** por primera vez.
+- **`Base`**: incluye la configuración ***ESLint*** base de ***Next.js***.
+- **`Cancel`**: No incluye ninguna configuración de ***ESLint***. Seleccione esta opción solo si planea configurar su propia configuración ***ESLint*** personalizada.
+
+Si se selecciona cualquiera de las dos opciones de configuración, ***Next.js*** instalará automáticamente `eslint` y `eslint-config-next` como dependencias en su aplicación y creará un archivo `.eslintrc.json` en la raíz de su proyecto que incluye la configuración seleccionada.
+
+Ahora puede ejecutar `next lint` cada vez que desee ejecutar ***ESLint*** para detectar errores. Una vez que se haya configurado ***ESLint***, también se ejecutará automáticamente durante cada compilación (siguiente compilación). Los errores harán que la compilación falle, mientras que las advertencias no.
+
+Consulte la página del complemento ***ESLint*** para obtener más información sobre cómo configurar ***ESLint*** en su proyecto.
+
+---
+
+## Configurar importaciones absolutas y alias de ruta de módulo
+
+***Next.js*** tiene soporte incorporado para las opciones *"paths"* y *"baseUrl"* de los archivos `tsconfig.json` y `jsconfig.json`. Estas opciones le permiten asignar alias a los directorios del proyecto en rutas absolutas, lo que facilita la importación de módulos. Por ejemplo:
+
+```tsx
+// Before
+import { Button } from '../../../components/button'
+
+// After
+import { Button } from '@/components/button'
+```
+
+Para configurar importaciones absolutas, agregue la opción de configuración ***baseUrl*** a su archivo `tsconfig.json` o `jsconfig.json`. Por ejemplo:
+
+```json
+{
+    "compilerOptions": {
+        "baseUrl": "src/"
+    }
+}
+```
+
+Además de configurar la ruta ***baseUrl***, puede utilizar la opción *"paths"* para *"alias"* las rutas del módulo.
+
+Por ejemplo, la siguiente configuración asigna `@/components/*` a `componentes/*`:
+
+`tsconfig.json` o `jsconfig.json`
+
+```json
+{
+    "compilerOptions": {
+        "baseUrl": "src/",
+        "paths": {
+        "@/styles/*": ["styles/*"],
+        "@/components/*": ["components/*"]
+        }
+    }
+}
+```
+
+Cada una de los *"paths"* es relativa a la ubicación de ***baseUrl***. Por ejemplo:
+
+`src/app/page.tsx`
+
+```tsx
+import Button from '@/components/button'
+import '@/styles/styles.css'
+
+export default function HomePage() {
+    return (
+        <div>
+        <h1>Hello World</h1>
+        <Button />
+        </div>
+    )
+}
+```

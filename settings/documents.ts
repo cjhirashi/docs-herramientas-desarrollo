@@ -1325,6 +1325,16 @@ export const Documents: Paths[] = [
             {
                 title: "Next JS",
                 href: "/nextjs",
+                items: [
+                    {
+                        title: "Estructura y organización del proyecto",
+                        href: "/project-structure"
+                    },
+                    {
+                        title: "Layouts y Pages",
+                        href: "/layouts-pages"
+                    },
+                ]
             },
             {
                 title: "Shadcn UI",
@@ -1345,6 +1355,14 @@ export const Documents: Paths[] = [
                     {
                         title: "Modo Oscuro",
                         href: "/dark-mode"
+                    },
+                    {
+                        title: "Shadcn CLI",
+                        href: "/shadcn-cli"
+                    },
+                    {
+                        title: "Monorepo",
+                        href: "/monorepo"
                     },
                 ]
             },

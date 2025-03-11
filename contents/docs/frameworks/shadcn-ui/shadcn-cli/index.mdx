@@ -1,0 +1,184 @@
+---
+title: Shadcn CLI
+description: Utilice la CLI shadcn para agregar componentes a su proyecto.
+keywords: ["cli"]
+---
+
+<CardGrid>
+    <Card
+        title="Tematización"
+        href="https://ui.shadcn.com/docs/cli"
+        icon="alignJustify"
+        variant="small"
+        description="test description"
+    />
+</CardGrid>
+
+---
+
+## `init`
+
+Use el comando `init` para inicializar la configuración y las dependencias de un nuevo proyecto.
+
+El comando `init` instala las dependencias, agrega la utilidad `cn` y configura las variables **CSS** para el proyecto.
+
+<Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+    <TabsList className="">
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+        ```bash
+            pnpm dlx shadcn@latest init
+        ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+        ```bash
+            npx shadcn@latest init
+        ```
+    </TabsContent>
+
+</Tabs>
+
+### OPCIONES `init`
+
+```bash
+Usage: shadcn init [options] [components...]
+
+initialize your project and install dependencies
+
+Arguments:
+    components         the components to add or a url to the component.
+
+Options:
+    -y, --yes           skip confirmation prompt. (default: true)
+    -d, --defaults,     use default configuration. (default: false)
+    -f, --force         force overwrite of existing configuration. (default: false)
+    -c, --cwd <cwd>     the working directory. defaults to the current directory. (default: "/Users/shadcn/Desktop")
+    -s, --silent        mute output. (default: false)
+    --src-dir           use the src directory when creating a new project. (default: false)
+    --no-src-dir        do not use the src directory when creating a new project.
+    --css-variables     use css variables for theming. (default: true)
+    --no-css-variables  do not use css variables for theming.
+    -h, --help          display help for command
+```
+
+## `add`
+
+Utilice el comando `add` para agregar componentes y dependencias a su proyecto.
+
+<Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+    <TabsList className="">
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+        ```bash
+            pnpm dlx shadcn@latest add [component]
+        ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+        ```bash
+            npx shadcn@latest add [component]
+        ```
+    </TabsContent>
+
+</Tabs>
+
+### OPCIONES `add`
+
+```bash
+Usage: shadcn add [options] [components...]
+
+add a component to your project
+
+Arguments:
+    components         the components to add or a url to the component.
+
+Options:
+    -y, --yes           skip confirmation prompt. (default: false)
+    -o, --overwrite     overwrite existing files. (default: false)
+    -c, --cwd <cwd>     the working directory. defaults to the current directory. (default: "/Users/shadcn/Desktop")
+    -a, --all           add all available components (default: false)
+    -p, --path <path>   the path to add the component to.
+    -s, --silent        mute output. (default: false)
+    --src-dir           use the src directory when creating a new project. (default: false)
+    --no-src-dir        do not use the src directory when creating a new project.
+    --css-variables     use css variables for theming. (default: true)
+    --no-css-variables  do not use css variables for theming.
+    -h, --help          display help for command
+```
+
+## `build`
+
+Utilice el comando `build` para generar los archivos **JSON** del registro.
+
+<Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+    <TabsList className="">
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+        ```bash
+            pnpm dlx shadcn@latest build
+        ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+        ```bash
+            npx shadcn@latest build
+        ```
+    </TabsContent>
+
+</Tabs>
+
+Este comando lee el archivo `registry.json` y genera los archivos **JSON** del registro en el directorio `public/r`.
+
+## OPCIONES `build`
+
+```bash
+Usage: shadcn build [options] [registry]
+
+build components for a shadcn registry
+
+Arguments:
+    registry             path to registry.json file (default: "./registry.json")
+
+Options:
+    -o, --output <path>  destination directory for json files (default: "./public/r")
+    -c, --cwd <cwd>      the working directory. defaults to the current directory. (default:
+                        "/Users/shadcn/Code/shadcn/ui/packages/shadcn")
+    -h, --help           display help for command
+
+```
+
+Para personalizar el directorio de salida, utilice la opción `--output`.
+
+<Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+    <TabsList className="">
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+        ```bash
+            pnpm dlx shadcn@latest build --output ./public/registry
+        ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+        ```bash
+            npx shadcn@latest build --output ./public/registry
+        ```
+    </TabsContent>
+
+</Tabs>

@@ -1,0 +1,261 @@
+---
+title: Monorepo
+description: Uso de componentes shadcn/ui y CLI en un monorepositorio.
+keywords: ["monorepo"]
+---
+
+<CardGrid>
+    <Card
+        title="Tematización"
+        href="https://ui.shadcn.com/docs/monorepo"
+        icon="alignJustify"
+        variant="small"
+        description="test description"
+    />
+</CardGrid>
+
+---
+
+Hasta ahora, usar ***shadcn/ui*** en un monorepo era un poco complicado. Podías agregar componentes usando la ***CLI***, pero tenías que administrar dónde se instalaban los componentes y corregir manualmente las rutas de importación.
+
+Con la nueva compatibilidad con monorepo en la ***CLI***, hemos hecho que sea mucho más fácil usar ***shadcn/ui*** en un monorepo.
+
+La ***CLI*** ahora entiende la estructura del monorepo e instalará los componentes, las dependencias y las dependencias del registro en las rutas correctas y manejará las importaciones por ti.
+
+## COMENZAR
+
+### CREAR UN NUEVO PROYECTO MONOREPO 
+
+Para crear un nuevo proyecto monorepo, ejecute el comando `init`. Se le solicitará que seleccione el tipo de proyecto que está creando.
+
+<Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+    <TabsList className="">
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+        ```bash
+            pnpm dlx shadcn@canary init
+        ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+        ```bash
+            npx shadcn@canary init
+        ```
+    </TabsContent>
+
+</Tabs>
+
+Seleccione la opción` Next.js (Monorepo)`.
+
+```bash
+? Would you like to start a new project?
+    Next.js
+❯   Next.js (Monorepo)
+```
+
+Esto creará un nuevo proyecto monorepo con dos espacios de trabajo: **web** e **interfaz de usuario**, y Turborepo como sistema de compilación.
+
+Todo está configurado para que puedas comenzar a agregar componentes a tu proyecto.
+
+**Nota**: El monorepo usa **React 19** y **Tailwind CSS v4**.
+
+### AGREGAR COMPONENTES A TU PROYECTO 
+
+Para agregar componentes a tu proyecto, ejecuta el comando `add` en la ruta de tu aplicación.
+
+```bash
+cd apps/web
+
+```
+
+<Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+    <TabsList className="">
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+        ```bash
+            pnpm dlx shadcn@canary add [COMPONENT]
+        ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+        ```bash
+            npx shadcn@canary add [COMPONENT]
+        ```
+    </TabsContent>
+
+</Tabs>
+
+La ***CLI*** determinará qué tipo de componente estás agregando e instalará los archivos correctos en la ruta correcta.
+
+Por ejemplo, si ejecutas` npx shadcn@canary add button`, la ***CLI*** instalará el componente de botón en `packages/ui` y actualizará la ruta de importación para los componentes en `apps/web`.
+
+Si ejecutas `npx shadcn@canary add login-01`, la **CLI** instalará los componentes de botón, etiqueta, entrada y tarjeta en `packages/ui` y el componente de formulario de inicio de sesión en `apps/web/components`.
+
+### IMPORTACION DE COMPONENTES 
+
+Puede importar componentes desde el paquete @workspace/ui de la siguiente manera:
+```tsx
+import { Button } from "@workspace/ui/components/button"
+```
+También puedes importar hooks y utilidades desde el paquete @workspace/ui.
+```tsx
+import { useTheme } from "@workspace/ui/hooks/use-theme"
+import { cn } from "@workspace/ui/lib/utils"
+```
+
+## ESTRUCTURA DE ARCHIVOS 
+
+Cuando crea un nuevo proyecto monorepo, la ***CLI*** creará la siguiente estructura de archivos:
+
+```bash
+apps
+└── web         # Your app goes here.
+    ├── app
+    │   └── page.tsx
+    ├── components
+    │   └── login-form.tsx
+    ├── components.json
+    └── package.json
+packages
+└── ui          # Your components and dependencies are installed here.
+    ├── src
+    │   ├── components
+    │   │   └── button.tsx
+    │   ├── hooks
+    │   ├── lib
+    │   │   └── utils.ts
+    │   └── styles
+    │       └── globals.css
+    ├── components.json
+    └── package.json
+package.json
+turbo.json
+
+```
+
+## REQUISITOS 
+
+1. Cada espacio de trabajo debe tener un archivo `component.json`. Un archivo `package.json` le indica a `npm` cómo instalar las dependencias. Un archivo `component.json` le indica a la ***CLI*** cómo y dónde instalar los componentes.
+
+2. El archivo `component.json` debe definir correctamente los alias para el espacio de trabajo. Esto le indica a la ***CLI*** cómo importar componentes, hooks, utilidades, etc.
+
+<Tabs defaultValue="v4" className="pt-5 pb-1">
+
+    <TabsList className="">
+        <TabsTrigger value="v4">Tailwind CSS v4</TabsTrigger>
+        <TabsTrigger value="v3">Tailwind CSS v4</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="v4">
+        `apps/web/components.json`
+        ```json
+            {
+                "$schema": "https://ui.shadcn.com/schema.json",
+                "style": "new-york",
+                "rsc": true,
+                "tsx": true,
+                "tailwind": {
+                    "config": "",
+                    "css": "../../packages/ui/src/styles/globals.css",
+                    "baseColor": "zinc",
+                    "cssVariables": true
+                },
+                "iconLibrary": "lucide",
+                "aliases": {
+                    "components": "@/components",
+                    "hooks": "@/hooks",
+                    "lib": "@/lib",
+                    "utils": "@workspace/ui/lib/utils",
+                    "ui": "@workspace/ui/components"
+                }
+            }
+        ```
+        `packages/ui/components.json`
+        ```json
+        {
+            "$schema": "https://ui.shadcn.com/schema.json",
+            "style": "new-york",
+            "rsc": true,
+            "tsx": true,
+            "tailwind": {
+                "config": "",
+                "css": "src/styles/globals.css",
+                "baseColor": "zinc",
+                "cssVariables": true
+            },
+            "iconLibrary": "lucide",
+            "aliases": {
+                "components": "@workspace/ui/components",
+                "utils": "@workspace/ui/lib/utils",
+                "hooks": "@workspace/ui/hooks",
+                "lib": "@workspace/ui/lib",
+                "ui": "@workspace/ui/components"
+            }
+        }
+        ```
+    </TabsContent>
+
+    <TabsContent value="v3">
+        `apps/web/components.json`
+        ```json
+            {
+                "$schema": "https://ui.shadcn.com/schema.json",
+                "style": "new-york",
+                "rsc": true,
+                "tsx": true,
+                "tailwind": {
+                    "config": "../../packages/ui/tailwind.config.ts",
+                    "css": "../../packages/ui/src/styles/globals.css",
+                    "baseColor": "zinc",
+                    "cssVariables": true
+                },
+                "iconLibrary": "lucide",
+                "aliases": {
+                    "components": "@/components",
+                    "hooks": "@/hooks",
+                    "lib": "@/lib",
+                    "utils": "@workspace/ui/lib/utils",
+                    "ui": "@workspace/ui/components"
+                }
+            }
+        ```
+        `packages/ui/components.json`
+        ```json
+        {
+            "$schema": "https://ui.shadcn.com/schema.json",
+            "style": "new-york",
+            "rsc": true,
+            "tsx": true,
+            "tailwind": {
+                "config": "tailwind.config.ts",
+                "css": "src/styles/globals.css",
+                "baseColor": "zinc",
+                "cssVariables": true
+            },
+            "iconLibrary": "lucide",
+            "aliases": {
+                "components": "@workspace/ui/components",
+                "utils": "@workspace/ui/lib/utils",
+                "hooks": "@workspace/ui/hooks",
+                "lib": "@workspace/ui/lib",
+                "ui": "@workspace/ui/components"
+            }
+        }
+        ```
+    </TabsContent>
+
+</Tabs>
+
+3. Asegúrate de tener el mismo estilo, `iconLibrary` y `baseColor` en ambos archivos `component.json`.
+
+4. Para ***Tailwind CSS v4***, deja la configuración de Tailwind vacía en el archivo `component.json`.
+
+Si sigues estos requisitos, la ***CLI*** podrá instalar componentes de la interfaz de usuario, bloques, bibliotecas y hooks en las rutas correctas y gestionar las importaciones por ti.

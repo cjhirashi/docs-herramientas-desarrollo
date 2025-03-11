@@ -1,0 +1,251 @@
+---
+title: Estructura y organización del proyecto
+description: proporciona una descripción general de las convenciones de carpetas y archivos en ***Next.js***
+keywords: ["nextjs", "documents"]
+---
+
+<CardGrid>
+    <Card
+        title="Configuración nuevo proyecto"
+        href="https://nextjs.org/docs/app/getting-started/installation"
+        icon="alignJustify"
+        variant="small"
+        external={true}
+    />
+</CardGrid>
+
+---
+
+
+## Convenciones de carpetas y archivos
+
+### Carpetas de nivel superior
+
+Las carpetas de nivel superior se utilizan para organizar el código y los activos estáticos de su aplicación.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Ftop-level-folders.png&w=1920&q=75)
+
+| `app` | Enrutador de aplicaciones |
+| --- | --- |
+| `pages` | Enrutador de páginas |
+| `public` | Activos estáticos a servir |
+| `src` | Carpeta de origen de la aplicación opcional |
+
+### Archivos de nivel superior
+
+Los archivos de nivel superior se utilizan para configurar su aplicación, administrar dependencias, ejecutar ***middleware***, integrar herramientas de monitoreo y definir variables de entorno.
+
+---
+
+***Next.js***
+
+| `next.config.js` | Archivo de configuración para ***Next.js*** |
+| --- | --- |
+| `package.json` | Dependencias y scripts del proyecto. |
+| `intrumentation.ts` | Archivo ***OpenTelemetría*** e Instrumentación |
+| `middleware.ts` | ***Middleware*** de solicitud `next.js` |
+| `.env` | Variables ambientales |
+| `.env.local` | Variables de entorno local |
+| `env.production` | Variables del entorno de producción. |
+| `env.development` | Variables del entorno de desarrollo |
+| `eslintrc.json` | Archivo de configuración para ***ESLint*** |
+| `.gitignore` | Archivos y carpetas de ***Git*** para ignorar |
+| `next-env.d.ts` | Archivo de declaración ***TypeScript*** para ***Next.js*** |
+| `tsconfig.json` | Archivo de configuración para ***TypeScript*** |
+| `jsconfig.json` | Archivo de configuración para ***JavaScript*** |
+
+### Archivos de enrutamiento
+
+| `layout` | `.js .jsx .tsx` | Disposición |
+| --- | --- | --- |
+| `page` | `.js .jsx .tsx` | Página |
+| `loading` | `.js .jsx .tsx` | Interfaz de Usuario de carga |
+| `not-found` | `.js .jsx .tsx` | Interfaz de Usuario no encontrada |
+| `error` | `.js .jsx .tsx` | Interfaz de Usuario de error |
+| `global-error` | `.js .jsx .tsx` | Interfaz de Usuario de error global |
+| `route` | `.js .jsx .tsx` | API endpoint |
+| `template` | `.js .jsx`  | Diseño renderizado nuevamente |
+| `default` | `.js .jsx .tsx` | Página alternativa de ruta paralela |
+
+### Rutas anidadas
+
+| `folder` | Segmento de ruta |
+| --- | --- |
+| `folder/folder` | Segmento de ruta anidado |
+
+### Rutas dinámicas
+
+| `[folder]` | Segmento de ruta dinámica |
+| --- | --- |
+| `[…folder]` | Segmento de ruta general |
+| `[[…folder]]` | Segmento de ruta general opcional |
+
+### Grupos de rutas y carpetas privadas
+
+| `(folder)` | Rutas grupales sin afectar la ruta |
+| --- | --- |
+| `_folder` | Optar carpeta y todos los segmentos secundarios fuera del enrutamiento |
+
+### Rutas paralelas e interceptadas
+
+| `@folder` | Ranura con nombre |
+| --- | --- |
+| `(.)folder` | Interceptar el mismo nivel |
+| `(..)folder` | Interceptar un nivel por encima |
+| `(..)(..)folder` | Interceptar dos niveles por encima |
+| `(…)folder` | Interceptar desde la raíz |
+
+### Convenciones de archivos de metadatos
+
+#### Iconos de aplicaciones
+
+| `favicon` | `.ico` | Archivo ***favicon*** |
+| --- | --- | --- |
+| `icon` | `.ico .jpg .jpeg .png .svg` | Archivo de icono de la aplicación |
+| `icon` | `.js .ts .tsx` | Icono de aplicación generado |
+| `apple-icon` | `.jpg .jpeg .png` | Archivo de icono de la aplicación de ***Apple*** |
+| `apple-icon` | `.js .ts .tsx` | Icono de la aplicación de ***Apple*** generado |
+
+#### Imágenes de Open Graph y Twitter
+
+| `opengraph-image` | `.jpg .jpeg .png .gif` | Archivo de imagen ***Open Graph*** |
+| --- | --- | --- |
+| `opengraph-image` | `.js .ts .tsx` | Imagen de ***Open Graph*** generada |
+| `twitter-image` | `.jpg .jpeg .png .gif` | Archivo de imagen de ***Twitter*** |
+| `twitter-image` | `.js .ts .tsx` | Imagen de ***Twitter*** generada |
+
+#### SEO
+
+| `sitemap` | `.xml` | Archivo de mapa del sitio |
+| --- | --- | --- |
+| `sitemap` | `.js .ts` | Mapa del sitio generado |
+| `robots` | `.txt` | Archivo de robots |
+| `robots` | `.js .ts` | Archivo Robots generado |
+
+---
+
+## Jerarquía de componentes
+
+Los componentes ***React*** definidos en archivos especiales de un segmento de ruta se representan en una jerarquía específica:
+
+- `layout.js`
+- `template.js`
+- `error.js`
+- `loading.js`
+- `not-found.js`
+- `page.js` o anidado `layout.js`
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Ffile-conventions-component-hierarchy.png&w=1920&q=75)
+
+En una ruta anidada, los componentes de un segmento estarán anidados dentro de los componentes de su segmento principal.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fnested-file-conventions-component-hierarchy.png&w=1920&q=75)
+
+---
+
+## Organizando tu proyecto
+
+Aparte de las convenciones de carpetas y archivos, ***Next.js*** no tiene una opinión clara sobre cómo organizar y colocar los archivos de su proyecto, pero sí ofrece varias funciones que lo ayudarán a organizar su proyecto.
+
+### Colocación
+
+En el directorio de la aplicación, las carpetas anidadas definen la estructura de la ruta. Cada carpeta representa un segmento de ruta que se asigna a un segmento correspondiente en una ruta URL.
+
+Sin embargo, aunque la estructura de la ruta se define a través de carpetas, una ruta no es accesible públicamente hasta que se agrega un archivo `page.js` o `route.js` a un segmento de ruta.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fproject-organization-not-routable.png&w=1920&q=75)
+
+E incluso cuando una ruta se hace accesible al público, solo se envía al cliente el contenido devuelto por `page.js` o `route.js`.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fproject-organization-routable.png&w=1920&q=75)
+
+Esto significa que los archivos del proyecto se pueden ubicar de forma segura dentro de segmentos de ruta en el directorio de la aplicación sin que se puedan enrutar accidentalmente.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fproject-organization-colocation.png&w=1920&q=75)
+
+<aside>
+ℹ️
+
+Bueno saber:
+
+- Si bien puedes ubicar los archivos de tu proyecto en la aplicación, no es necesario que lo hagas. Si lo prefieres, puedes mantenerlos fuera del directorio de la aplicación.
+</aside>
+
+### Carpetas privadas
+
+Se pueden crear carpetas privadas anteponiendo un guión bajo a la carpeta: `_folderName`
+
+Esto indica que la carpeta es un detalle de implementación privado y no debe ser considerada por el sistema de enrutamiento, por lo que excluye la carpeta y todas sus subcarpetas del enrutamiento.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fproject-organization-private-folders.png&w=1920&q=75)
+
+Dado que los archivos del directorio de la aplicación se pueden colocar de forma segura de forma predeterminada, no se requieren carpetas privadas para la colocación. Sin embargo, pueden ser útiles para:
+
+- Separar la lógica de UI de la lógica de enrutamiento.
+- Organizar consistentemente archivos internos en un proyecto y en el ecosistema ***Next.js.***
+- Ordenar y agrupar archivos en editores de código.
+- Evitar posibles conflictos de nombres con futuras convenciones de archivos ***Next.js***.
+
+<aside>
+ℹ️
+
+Bueno saber:
+
+- Si bien no es una convención marco, también puedes considerar marcar archivos fuera de carpetas privadas como "privados" utilizando el mismo patrón de guión bajo.
+- Puede crear segmentos de URL que comiencen con un guión bajo anteponiendo `%5F` (la forma codificada en URL de un guión bajo) al nombre de la carpeta: `%5FfolderName`.
+- Si no utiliza carpetas privadas, sería útil conocer las convenciones de archivos especiales de ***Next.js*** para evitar conflictos de nombres inesperados.
+</aside>
+
+### Grupos de rutas
+
+Los grupos de rutas se pueden crear envolviendo una carpeta entre paréntesis: (`folderName`)
+
+Esto indica que la carpeta es para fines organizativos y no debe incluirse en la ruta URL de la ruta.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fproject-organization-route-groups.png&w=1920&q=75)
+
+Los grupos de rutas son útiles para:
+
+- Los grupos de rutas son útiles para: organizar rutas en grupos, por ejemplo, por sección del sitio, intención o equipo.
+- Habilitar diseños anidados en el mismo nivel de segmento de ruta:
+    - Creación de múltiples diseños anidados en el mismo segmento, incluidos múltiples diseños raíz
+    - Agregar un diseño a un subconjunto de rutas en un segmento común
+
+### Directorio src
+
+***Next.js*** permite almacenar el código de la aplicación (incluida la aplicación) dentro de un directorio `src` opcional. Esto separa el código de la aplicación de los archivos de configuración del proyecto, que en su mayoría se encuentran en la raíz de un proyecto.
+
+***Next.js*** permite almacenar el código de la aplicación (incluido `app`) dentro de un directorio [`src`](https://nextjs.org/docs/app/building-your-application/configuring/src-directory) opcional. Esto separa el código de la aplicación de los archivos de configuración del proyecto, que en su mayoría se encuentran en la raíz de un proyecto.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fproject-organization-src-directory.png&w=1920&q=75)
+
+### Estrategias comunes
+
+En la siguiente sección se ofrece una descripción general de las estrategias más comunes. La conclusión más sencilla es elegir una estrategia que funcione para usted y su equipo y ser coherente en todo el proyecto.
+
+<aside>
+ℹ️
+
+Bueno saber:
+
+En nuestros ejemplos a continuación, usamos componentes y carpetas `lib` como marcadores de posición generalizados, su nombre no tiene un significado especial en el marco y sus proyectos pueden usar otras carpetas como `ui`, `utils`, `hooks`, `estilos`, etc.
+
+</aside>
+
+#### Almacenar archivos de proyecto fuera de la aplicación
+
+Esta estrategia almacena todo el código de la aplicación en carpetas compartidas en la raíz de su proyecto y mantiene el directorio de la aplicación exclusivamente para fines de enrutamiento.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fproject-organization-project-root.png&w=1920&q=75)
+
+#### Almacenar archivos de proyecto en carpetas de nivel superior dentro de la aplicación
+
+Esta estrategia almacena todo el código de la aplicación en carpetas compartidas en la raíz del directorio de la aplicación.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fproject-organization-app-root.png&w=1920&q=75)
+
+#### Dividir archivos de proyecto por función o ruta
+
+Esta estrategia almacena el código de aplicación compartido globalmente en el directorio de la aplicación raíz y divide el código de aplicación más específico en los segmentos de ruta que los utilizan.
+
+![image.png](https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Fdark%2Fproject-organization-app-root-split.png&w=1920&q=75)
