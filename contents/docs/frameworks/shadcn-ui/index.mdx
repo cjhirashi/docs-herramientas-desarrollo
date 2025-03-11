@@ -1,0 +1,77 @@
+---
+title: Shadcn UI
+description: shadcn/ui es un conjunto de componentes accesibles y de hermoso diseño, y una plataforma de distribución de código. Funciona con tus frameworks y modelos de IA favoritos. Código abierto.
+keywords: ["introducción", "shadcn", "ui", "diseño"]
+---
+
+<CardGrid>
+  <Card
+    title="Shadcn UI"
+    href="https://ui.shadcn.com/docs"
+    icon="alignJustify"
+    variant="small"
+    description="test description"
+  />
+ 
+</CardGrid>
+
+---
+
+Esta no es una biblioteca de componentes. Es la manera en que construyes tu biblioteca de componentes.
+
+Sabes cómo funcionan la mayoría de las bibliotecas de componentes tradicionales: instalas un paquete desde `npm`, importas los componentes y los usas en tu aplicación.
+
+Este enfoque funciona bien hasta que necesitas personalizar un componente para que se ajuste a tu sistema de diseño o requieres uno que no está incluido en la biblioteca. A menudo, terminas envolviendo componentes de la biblioteca, escribiendo soluciones alternativas para anular estilos o mezclando componentes de diferentes bibliotecas con API incompatibles.
+
+Esto es lo que shadcn/ui pretende resolver. Está construido en torno a los siguientes principios:
+
+* **Código abierto**: la capa superior de tu código de componente está abierta a modificaciones.
+* **Composición**: cada componente usa una interfaz común y componible, lo que los hace predecibles.
+* **Distribución**: un esquema de archivo plano y una herramienta de línea de comandos facilitan la distribución de componentes.
+* **Valores predeterminados hermosos**: estilos predeterminados cuidadosamente elegidos, para que obtengas un excelente diseño listo para usar.
+* **Listo para IA**: código abierto para que los LLM lo lean, comprendan y mejoren.
+
+## CODIGO ABIERTO 
+
+shadcn/ui te entrega el código del componente real. Tienes control total para personalizar y ampliar los componentes según tus necesidades. Esto significa:
+
+* **Transparencia total**: ves exactamente cómo se construye cada componente.
+* **Personalización sencilla**: modifica cualquier parte de un componente para que se ajuste a tus requisitos de diseño y funcionalidad.
+* **Integración de IA**: el acceso al código hace que sea sencillo para los LLM leer, comprender e incluso mejorar tus componentes.
+
+En una biblioteca típica, si necesitas cambiar el comportamiento de un botón, tienes que anular los estilos o encapsular el componente. Con shadcn/ui, simplemente editas el código del botón directamente.
+
+**¿COMO PUEDO OBTENER ACTUALIZACIONES ASCENDENTES EN UN ENFOQUE DE CODIGO ABIERTO?**
+
+shadcn/ui sigue una arquitectura de componentes sin interfaz gráfica. Esto significa que el núcleo de su aplicación puede recibir correcciones mediante la actualización de sus dependencias, por ejemplo, radix-ui o input-otp.
+
+La capa superior, es decir, la más cercana a su sistema de diseño, no está acoplada con la implementación de la biblioteca. Permanece abierta a modificaciones.
+
+## COMPOSICION 
+
+Todos los componentes de shadcn/ui comparten una interfaz común y componible. Si un componente no existe, lo incorporamos, lo hacemos componible y ajustamos su estilo para que coincida y funcione con el resto del sistema de diseño.
+
+Una interfaz compartida y componible significa que es predecible tanto para su equipo como para los LLM. No está aprendiendo diferentes API para cada componente nuevo. Incluso para los de terceros.
+
+## DISTRIBUCION 
+
+shadcn/ui también es un sistema de distribución de código. Define un esquema para los componentes y una CLI para distribuirlos.
+
+* **Esquema**: una estructura de archivo plano que define los componentes, sus dependencias y propiedades.
+* **CLI**: una herramienta de línea de comandos para distribuir e instalar componentes en proyectos con soporte entre marcos.
+
+Puede usar el esquema para distribuir sus componentes a otros proyectos o hacer que la IA genere componentes completamente nuevos basados ​​en el esquema existente.
+
+## VALORES PREDETERMINADOS 
+
+shadcn/ui viene con una gran colección de componentes que tienen estilos predeterminados cuidadosamente elegidos. Están diseñados para lucir bien por sí solos y para funcionar bien juntos como un sistema consistente:
+
+* **Buena configuración inicial**: su interfaz de usuario tiene un aspecto limpio y minimalista sin trabajo adicional.
+* **Diseño unificado**: los componentes se adaptan naturalmente entre sí. Cada componente está diseñado para combinar con los demás, lo que mantiene la coherencia de su interfaz de usuario.
+* **Fácilmente personalizable**: si desea cambiar algo, es simple anular y extender los valores predeterminados.
+
+## LISTO PARA IA 
+
+El diseño de shadcn/ui facilita que las herramientas de IA trabajen con su código. Su código abierto y API consistente permiten que los modelos de IA lean, comprendan e incluso generen nuevos componentes.
+
+Un modelo de IA puede aprender cómo funcionan sus componentes y sugerir mejoras o incluso crear nuevos componentes que se integren con su diseño existente.

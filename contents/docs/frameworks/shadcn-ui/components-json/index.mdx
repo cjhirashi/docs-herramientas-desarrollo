@@ -1,0 +1,248 @@
+---
+title: components.json
+description: Configuración para su proyecto.
+keywords: ["introducción", "guía", "nextjs", "documents"]
+---
+
+<CardGrid>
+    <Card
+        title="components.json"
+        href="https://ui.shadcn.com/docs/components-json"
+        icon="alignJustify"
+        variant="small"
+        description="test description"
+    />
+</CardGrid>
+
+---
+
+El archivo `components.json` contiene la configuración de su proyecto.
+
+Lo usamos para comprender cómo está configurado su proyecto y cómo generar componentes personalizados para él.
+
+<Note title="Nota">
+    El archivo `component.json` es opcional y solo es necesario si usas la ***CLI*** para agregar componentes a tu proyecto. Si usas el método de copiar y pegar, no necesitas este archivo.
+</Note>
+
+Puede crear un archivo `component.json` en su proyecto ejecutando el siguiente comando:
+
+<Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+    <TabsList className="">
+        <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+        <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+    ```bash
+        pnpm dlx shadcn@latest init
+    ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+    ```bash
+        npx shadcn@latest init
+    ```
+    </TabsContent>
+
+</Tabs>
+
+Consulte la sección CLI para obtener más información.
+
+## $schema
+
+Puedes ver el esquema JSON de componentes.json aquí.
+
+`componentes.json`
+```json
+{
+    "$schema": "https://ui.shadcn.com/schema.json"
+}
+```
+
+## style
+
+El estilo de sus componentes. **No se puede cambiar después de la inicialización**.
+
+`components.json`
+```json
+{
+    "style": "new-york"
+}
+```
+El estilo predeterminado ha quedado obsoleto. Utilice el estilo Nueva York en su lugar.
+
+## tailwind
+Configuración para ayudar a la ***CLI*** a comprender cómo se configura **Tailwind CSS** en su proyecto.
+
+Consulte la sección de instalación para saber cómo configurar **Tailwind CSS**.
+
+### tailwind.config
+
+Ruta donde se encuentra su archivo `tailwind.config.js`. Para **Tailwind CSS v4**, déjelo en blanco.
+
+`components.json`
+```json
+{
+    "tailwind": {
+        "config": "tailwind.config.js" | "tailwind.config.ts"
+    }
+}
+```
+
+### tailwind.css
+
+Ruta al archivo **CSS** que importa **Tailwind CSS** a tu proyecto.
+
+components.json
+```json
+{
+    "tailwind": {
+        "css": "styles/global.css"
+    }
+}
+```
+
+### tailwind.baseColor
+
+Se utiliza para generar la paleta de colores predeterminada para los componentes. No se puede cambiar después de la inicialización.
+
+`components.json`
+```json
+{
+    "tailwind": {
+        "baseColor": "gray" / "neutral" / "slate" / "stone" / "zinc"
+    }
+}
+```
+
+## tailwind.cssVariables
+
+Puede elegir entre usar variables CSS o clases de utilidad CSS de Tailwind para la creación de temas.
+
+Para usar clases de utilidad para la creación de temas, configure tailwind.cssVariables como `false`. Para las variables CSS, configure tailwind.cssVariables como `true`.
+
+`components.json`
+```json
+{
+    "tailwind": {
+        "cssVariables": `true` / `false`
+    }
+}
+```
+
+Para obtener más información, consulte la documentación de temas.
+
+Esto no se puede cambiar después de la inicialización. Para cambiar entre variables CSS y clases de utilidad, deberá eliminar y volver a instalar sus componentes.
+
+### tailwind.prefix
+
+El prefijo que se utilizará para sus clases de utilidad CSS Tailwind. Los componentes se agregarán con este prefijo.
+
+`component.json`
+```json
+{
+    "tailwind": {
+        "prefix": "tw-"
+    }
+}
+```
+
+## rsc
+
+Si se habilitará o no la compatibilidad con los componentes de **React Server**.
+
+La **CLI** agrega automáticamente una directiva de uso del cliente a los componentes del cliente cuando se configura como verdadero.
+
+`components.json`
+```json
+{
+    "rsc": `true` / `false`
+}
+```
+
+## tsx
+
+Elija entre componentes **TypeScript** o **JavaScript**.
+
+Si se establece esta opción en falso, se pueden agregar componentes como JavaScript con la extensión de archivo `.jsx`.
+
+`components.json`
+```json
+{
+    "tsx": `true` / `false`
+}
+```
+
+## alias
+
+La **CLI** utiliza estos valores y la configuración de rutas de su archivo `tsconfig.json` o `jsconfig.json` para colocar los componentes generados en la ubicación correcta.
+
+Los alias de ruta deben configurarse en su archivo `tsconfig.json` o `jsconfig.json`.
+
+<Note title="Importante">
+    Si está utilizando el directorio `src`, asegúrese de que esté incluido en las rutas en su archivo `tsconfig.json` o `jsconfig.json`.
+</Note>
+
+### aliases.utils
+
+Importa alias para tus funciones de utilidad.
+
+`components.json`
+```json
+{
+    "aliases": {
+        "utils": "@/lib/utils"
+    }
+}
+```
+### aliases.components
+
+Importa alias para tus componentes.
+
+`components.json`
+```json
+{
+    "aliases": {
+        "components": "@/components"
+    }
+}
+```
+### aliases.ui
+
+Importar alias para componentes de la interfaz de usuario.
+
+La ***CLI*** utilizará el valor `aliases.ui` para determinar dónde colocar los componentes de la interfaz de usuario. Utilice esta configuración si desea personalizar el directorio de instalación para los componentes de la interfaz de usuario.
+
+`components.json`
+```json
+{
+    "aliases": {
+        "ui": "@/app/ui"
+    }
+}
+```
+### aliases.lib
+
+Importa alias para funciones de biblioteca como `format-date` o `generate-id`.
+
+`components.json`
+```json
+{
+    "aliases": {
+        "lib": "@/lib"
+    }
+}
+```
+### aliases.hooks
+
+Importa alias para hooks como `use-media-query` o `use-toast`.
+
+`components.json`
+```json
+{
+    "aliases": {
+        "hooks": "@/hooks"
+    }
+}
+```

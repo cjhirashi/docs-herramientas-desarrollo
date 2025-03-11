@@ -1,0 +1,95 @@
+---
+title: Instalación en Next
+description: Instalar y configurar shadcn/ui para Next.js.
+keywords: ["introducción", "guía", "nextjs", "documents"]
+---
+
+<CardGrid>
+    <Card
+        title="Shadcn UI"
+        href="https://ui.shadcn.com/docs"
+        icon="alignJustify"
+        variant="small"
+        description="test description"
+    />
+</CardGrid>
+
+---
+
+<Note title="Nota">
+    La siguiente guía es para Tailwind v4. Si utiliza Tailwind v3, utilice shadcn@2.3.0.
+</Note>
+
+
+<Step>
+    <StepItem title="Crear proyecto">
+    
+        Ejecute el comando init para crear un nuevo proyecto Next.js o para configurar uno existente:
+
+        <Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+            <TabsList className="">
+                <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+                <TabsTrigger value="npm">npm</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="pnpm">
+            ```bash
+                pnpm dlx shadcn@latest init
+            ```
+            </TabsContent>
+
+            <TabsContent value="npm">
+            ```bash
+                npx shadcn@latest init
+            ```
+            </TabsContent>
+
+        </Tabs>
+
+        Elija entre un proyecto Next.js o un Monorepo.
+
+    </StepItem>
+
+    <StepItem title="Agregar componente">
+        
+        Ahora puedes comenzar a agregar componentes a tu proyecto.
+
+        <Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+            <TabsList className="">
+                <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+                <TabsTrigger value="npm">npm</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="pnpm">
+            ```bash
+                pnpm dlx shadcn@latest add button
+            ```
+            </TabsContent>
+
+            <TabsContent value="npm">
+            ```bash
+                npx shadcn@latest add button
+            ```
+            </TabsContent>
+
+        </Tabs>
+
+        El comando anterior agregará el componente Button a su proyecto. Luego, puede importarlo de esta manera:
+
+        ```typescript
+        import { Button } from "@/components/ui/button"
+
+            export default function Home() {
+                return (
+                    <div>
+                    <Button>Click me</Button>
+                    </div>
+                )
+            }
+        ```
+
+    </StepItem>
+
+</Step>
