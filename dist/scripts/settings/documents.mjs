@@ -1332,6 +1332,10 @@ export const Documents = [
                         title: "Layouts y Pages",
                         href: "/layouts-pages"
                     },
+                    {
+                        title: "Imágenes y fuentes",
+                        href: "/images-fonts"
+                    },
                 ]
             },
             {
