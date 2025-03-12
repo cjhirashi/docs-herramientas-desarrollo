@@ -26,22 +26,72 @@ Puedes ejecutar Supabase localmente usando el Supabase CLI. Esto te permite desa
 
 1.  Instala Suplabase CLI:
 
-    ```bash
-    npm install supabase --save-dev
+  <Tabs defaultValue="pnpm" className="pt-5 pb-1">
 
-    ```
+    <TabsList className="">
+      <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+      <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+      ```bash
+      pnpm add supabase --save-dev
+      ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+      ```bash
+      npm install supabase --save-dev
+      ```
+    </TabsContent>
+
+  </Tabs>
 
 2.  Inicializa un nuevo proyecto:
 
-    ```bash
-    supabase init
-    ```
+  <Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+    <TabsList className="">
+      <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+      <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+      ```bash
+      pnpm supabase init
+      ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+      ```bash
+      npx supabase init
+      ```
+    </TabsContent>
+
+  </Tabs>
 
 3.  Inicia Supabase:
 
-    ```bash
-    supabase start
-    ```
+  <Tabs defaultValue="pnpm" className="pt-5 pb-1">
+
+    <TabsList className="">
+      <TabsTrigger value="pnpm">pnpm</TabsTrigger>
+      <TabsTrigger value="npm">npm</TabsTrigger>
+    </TabsList>
+
+    <TabsContent value="pnpm">
+      ```bash
+      pnpm supabase start
+      ```
+    </TabsContent>
+
+    <TabsContent value="npm">
+      ```bash
+      npx supabase start
+      ```
+    </TabsContent>
+
+  </Tabs>
 
     Esto iniciará todos los servicios de Supabase en Docker. La primera vez que ejecutes este comando, Docker descargará las imágenes necesarias, lo cual puede tardar unos minutos.
 
