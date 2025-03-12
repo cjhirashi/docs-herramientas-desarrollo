@@ -1,0 +1,221 @@
+---
+title: Cómo actualiza la información
+description:  
+keywords: ["nextjs", "documents"]
+---
+
+<CardGrid>
+    <Card
+        title="Fuente"
+        href="https://nextjs.org/docs/app/getting-started/fetching-data"
+        icon="alignJustify"
+        variant="small"
+        external={true}
+    />
+</CardGrid>
+
+---
+
+Puedes modificar datos en ***Next.js*** mediante las funciones de servidor de ***React***. En esta página, te explicamos cómo crear e invocar funciones de servidor.
+
+
+## CREACION DE FUNCIONES DE SERVIDOR 
+
+Se puede definir una función de servidor mediante la directiva de uso del servidor. Puede colocar la directiva en la parte superior de una función asincrónica para marcar la función como una función de servidor o en la parte superior de un archivo independiente para marcar todas las exportaciones de ese archivo. Recomendamos utilizar un archivo independiente en la mayoría de los casos.
+
+`app/lib/actions.ts`
+
+```tsx
+'use server'
+
+export async function createPost(formData: FormData) {}
+
+export async function deletePost(formData: FormData) {}
+```
+
+### COMPONENTES DEL SERVIDOR 
+
+Las funciones del servidor se pueden incorporar en los componentes del servidor agregando la directiva *"use server"* en la parte superior del cuerpo de la función:
+
+`app/page.tsx`
+
+```tsx
+export default function Page() {
+    // Server Action
+    async function createPost() {
+        'use server'
+        // Mutate data
+        // ...
+    
+    return <></>
+}
+```
+
+### COMPONENTES DEL CLIENTE 
+
+No es posible definir funciones de servidor en componentes de cliente. Sin embargo, puede invocarlas en componentes de cliente importándolas desde un archivo que tenga la directiva *"use server"* en la parte superior:
+
+`app/actions.ts`
+
+```tsx
+'use server'
+
+export async function createPost() {}
+```
+
+`app/ui/button.tsx`
+
+```tsx
+'use client'
+
+import { createPost } from '@/app/actions'
+
+export function Button() {
+    return <button formAction={createPost}>Create</button>
+}
+```
+
+## INVOCACION DE FUNCIONES DEL SERVIDOR 
+
+Hay dos formas principales de invocar una función de servidor:
+
+1. Formularios en componentes de servidor y cliente
+2. Controladores de eventos en componentes de cliente
+
+### FORMULARIOS 
+
+***React*** extiende el elemento ***HTML*** `<form>` para permitir que la función del servidor se invoque con la propiedad de acción ***HTML***.
+
+Cuando se invoca en un ***formulario***, la función recibe automáticamente el objeto `FormData`. Puede extraer los datos utilizando los métodos nativos de `FormData`:
+
+`app/ui/form.tsx`
+
+```tsx
+import { createPost } from '@/app/actions'
+
+export function Form() {
+    return (
+        <form action={createPost}>
+            <input type="text" name="title" />
+            <input type="text" name="content" />
+            <button type="submit">Create</button>
+            </form>
+    )
+}
+```
+
+`app/actions.ts`
+
+```tsx
+'use server'
+
+export async function createPost(formData: FormData) {
+    const title = formData.get('title')
+    const content = formData.get('content')
+    
+    // Mutate data
+    // Revalidate cache
+}
+```
+
+<aside>
+ℹ️
+
+Bueno saber:
+
+Cuando se pasan a la propiedad de acción, las funciones del servidor también se conocen como acciones del servidor.
+
+</aside>
+
+### CONTROLADORES DE EVENTOS 
+
+Puede invocar una función de servidor en un componente de cliente mediante controladores de eventos como `onClick`.
+
+`app/like-button.tsx`
+
+```tsx
+'use client'
+
+import { incrementLike } from './actions'
+import { useState } from 'react'
+
+export default function LikeButton({ initialLikes }: { initialLikes: number }) {
+    const [likes, setLikes] = useState(initialLikes)
+    
+    return (
+        <>
+        <p>Total Likes: {likes}</p>
+            <button
+                onClick={async () => {
+                const updatedLikes = await incrementLike()
+                setLikes(updatedLikes)
+                }}
+            >
+                Like
+            </button>
+        </>
+    )
+}
+```
+
+### MOSTRANDO UN ESTADO PENDIENTE 
+
+Mientras se ejecuta una función de servidor, puedes mostrar un indicador de carga con el ***hook*** `useActionState` de `React`. Este ***hook*** devuelve un booleano pendiente:
+
+`app/ui/button.tsx`
+
+```tsx
+'use client'
+
+import { useActionState } from 'react'
+import { createPost } from '@/app/actions'
+import { LoadingSpinner } from '@/app/ui/loading-spinner'
+
+export function Button() {
+    const [state, action, pending] = useActionState(createPost, false)
+    
+    return (
+        <button onClick={async () => action()}>
+            {pending ? <LoadingSpinner /> : 'Create Post'}
+        </button>
+    )
+}
+```
+
+### REVALIDANDO LA CACHE 
+
+Después de realizar una mutación, puede revalidar el caché de ***Next.js*** y mostrar los datos actualizados llamando a `revalidatePath` o `revalidateTag` dentro de la función del servidor:
+
+`app/lib/actions.ts`
+
+```tsx
+'use server'
+
+import { revalidatePath } from 'next/cache'
+
+export async function createPost(formData: FormData) {
+    // Mutate data
+    // ...
+    
+    revalidatePath('/posts')
+}
+```
+
+### REDIRECCIONANDO 
+
+Es posible que desee redirigir al usuario a una página diferente después de realizar una mutación. Puede hacerlo llamando a `redirect` dentro de la función de servidor:
+
+`app/lib/actions.ts`
+
+```tsx
+'use server'
+
+import { redirect } from 'next/navigation'
+
+export async function createPost(formData: FormData) {
+    // Mutate data
+    // ...
+    
+    redirect('/posts')
+}
+```

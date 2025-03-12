@@ -16,11 +16,11 @@ keywords: ["nextjs", "documents"]
 
 ---
 
-## Cómo optimizar imágenes y fuentes
+## COMO OPTIMIZAR IMAGENES Y FUENTES 
 
 ***Next.js*** incluye optimización automática de imágenes y fuentes para un mejor rendimiento y experiencia del usuario. Esta página le indicará cómo comenzar a utilizarlas.
 
-## Manejo de activos estáticos
+## MANEJO DE ACTIVOS ESTATICOS 
 
 Puedes almacenar archivos estáticos, como imágenes y fuentes, en una carpeta llamada `public` en el directorio raíz. Luego, tu código puede hacer referencia a los archivos dentro de `public` a partir de la URL base (`/`).
 
@@ -28,7 +28,7 @@ Puedes almacenar archivos estáticos, como imágenes y fuentes, en una carpeta l
 
 ---
 
-## Optimización de imágenes
+## OPTIMIZACION DE IMAGENES 
 
 El componente `<Image>` de ***Next.js*** extiende el elemento ***HTML*** `<img>` para proporcionar:
 
@@ -51,7 +51,7 @@ export default function Page() {
 
 La propiedad `src` puede ser una imagen ***local*** o ***remota***.
 
-### Imágenes locales
+### IMAGENES LOCALES 
 
 Para utilizar una imagen local, importe sus archivos de imagen `.jpg`, `.png` o `.webp` desde su carpeta pública.
 
@@ -77,7 +77,7 @@ export default function Page() {
 
 ***Next.js*** determinará automáticamente el ancho y la altura intrínsecos de la imagen en función del archivo importado. Estos valores se utilizan para determinar la relación de aspecto de la imagen y evitar cambios de diseño acumulativos mientras se carga la imagen.
 
-### Imágenes remotas
+### IMAGENES REMOTAS 
 
 Para utilizar una imagen remota, puede proporcionar una cadena ***URL*** para la propiedad `src`.
 
@@ -124,7 +124,7 @@ const config: NextConfig = {
 export default config
 ```
 
-# Optimización de fuentes
+# OPTIMIZACION DE FUENTES 
 
 El módulo `next/font` optimiza automáticamente sus fuentes y elimina las solicitudes de red externa para mejorar la privacidad y el rendimiento.
 
@@ -150,7 +150,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 }
 ```
 
-### Fuentes de Google
+### FUENTES DE GOOGLE 
 
 Puedes alojar automáticamente cualquier ***fuente de Google***. Las fuentes se incluyen en la implementación y se distribuyen desde el mismo dominio que tu implementación, lo que significa que el navegador no envía solicitudes a ***Google*** cuando el usuario visita tu sitio.
 
@@ -200,7 +200,7 @@ export default function RootLayout({
 }
 ```
 
-### Fuentes locales
+### FUENTES LOCALES 
 
 Para utilizar una fuente local, importe su fuente desde `next/font/local` y especifique el origen de su archivo de fuente local en la carpeta `public`.
 

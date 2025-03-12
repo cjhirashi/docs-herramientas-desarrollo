@@ -1,0 +1,206 @@
+---
+title: Manejo de errores
+description:  
+keywords: ["nextjs", "documents"]
+---
+
+<CardGrid>
+    <Card
+        title="Fuente"
+        href="https://nextjs.org/docs/app/getting-started/error-handling"
+        icon="alignJustify"
+        variant="small"
+        external={true}
+    />
+</CardGrid>
+
+---
+
+## COMO MANEJAR LOS ERRORES 
+
+Los errores se pueden dividir en dos categorías: errores esperados y excepciones no detectadas. Esta página le mostrará cómo puede manejar estos errores en su aplicación ***Next.js***.
+
+## MANEJO DE ERRORES ESPERADOS 
+
+Los errores esperados son aquellos que pueden ocurrir durante el funcionamiento normal de la aplicación, como los que surgen de la validación de formularios del lado del servidor o de solicitudes fallidas. Estos errores deben gestionarse explícitamente y devolverse al cliente.
+
+### ACCIONES DEL SERVIDOR 
+
+Puede utilizar el ***hook*** `useActionState` para administrar el estado de las funciones del servidor y manejar los errores esperados. Evite utilizar bloques `try/catch` para los errores esperados. En su lugar, puede modelar los errores esperados como valores `return`, no como excepciones lanzadas (`thrown exceptions`).
+
+`app/actions.ts`
+
+```tsx
+'use server'
+
+export async function createPost(prevState: any, formData: FormData) {
+    const title = formData.get('title')
+    const content = formData.get('content')
+    
+    const res = await fetch('https://api.vercel.app/posts', {
+        method: 'POST',
+        body: { title, content },
+    })
+    const json = await res.json()
+    
+    if (!res.ok) {
+        return { message: 'Failed to create post' }
+    }
+}
+```
+
+Luego, puede pasar su acción al ***hook*** `useActionState` y usar el estado devuelto para mostrar un mensaje de error.
+
+`app/ui/form.tsx`
+
+```tsx
+'use client'
+
+import { useActionState } from 'react'
+import { createPost } from '@/app/actions'
+
+const initialState = {
+    message: '',
+}
+
+export function Form() {
+    const [state, formAction, pending] = useActionState(createPost, initialState)
+    
+    return (
+        <form action={formAction}>
+        <label htmlFor="title">Title</label>
+        <input type="text" id="title" name="title" required />
+        <label htmlFor="content">Content</label>
+        <textarea id="content" name="content" required />
+        {state?.message && <p aria-live="polite">{state.message}</p>}
+        <button disabled={pending}>Create Post</button>
+        </form>
+    )
+}
+```
+
+### COMPONENTES DEL SERVIDOR 
+
+Al obtener datos dentro de un componente de servidor, puede usar la respuesta para generar condicionalmente un mensaje de error o redirigir.
+
+`app/page.tsx`
+
+```tsx
+export default async function Page() {
+    const res = await fetch(`https://...`)
+    const data = await res.json()
+    
+    if (!res.ok) {
+        return 'There was an error.'
+    }
+    
+    return '...'
+}
+```
+
+### NO ENCONTRADO 
+
+Puede llamar a la función `notFound` dentro de un segmento de ruta y usar el archivo `not-found.js` para mostrar una interfaz de usuario `404`.
+
+`app/blog/[slug]/page.tsx`
+
+```tsx
+import { getPostBySlug } from '@/lib/posts'
+
+export default function Page({ params }: { params: { slug: string } }) {
+    const post = getPostBySlug(params.slug)
+    
+    if (!post) {
+        notFound()
+    }
+    
+    return <div>{post.title}</div>
+}
+```
+
+`app/blog/[slug]/not-found.tsx`
+
+```tsx
+export default function NotFound() {
+    return <div>404 - Page Not Found</div>
+}
+```
+
+---
+
+## MANEJO DE EXCEPCIONES NO DETECTADAS 
+
+Las excepciones no detectadas son errores inesperados que indican errores o problemas que no deberían ocurrir durante el flujo normal de la aplicación. Estos errores se deben solucionar generando errores, que luego serán detectados por los límites de error.
+
+### LIMITES DE ERROR ANIDADOS 
+
+***Next.js*** utiliza límites de error para gestionar excepciones no detectadas. Los límites de error detectan errores en sus componentes secundarios `child` y muestran una interfaz de usuario alternativa en lugar del árbol de componentes que falló.
+
+Cree un límite de error agregando un archivo `error.js` dentro de un segmento de ruta y exportando un componente ***React***:
+
+`app/dashboard/error.tsx`
+
+```tsx
+'use client' // Error boundaries must be Client Components
+
+import { useEffect } from 'react'
+
+export default function Error({
+    error,
+    reset,
+}: {
+    error: Error & { digest?: string }
+    reset: () => void
+}) {
+    useEffect(() => {
+        // Log the error to an error reporting service
+        console.error(error)
+    }, [error])
+
+    return (
+        <div>
+        <h2>Something went wrong!</h2>
+        <button
+            onClick={
+            // Attempt to recover by trying to re-render the segment
+            () => reset()
+            }
+        >
+            Try again
+        </button>
+        </div>
+    )
+}
+```
+
+Los errores se acumularán hasta el límite de error principal más cercano. Esto permite un manejo granular de los errores al colocar los archivos `error.tsx` en diferentes niveles de la jerarquía de rutas.
+
+![image.png](image.png)
+
+### ERRORES GLOBALES 
+
+Si bien es menos común, puedes manejar errores en el ***root layout*** usando el archivo `global-error.js`, ubicado en el directorio raíz de la aplicación, incluso cuando se aprovecha la internacionalización. La interfaz de usuario de error global debe definir sus propias etiquetas `<html>` y `<body>`, ya que reemplaza el ***root layout*** o la plantilla cuando está activa.
+
+`app/global-error.tsx`
+
+```tsx
+'use client' // Error boundaries must be Client Components
+
+export default function GlobalError({
+    error,
+    reset,
+}: {
+    error: Error & { digest?: string }
+    reset: () => void
+}) {
+    return (
+        // global-error must include html and body tags
+        <html>
+            <body>
+                <h2>Something went wrong!</h2>
+                <button onClick={() => reset()}>Try again</button>
+            </body>
+        </html>
+    )
+}
+```

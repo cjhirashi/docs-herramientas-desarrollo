@@ -1,0 +1,245 @@
+---
+title: Obtención y transmisión de datos
+description:  
+keywords: ["nextjs", "documents"]
+---
+
+<CardGrid>
+    <Card
+        title="Fuente"
+        href="https://nextjs.org/docs/app/getting-started/fetching-data"
+        icon="alignJustify"
+        variant="small"
+        external={true}
+    />
+</CardGrid>
+
+---
+
+## COMO OBTENER DATOS Y TRANSMITIRLOS 
+
+En esta página, le explicaremos cómo obtener datos en los componentes del servidor y del cliente, y cómo transmitir contenido que depende de los datos.
+
+---
+
+## OBTENIENDO DATOS 
+
+### COMPONENTES DEL SERVIDOR 
+
+Puede obtener datos en los componentes del servidor mediante:
+
+1. La API de búsqueda
+2. Un ORM o base de datos
+
+#### CON LA API DE BUSQUEDA 
+
+Para obtener datos con la ***API de búsqueda***, convierta su componente en una función asincrónica y espere la llamada de búsqueda. Por ejemplo:
+
+app/blog/page.tsx
+
+```tsx
+export default async function Page() {
+    const data = await fetch('https://api.vercel.app/blog')
+    const posts = await data.json()
+    return (
+            <ul>
+            {posts.map((post) => (
+                <li key={post.id}>{post.title}</li>
+            ))}
+        </ul>
+    )
+}
+```
+
+#### CON UN ORM O BASE DE DATOS 
+
+Puede obtener datos con un ***ORM*** o una base de datos convirtiendo su componente en una función asincrónica y esperando la llamada:
+
+`app/blog/page.tsx`
+
+```tsx
+import { db, posts } from '@/lib/db'
+
+export default async function Page() {
+    const allPosts = await db.select().from(posts)
+    return (
+        <ul>
+            {allPosts.map((post) => (
+                <li key={post.id}>{post.title}</li>
+            ))}
+        </ul>
+    )
+}
+```
+
+### COMPONENTES DEL CLIENTE 
+
+Hay dos formas de obtener datos en los componentes del cliente:
+
+1. Usando ***hooks*** de ***React***
+2. Una biblioteca comunitaria como ***SWR*** o ***React Query***
+
+#### CON EL USO DEL HOOK 
+
+Puedes usar el ***hook*** `use` de ***React*** para transmitir datos desde el servidor al cliente. Comienza por obtener los datos en el componente de servidor y pasa la promesa al componente de cliente como propiedad:
+
+`app/blog/page.tsx`
+
+```tsx
+import Posts from '@/app/ui/posts
+import { Suspense } from 'react'
+
+export default function Page() {
+    // Don't await the data fetching function
+    const posts = getPosts()
+    
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <Posts posts={posts} />
+        </Suspense>
+    )
+}
+```
+
+Luego, en su componente de cliente, use el ***hook*** `use` para leer la promesa:
+
+`app/ui/posts.tsx`
+
+```tsx
+'use client'
+import { use } from 'react'
+
+export default function Posts({
+    posts,
+}: {
+    posts: Promise<{ id: string; title: string }[]>
+}) {
+    const allPosts = use(posts)
+    
+    return (
+        <ul>
+        {allPosts.map((post) => (
+            <li key={post.id}>{post.title}</li>
+        ))}
+        </ul>
+    )
+}
+```
+
+En el ejemplo anterior, debe envolver el componente `<Posts />` en un límite `<Suspense>`. Esto significa que se mostrará la alternativa mientras se resuelve la promesa. Obtenga más información sobre la transmisión.
+
+#### BIBLIOTECAS COMUNITARIAS 
+
+Puedes usar una biblioteca comunitaria como ***SWR*** o ***React Query*** para obtener datos en los componentes del cliente. Estas bibliotecas tienen su propia semántica para el almacenamiento en caché, la transmisión y otras funciones. Por ejemplo, con ***SWR***:
+
+`app/blog/page.tsx`
+
+```tsx
+'use client'
+import useSWR from 'swr'
+
+const fetcher = (url) => fetch(url).then((r) => r.json())
+
+export default function BlogPage() {
+    const { data, error, isLoading } = useSWR(
+        'https://api.vercel.app/blog',
+        fetcher
+    )
+    
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Error: {error.message}</div>
+    
+    return (
+        <ul>
+        {data.map((post: { id: string; title: string }) => (
+            <li key={post.id}>{post.title}</li>
+        ))}
+        </ul>
+    )
+}
+```
+
+---
+
+## STREAMING 
+
+<aside>
+⚠️
+
+Advertencia:
+
+El contenido a continuación asume que la opción de configuración `dynamicIO` está habilitada en su aplicación. La bandera se introdujo en ***Next.js 15 Canary***.
+
+</aside>
+
+Al usar `async/await` en los componentes del servidor, ***Next.js*** optará por la representación dinámica. Esto significa que los datos se obtendrán y representarán en el servidor para cada solicitud del usuario. Si hay solicitudes de datos lentas, se bloqueará la representación de toda la ruta.
+
+Para mejorar el tiempo de carga inicial y la experiencia del usuario, puede utilizar la transmisión para dividir el ***HTML*** de la página en fragmentos más pequeños y enviar progresivamente esos fragmentos desde el servidor al cliente.
+
+![image.png](image.png)
+
+Hay dos formas de implementar la transmisión en su aplicación:
+
+1. Con el archivo `loading.js`
+2. Con el componente `<Suspense>` de `React`
+
+### CON `loading.js`
+
+Puedes crear un archivo `loading.js` en la misma carpeta que tu página para transmitir la página completa mientras se obtienen los datos. Por ejemplo, para transmitir `app/blog/page.js`, agrega el archivo dentro de la carpeta `app/blog`.
+
+![image.png](image%201.png)
+
+`app/blog/loading.tsx`
+
+```tsx
+export default function Loading() {
+  // Define the Loading UI here
+    return <div>Loading...</div>
+}
+```
+
+Durante la navegación, el usuario verá inmediatamente el layout y el estado de carga mientras se procesa la página. El nuevo contenido se reemplazará automáticamente una vez que se complete la renderización.
+
+![image.png](image%202.png)
+
+Detrás de escena, `loading.js` se anidará dentro de `layout.js` y envolverá automáticamente el archivo `page.js` y cualquier elemento secundario que se encuentre debajo en un límite `<Suspense>`.
+
+![image.png](image%203.png)
+
+Este enfoque funciona bien para segmentos de ruta (layouts y pages), pero para una transmisión más granular, puede utilizar `<Suspense>`.
+
+### CON `<Suspense>`
+
+`<Suspense>` te permite ser más específico en cuanto a qué partes de la página quieres transmitir. Por ejemplo, puedes mostrar inmediatamente cualquier contenido de la página que se encuentre fuera del límite de `<Suspense>` y transmitir la lista de publicaciones del blog dentro del límite.
+
+`app/blog/page.tsx`
+
+```tsx
+import { Suspense } from 'react'
+import BlogList from '@/components/BlogList'
+import BlogListSkeleton from '@/components/BlogListSkeleton'
+
+export default function BlogPage() {
+    return (
+        <div>
+            {/* This content will be sent to the client immediately */}
+            <header>
+                <h1>Welcome to the Blog</h1>
+                <p>Read the latest posts below.</p>
+            </header>
+            <main>
+                {/* Any content wrapped in a <Suspense> boundary will be streamed */}
+                <Suspense fallback={<BlogListSkeleton />}>
+                    <BlogList />
+                </Suspense>
+            </main>
+        </div>
+    )
+}
+```
+
+### CREANDO ESTADOS DE CARGA SIGNIFICATIVOS 
+
+Un estado de carga instantánea es una interfaz de usuario de respaldo que se muestra inmediatamente al usuario después de la navegación. Para obtener la mejor experiencia de usuario, recomendamos diseñar estados de carga que sean significativos y ayuden a los usuarios a comprender que la aplicación está respondiendo. Por ejemplo, puede usar ***skeletons*** y ***spinners***, o una parte pequeña pero significativa de las pantallas futuras, como una foto de portada, un título, etc.
+
+Durante el desarrollo, puedes obtener una vista previa e inspeccionar el estado de carga de tus componentes utilizando ***React Devtools***.

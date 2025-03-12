@@ -1338,6 +1338,22 @@ export const Documents: Paths[] = [
                         title: "Imágenes y fuentes",
                         href: "/images-fonts"
                     },
+                    {
+                        title: "CSS y Estilo",
+                        href: "/css-style"
+                    },
+                    {
+                        title: "Obtención y transmision de datos",
+                        href: "/fetching-data"
+                    },
+                    {
+                        title: "Actualización de datos",
+                        href: "/updating-data"
+                    },
+                    {
+                        title: "Manejo de errores",
+                        href: "/error-handling"
+                    },
                 ]
             },
             {
