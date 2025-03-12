@@ -16,17 +16,17 @@ keywords: ["nextjs", "documents"]
 
 ---
 
-## Cómo configurar un nuevo proyecto Next.js
+## COMO CONFIGURAR UN NUEVO PROYECTO Next.js
 
 
-### Requisitos del sistema
+### REQUISITOS DEL SISTEMA 
 
 - Node.js 18.18 o posterior.
 - Se admiten macOS, Windows (incluido WSL) y Linux.
 
 ---
 
-## Instalación automática
+## INSTALACION AUTOMATICA 
 
 Recomendamos iniciar una nueva aplicación ***Next.js*** usando `create-next-app`, que configura todo automáticamente. Para crear un proyecto, ejecute:
 
@@ -72,7 +72,7 @@ Después de las indicaciones, `create-next-app` creará una carpeta con el nombr
 
 ---
 
-## instalación manual
+## INSTALACION MANUAL 
 
 Para crear manualmente una nueva aplicación ***Next.js***, instale los paquetes necesarios:
 
@@ -100,7 +100,7 @@ Estos scripts hacen referencia a las diferentes etapas del desarrollo de una apl
 - `start`: ejecuta el `next start` para iniciar un servidor de producción ***Next.js***.
 - `lint`: ejecuta `next lint` para configurar la configuración ***ESLint*** incorporada de Next.js.
 
-### Crear el directorio de la aplicación
+### CREAR EL DIRECTORIO DE LA APLICACION 
 
 ***Next.js*** utiliza enrutamiento del sistema de archivos, lo que significa que las rutas en su aplicación están determinadas por cómo estructura sus archivos.
 
@@ -145,13 +145,13 @@ Es bueno saberlo:
 - Opcionalmente, puedes usar un directorio `src` en la raíz de tu proyecto para separar el código de tu aplicación de los archivos de configuración.
 </aside>
 
-### Crea la carpeta pública (opcional)
+### CREAR LA CARPETA PUBLICA (OPCIONAL)
 
 Opcionalmente, puede crear una carpeta pública en la raíz de su proyecto para almacenar activos estáticos como imágenes, fuentes, etc. Luego, su código puede hacer referencia a los archivos dentro de `public` a partir de la URL base (`/`).
 
 ---
 
-## Ejecute el servidor de desarrollo
+## EJECUTAR EL SERVIDOR DE DESARROLLO 
 
 1. Ejecute `npm run dev` para iniciar el servidor de desarrollo.
 2. Visite [http://localhost:3000](http://localhost:3000/) para ver su aplicación.
@@ -159,7 +159,7 @@ Opcionalmente, puede crear una carpeta pública en la raíz de su proyecto para 
 
 ---
 
-## Configurar TypeScript
+## CONFIGURAR TypeScript
 
 <aside>
 ℹ️
@@ -170,7 +170,7 @@ Versión mínima de TypeScript: v4.5.2
 
 ***Next.js*** viene con soporte ***TypeScript*** incorporado. Para agregar ***TypeScript*** a su proyecto, cambie el nombre de un archivo a `.ts/.tsx`. Ejecute `next dev`, ***Next.js*** instalará automáticamente las dependencias necesarias y agregará un archivo `tsconfig.json` con las opciones de configuración recomendadas.
 
-### Complemento IDE
+### COMPLEMENTO IDE
 
 ***Next.js*** incluye un complemento ***TypeScript*** personalizado y un verificador de tipos, que ***VSCode*** y otros editores de código pueden usar para la verificación de tipos avanzada y el autocompletado.
 
@@ -188,7 +188,7 @@ Consulte la página de configuración de ***TypeScript*** para obtener más info
 
 ---
 
-## Configurar ESLint
+## CONFIGURAR ESLint
 
 ***Next.js*** viene con ***ESLint*** incorporado, que instala automáticamente los paquetes necesarios y configura los ajustes adecuados cuando crea un nuevo proyecto con `create-next-app`.
 
@@ -233,7 +233,7 @@ Consulte la página del complemento ***ESLint*** para obtener más información 
 
 ---
 
-## Configurar importaciones absolutas y alias de ruta de módulo
+## CONFIGURAR IMPORTACIONES ABSOLUTAS Y ALIAS DE RUTA DE MODULO 
 
 ***Next.js*** tiene soporte incorporado para las opciones *"paths"* y *"baseUrl"* de los archivos `tsconfig.json` y `jsconfig.json`. Estas opciones le permiten asignar alias a los directorios del proyecto en rutas absolutas, lo que facilita la importación de módulos. Por ejemplo:
 
